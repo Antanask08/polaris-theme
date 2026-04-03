@@ -2,7 +2,168 @@
   "sections": {
     "product_main": {
       "type": "product-main",
-      "settings": {}
+      "settings": {
+        "show_rating": true,
+        "avg_rating": "4.9",
+        "review_count": "47",
+        "short_description": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint. Twisted loop technology absorbs water faster with zero scratching.",
+        "desc1_heading": "THE NOVA",
+        "desc1_body": "We built the Nova because we were tired of microfiber towels that leave water spots, tug at paint, and fall apart after three washes. The Nova is 1200 GSM with a twisted loop weave that traps water and lifts it away from your paint safely.",
+        "gsm_heading": "WHY GSM MATTERS",
+        "desc3_heading": "REAL WORLD TESTED",
+        "desc3_body": "Every Polaris product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years — if it doesn't pass his standard, it doesn't get sold. Simple as that.",
+        "reviews_heading": "WHAT THE COMMUNITY SAYS",
+        "faq_heading": "FREQUENTLY ASKED QUESTIONS"
+      },
+      "blocks": {
+        "spec_gsm": {
+          "type": "spec",
+          "settings": {
+            "icon": "◈",
+            "label": "1200 GSM"
+          }
+        },
+        "spec_loop": {
+          "type": "spec",
+          "settings": {
+            "icon": "◈",
+            "label": "Twisted Loop"
+          }
+        },
+        "spec_blend": {
+          "type": "spec",
+          "settings": {
+            "icon": "◈",
+            "label": "70/30 Blend"
+          }
+        },
+        "spec_safe": {
+          "type": "spec",
+          "settings": {
+            "icon": "◈",
+            "label": "Paint-Safe"
+          }
+        },
+        "gsm_entry": {
+          "type": "gsm_card",
+          "settings": {
+            "gsm_value": "600 GSM",
+            "gsm_label": "Entry Level",
+            "is_featured": false
+          }
+        },
+        "gsm_mid": {
+          "type": "gsm_card",
+          "settings": {
+            "gsm_value": "800 GSM",
+            "gsm_label": "Mid Range",
+            "is_featured": false
+          }
+        },
+        "gsm_nova": {
+          "type": "gsm_card",
+          "settings": {
+            "gsm_value": "1200 GSM",
+            "gsm_label": "THE NOVA",
+            "is_featured": true
+          }
+        },
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "name": "Marcus T.",
+            "stars": 5,
+            "review_text": "Absolutely incredible towel. The 1200 GSM is a game changer on my ceramic coated car. Zero water spots, dried the whole car in two passes.",
+            "date": "March 2025"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "name": "Jordan K.",
+            "stars": 5,
+            "review_text": "Finally a drying towel that doesn't leave swirls or water spots. Bought two. Polaris just earned a customer for life.",
+            "date": "February 2025"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "name": "Tyler M.",
+            "stars": 5,
+            "review_text": "These guys actually know cars. Product quality is insane for the price. This is the only towel I use on my GTR.",
+            "date": "January 2025"
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What size is The Nova?",
+            "answer": "The Nova measures 16 x 24 inches — large enough to cover a full panel with a single pass."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "What makes 1200 GSM special?",
+            "answer": "GSM measures how dense the microfiber pile is. At 1200 GSM, The Nova holds significantly more water than standard towels, meaning fewer passes and less risk of marring your paint."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Is it safe for ceramic coated cars?",
+            "answer": "Yes. The twisted loop weave is designed to be safe on all coatings including ceramic and PPF. The soft loops glide over the surface without dragging."
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I wash and care for it?",
+            "answer": "Machine wash cold, gentle cycle, no fabric softener, no heat dry. Air dry or tumble dry low. Never wash with cotton towels."
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer free shipping?",
+            "answer": "Yes — every single order ships free. No minimum, no code needed."
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "We offer a 30-day satisfaction guarantee. If you are not happy, reach out and we will make it right."
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "question": "How is Polaris different from other brands?",
+            "answer": "We are built by car enthusiasts, not corporations. We test everything ourselves, price fairly, and actually respond to our community."
+          }
+        }
+      },
+      "block_order": [
+        "spec_gsm",
+        "spec_loop",
+        "spec_blend",
+        "spec_safe",
+        "gsm_entry",
+        "gsm_mid",
+        "gsm_nova",
+        "review_1",
+        "review_2",
+        "review_3",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7"
+      ]
     }
   },
   "order": ["product_main"]
