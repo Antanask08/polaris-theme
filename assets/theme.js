@@ -9,36 +9,8 @@
 
   /* =========================================================
    * 1. ANNOUNCEMENT BAR
-   * Hide on scroll down, show on scroll up.
+   * Fixed at top, always visible. No scroll behavior.
    * ========================================================= */
-  (function initAnnouncementBar() {
-    const bar = document.querySelector('.announcement-bar');
-    const header = document.querySelector('.site-header');
-    if (!bar) return;
-
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(function () {
-          const currentScrollY = window.scrollY;
-          if (currentScrollY > lastScrollY && currentScrollY > 40) {
-            // Scrolling down — hide bar
-            bar.classList.add('is-hidden');
-          } else {
-            // Scrolling up — show bar
-            bar.classList.remove('is-hidden');
-          }
-          lastScrollY = currentScrollY;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-  })();
 
 
   /* =========================================================

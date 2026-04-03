@@ -48,7 +48,7 @@ body {
   line-height: 1.6;
   color: var(--color-black);
   background-color: var(--color-white);
-  padding-top: var(--announcement-height);
+  padding-top: calc(var(--announcement-height) + var(--header-height));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -390,14 +390,22 @@ p {
    HEADER
    ============================================================ */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: var(--announcement-height);
+  left: 0;
+  right: 0;
+  width: 100%;
   background-color: transparent;
   z-index: 999;
   transition: background-color var(--transition-fast),
-              border-bottom-color var(--transition-fast),
-              top var(--transition-base);
+              border-bottom-color var(--transition-fast);
   border-bottom: 1px solid transparent;
+}
+
+/* On homepage, pull the hero section up so it fills the full viewport
+   behind the fixed transparent header */
+.page-home .hero {
+  margin-top: calc(-1 * var(--header-height));
 }
 
 .site-header.header-scrolled,
