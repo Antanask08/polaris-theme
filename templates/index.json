@@ -37,28 +37,28 @@
         "price": "$29.99"
       },
       "blocks": {
-        "spec_1": {
+        "ps_spec_1": {
           "type": "spec",
           "settings": {
             "icon": "1",
             "label": "1200 GSM"
           }
         },
-        "spec_2": {
+        "ps_spec_2": {
           "type": "spec",
           "settings": {
             "icon": "2",
             "label": "Twisted Loop"
           }
         },
-        "spec_3": {
+        "ps_spec_3": {
           "type": "spec",
           "settings": {
             "icon": "3",
             "label": "70/30 Blend"
           }
         },
-        "spec_4": {
+        "ps_spec_4": {
           "type": "spec",
           "settings": {
             "icon": "4",
@@ -66,7 +66,7 @@
           }
         }
       },
-      "block_order": ["spec_1", "spec_2", "spec_3", "spec_4"]
+      "block_order": ["ps_spec_1", "ps_spec_2", "ps_spec_3", "ps_spec_4"]
     },
     "why_polaris": {
       "type": "why-polaris",
@@ -74,7 +74,7 @@
         "heading": "WHY POLARIS?"
       },
       "blocks": {
-        "row_1": {
+        "wp_row_1": {
           "type": "row",
           "settings": {
             "feature": "Price",
@@ -83,7 +83,7 @@
             "cheap_value": "$8-12"
           }
         },
-        "row_2": {
+        "wp_row_2": {
           "type": "row",
           "settings": {
             "feature": "GSM Rating",
@@ -92,7 +92,7 @@
             "cheap_value": "300-500 GSM"
           }
         },
-        "row_3": {
+        "wp_row_3": {
           "type": "row",
           "settings": {
             "feature": "Material Quality",
@@ -101,7 +101,7 @@
             "cheap_value": "Low Grade"
           }
         },
-        "row_4": {
+        "wp_row_4": {
           "type": "row",
           "settings": {
             "feature": "Shipping Cost",
@@ -110,7 +110,7 @@
             "cheap_value": "Sometimes Free"
           }
         },
-        "row_5": {
+        "wp_row_5": {
           "type": "row",
           "settings": {
             "feature": "Community Tested",
@@ -119,7 +119,7 @@
             "cheap_value": "No"
           }
         },
-        "row_6": {
+        "wp_row_6": {
           "type": "row",
           "settings": {
             "feature": "Founder Accessible",
@@ -129,7 +129,7 @@
           }
         }
       },
-      "block_order": ["row_1", "row_2", "row_3", "row_4", "row_5", "row_6"]
+      "block_order": ["wp_row_1", "wp_row_2", "wp_row_3", "wp_row_4", "wp_row_5", "wp_row_6"]
     },
     "social_proof": {
       "type": "social-proof",
@@ -140,62 +140,62 @@
         "photo_heading": "THE POLARIS COMMUNITY"
       },
       "blocks": {
-        "review_1": {
+        "sp_review_1": {
           "type": "review",
           "settings": {
             "name": "Marcus T.",
             "stars": 5,
-            "review_text": "Absolutely incredible towel. The 1200 GSM is a game changer on my ceramic coated car.",
+            "review_text": "Absolutely incredible towel. The 1200 GSM is a game changer on my ceramic coated car. Dried the whole car in two passes with zero water spots.",
             "date": "March 2025"
           }
         },
-        "review_2": {
+        "sp_review_2": {
           "type": "review",
           "settings": {
             "name": "Jordan K.",
             "stars": 5,
-            "review_text": "Finally a drying towel that doesn't leave water spots. Polaris just earned a customer for life.",
+            "review_text": "Finally a drying towel that doesn't leave swirls or water spots. Bought two. Polaris just earned a customer for life.",
             "date": "February 2025"
           }
         },
-        "review_3": {
+        "sp_review_3": {
           "type": "review",
           "settings": {
             "name": "Tyler M.",
             "stars": 5,
-            "review_text": "These guys actually know cars. Product quality is insane for the price.",
+            "review_text": "These guys actually know cars. Product quality is insane for the price. This is the only towel I use on my GTR now.",
             "date": "January 2025"
           }
         }
       },
-      "block_order": ["review_1", "review_2", "review_3"]
+      "block_order": ["sp_review_1", "sp_review_2", "sp_review_3"]
     },
     "trust_badges": {
       "type": "trust-badges",
       "settings": {},
       "blocks": {
-        "badge_1": {
+        "tb_badge_1": {
           "type": "badge",
           "settings": {
             "label": "FREE SHIPPING",
             "subtext": "Every single order"
           }
         },
-        "badge_2": {
+        "tb_badge_2": {
           "type": "badge",
           "settings": {
             "label": "PREMIUM 1200 GSM",
             "subtext": "Professional grade"
           }
         },
-        "badge_3": {
+        "tb_badge_3": {
           "type": "badge",
           "settings": {
             "label": "SECURE CHECKOUT",
             "subtext": "256-bit encrypted"
           }
         },
-        "badge_4": {
+        "tb_badge_4": {
           "type": "badge",
           "settings": {
             "label": "COMMUNITY TESTED",
@@ -203,7 +203,7 @@
           }
         }
       },
-      "block_order": ["badge_1", "badge_2", "badge_3", "badge_4"]
+      "block_order": ["tb_badge_1", "tb_badge_2", "tb_badge_3", "tb_badge_4"]
     },
     "press_bar": {
       "type": "press-bar",
