@@ -8,6 +8,27 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "headline": "BUILT FOR THE ONES WHO CARE",
+        "subheadline": "Premium detailing tools for the car community. Founded in Chicago, Illinois.",
+        "cta_text": "SHOP THE NOVA",
+        "cta_url": "/collections/all",
+        "bg_type": "image"
+      }
+    },
+    "email_popup": {
+      "type": "email-popup",
+      "settings": {
+        "enabled": true,
+        "headline": "GET 10% OFF YOUR FIRST ORDER",
+        "subheadline": "Join the Polaris community. Enter your email below.",
+        "button_text": "CLAIM MY 10% OFF",
+        "fine_print": "We respect your inbox. No spam, ever."
+      }
+    }
+  },
+  "order": ["hero", "email_popup"]
 }
