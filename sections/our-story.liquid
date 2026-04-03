@@ -1,0 +1,881 @@
+<style>
+  /* ============================================================
+     OUR STORY — GLOBAL
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .container--narrow {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section--black { background: #000; }
+  .section--white { background: #fff; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-header h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Fade-in animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 32px;
+    cursor: pointer;
+    transition: background 200ms, color 200ms;
+  }
+
+  .btn--primary {
+    background: #000;
+    color: #fff;
+  }
+
+  .btn--primary:hover {
+    background: #222;
+  }
+
+  .btn--secondary {
+    background: transparent;
+    color: #000;
+    border: 1px solid #000;
+  }
+
+  .btn--secondary:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  /* ============================================================
+     SECTION 1: STORY HERO
+     ============================================================ */
+  .story-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    background: #000;
+    overflow: hidden;
+  }
+
+  .story-hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .story-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .story-hero-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #111;
+  }
+
+  .story-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .story-hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  .story-hero-headline {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 7vw, 6rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: hero-in 0.8s ease 0.2s forwards;
+  }
+
+  .story-hero-subhead {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    opacity: 0;
+    animation: hero-in 0.8s ease 0.4s forwards;
+  }
+
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ============================================================
+     SECTION 2: STORY BLOCKS
+     ============================================================ */
+  .story-block {
+    padding: 96px 0;
+    background: #fff;
+  }
+
+  .story-block-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .story-label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 12px;
+  }
+
+  .story-block-text h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 24px;
+  }
+
+  .story-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.85;
+    opacity: 0.8;
+  }
+
+  .story-block-image img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+  }
+
+  .story-block-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #e8e8e8;
+  }
+
+  /* Full-width image blocks */
+  .story-block--full {
+    padding: 0;
+  }
+
+  .story-full-image img {
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .story-full-caption {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    padding: 16px 0;
+    text-transform: uppercase;
+  }
+
+  /* ============================================================
+     BIG QUOTE
+     ============================================================ */
+  .story-quote {
+    background: #000;
+    padding: 120px 0;
+    text-align: center;
+  }
+
+  .story-quote-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ============================================================
+     SECTION 3: FOUNDERS
+     ============================================================ */
+  .story-founders {
+    background: #fff;
+    padding: 96px 0;
+  }
+
+  .founders-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .founder-card {
+    border: 1px solid #000;
+  }
+
+  .founder-photo img,
+  .founder-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    background: #e8e8e8;
+    display: block;
+  }
+
+  .founder-info {
+    padding: 24px;
+  }
+
+  .founder-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  .founder-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    opacity: 0.5;
+    margin-bottom: 12px;
+  }
+
+  .founder-bio {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.75;
+  }
+
+  /* ============================================================
+     SECTION 4: COMMUNITY
+     ============================================================ */
+  .story-community {
+    background: #000;
+    padding: 96px 0;
+  }
+
+  .community-heading {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .community-body {
+    font-family: 'Inter', sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 64px;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .community-photo img,
+  .community-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: #222;
+    display: block;
+  }
+
+  .community-photo-caption {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    margin-top: 8px;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  /* ============================================================
+     SECTION 5: VISION CTA
+     ============================================================ */
+  .story-vision {
+    background: #fff;
+    padding: 120px 0;
+  }
+
+  .vision-headline {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+  }
+
+  .vision-subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    opacity: 0.65;
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .vision-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 768px) {
+    .container,
+    .container--narrow {
+      padding: 0 24px;
+    }
+
+    .story-block {
+      padding: 64px 0;
+    }
+
+    .story-block-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    /* For block C (reversed), keep image after text on mobile */
+    .story-block-grid--reversed .story-block-text {
+      order: 1;
+    }
+
+    .story-block-grid--reversed .story-block-image {
+      order: 2;
+    }
+
+    .founders-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .community-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .story-quote {
+      padding: 80px 0;
+    }
+
+    .story-vision {
+      padding: 80px 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .community-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{%- comment -%}SECTION 1: Hero{%- endcomment -%}
+<section class="story-hero">
+  <div class="story-hero-bg">
+    {% if section.settings.hero_image != blank %}
+      <img src="{{ section.settings.hero_image | img_url: 'master' }}" alt="Our Story" loading="eager" class="story-hero-img">
+    {% else %}
+      <div class="story-hero-placeholder"></div>
+    {% endif %}
+    <div class="story-hero-overlay"></div>
+  </div>
+  <div class="story-hero-content container">
+    <h1 class="story-hero-headline">{{ section.settings.hero_headline }}</h1>
+    <p class="story-hero-subhead">{{ section.settings.hero_subhead }}</p>
+  </div>
+</section>
+
+{%- comment -%}SECTION 2: Founding Story Blocks{%- endcomment -%}
+
+{%- comment -%}Block A: Image left, text right{%- endcomment -%}
+<section class="story-block story-block--a fade-in">
+  <div class="container">
+    <div class="story-block-grid">
+      <div class="story-block-image">
+        {% if section.settings.block_a_image != blank %}
+          <img src="{{ section.settings.block_a_image | img_url: 'large' }}" alt="{{ section.settings.block_a_heading }}" loading="lazy">
+        {% else %}
+          <div class="story-block-image-placeholder"></div>
+        {% endif %}
+      </div>
+      <div class="story-block-text">
+        {% if section.settings.block_a_label != blank %}
+          <span class="story-label">{{ section.settings.block_a_label }}</span>
+        {% endif %}
+        <h2>{{ section.settings.block_a_heading }}</h2>
+        <div class="story-body">{{ section.settings.block_a_body }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%}Block B: Full width image{%- endcomment -%}
+{% if section.settings.block_b_image != blank %}
+<section class="story-block story-block--full fade-in">
+  <div class="story-full-image">
+    <img src="{{ section.settings.block_b_image | img_url: 'master' }}" alt="{{ section.settings.block_b_caption }}" loading="lazy">
+  </div>
+  {% if section.settings.block_b_caption != blank %}
+    <div class="container">
+      <p class="story-full-caption">{{ section.settings.block_b_caption }}</p>
+    </div>
+  {% endif %}
+</section>
+{% endif %}
+
+{%- comment -%}Block C: Text left, image right{%- endcomment -%}
+<section class="story-block story-block--c fade-in">
+  <div class="container">
+    <div class="story-block-grid story-block-grid--reversed">
+      <div class="story-block-text">
+        {% if section.settings.block_c_label != blank %}
+          <span class="story-label">{{ section.settings.block_c_label }}</span>
+        {% endif %}
+        <h2>{{ section.settings.block_c_heading }}</h2>
+        <div class="story-body">{{ section.settings.block_c_body }}</div>
+      </div>
+      <div class="story-block-image">
+        {% if section.settings.block_c_image != blank %}
+          <img src="{{ section.settings.block_c_image | img_url: 'large' }}" alt="{{ section.settings.block_c_heading }}" loading="lazy">
+        {% else %}
+          <div class="story-block-image-placeholder"></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%}Block D: Full width image{%- endcomment -%}
+{% if section.settings.block_d_image != blank %}
+<section class="story-block story-block--full fade-in">
+  <div class="story-full-image">
+    <img src="{{ section.settings.block_d_image | img_url: 'master' }}" alt="{{ section.settings.block_d_caption }}" loading="lazy">
+  </div>
+  {% if section.settings.block_d_caption != blank %}
+    <div class="container">
+      <p class="story-full-caption">{{ section.settings.block_d_caption }}</p>
+    </div>
+  {% endif %}
+</section>
+{% endif %}
+
+{%- comment -%}Block E: Big quote{%- endcomment -%}
+<section class="story-quote section--black fade-in">
+  <div class="container container--narrow">
+    <blockquote class="story-quote-text">"{{ section.settings.quote_text }}"</blockquote>
+  </div>
+</section>
+
+{%- comment -%}SECTION 3: The Founders{%- endcomment -%}
+<section class="story-founders section--white fade-in">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.founders_heading }}</h2>
+    </div>
+    <div class="founders-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'founder' %}
+          <div class="founder-card" {{ block.shopify_attributes }}>
+            <div class="founder-photo">
+              {% if block.settings.photo != blank %}
+                <img src="{{ block.settings.photo | img_url: 'large' }}" alt="{{ block.settings.name }}" loading="lazy">
+              {% else %}
+                <div class="founder-photo-placeholder"></div>
+              {% endif %}
+            </div>
+            <div class="founder-info">
+              <h3 class="founder-name">{{ block.settings.name }}</h3>
+              <p class="founder-role">{{ block.settings.role }}</p>
+              <p class="founder-bio">{{ block.settings.bio }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{%- comment -%}SECTION 4: The Community{%- endcomment -%}
+<section class="story-community section--black fade-in">
+  <div class="container">
+    <h2 class="community-heading">{{ section.settings.community_heading }}</h2>
+    <p class="community-body">{{ section.settings.community_body }}</p>
+    <div class="community-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'community_photo' %}
+          <div class="community-photo" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | img_url: 'large' }}" alt="{{ block.settings.caption | default: 'Community photo' }}" loading="lazy">
+            {% else %}
+              <div class="community-photo-placeholder"></div>
+            {% endif %}
+            {% if block.settings.caption != blank %}
+              <p class="community-photo-caption">{{ block.settings.caption }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{%- comment -%}SECTION 5: Vision CTA{%- endcomment -%}
+<section class="story-vision section--white fade-in">
+  <div class="container" style="text-align:center; max-width:700px;">
+    <h2 class="vision-headline">{{ section.settings.vision_headline }}</h2>
+    <p class="vision-subtext">{{ section.settings.vision_subtext }}</p>
+    <div class="vision-ctas">
+      <a href="{{ section.settings.vision_cta1_url }}" class="btn btn--primary">{{ section.settings.vision_cta1_text }}</a>
+      <a href="{{ section.settings.vision_cta2_url }}" class="btn btn--secondary" target="_blank" rel="noopener">{{ section.settings.vision_cta2_text }}</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var fadeEls = document.querySelectorAll('.fade-in');
+    if (!fadeEls.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(function (el) {
+      observer.observe(el);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_headline",
+      "label": "Hero Headline",
+      "default": "BUILT FROM THE COMMUNITY"
+    },
+    {
+      "type": "text",
+      "id": "hero_subhead",
+      "label": "Hero Subheadline",
+      "default": "Tempe, Arizona. 2024."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Block A — Image Left, Text Right"
+    },
+    {
+      "type": "text",
+      "id": "block_a_label",
+      "label": "Label",
+      "default": "How It Started"
+    },
+    {
+      "type": "text",
+      "id": "block_a_heading",
+      "label": "Heading",
+      "default": "TIRED OF THE SAME STORY."
+    },
+    {
+      "type": "textarea",
+      "id": "block_a_body",
+      "label": "Body Text",
+      "default": "We started Polaris because we were tired of the same story — overpriced detailing products from brands that don't know what it's like to actually love a car. We built Polaris for the people who do."
+    },
+    {
+      "type": "image_picker",
+      "id": "block_a_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block B — Full Width Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "block_b_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "block_b_caption",
+      "label": "Caption"
+    },
+    {
+      "type": "header",
+      "content": "Block C — Text Left, Image Right"
+    },
+    {
+      "type": "text",
+      "id": "block_c_label",
+      "label": "Label",
+      "default": "The Product"
+    },
+    {
+      "type": "text",
+      "id": "block_c_heading",
+      "label": "Heading",
+      "default": "TESTED BEFORE IT'S SOLD."
+    },
+    {
+      "type": "textarea",
+      "id": "block_c_body",
+      "label": "Body Text",
+      "default": "Every product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years — if it doesn't pass his standard, it doesn't get sold. Simple as that."
+    },
+    {
+      "type": "image_picker",
+      "id": "block_c_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block D — Full Width Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "block_d_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "block_d_caption",
+      "label": "Caption"
+    },
+    {
+      "type": "header",
+      "content": "Quote"
+    },
+    {
+      "type": "textarea",
+      "id": "quote_text",
+      "label": "Quote Text",
+      "default": "Our goal isn't to be the cheapest brand. It's to be the most honest one."
+    },
+    {
+      "type": "header",
+      "content": "Founders Section"
+    },
+    {
+      "type": "text",
+      "id": "founders_heading",
+      "label": "Section Heading",
+      "default": "THE FOUNDERS"
+    },
+    {
+      "type": "header",
+      "content": "Community Section"
+    },
+    {
+      "type": "text",
+      "id": "community_heading",
+      "label": "Heading",
+      "default": "THE COMMUNITY IS THE BRAND"
+    },
+    {
+      "type": "textarea",
+      "id": "community_body",
+      "label": "Body Text",
+      "default": "We launched Polaris at a community car meet in Tempe. Over 50 cars showed up for a brand no one had heard of yet. That told us everything we needed to know."
+    },
+    {
+      "type": "header",
+      "content": "Vision CTA"
+    },
+    {
+      "type": "text",
+      "id": "vision_headline",
+      "label": "Headline",
+      "default": "WE'RE JUST GETTING STARTED."
+    },
+    {
+      "type": "text",
+      "id": "vision_subtext",
+      "label": "Subtext",
+      "default": "The Nova is the first chapter. Follow along as we build."
+    },
+    {
+      "type": "text",
+      "id": "vision_cta1_text",
+      "label": "CTA 1 Text",
+      "default": "SHOP THE NOVA →"
+    },
+    {
+      "type": "url",
+      "id": "vision_cta1_url",
+      "label": "CTA 1 URL",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "vision_cta2_text",
+      "label": "CTA 2 Text",
+      "default": "FOLLOW ON TIKTOK →"
+    },
+    {
+      "type": "url",
+      "id": "vision_cta2_url",
+      "label": "CTA 2 URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "founder",
+      "name": "Founder",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Antanas K."
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Co-Founder"
+        },
+        {
+          "type": "textarea",
+          "id": "bio",
+          "label": "Bio",
+          "default": "Brand builder, designer, and the creative brain behind Polaris."
+        }
+      ]
+    },
+    {
+      "type": "community_photo",
+      "name": "Community Photo",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story",
+      "blocks": [
+        {
+          "type": "founder",
+          "settings": {
+            "name": "Antanas K.",
+            "role": "Co-Founder",
+            "bio": "Brand builder and the creative vision behind Polaris Car Care."
+          }
+        },
+        {
+          "type": "founder",
+          "settings": {
+            "name": "Jacob B.",
+            "role": "Co-Founder & Head of Product",
+            "bio": "Professional detailer with 5+ years experience. Tests every product before it goes to market."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

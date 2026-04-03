@@ -1,0 +1,464 @@
+<style>
+/* ============================================================
+   6a: Star Rating Summary
+   ============================================================ */
+.reviews-summary {
+  background: #fff;
+  padding: 96px 0;
+}
+
+.rating-hero {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.rating-number {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: #000;
+  margin-bottom: 12px;
+}
+
+.rating-subtext {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.review-card {
+  background: #fff;
+  border: 1px solid #000;
+  padding: 32px;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.reviewer-initial {
+  width: 40px;
+  height: 40px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.reviewer-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.reviewer-date {
+  font-size: 12px;
+  opacity: 0.5;
+  margin-top: 2px;
+}
+
+.review-stars {
+  color: #000;
+  font-size: 14px;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.review-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #000;
+}
+
+/* ============================================================
+   6b: Video UGC Grid
+   ============================================================ */
+.video-ugc {
+  background: #000;
+  padding: 96px 0;
+}
+
+.section-heading-white {
+  color: #fff;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.video-slot {
+  position: relative;
+}
+
+.video-embed-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 9 / 16;
+}
+
+.video-embed-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-mp4-wrap video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background: #111;
+}
+
+.video-placeholder {
+  aspect-ratio: 9 / 16;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.video-caption {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   6c: Photo UGC Grid
+   ============================================================ */
+.photo-ugc {
+  background: #fff;
+  padding: 96px 0;
+}
+
+.photo-masonry {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.photo-slot img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 200ms ease;
+  display: block;
+}
+
+.photo-slot:hover img {
+  transform: scale(1.02);
+}
+
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f0f0f0;
+}
+
+.photo-caption {
+  font-size: 12px;
+  opacity: 0.5;
+  margin-top: 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ============================================================
+   Shared section header
+   ============================================================ */
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .photo-masonry {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+
+  .review-card {
+    min-width: 280px;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .photo-masonry {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+
+{% comment %}6a: Star Rating Summary{% endcomment %}
+<section class="reviews-summary section--white fade-in">
+  <div class="container">
+    <div class="rating-hero">
+      <div class="rating-number">{{ section.settings.avg_rating }} ★★★★★</div>
+      <div class="rating-subtext">{{ section.settings.rating_subtext }}</div>
+    </div>
+    <div class="reviews-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'review' %}
+          <div class="review-card" {{ block.shopify_attributes }}>
+            <div class="review-header">
+              <div class="reviewer-initial">{{ block.settings.name | slice: 0, 1 }}</div>
+              <div class="reviewer-meta">
+                <div class="reviewer-name">{{ block.settings.name }}</div>
+                <div class="reviewer-date">{{ block.settings.date }}</div>
+              </div>
+            </div>
+            <div class="review-stars">
+              {% for i in (1..block.settings.stars) %}★{% endfor %}
+            </div>
+            <p class="review-text">{{ block.settings.review_text }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% comment %}6b: Video UGC Grid{% endcomment %}
+<section class="video-ugc section--black fade-in">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-heading-white">{{ section.settings.video_heading }}</h2>
+    </div>
+    <div class="video-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'video' %}
+          <div class="video-slot" {{ block.shopify_attributes }}>
+            {% if block.settings.embed_code != blank %}
+              <div class="video-embed-wrap">{{ block.settings.embed_code }}</div>
+            {% elsif block.settings.mp4_url != blank %}
+              <div class="video-mp4-wrap">
+                <video poster="{{ block.settings.poster | img_url: 'medium' }}" controls preload="none">
+                  <source src="{{ block.settings.mp4_url }}" type="video/mp4">
+                </video>
+              </div>
+            {% else %}
+              <div class="video-placeholder">
+                <span>{{ block.settings.caption | default: 'Video Coming Soon' }}</span>
+              </div>
+            {% endif %}
+            {% if block.settings.caption != blank %}
+              <p class="video-caption">{{ block.settings.caption }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% comment %}6c: Photo UGC Grid{% endcomment %}
+<section class="photo-ugc section--white fade-in">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.photo_heading }}</h2>
+    </div>
+    <div class="photo-masonry">
+      {% for block in section.blocks %}
+        {% if block.type == 'photo' %}
+          <div class="photo-slot" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | img_url: 'large' }}" alt="{{ block.settings.caption | default: 'Community photo' }}" loading="lazy">
+            {% else %}
+              <div class="photo-placeholder"></div>
+            {% endif %}
+            {% if block.settings.caption != blank %}
+              <p class="photo-caption">{{ block.settings.caption }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Social Proof",
+  "settings": [
+    {
+      "type": "text",
+      "id": "avg_rating",
+      "label": "Star rating display",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "rating_subtext",
+      "label": "Rating subtext",
+      "default": "From the Polaris community"
+    },
+    {
+      "type": "text",
+      "id": "video_heading",
+      "label": "Video section heading",
+      "default": "FROM THE COMMUNITY"
+    },
+    {
+      "type": "text",
+      "id": "photo_heading",
+      "label": "Photo section heading",
+      "default": "THE POLARIS COMMUNITY"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review Card",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Reviewer name",
+          "default": "Marcus T."
+        },
+        {
+          "type": "range",
+          "id": "stars",
+          "label": "Stars",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "Absolutely incredible towel. The 1200 GSM is a game changer on my ceramic coated car."
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "March 2025"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video Slot",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "embed_code",
+          "label": "TikTok or Instagram embed code"
+        },
+        {
+          "type": "text",
+          "id": "mp4_url",
+          "label": "MP4 video URL (alternative)"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Poster image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (optional)"
+        }
+      ]
+    },
+    {
+      "type": "photo",
+      "name": "Community Photo",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social Proof (Reviews + Videos + Photos)",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "name": "Marcus T.",
+            "stars": 5,
+            "review_text": "Absolutely incredible towel. The 1200 GSM is a game changer on my ceramic coated car.",
+            "date": "March 2025"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Jordan K.",
+            "stars": 5,
+            "review_text": "Finally a drying towel that doesn't leave water spots. Polaris just earned a customer for life.",
+            "date": "February 2025"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Tyler M.",
+            "stars": 5,
+            "review_text": "These guys actually know cars. Product quality is insane for the price.",
+            "date": "January 2025"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Enter store using password",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_submit": "Enter",
+      "login_prompt": "Have a password?"
+    },
+    "meta": {
+      "tags": "Tagged with",
+      "page": "Page"
+    },
+    "breadcrumbs": {
+      "home": "Home"
+    }
+  },
+  "404": {
+    "title": "Page not found",
+    "subtext": "We couldn't find the page you're looking for.",
+    "link": "Continue shopping"
+  },
+  "cart": {
+    "general": {
+      "title": "Your Cart",
+      "empty": "Your cart is currently empty.",
+      "checkout": "Checkout",
+      "subtotal": "Subtotal",
+      "free_shipping": "Free shipping included",
+      "item_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      }
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "quantity": {
+        "label": "Quantity",
+        "increase": "Increase quantity",
+        "decrease": "Decrease quantity"
+      }
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "No products found"
+    }
+  },
+  "customer": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "forgot_password": "Forgot your password?",
+      "create_account": "Create account"
+    },
+    "register": {
+      "title": "Create Account",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create"
+    }
+  }
+}

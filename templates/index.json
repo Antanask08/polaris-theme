@@ -1,0 +1,136 @@
+{
+  "sections": {
+    "announcement_bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "enabled": true,
+        "speed": "medium"
+      }
+    },
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "headline": "BUILT FOR THE ONES WHO CARE",
+        "subheadline": "Premium detailing tools for the car community. Founded in Tempe, Arizona.",
+        "cta_text": "SHOP THE NOVA →",
+        "cta_url": "/collections/all",
+        "bg_type": "image"
+      }
+    },
+    "brand_statement": {
+      "type": "brand-statement",
+      "settings": {
+        "statement": "PREMIUM DOESN'T HAVE TO MEAN OVERPRICED. · TESTED IN THE REAL WORLD. · BUILT BY ENTHUSIASTS. ·",
+        "speed": 25
+      }
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "settings": {
+        "label": "Our Story",
+        "heading": "BUILT BY ENTHUSIASTS.",
+        "body_text": "We started Polaris because we were tired of overpaying for detailing products that didn't perform. Built from the car community, tested on real cars, priced for real people.",
+        "cta_text": "READ OUR STORY →",
+        "cta_url": "/pages/our-story"
+      }
+    },
+    "product_spotlight": {
+      "type": "product-spotlight",
+      "settings": {
+        "product_label": "Featured Product",
+        "product_name": "THE NOVA",
+        "product_description": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint.",
+        "product_url": "/products/the-nova",
+        "price": "$29.99"
+      },
+      "blocks": {
+        "spec_1": { "type": "spec", "settings": { "icon": "✓", "label": "1200 GSM" } },
+        "spec_2": { "type": "spec", "settings": { "icon": "✓", "label": "Twisted Loop" } },
+        "spec_3": { "type": "spec", "settings": { "icon": "✓", "label": "70/30 Blend" } },
+        "spec_4": { "type": "spec", "settings": { "icon": "✓", "label": "Paint-Safe" } }
+      },
+      "block_order": ["spec_1", "spec_2", "spec_3", "spec_4"]
+    },
+    "why_polaris": {
+      "type": "why-polaris",
+      "settings": {
+        "heading": "WHY POLARIS?"
+      },
+      "blocks": {
+        "row_1": { "type": "row", "settings": { "feature": "Price", "polaris_value": "✓ $29.99", "premium_value": "✗ $60–80+", "cheap_value": "✗ $8–12" } },
+        "row_2": { "type": "row", "settings": { "feature": "GSM Rating", "polaris_value": "✓ 1200 GSM", "premium_value": "~ 800–1000 GSM", "cheap_value": "✗ 300–500 GSM" } },
+        "row_3": { "type": "row", "settings": { "feature": "Material Quality", "polaris_value": "✓ 70/30 Blend", "premium_value": "~ Varies", "cheap_value": "✗ Low Grade" } },
+        "row_4": { "type": "row", "settings": { "feature": "Shipping Cost", "polaris_value": "✓ Always Free", "premium_value": "✗ $8–15", "cheap_value": "~ Sometimes" } },
+        "row_5": { "type": "row", "settings": { "feature": "Community Tested", "polaris_value": "✓ Yes", "premium_value": "✗ Lab Only", "cheap_value": "✗ No" } },
+        "row_6": { "type": "row", "settings": { "feature": "Founder Accessible", "polaris_value": "✓ DM us anytime", "premium_value": "✗ Corporate", "cheap_value": "✗ No response" } }
+      },
+      "block_order": ["row_1", "row_2", "row_3", "row_4", "row_5", "row_6"]
+    },
+    "social_proof": {
+      "type": "social-proof",
+      "settings": {
+        "avg_rating": "4.9",
+        "rating_subtext": "From the Polaris community",
+        "video_heading": "FROM THE COMMUNITY",
+        "photo_heading": "THE POLARIS COMMUNITY"
+      },
+      "blocks": {
+        "review_1": { "type": "review", "settings": { "name": "Marcus T.", "stars": 5, "review_text": "Absolutely incredible towel. The 1200 GSM is a game changer on my ceramic coated car.", "date": "March 2025" } },
+        "review_2": { "type": "review", "settings": { "name": "Jordan K.", "stars": 5, "review_text": "Finally a drying towel that doesn't leave water spots. Polaris just earned a customer for life.", "date": "February 2025" } },
+        "review_3": { "type": "review", "settings": { "name": "Tyler M.", "stars": 5, "review_text": "These guys actually know cars. Product quality is insane for the price.", "date": "January 2025" } }
+      },
+      "block_order": ["review_1", "review_2", "review_3"]
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "settings": {},
+      "blocks": {
+        "badge_1": { "type": "badge", "settings": { "label": "FREE SHIPPING", "subtext": "Every single order", "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><rect x='1' y='3' width='15' height='13'/><path d='m16 8 5 0 3 5v3h-8z'/><circle cx='6' cy='19' r='2'/><circle cx='19' cy='19' r='2'/></svg>" } },
+        "badge_2": { "type": "badge", "settings": { "label": "PREMIUM 1200 GSM", "subtext": "Professional grade", "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/></svg>" } },
+        "badge_3": { "type": "badge", "settings": { "label": "SECURE CHECKOUT", "subtext": "256-bit encrypted", "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><rect x='3' y='11' width='18' height='11' rx='0'/><path d='M7 11V7a5 5 0 0 1 10 0v4'/></svg>" } },
+        "badge_4": { "type": "badge", "settings": { "label": "COMMUNITY TESTED", "subtext": "Real world results", "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><path d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'/><circle cx='9' cy='7' r='4'/><path d='M23 21v-2a4 4 0 0 0-3-3.87'/><path d='M16 3.13a4 4 0 0 1 0 7.75'/></svg>" } }
+      },
+      "block_order": ["badge_1", "badge_2", "badge_3", "badge_4"]
+    },
+    "press_bar": {
+      "type": "press-bar",
+      "settings": {
+        "enabled": true,
+        "label": "AS SEEN IN"
+      }
+    },
+    "social_feed": {
+      "type": "social-feed",
+      "settings": {
+        "heading": "@POLARISCARCARE",
+        "subtext": "Follow along on TikTok and Instagram",
+        "tiktok_label": "FOLLOW US ON TIKTOK ↗",
+        "instagram_label": "FOLLOW ON INSTAGRAM ↗"
+      }
+    },
+    "email_popup": {
+      "type": "email-popup",
+      "settings": {
+        "enabled": true,
+        "headline": "GET 10% OFF YOUR FIRST ORDER",
+        "subheadline": "Join the Polaris community. Enter your email below.",
+        "input_placeholder": "YOUR EMAIL ADDRESS",
+        "button_text": "CLAIM MY 10% OFF",
+        "fine_print": "We respect your inbox. No spam, ever."
+      }
+    }
+  },
+  "order": [
+    "announcement_bar",
+    "hero",
+    "brand_statement",
+    "brand_story",
+    "product_spotlight",
+    "why_polaris",
+    "social_proof",
+    "trust_badges",
+    "press_bar",
+    "social_feed",
+    "email_popup"
+  ]
+}

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {% if settings.favicon != blank %}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32 }}">
+    {% endif %}
+
+    <!-- Google Fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Base stylesheet -->
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+
+    <style>
+      :root {
+        --color-black: #000000;
+        --color-white: #FFFFFF;
+        --font-heading: 'DM Sans', sans-serif;
+        --font-body: 'Inter', sans-serif;
+        --header-height: 60px;
+        --announcement-height: 40px;
+        --transition-fast: 200ms ease;
+        --transition-base: 300ms ease;
+        --transition-slow: 600ms ease;
+        --spacing-xs: 8px;
+        --spacing-sm: 16px;
+        --spacing-md: 32px;
+        --spacing-lg: 64px;
+        --spacing-xl: 96px;
+        --spacing-xxl: 128px;
+        --max-width: 1280px;
+      }
+    </style>
+  </head>
+
+  <body class="{% if template == 'index' %}page-home{% else %}page-not-home{% endif %} template-{{ template | replace: '.', '-' }}">
+
+    <!-- Skip to content -->
+    <a class="skip-to-content" href="#MainContent">Skip to content</a>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcement-bar" aria-label="Announcement">
+      <div class="container">
+        <div class="marquee-track" id="marquee-track" style="animation-duration: 20s;">
+          <span>Free shipping on every order.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Built for the ones who care.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Free shipping on every order.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Built for the ones who care.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;</span>
+          <span aria-hidden="true">Free shipping on every order.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Built for the ones who care.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Free shipping on every order.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Built for the ones who care.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+    <!-- Mobile Nav Drawer -->
+    <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
+      <div class="nav-drawer__header">
+        <span class="nav-drawer__logo">
+          {%- if settings.logo != blank -%}
+            <img src="{{ settings.logo | image_url: width: 120 }}" alt="{{ shop.name }}" width="120" height="auto">
+          {%- else -%}
+            <span style="font-family: var(--font-heading); font-weight: 700; font-size: 14px; letter-spacing: 0.1em; color: var(--color-white); text-transform: uppercase;">POLARIS CAR CARE</span>
+          {%- endif -%}
+        </span>
+        <button class="nav-drawer__close" id="nav-close" aria-label="Close navigation">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="1" y1="1" x2="19" y2="19" stroke="white" stroke-width="2"/>
+            <line x1="19" y1="1" x2="1" y2="19" stroke="white" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+      <ul class="nav-drawer__links">
+        {%- for link in linklists['main-menu'].links -%}
+          <li><a href="{{ link.url }}" class="nav-drawer__link">{{ link.title }}</a></li>
+        {%- else -%}
+          <li><a href="/" class="nav-drawer__link">Home</a></li>
+          <li><a href="/collections/all" class="nav-drawer__link">Shop</a></li>
+          <li><a href="/pages/our-story" class="nav-drawer__link">Our Story</a></li>
+          <li><a href="/pages/faq" class="nav-drawer__link">FAQ</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <!-- Site Header -->
+    <header class="site-header" id="site-header" role="banner">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="/" class="header-logo" aria-label="{{ shop.name }}">
+          {%- if settings.logo != blank -%}
+            <img
+              src="{{ settings.logo | image_url: width: 160 }}"
+              alt="{{ shop.name }}"
+              width="160"
+              height="auto"
+              loading="eager"
+            >
+          {%- else -%}
+            <span class="header-logo__text">POLARIS CAR CARE</span>
+          {%- endif -%}
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="nav-desktop" aria-label="Main navigation">
+          <ul class="nav-links">
+            {%- for link in linklists['main-menu'].links -%}
+              <li>
+                <a
+                  href="{{ link.url }}"
+                  class="nav-link{% if link.active %} nav-link--active{% endif %}"
+                >{{ link.title }}</a>
+              </li>
+            {%- else -%}
+              <li><a href="/" class="nav-link">Home</a></li>
+              <li><a href="/collections/all" class="nav-link">Shop</a></li>
+              <li><a href="/pages/our-story" class="nav-link">Our Story</a></li>
+              <li><a href="/pages/faq" class="nav-link">FAQ</a></li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <!-- Cart -->
+          <button
+            class="cart-btn"
+            id="cart-btn"
+            aria-label="Open cart, {{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %}"
+          >
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 10a5 5 0 01-10 0" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span
+              class="cart-count"
+              data-count="{{ cart.item_count }}"
+              aria-hidden="true"
+            >{{ cart.item_count }}</span>
+          </button>
+
+          <!-- Hamburger (mobile) -->
+          <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="nav-drawer"
+          >
+            <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="0" y1="1" x2="22" y2="1" stroke="white" stroke-width="2"/>
+              <line x1="0" y1="8" x2="22" y2="8" stroke="white" stroke-width="2"/>
+              <line x1="0" y1="15" x2="22" y2="15" stroke="white" stroke-width="2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="MainContent" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Brand Column -->
+          <div class="footer-col footer-col--brand">
+            <a href="/" class="footer-logo" aria-label="{{ shop.name }}">
+              {%- if settings.logo != blank -%}
+                <img
+                  src="{{ settings.logo | image_url: width: 160 }}"
+                  alt="{{ shop.name }}"
+                  width="160"
+                  height="auto"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <span class="footer-logo__text">POLARIS CAR CARE</span>
+              {%- endif -%}
+            </a>
+            <p class="footer-tagline">Built for the ones who care.</p>
+          </div>
+
+          <!-- Shop Column -->
+          <div class="footer-col">
+            <h4 class="footer-heading">Shop</h4>
+            <ul class="footer-links">
+              <li><a href="/collections/all">All Products</a></li>
+              <li><a href="/collections/all">New Arrivals</a></li>
+              <li><a href="/collections/all">Best Sellers</a></li>
+            </ul>
+          </div>
+
+          <!-- Company Column -->
+          <div class="footer-col">
+            <h4 class="footer-heading">Company</h4>
+            <ul class="footer-links">
+              <li><a href="/pages/our-story">Our Story</a></li>
+              <li><a href="/pages/faq">FAQ</a></li>
+              <li><a href="/pages/contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Social Column -->
+          <div class="footer-col">
+            <h4 class="footer-heading">Follow Us</h4>
+            <div class="footer-social">
+              {%- if settings.tiktok_url != blank -%}
+                <a href="{{ settings.tiktok_url }}" class="footer-social__link" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.53V6.77a4.85 4.85 0 01-1.01-.08z" fill="white"/>
+                  </svg>
+                </a>
+              {%- else -%}
+                <a href="#" class="footer-social__link" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.53V6.77a4.85 4.85 0 01-1.01-.08z" fill="white"/>
+                  </svg>
+                </a>
+              {%- endif -%}
+
+              {%- if settings.instagram_url != blank -%}
+                <a href="{{ settings.instagram_url }}" class="footer-social__link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" stroke-width="1.8" fill="none"/>
+                    <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8" fill="none"/>
+                    <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
+                  </svg>
+                </a>
+              {%- else -%}
+                <a href="#" class="footer-social__link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" stroke-width="1.8" fill="none"/>
+                    <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8" fill="none"/>
+                    <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
+                  </svg>
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+          <span>Free shipping on every order.</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Cart Drawer (snippet) -->
+    {%- render 'cart-drawer' -%}
+
+    <!-- Theme JS -->
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+    <script>
+      // Announcement bar hide/show on scroll
+      (function () {
+        var bar = document.getElementById('announcement-bar');
+        var header = document.getElementById('site-header');
+        var lastScrollY = window.scrollY;
+        var ticking = false;
+
+        function onScroll() {
+          var currentScrollY = window.scrollY;
+
+          if (currentScrollY > lastScrollY && currentScrollY > 80) {
+            bar.classList.add('is-hidden');
+            // Move header to top when announcement hides
+            header.style.top = '0px';
+          } else {
+            bar.classList.remove('is-hidden');
+            header.style.top = '';
+          }
+
+          // Homepage header transparency
+          if (document.body.classList.contains('page-home')) {
+            if (currentScrollY > 60) {
+              header.classList.add('header-scrolled');
+            } else {
+              header.classList.remove('header-scrolled');
+            }
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        }
+
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+          }
+        }, { passive: true });
+
+        // Set initial state for non-home pages
+        if (!document.body.classList.contains('page-home')) {
+          header.classList.add('header-scrolled');
+        }
+      })();
+
+      // Mobile nav drawer
+      (function () {
+        var hamburger = document.getElementById('hamburger');
+        var navClose = document.getElementById('nav-close');
+        var drawer = document.getElementById('nav-drawer');
+        var overlay = document.getElementById('nav-overlay');
+
+        function openDrawer() {
+          drawer.classList.add('is-open');
+          overlay.classList.add('is-open');
+          drawer.setAttribute('aria-hidden', 'false');
+          overlay.setAttribute('aria-hidden', 'false');
+          hamburger.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+          drawer.classList.remove('is-open');
+          overlay.classList.remove('is-open');
+          drawer.setAttribute('aria-hidden', 'true');
+          overlay.setAttribute('aria-hidden', 'true');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+
+        if (hamburger) hamburger.addEventListener('click', openDrawer);
+        if (navClose) navClose.addEventListener('click', closeDrawer);
+        if (overlay) overlay.addEventListener('click', closeDrawer);
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeDrawer();
+        });
+      })();
+
+      // Fade-in on scroll (Intersection Observer)
+      (function () {
+        var fadeEls = document.querySelectorAll('.fade-in');
+        if (!fadeEls.length) return;
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        fadeEls.forEach(function (el) {
+          observer.observe(el);
+        });
+      })();
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,143 @@
+{% if section.settings.enabled %}
+  {% assign speed = section.settings.speed %}
+  {% case speed %}
+    {% when 'slow' %}
+      {% assign marquee_speed = 45 %}
+    {% when 'fast' %}
+      {% assign marquee_speed = 20 %}
+    {% else %}
+      {% assign marquee_speed = 30 %}
+  {% endcase %}
+
+  <style>
+    .announcement-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: #000;
+      color: #fff;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      transition: transform 300ms ease;
+    }
+    .announcement-bar.is-hidden {
+      transform: translateY(-100%);
+    }
+    .marquee-wrapper {
+      overflow: hidden;
+      width: 100%;
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      width: max-content;
+      animation: marquee var(--marquee-speed, 30s) linear infinite;
+    }
+    .marquee-item {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0 24px;
+    }
+    .marquee-sep {
+      opacity: 0.4;
+      padding: 0 8px;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+  </style>
+
+  <div class="announcement-bar" role="region" aria-label="Announcement">
+    <div class="marquee-wrapper">
+      <div class="marquee-track" style="--marquee-speed: {{ marquee_speed }}s">
+        {%- comment -%}First copy{%- endcomment -%}
+        <span class="marquee-item">{{ section.settings.text_1 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_2 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_3 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_4 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_5 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_6 }}</span><span class="marquee-sep"> · </span>
+        {%- comment -%}Second copy (seamless loop){%- endcomment -%}
+        <span class="marquee-item">{{ section.settings.text_1 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_2 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_3 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_4 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_5 }}</span><span class="marquee-sep"> · </span>
+        <span class="marquee-item">{{ section.settings.text_6 }}</span><span class="marquee-sep"> · </span>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "speed",
+      "label": "Scroll speed",
+      "options": [
+        { "value": "slow", "label": "Slow" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "fast", "label": "Fast" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Message 1",
+      "default": "FREE SHIPPING ON EVERY ORDER"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Message 2",
+      "default": "PREMIUM 1200 GSM MICROFIBER"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Message 3",
+      "default": "MADE BY ENTHUSIASTS"
+    },
+    {
+      "type": "text",
+      "id": "text_4",
+      "label": "Message 4",
+      "default": "TWISTED LOOP TECHNOLOGY"
+    },
+    {
+      "type": "text",
+      "id": "text_5",
+      "label": "Message 5",
+      "default": "TRUSTED BY THE CAR COMMUNITY"
+    },
+    {
+      "type": "text",
+      "id": "text_6",
+      "label": "Message 6",
+      "default": "POLARIS CAR CARE"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

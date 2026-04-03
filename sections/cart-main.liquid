@@ -1,0 +1,216 @@
+<section class="cart-page">
+  <div class="container container--narrow">
+    <h1 class="cart-page-title">YOUR CART</h1>
+
+    {% if cart.item_count == 0 %}
+      <div class="cart-empty-page">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1" style="opacity:0.2;margin:0 auto 24px;display:block;">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <p>Your cart is empty.</p>
+        <a href="/collections/all" class="btn btn--primary">SHOP THE NOVA →</a>
+      </div>
+
+    {% else %}
+      <div class="cart-page-layout">
+        <div class="cart-page-items">
+          {% for item in cart.items %}
+            <div class="cart-page-item" data-key="{{ item.key }}">
+              <div class="cart-page-item-image">
+                {% if item.image %}
+                  <img src="{{ item.image | img_url: '160x160' }}" alt="{{ item.title | escape }}" width="80" height="80" loading="lazy">
+                {% endif %}
+              </div>
+              <div class="cart-page-item-details">
+                <p class="cart-page-item-title">{{ item.product.title }}</p>
+                {% unless item.variant.title == 'Default Title' %}
+                  <p class="cart-page-item-variant">{{ item.variant.title }}</p>
+                {% endunless %}
+                <p class="cart-page-item-price">{{ item.final_line_price | money }}</p>
+                <div class="cart-page-item-qty">
+                  <span>Qty:</span>
+                  <form action="/cart/change" method="post">
+                    <input type="hidden" name="id" value="{{ item.key }}">
+                    <select name="quantity" onchange="this.form.submit()" aria-label="Quantity">
+                      {% for i in (0..10) %}
+                        <option value="{{ i }}" {% if i == item.quantity %}selected{% endif %}>
+                          {% if i == 0 %}Remove{% else %}{{ i }}{% endif %}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </form>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="cart-page-summary">
+          <div class="cart-summary-row">
+            <span class="cart-summary-label">SUBTOTAL</span>
+            <span class="cart-summary-price">{{ cart.total_price | money }}</span>
+          </div>
+          <p class="cart-summary-shipping">FREE SHIPPING INCLUDED</p>
+          <a href="/checkout" class="btn btn--primary btn--full cart-checkout-btn">CHECKOUT →</a>
+          <a href="/collections/all" class="btn btn--secondary btn--full" style="margin-top:12px;">CONTINUE SHOPPING</a>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  .cart-page {
+    padding: 64px 0;
+    background: #fff;
+    min-height: 60vh;
+  }
+
+  .cart-page-title {
+    margin-bottom: 48px;
+  }
+
+  .cart-empty-page {
+    text-align: center;
+    padding: 64px 0;
+  }
+
+  .cart-empty-page p {
+    margin-bottom: 32px;
+    opacity: 0.5;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .cart-page-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .cart-page-items {
+    border-top: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .cart-page-item {
+    display: flex;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .cart-page-item-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid rgba(0,0,0,0.1);
+    display: block;
+  }
+
+  .cart-page-item-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  .cart-page-item-variant {
+    font-size: 12px;
+    opacity: 0.5;
+    margin-bottom: 8px;
+  }
+
+  .cart-page-item-price {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .cart-page-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    opacity: 0.6;
+  }
+
+  .cart-page-item-qty select {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.3);
+    padding: 4px 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .cart-page-summary {
+    position: sticky;
+    top: 120px;
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 32px;
+  }
+
+  .cart-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .cart-summary-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .cart-summary-price {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+  .cart-summary-shipping {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .cart-checkout-btn {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .cart-page-layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .cart-page-summary {
+      position: static;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Cart Main",
+      "category": "Cart"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,69 @@
+<style>
+  .brand-statement {
+    background: #fff;
+    padding: 48px 0;
+    overflow: hidden;
+  }
+  .brand-statement-marquee {
+    overflow: hidden;
+  }
+  .bs-track {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+    animation: marquee-bs var(--bs-speed, 25s) linear infinite;
+  }
+  @keyframes marquee-bs {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .bs-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 4rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0 48px;
+    color: #000;
+  }
+</style>
+
+<section class="brand-statement section--white">
+  <div
+    class="brand-statement-marquee"
+    style="--bs-speed: {{ section.settings.speed }}s"
+  >
+    <div class="bs-track">
+      <span class="bs-text">{{ section.settings.statement }}</span>
+      <span class="bs-text">{{ section.settings.statement }}</span>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Statement Marquee",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "statement",
+      "label": "Marquee text",
+      "default": "PREMIUM DOESN'T HAVE TO MEAN OVERPRICED. · TESTED IN THE REAL WORLD. · BUILT BY ENTHUSIASTS. ·"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed (seconds per loop)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 25
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Statement Marquee"
+    }
+  ]
+}
+{% endschema %}

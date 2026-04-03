@@ -1,0 +1,279 @@
+<style>
+  .product-spotlight {
+    background: #fff;
+    padding: 96px 0;
+  }
+  .spotlight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .spotlight-image img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+  .spotlight-image-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #f0f0f0;
+  }
+  .spotlight-name {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    color: #000;
+  }
+  .spotlight-desc {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    font-size: 1.05rem;
+    opacity: 0.8;
+    color: #000;
+  }
+  .spotlight-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #000;
+  }
+  .spec-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .spec-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .spec-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #000;
+  }
+  .spotlight-pricing {
+    margin-bottom: 32px;
+  }
+  .spotlight-price {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 6px;
+    color: #000;
+  }
+  .spotlight-shipping {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+    color: #000;
+  }
+  .spotlight-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .btn--full {
+    width: 100%;
+    text-align: center;
+  }
+  .spotlight-details-link {
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+    display: block;
+    transition: text-decoration 150ms ease;
+  }
+  .spotlight-details-link:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    .spotlight-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="product-spotlight section--white fade-in">
+  <div class="container">
+    <div class="spotlight-grid">
+      <div class="spotlight-image">
+        {% if section.settings.product_image != blank %}
+          <img
+            src="{{ section.settings.product_image | img_url: 'large' }}"
+            alt="{{ section.settings.product_name }}"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="spotlight-image-placeholder"></div>
+        {% endif %}
+      </div>
+
+      <div class="spotlight-content">
+        <span class="section-label">{{ section.settings.product_label }}</span>
+        <h2 class="spotlight-name">{{ section.settings.product_name }}</h2>
+        <p class="spotlight-desc">{{ section.settings.product_description }}</p>
+
+        <div class="spotlight-specs">
+          {% for block in section.blocks %}
+            {% if block.type == 'spec' %}
+              <div class="spec-row" {{ block.shopify_attributes }}>
+                <span class="spec-icon">{{ block.settings.icon_svg }}</span>
+                <span class="spec-label">{{ block.settings.label }}</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="spotlight-pricing">
+          <span class="spotlight-price">{{ section.settings.price }}</span>
+          <span class="spotlight-shipping">FREE SHIPPING ON EVERY ORDER</span>
+        </div>
+
+        <div class="spotlight-actions">
+          {% if section.settings.product_handle != blank %}
+            {% assign spotlight_product = all_products[section.settings.product_handle] %}
+            <button
+              class="btn btn--primary btn--full btn-atc"
+              data-variant-id="{{ spotlight_product.first_available_variant.id }}"
+            >
+              ADD TO CART
+            </button>
+          {% else %}
+            <button
+              class="btn btn--primary btn--full btn-atc"
+              data-variant-id="{{ section.settings.variant_id }}"
+            >
+              ADD TO CART
+            </button>
+          {% endif %}
+          <a href="{{ section.settings.product_url }}" class="spotlight-details-link">
+            VIEW DETAILS →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Spotlight",
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_label",
+      "label": "Product label",
+      "default": "Featured Product"
+    },
+    {
+      "type": "text",
+      "id": "product_name",
+      "label": "Product name",
+      "default": "THE NOVA"
+    },
+    {
+      "type": "textarea",
+      "id": "product_description",
+      "label": "Product description",
+      "default": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint."
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "product_handle",
+      "label": "Product handle (for dynamic price)"
+    },
+    {
+      "type": "text",
+      "id": "variant_id",
+      "label": "Variant ID (fallback)"
+    },
+    {
+      "type": "url",
+      "id": "product_url",
+      "label": "Product page link",
+      "default": "/products/the-nova"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price display",
+      "default": "$29.99"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Product Spec",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon_svg",
+          "label": "Icon (SVG code or emoji)",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Spec label",
+          "default": "1200 GSM"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Spotlight",
+      "blocks": [
+        {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "✓",
+            "label": "1200 GSM Microfiber"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "✓",
+            "label": "Twisted Loop Technology"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "✓",
+            "label": "Scratch-Free Guaranteed"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "✓",
+            "label": "Free Shipping on Every Order"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

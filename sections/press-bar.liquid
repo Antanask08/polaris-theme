@@ -1,0 +1,126 @@
+<style>
+.press-bar {
+  background: #000;
+  padding: 64px 0;
+}
+
+.press-label {
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 40px;
+}
+
+.press-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.press-logo-item a {
+  text-decoration: none;
+}
+
+.press-logo-img {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+  transition: opacity 200ms ease;
+  display: block;
+}
+
+.press-logo-img:hover {
+  opacity: 1;
+}
+
+.press-logo-placeholder {
+  width: 120px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.3);
+}
+</style>
+
+{% if section.settings.enabled %}
+<section class="press-bar section--black fade-in">
+  <div class="container">
+    <div class="press-label">{{ section.settings.label }}</div>
+    <div class="press-logos">
+      {% for block in section.blocks %}
+        {% if block.type == 'logo' %}
+          <div class="press-logo-item" {{ block.shopify_attributes }}>
+            {% if block.settings.link != blank %}<a href="{{ block.settings.link }}" target="_blank" rel="noopener">{% endif %}
+            {% if block.settings.logo != blank %}
+              <img src="{{ block.settings.logo | img_url: 'medium' }}" alt="{{ block.settings.alt_text | default: 'Press logo' }}" loading="lazy" class="press-logo-img">
+            {% else %}
+              <div class="press-logo-placeholder">LOGO</div>
+            {% endif %}
+            {% if block.settings.link != blank %}</a>{% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Press Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Show press bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "AS SEEN IN"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Press Logo",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press Bar"
+    }
+  ]
+}
+{% endschema %}

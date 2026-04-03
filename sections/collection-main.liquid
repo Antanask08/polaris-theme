@@ -1,0 +1,149 @@
+<section class="collection-page">
+  <div class="container">
+
+    <div class="collection-header section-header">
+      <h1>{{ collection.title }}</h1>
+      {% if collection.description != blank %}
+        <p class="collection-desc">{{ collection.description }}</p>
+      {% endif %}
+    </div>
+
+    {% paginate collection.products by 12 %}
+      {% if collection.products.size > 0 %}
+        <div class="collection-grid">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <div class="pagination">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+
+      {% else %}
+        <div class="collection-empty">
+          <p>No products found in this collection.</p>
+          <a href="/" class="btn btn--primary">GO HOME →</a>
+        </div>
+      {% endif %}
+    {% endpaginate %}
+
+  </div>
+</section>
+
+<style>
+  .collection-page {
+    padding: 64px 0;
+    background: #fff;
+    min-height: 60vh;
+  }
+
+  .collection-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .collection-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    opacity: 0.65;
+    max-width: 600px;
+    margin: 16px auto 0;
+    line-height: 1.7;
+  }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .collection-empty {
+    text-align: center;
+    padding: 64px 0;
+  }
+
+  .collection-empty p {
+    opacity: 0.5;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .pagination {
+    text-align: center;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .pagination a,
+  .pagination span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 10px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: #000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    transition: background 200ms ease, color 200ms ease;
+  }
+
+  .pagination a:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .pagination .current {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  @media (max-width: 1024px) {
+    .collection-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .collection-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 6,
+      "max": 24,
+      "step": 6,
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Main",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

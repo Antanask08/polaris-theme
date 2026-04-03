@@ -1,0 +1,146 @@
+<style>
+  .brand-story {
+    background: #000;
+    color: #fff;
+    padding: 96px 0;
+  }
+  .brand-story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .section-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 16px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .brand-story-heading {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  .brand-story-body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    opacity: 0.85;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+  .brand-story .btn--secondary {
+    border: 1px solid #fff;
+    color: #fff;
+    background: transparent;
+    display: inline-block;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .brand-story .btn--secondary:hover {
+    background: #fff;
+    color: #000;
+  }
+  .brand-story-image img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+  }
+  .brand-story-image .image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #111;
+  }
+  @media (max-width: 768px) {
+    .brand-story-grid {
+      grid-template-columns: 1fr;
+    }
+    .brand-story-image {
+      order: -1;
+    }
+  }
+</style>
+
+<section class="brand-story section--black fade-in">
+  <div class="container">
+    <div class="brand-story-grid">
+      <div class="brand-story-text">
+        <span class="section-label">{{ section.settings.label }}</span>
+        <h2 class="brand-story-heading">{{ section.settings.heading }}</h2>
+        <p class="brand-story-body">{{ section.settings.body_text }}</p>
+        <a href="{{ section.settings.cta_url }}" class="btn btn--secondary">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+      <div class="brand-story-image">
+        {% if section.settings.image != blank %}
+          <img
+            src="{{ section.settings.image | img_url: 'large' }}"
+            alt="{{ section.settings.heading }}"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="image-placeholder"></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "BUILT BY ENTHUSIASTS."
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "We started Polaris because we were tired of overpaying for detailing products that didn't perform. Built from the car community, tested on real cars, priced for real people."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Brand photo"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "READ OUR STORY →"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button link",
+      "default": "/pages/our-story"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story"
+    }
+  ]
+}
+{% endschema %}

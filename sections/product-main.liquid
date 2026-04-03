@@ -1,0 +1,1282 @@
+{{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
+
+<style>
+  /* ─── Base / Container ─────────────────────────────────────────────────────── */
+  .product-page {
+    font-family: 'DM Sans', sans-serif;
+    color: #000;
+    background: #fff;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .container--narrow {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── Fade-in ──────────────────────────────────────────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+
+  .fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Product Top ──────────────────────────────────────────────────────────── */
+  .product-top {
+    padding: 64px 0;
+    background: #fff;
+  }
+
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* ─── Gallery ──────────────────────────────────────────────────────────────── */
+  .gallery-main {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .product-main-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: opacity 200ms ease;
+    display: block;
+  }
+
+  .gallery-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #f0f0f0;
+  }
+
+  .gallery-thumbs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .gallery-thumb {
+    width: 72px;
+    height: 72px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color 200ms;
+  }
+
+  .gallery-thumb.is-active,
+  .gallery-thumb:hover {
+    border-color: #000;
+  }
+
+  .gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ─── Product Info ─────────────────────────────────────────────────────────── */
+  .product-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    line-height: 1.1;
+    color: #000;
+  }
+
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .rating-stars {
+    color: #000;
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .rating-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    opacity: 0.6;
+    color: #000;
+  }
+
+  .product-price-wrap {
+    margin-bottom: 20px;
+  }
+
+  .product-price {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 6px;
+    color: #000;
+  }
+
+  .product-shipping-note {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #000;
+    opacity: 0.6;
+  }
+
+  .product-short-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    opacity: 0.8;
+    color: #000;
+  }
+
+  /* ─── Specs Strip ──────────────────────────────────────────────────────────── */
+  .product-specs-strip {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    margin-bottom: 28px;
+  }
+
+  .spec-item {
+    text-align: center;
+    flex: 1;
+  }
+
+  .spec-item-icon {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .spec-item-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #000;
+  }
+
+  /* ─── Variant Buttons ──────────────────────────────────────────────────────── */
+  .product-variants {
+    margin-bottom: 24px;
+  }
+
+  .variant-group {
+    margin-bottom: 16px;
+  }
+
+  .variant-label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #000;
+  }
+
+  .variant-options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .variant-btn {
+    padding: 8px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    transition: background 200ms, color 200ms, border-color 200ms;
+    color: #000;
+  }
+
+  .variant-btn:hover,
+  .variant-btn.is-selected {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  /* ─── ATC Button ───────────────────────────────────────────────────────────── */
+  .btn {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: background 200ms, color 200ms;
+  }
+
+  .btn--primary {
+    background: #000;
+    color: #fff;
+  }
+
+  .btn--primary:hover {
+    background: #222;
+  }
+
+  .btn--full {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 18px 24px;
+  }
+
+  .btn-atc {
+    margin-top: 4px;
+  }
+
+  /* ─── Trust Line ───────────────────────────────────────────────────────────── */
+  .product-trust-line {
+    margin-top: 16px;
+    font-size: 12px;
+    text-align: center;
+    opacity: 0.5;
+    letter-spacing: 0.05em;
+    color: #000;
+  }
+
+  /* ─── Sticky Mobile ATC ────────────────────────────────────────────────────── */
+  .sticky-atc {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    z-index: 900;
+    transform: translateY(100%);
+    transition: transform 300ms ease;
+  }
+
+  .sticky-atc.is-visible {
+    transform: translateY(0);
+  }
+
+  .sticky-atc-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sticky-atc-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .sticky-atc-price {
+    font-size: 12px;
+    opacity: 0.7;
+    color: #fff;
+  }
+
+  .sticky-atc-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 200ms;
+  }
+
+  .sticky-atc-btn:hover {
+    opacity: 0.85;
+  }
+
+  @media (min-width: 769px) {
+    .sticky-atc {
+      display: none !important;
+    }
+  }
+
+  /* ─── Description Blocks ───────────────────────────────────────────────────── */
+  .product-description {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .desc-block {
+    padding: 96px 0;
+    background: #fff;
+  }
+
+  .desc-block:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+  .desc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .desc-text h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  .desc-body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8;
+    opacity: 0.8;
+    font-size: 15px;
+    color: #000;
+  }
+
+  .desc-image img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+  }
+
+  .desc-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #e8e8e8;
+  }
+
+  /* ─── GSM Section ──────────────────────────────────────────────────────────── */
+  .desc-block--gsm {
+    background: #000 !important;
+    color: #fff;
+    text-align: center;
+  }
+
+  .gsm-heading {
+    color: #fff;
+    margin-bottom: 48px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    text-transform: uppercase;
+  }
+
+  .gsm-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .gsm-card {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 40px 24px;
+    color: #fff;
+  }
+
+  .gsm-card--featured {
+    background: #fff;
+    color: #000;
+  }
+
+  .gsm-value {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .gsm-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+
+  .gsm-card--featured .gsm-label {
+    opacity: 1;
+  }
+
+  /* ─── Reviews ──────────────────────────────────────────────────────────────── */
+  .product-reviews {
+    background: #fff;
+    padding: 96px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .reviews-heading {
+    text-align: center;
+    margin-bottom: 48px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  .product-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .review-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 32px;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .reviewer-initial {
+    width: 40px;
+    height: 40px;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .reviewer-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .reviewer-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #000;
+  }
+
+  .reviewer-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    opacity: 0.5;
+    color: #000;
+  }
+
+  .review-stars {
+    color: #000;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .review-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.75;
+    color: #000;
+    margin: 0;
+  }
+
+  /* ─── FAQ ──────────────────────────────────────────────────────────────────── */
+  .product-faq {
+    padding: 96px 0;
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .product-faq h2 {
+    text-align: center;
+    margin-bottom: 48px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    color: #000;
+  }
+
+  .faq-icon {
+    font-size: 20px;
+    transition: transform 300ms ease;
+    flex-shrink: 0;
+    color: #000;
+    margin-left: 16px;
+  }
+
+  .faq-item.is-open .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 400ms ease;
+  }
+
+  .faq-item.is-open .faq-answer {
+    max-height: 500px;
+  }
+
+  .faq-answer-inner {
+    padding: 0 0 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.75;
+    color: #000;
+  }
+
+  /* ─── Mobile ───────────────────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .product-top {
+      padding: 32px 0 64px;
+    }
+
+    .product-layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .desc-block {
+      padding: 64px 0;
+    }
+
+    .desc-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .desc-block--text-right .desc-image {
+      order: -1;
+    }
+
+    .gsm-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .product-reviews-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .product-specs-strip {
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .spec-item {
+      min-width: 40%;
+    }
+
+    .product-reviews {
+      padding: 64px 0;
+    }
+
+    .product-faq {
+      padding: 64px 0;
+    }
+  }
+</style>
+
+<div class="product-page">
+
+  {%- comment -%}TOP: Image Gallery + Product Info{%- endcomment -%}
+  <section class="product-top">
+    <div class="container">
+      <div class="product-layout">
+
+        {%- comment -%}LEFT: Image Gallery{%- endcomment -%}
+        <div class="product-gallery">
+          <div class="gallery-main">
+            {% if product.featured_image %}
+              <img
+                id="main-product-image"
+                class="product-main-image"
+                src="{{ product.featured_image | img_url: 'large' }}"
+                alt="{{ product.featured_image.alt | escape }}"
+                loading="eager"
+              >
+            {% else %}
+              <div class="gallery-placeholder"></div>
+            {% endif %}
+          </div>
+          {% if product.images.size > 1 %}
+            <div class="gallery-thumbs">
+              {% for image in product.images limit: 8 %}
+                <button
+                  class="gallery-thumb {% if forloop.first %}is-active{% endif %}"
+                  data-image-url="{{ image | img_url: 'large' }}"
+                  data-image-alt="{{ image.alt | escape }}"
+                  aria-label="Product image {{ forloop.index }}"
+                >
+                  <img src="{{ image | img_url: 'small' }}" alt="{{ image.alt | escape }}">
+                </button>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        {%- comment -%}RIGHT: Product Info{%- endcomment -%}
+        <div class="product-info">
+          <h1 class="product-title">{{ product.title }}</h1>
+
+          {%- comment -%}Star rating (schema-driven, no app){%- endcomment -%}
+          {% if section.settings.show_rating %}
+            <div class="product-rating">
+              <span class="rating-stars">★★★★★</span>
+              <span class="rating-text">{{ section.settings.avg_rating }} ({{ section.settings.review_count }} reviews)</span>
+            </div>
+          {% endif %}
+
+          {%- comment -%}Price{%- endcomment -%}
+          <div class="product-price-wrap">
+            <span class="product-price">{{ product.price | money }}</span>
+            <span class="product-shipping-note">FREE SHIPPING ON EVERY ORDER</span>
+          </div>
+
+          {%- comment -%}Short description{%- endcomment -%}
+          <div class="product-short-desc">
+            {{ section.settings.short_description }}
+          </div>
+
+          {%- comment -%}Specs strip{%- endcomment -%}
+          <div class="product-specs-strip">
+            {% for block in section.blocks %}
+              {% if block.type == 'spec' %}
+                <div class="spec-item" {{ block.shopify_attributes }}>
+                  <div class="spec-item-icon">{{ block.settings.icon }}</div>
+                  <div class="spec-item-label">{{ block.settings.label }}</div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          {%- comment -%}Variant selector (if product has variants){%- endcomment -%}
+          {% if product.variants.size > 1 %}
+            <div class="product-variants">
+              {% for option in product.options_with_values %}
+                <div class="variant-group">
+                  <label class="variant-label">{{ option.name }}</label>
+                  <div class="variant-options">
+                    {% for value in option.values %}
+                      <button
+                        class="variant-btn"
+                        data-option="{{ option.position }}"
+                        data-value="{{ value }}"
+                      >{{ value }}</button>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {%- comment -%}ATC Button{%- endcomment -%}
+          {% form 'product', product, id: 'product-form' %}
+            <input type="hidden" name="id" id="selected-variant" value="{{ product.first_available_variant.id }}">
+            <button
+              type="button"
+              id="main-atc-btn"
+              class="btn btn--primary btn--full btn-atc"
+              data-variant-id="{{ product.first_available_variant.id }}"
+            >
+              ADD TO CART — {{ product.price | money }}
+            </button>
+          {% endform %}
+
+          <div class="product-trust-line">
+            Secure checkout · Free shipping · Ships in 1–3 days
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}Sticky Mobile ATC Bar{%- endcomment -%}
+  <div id="sticky-atc" class="sticky-atc">
+    <div class="sticky-atc-info">
+      <span class="sticky-atc-title">{{ product.title }}</span>
+      <span class="sticky-atc-price">{{ product.price | money }}</span>
+    </div>
+    <button class="btn sticky-atc-btn btn-atc" data-variant-id="{{ product.first_available_variant.id }}">
+      ADD TO CART
+    </button>
+  </div>
+
+  {%- comment -%}BELOW FOLD: Description blocks{%- endcomment -%}
+  <section class="product-description">
+
+    {%- comment -%}Block 1: Nova Overview — text left, image right{%- endcomment -%}
+    <div class="desc-block desc-block--text-left fade-in">
+      <div class="container">
+        <div class="desc-grid">
+          <div class="desc-text">
+            <h2>{{ section.settings.desc1_heading }}</h2>
+            <div class="desc-body">{{ section.settings.desc1_body }}</div>
+          </div>
+          <div class="desc-image">
+            {% if section.settings.desc1_image != blank %}
+              <img src="{{ section.settings.desc1_image | img_url: 'large' }}" alt="{{ section.settings.desc1_heading }}" loading="lazy">
+            {% else %}
+              <div class="desc-image-placeholder"></div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%}Block 2: GSM Comparison — centered, stat cards{%- endcomment -%}
+    <div class="desc-block desc-block--gsm fade-in">
+      <div class="container">
+        <h2 class="gsm-heading">{{ section.settings.gsm_heading }}</h2>
+        <div class="gsm-cards">
+          {% for block in section.blocks %}
+            {% if block.type == 'gsm_card' %}
+              <div class="gsm-card {% if block.settings.is_featured %}gsm-card--featured{% endif %}" {{ block.shopify_attributes }}>
+                <div class="gsm-value">{{ block.settings.gsm_value }}</div>
+                <div class="gsm-label">{{ block.settings.gsm_label }}</div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%}Block 3: Real World Tested — image left, text right{%- endcomment -%}
+    <div class="desc-block desc-block--text-right fade-in">
+      <div class="container">
+        <div class="desc-grid">
+          <div class="desc-image">
+            {% if section.settings.desc3_image != blank %}
+              <img src="{{ section.settings.desc3_image | img_url: 'large' }}" alt="{{ section.settings.desc3_heading }}" loading="lazy">
+            {% else %}
+              <div class="desc-image-placeholder"></div>
+            {% endif %}
+          </div>
+          <div class="desc-text">
+            <h2>{{ section.settings.desc3_heading }}</h2>
+            <div class="desc-body">{{ section.settings.desc3_body }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  {%- comment -%}PRODUCT PAGE SOCIAL PROOF{%- endcomment -%}
+  <section class="product-reviews fade-in">
+    <div class="container">
+      <h2 class="reviews-heading">{{ section.settings.reviews_heading }}</h2>
+      <div class="product-reviews-grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'review' %}
+            <div class="review-card" {{ block.shopify_attributes }}>
+              <div class="review-header">
+                <div class="reviewer-initial">{{ block.settings.name | slice: 0, 1 }}</div>
+                <div class="reviewer-meta">
+                  <div class="reviewer-name">{{ block.settings.name }}</div>
+                  <div class="reviewer-date">{{ block.settings.date }}</div>
+                </div>
+              </div>
+              <div class="review-stars">{% for i in (1..block.settings.stars) %}★{% endfor %}</div>
+              <p class="review-text">{{ block.settings.review_text }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}FAQ SECTION{%- endcomment -%}
+  <section class="product-faq fade-in">
+    <div class="container container--narrow">
+      <h2>{{ section.settings.faq_heading }}</h2>
+      {% for block in section.blocks %}
+        {% if block.type == 'faq' %}
+          <div class="faq-item" {{ block.shopify_attributes }}>
+            <button class="faq-question">
+              <span>{{ block.settings.question }}</span>
+              <span class="faq-icon">↓</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{{ block.settings.answer }}</div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    /* ── Gallery thumbnails ─────────────────────────────────────── */
+    var mainImg = document.getElementById('main-product-image');
+    var thumbs  = document.querySelectorAll('.gallery-thumb');
+
+    thumbs.forEach(function (thumb) {
+      thumb.addEventListener('click', function () {
+        if (mainImg) {
+          mainImg.style.opacity = '0';
+          setTimeout(function () {
+            mainImg.src = thumb.dataset.imageUrl;
+            mainImg.alt = thumb.dataset.imageAlt;
+            mainImg.style.opacity = '1';
+          }, 150);
+        }
+        thumbs.forEach(function (t) { t.classList.remove('is-active'); });
+        thumb.classList.add('is-active');
+      });
+    });
+
+    /* ── Variant selection ──────────────────────────────────────── */
+    var variantBtns = document.querySelectorAll('.variant-btn');
+    var selectedVariantInput = document.getElementById('selected-variant');
+    var mainAtcBtn   = document.getElementById('main-atc-btn');
+    var stickyAtcBtn = document.querySelector('.sticky-atc-btn');
+
+    variantBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var optionPos = btn.dataset.option;
+        document.querySelectorAll('.variant-btn[data-option="' + optionPos + '"]').forEach(function (b) {
+          b.classList.remove('is-selected');
+        });
+        btn.classList.add('is-selected');
+      });
+    });
+
+    /* ── ATC — opens cart drawer via custom event ───────────────── */
+    function handleAtc(btn) {
+      var variantId = btn.dataset.variantId;
+      if (!variantId) return;
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: variantId, quantity: 1 })
+      })
+      .then(function (res) { return res.json(); })
+      .then(function () {
+        document.dispatchEvent(new CustomEvent('cart:open'));
+        document.dispatchEvent(new CustomEvent('cart:refresh'));
+      })
+      .catch(function (err) { console.error('ATC error:', err); });
+    }
+
+    if (mainAtcBtn) {
+      mainAtcBtn.addEventListener('click', function () { handleAtc(mainAtcBtn); });
+    }
+    if (stickyAtcBtn) {
+      stickyAtcBtn.addEventListener('click', function () { handleAtc(stickyAtcBtn); });
+    }
+
+    /* ── Sticky ATC visibility ──────────────────────────────────── */
+    var stickyBar = document.getElementById('sticky-atc');
+    var atcSection = mainAtcBtn ? mainAtcBtn.closest('.product-top') : null;
+
+    if (stickyBar && atcSection) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            stickyBar.classList.add('is-visible');
+          } else {
+            stickyBar.classList.remove('is-visible');
+          }
+        });
+      }, { threshold: 0 });
+      observer.observe(atcSection);
+    }
+
+    /* ── FAQ accordion ──────────────────────────────────────────── */
+    var faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(function (item) {
+      var btn = item.querySelector('.faq-question');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var isOpen = item.classList.contains('is-open');
+        faqItems.forEach(function (i) { i.classList.remove('is-open'); });
+        if (!isOpen) item.classList.add('is-open');
+      });
+    });
+
+    /* ── Fade-in on scroll ──────────────────────────────────────── */
+    var fadeEls = document.querySelectorAll('.fade-in');
+
+    if ('IntersectionObserver' in window) {
+      var fadeObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      fadeEls.forEach(function (el) { fadeObserver.observe(el); });
+    } else {
+      fadeEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product Main",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show star rating",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "avg_rating",
+      "label": "Average rating",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review count",
+      "default": "47"
+    },
+    {
+      "type": "textarea",
+      "id": "short_description",
+      "label": "Short description",
+      "default": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint. Twisted loop technology absorbs water faster with zero scratching."
+    },
+    {
+      "type": "text",
+      "id": "desc1_heading",
+      "label": "Description block 1 heading",
+      "default": "THE NOVA"
+    },
+    {
+      "type": "textarea",
+      "id": "desc1_body",
+      "label": "Description block 1 body",
+      "default": "We built the Nova because we were tired of microfiber towels that leave water spots, tug at paint, and fall apart after three washes. The Nova is 1200 GSM — that's more than double the GSM of most entry-level towels — with a twisted loop weave that traps water and lifts it away from your paint safely."
+    },
+    {
+      "type": "image_picker",
+      "id": "desc1_image",
+      "label": "Description block 1 image"
+    },
+    {
+      "type": "text",
+      "id": "gsm_heading",
+      "label": "GSM section heading",
+      "default": "WHY GSM MATTERS"
+    },
+    {
+      "type": "text",
+      "id": "desc3_heading",
+      "label": "Description block 3 heading",
+      "default": "REAL WORLD TESTED"
+    },
+    {
+      "type": "textarea",
+      "id": "desc3_body",
+      "label": "Description block 3 body",
+      "default": "Every Polaris product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years — if it doesn't pass his standard, it doesn't get sold. Simple as that."
+    },
+    {
+      "type": "image_picker",
+      "id": "desc3_image",
+      "label": "Description block 3 image"
+    },
+    {
+      "type": "text",
+      "id": "reviews_heading",
+      "label": "Reviews section heading",
+      "default": "WHAT THE COMMUNITY SAYS"
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ heading",
+      "default": "FREQUENTLY ASKED QUESTIONS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Product Spec",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji or text)",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Spec label",
+          "default": "1200 GSM"
+        }
+      ]
+    },
+    {
+      "type": "gsm_card",
+      "name": "GSM Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "gsm_value",
+          "label": "GSM value",
+          "default": "1200 GSM"
+        },
+        {
+          "type": "text",
+          "id": "gsm_label",
+          "label": "Card label",
+          "default": "The Nova"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_featured",
+          "label": "Highlight this card",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Review Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Reviewer name",
+          "default": "Marcus T."
+        },
+        {
+          "type": "range",
+          "id": "stars",
+          "label": "Star rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review text"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "March 2025"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What size is The Nova?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "The Nova measures 16\" × 24\" — large enough to cover a full panel with a single pass."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Main",
+      "category": "Product",
+      "blocks": [
+        {
+          "type": "spec",
+          "settings": {
+            "icon": "🧵",
+            "label": "1200 GSM"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "icon": "🌀",
+            "label": "Twisted Loop"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "icon": "✨",
+            "label": "70/30 Blend"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "icon": "📐",
+            "label": "16\"×24\""
+          }
+        },
+        {
+          "type": "gsm_card",
+          "settings": {
+            "gsm_value": "600 GSM",
+            "gsm_label": "Entry Level",
+            "is_featured": false
+          }
+        },
+        {
+          "type": "gsm_card",
+          "settings": {
+            "gsm_value": "800 GSM",
+            "gsm_label": "Mid Range",
+            "is_featured": false
+          }
+        },
+        {
+          "type": "gsm_card",
+          "settings": {
+            "gsm_value": "1200 GSM",
+            "gsm_label": "THE NOVA",
+            "is_featured": true
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What size is The Nova?",
+            "answer": "The Nova measures 16\" × 24\" — large enough to cover a full panel with a single pass."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What makes 1200 GSM special?",
+            "answer": "GSM (grams per square meter) measures how dense the microfiber pile is. At 1200 GSM, The Nova holds significantly more water than standard towels, meaning fewer passes and less risk of marring your paint."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Is it safe for ceramic coated cars?",
+            "answer": "Yes. The twisted loop weave is specifically designed to be safe on all coatings including ceramic and PPF. The soft loops glide over the surface without dragging."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How do I wash and care for it?",
+            "answer": "Machine wash cold, gentle cycle, no fabric softener, no heat dry. Air dry or tumble dry low. Never wash with cotton towels."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer free shipping?",
+            "answer": "Yes — every single order ships free. No minimum, no code needed."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "We offer a 30-day satisfaction guarantee. If you're not happy, reach out and we'll make it right."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How is Polaris different from other brands?",
+            "answer": "We're built by car enthusiasts, not corporations. We test everything ourselves, price fairly, and actually respond to our community."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

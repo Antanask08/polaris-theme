@@ -1,0 +1,155 @@
+<div class="product-card">
+  <div class="product-card-image-wrap">
+    <a href="{{ product.url }}" aria-label="{{ product.title }}">
+      {%- if product.featured_image -%}
+        <img
+          class="product-card-image"
+          src="{{ product.featured_image | img_url: 'medium' }}"
+          alt="{{ product.featured_image.alt | escape | default: product.title }}"
+          loading="lazy"
+          width="400"
+          height="400"
+        >
+      {%- else -%}
+        <div class="product-card-image-placeholder"></div>
+      {%- endif -%}
+    </a>
+    <button
+      class="product-card-quick-add btn-atc"
+      data-variant-id="{{ product.first_available_variant.id }}"
+      aria-label="Add {{ product.title }} to cart"
+    >
+      ADD TO CART
+    </button>
+  </div>
+
+  <div class="product-card-info">
+    {%- if product.metafields.reviews.rating != blank -%}
+      <div class="product-card-stars">
+        ★★★★★
+        <span class="product-card-rating-count">({{ product.metafields.reviews.rating_count }})</span>
+      </div>
+    {%- endif -%}
+    <h3 class="product-card-title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    <div class="product-card-price">{{ product.price | money }}</div>
+    <div class="product-card-shipping-tag">FREE SHIPPING</div>
+  </div>
+</div>
+
+<style>
+  .product-card {
+    background: #fff;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card-image-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-card-image,
+  .product-card-image-placeholder {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+    transition: transform 250ms ease;
+  }
+
+  .product-card-image-placeholder {
+    background: #f0f0f0;
+  }
+
+  .product-card:hover .product-card-image {
+    transform: scale(1.03);
+  }
+
+  .product-card-quick-add {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transform: translateY(100%);
+    transition: transform 250ms ease;
+  }
+
+  .product-card:hover .product-card-quick-add {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .product-card-quick-add {
+      transform: translateY(0);
+    }
+  }
+
+  .product-card-info {
+    padding: 16px;
+  }
+
+  .product-card-stars {
+    font-size: 12px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 2px;
+  }
+
+  .product-card-rating-count {
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .product-card-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  .product-card-title a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .product-card-title a:hover {
+    text-decoration: underline;
+  }
+
+  .product-card-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .product-card-shipping-tag {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+  }
+</style>

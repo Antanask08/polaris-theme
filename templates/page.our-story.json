@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "our_story": {
+      "type": "our-story",
+      "settings": {}
+    }
+  },
+  "order": ["our_story"]
+}

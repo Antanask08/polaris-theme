@@ -1,0 +1,79 @@
+{{ 'email-popup.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.enabled %}
+<div id="email-popup" class="email-popup" role="dialog" aria-modal="true" aria-label="Email signup">
+  <div id="popup-overlay" class="popup-overlay"></div>
+  <div class="popup-inner">
+    <button id="popup-close" class="popup-close" aria-label="Close popup">✕</button>
+
+    <div id="popup-form-wrap">
+      <h2 class="popup-headline">{{ section.settings.headline }}</h2>
+      <p class="popup-subhead">{{ section.settings.subheadline }}</p>
+      <form id="popup-form" novalidate>
+        <input
+          type="email"
+          id="popup-email"
+          class="popup-input"
+          placeholder="{{ section.settings.input_placeholder }}"
+          required
+          autocomplete="email"
+        >
+        <button type="submit" class="popup-submit">{{ section.settings.button_text }}</button>
+        <p class="popup-fine-print">{{ section.settings.fine_print }}</p>
+      </form>
+    </div>
+
+    <div id="popup-code-reveal" class="popup-code-reveal">
+      <p class="popup-code-label">YOUR DISCOUNT CODE:</p>
+      <div id="popup-code-display" class="popup-code-display"></div>
+      <p style="color:rgba(255,255,255,0.7);font-size:13px;text-align:center;margin-bottom:20px;">Copy this code and use it at checkout.</p>
+      <button id="copy-code" class="popup-code-copy">COPY CODE</button>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Email Popup",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Show email popup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Popup headline",
+      "default": "GET 10% OFF YOUR FIRST ORDER"
+    },
+    {
+      "type": "text",
+      "id": "subheadline",
+      "label": "Popup subheadline",
+      "default": "Join the Polaris community. Enter your email below."
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Input placeholder",
+      "default": "YOUR EMAIL ADDRESS"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "CLAIM MY 10% OFF"
+    },
+    {
+      "type": "text",
+      "id": "fine_print",
+      "label": "Fine print text",
+      "default": "We respect your inbox. No spam, ever."
+    }
+  ],
+  "blocks": []
+}
+{% endschema %}

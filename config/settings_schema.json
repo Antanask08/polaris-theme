@@ -1,0 +1,138 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Polaris Car Care",
+    "theme_version": "1.0.0",
+    "theme_author": "Polaris Car Care",
+    "theme_documentation_url": "https://github.com/polariscarcare/polaris-theme",
+    "theme_support_url": "https://polariscarcare.com/pages/contact"
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo (dark background version)"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_white",
+        "label": "Logo (white / light version)",
+        "info": "Used in footer and password page"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 60,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo width",
+        "default": 140
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "32×32px .ico or .png recommended"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "tiktok_url",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram URL"
+      }
+    ]
+  },
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "announcement_enabled",
+        "label": "Show announcement bar",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "announcement_speed",
+        "label": "Scroll speed",
+        "options": [
+          { "value": "slow", "label": "Slow (45s)" },
+          { "value": "medium", "label": "Medium (30s)" },
+          { "value": "fast", "label": "Fast (20s)" }
+        ],
+        "default": "medium"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_1",
+        "label": "Message 1",
+        "default": "FREE SHIPPING ON EVERY ORDER"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_2",
+        "label": "Message 2",
+        "default": "PREMIUM 1200 GSM MICROFIBER"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_3",
+        "label": "Message 3",
+        "default": "MADE BY ENTHUSIASTS"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_4",
+        "label": "Message 4",
+        "default": "TWISTED LOOP TECHNOLOGY"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_5",
+        "label": "Message 5",
+        "default": "TRUSTED BY THE CAR COMMUNITY"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_6",
+        "label": "Message 6",
+        "default": "POLARIS CAR CARE"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "This theme uses DM Sans (headings) and Inter (body text) loaded from Google Fonts. Typography is fixed to maintain brand consistency."
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "This theme uses #000000 (black) and #FFFFFF (white) only. Colors are fixed to maintain brand identity."
+      }
+    ]
+  }
+]
