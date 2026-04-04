@@ -11,8 +11,17 @@
   "sections": {
     "page_content": {
       "type": "page-content",
+      "disabled": true,
+      "settings": {}
+    },
+    "faq_page_nyUVBL": {
+      "type": "faq-page",
+      "name": "FAQ Page",
       "settings": {}
     }
   },
-  "order": ["page_content"]
+  "order": [
+    "page_content",
+    "faq_page_nyUVBL"
+  ]
 }
