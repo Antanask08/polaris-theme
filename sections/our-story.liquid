@@ -1,6 +1,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Barlow+Condensed:wght@700;900&family=Barlow:wght@300;400&family=DM+Sans:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@300;400&family=DM+Sans:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -11,13 +11,14 @@
   --bp-blue:    #1a3a5c;
   --bp-line:    rgba(100, 160, 255, 0.12);
   --bp-lineLg:  rgba(100, 160, 255, 0.22);
-  --bp-text:    rgba(180, 210, 255, 0.85);
-  --bp-dim:     rgba(140, 175, 220, 0.45);
-  --sticky-y:   #fef08a;
-  --sticky-p:   #fda4af;
-  --sticky-b:   #bfdbfe;
-  --sticky-g:   #bbf7d0;
-  --sticky-o:   #fed7aa;
+  --bp-text:    rgba(220, 232, 248, 0.9);
+  --bp-dim:     rgba(160, 190, 230, 0.5);
+  /* Muted, desaturated sticky colors — not rainbow */
+  --sticky-y:   #f5e9c8;
+  --sticky-p:   #e8d5d5;
+  --sticky-b:   #d5e0ee;
+  --sticky-g:   #d4e5d8;
+  --sticky-o:   #ecddc8;
 }
 
 /* ── Blueprint Background ────────────────────────────────────── */
@@ -187,10 +188,10 @@
 .sticky {
   position: relative;
   padding: 24px 22px 20px;
-  font-family: 'Caveat', cursive;
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: rgba(0,0,0,0.8);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(0,0,0,0.75);
   box-shadow: 3px 5px 18px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.2);
 }
 
@@ -214,21 +215,25 @@
 .sticky--o  { background: var(--sticky-o); }
 
 .sticky-title {
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
-  font-size: 1.15rem;
-  margin-bottom: 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
   display: block;
+  color: rgba(0,0,0,0.5);
 }
 
 .sticky-quote {
-  font-family: 'Caveat', cursive;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: rgba(0,0,0,0.85);
-  line-height: 1.4;
-  border-left: 3px solid rgba(0,0,0,0.2);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: rgba(0,0,0,0.8);
+  line-height: 1.65;
+  border-left: 2px solid rgba(0,0,0,0.2);
   padding-left: 12px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -458,17 +463,18 @@
   font-weight: 900;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   text-transform: uppercase;
-  color: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.12);
   line-height: 0.95;
   letter-spacing: -0.01em;
 }
 
 .os-founders-annotation {
-  font-family: 'Caveat', cursive;
-  font-size: 1rem;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
   color: var(--bp-dim);
   max-width: 240px;
-  line-height: 1.5;
+  line-height: 1.6;
   text-align: right;
 }
 
@@ -536,18 +542,22 @@
 }
 
 .os-polaroid-name {
-  font-family: 'Caveat', cursive;
-  font-size: 1.4rem;
+  font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: #000;
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .os-polaroid-role {
-  font-family: 'Caveat', cursive;
-  font-size: 0.95rem;
-  color: rgba(0,0,0,0.5);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
 }
 
 .os-polaroid--left  { transform: rotate(-3deg); }
@@ -938,7 +948,7 @@
   <section class="os-founders cork-bg os-fade">
     <div class="os-founders-header">
       <h2 class="os-founders-heading">THE<br>FOUNDERS</h2>
-      <p class="os-founders-annotation" style="font-family:'Caveat',cursive;color:rgba(255,255,255,0.5);">Two guys from Chicago who couldn't find products they trusted — so they built them.</p>
+      <p class="os-founders-annotation">Two guys from Chicago who couldn't find products they trusted — so they built them.</p>
     </div>
 
     <div class="os-founders-grid">
