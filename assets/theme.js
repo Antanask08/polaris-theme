@@ -366,6 +366,17 @@
       }
     });
 
+    // --- Cart icon click ---
+    var cartBtn = document.getElementById('cart-btn');
+    if (cartBtn) {
+      cartBtn.addEventListener('click', function () {
+        fetchCart().then(function (cart) {
+          renderCart(cart);
+          openCartDrawer();
+        });
+      });
+    }
+
     // Initialise count on load
     fetchCart().then(function (cart) {
       updateCartCount(cart.item_count);
