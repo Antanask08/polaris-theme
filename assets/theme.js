@@ -439,8 +439,21 @@
     var path = window.location.pathname;
     if (path === '/cart' || path.indexOf('/checkout') === 0) return;
 
-    var STORAGE_KEY = 'polaris_popup_seen';
+    // sessionStorage: clears when tab closes, so popup shows again next session
+    var SESSION_KEY   = 'polaris_popup_seen';
+    var DISCOUNT_CODE = 'POLARIS10';
     var shown = false;
+
+    function typewriterReveal(targetEl, text, intervalMs) {
+      intervalMs = intervalMs || 80;
+      var index = 0;
+      targetEl.textContent = '';
+      var interval = setInterval(function () {
+        targetEl.textContent += text[index];
+        index++;
+        if (index >= text.length) clearInterval(interval);
+      }, intervalMs);
+    }
 
     function showPopup() {
       if (shown) return;
@@ -452,7 +465,7 @@
     function closePopup() {
       popup.classList.remove('is-open');
       if (popupOverlay) popupOverlay.classList.remove('is-open');
-      try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (e) {}
+      try { sessionStorage.setItem(SESSION_KEY, 'true'); } catch (e) {}
     }
 
     if (closeBtn)     closeBtn.addEventListener('click', closePopup);
@@ -462,30 +475,28 @@
       if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
     });
 
-    // Check localStorage
-    var alreadySeen = false;
-    try { alreadySeen = localStorage.getItem(STORAGE_KEY) === 'true'; } catch (e) {}
-
-    if (!alreadySeen) {
-      // Delay show
-      setTimeout(showPopup, 4000);
-
-      // Exit intent (desktop only)
-      document.addEventListener('mouseleave', function (e) {
-        if (window.innerWidth > 768 && e.clientY < 10) {
-          showPopup();
-        }
-      });
-    }
-
-    // --- Show success if returning from form POST ---
+    // --- Show discount code if returning from successful form POST ---
     if (localStorage.getItem('polaris_popup_submitted') === '1') {
       localStorage.removeItem('polaris_popup_submitted');
-      var formWrap = document.getElementById('popup-form-wrap');
+      var formWrap    = document.getElementById('popup-form-wrap');
       var successWrap = document.getElementById('popup-success');
-      if (formWrap) formWrap.style.display = 'none';
+      var codeDisplay = document.getElementById('popup-code-display');
+      if (formWrap)    formWrap.style.display = 'none';
       if (successWrap) successWrap.style.display = 'block';
+      if (codeDisplay) typewriterReveal(codeDisplay, DISCOUNT_CODE, 80);
+      if (copyBtn)     copyBtn.setAttribute('data-code', DISCOUNT_CODE);
       showPopup();
+    } else {
+      // Normal flow: show after delay if not seen this session
+      var alreadySeen = false;
+      try { alreadySeen = sessionStorage.getItem(SESSION_KEY) === 'true'; } catch (e) {}
+
+      if (!alreadySeen) {
+        setTimeout(showPopup, 4000);
+        document.addEventListener('mouseleave', function (e) {
+          if (window.innerWidth > 768 && e.clientY < 10) showPopup();
+        });
+      }
     }
 
     // --- Form submit: set flag then let Shopify handle POST ---
@@ -494,16 +505,14 @@
         var emailInput = form.querySelector('input[type="email"]');
         if (emailInput && emailInput.value.trim()) {
           localStorage.setItem('polaris_popup_submitted', '1');
-          localStorage.setItem(STORAGE_KEY, 'true');
         }
       });
     }
 
-    // --- Copy button (kept for reference but no longer used) ---
-
+    // --- Copy button ---
     if (copyBtn) {
       copyBtn.addEventListener('click', function () {
-        var code = copyBtn.getAttribute('data-code') || '';
+        var code = copyBtn.getAttribute('data-code') || DISCOUNT_CODE;
         if (navigator.clipboard && code) {
           navigator.clipboard.writeText(code).then(function () {
             var orig = copyBtn.textContent;
