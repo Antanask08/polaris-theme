@@ -13,6 +13,7 @@
       "type": "hero",
       "settings": {
         "bg_type": "image",
+        "video_url": "",
         "headline": "BUILT FOR THE ONES WHO CARE",
         "subheadline": "Premium detailing tools for the car community. Founded in Chicago, Illinois.",
         "cta_text": "SHOP THE NOVA",
@@ -28,7 +29,13 @@
     },
     "brand_story": {
       "type": "brand-story",
-      "settings": {}
+      "settings": {
+        "label": "Our Story",
+        "heading": "BUILT BY ENTHUSIASTS.",
+        "body_text": "We started Polaris because we were tired of overpaying for detailing products that didn't perform. Built from the car community, tested on real cars, priced for real people.",
+        "cta_text": "READ OUR STORY →",
+        "cta_url": ""
+      }
     },
     "product_spotlight": {
       "type": "product-spotlight",
@@ -68,6 +75,8 @@
         "product_label": "Featured Product",
         "product_name": "THE NOVA",
         "product_description": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint.",
+        "product_image": "shopify://shop_images/3813488-removebg-preview.png",
+        "product_url": "",
         "price": "$29.99"
       }
     },
@@ -190,6 +199,7 @@
         "tb_badge_1": {
           "type": "badge",
           "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><path d=\"m16 8 5 0 3 5v3h-8z\"></path><circle cx=\"6\" cy=\"19\" r=\"2\"></circle><circle cx=\"19\" cy=\"19\" r=\"2\"></circle></svg>",
             "label": "FREE SHIPPING",
             "subtext": "Every single order"
           }
@@ -197,6 +207,7 @@
         "tb_badge_2": {
           "type": "badge",
           "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><path d=\"m16 8 5 0 3 5v3h-8z\"></path><circle cx=\"6\" cy=\"19\" r=\"2\"></circle><circle cx=\"19\" cy=\"19\" r=\"2\"></circle></svg>",
             "label": "PREMIUM 1200 GSM",
             "subtext": "Professional grade"
           }
@@ -204,6 +215,7 @@
         "tb_badge_3": {
           "type": "badge",
           "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><path d=\"m16 8 5 0 3 5v3h-8z\"></path><circle cx=\"6\" cy=\"19\" r=\"2\"></circle><circle cx=\"19\" cy=\"19\" r=\"2\"></circle></svg>",
             "label": "SECURE CHECKOUT",
             "subtext": "256-bit encrypted"
           }
@@ -211,6 +223,7 @@
         "tb_badge_4": {
           "type": "badge",
           "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><path d=\"m16 8 5 0 3 5v3h-8z\"></path><circle cx=\"6\" cy=\"19\" r=\"2\"></circle><circle cx=\"19\" cy=\"19\" r=\"2\"></circle></svg>",
             "label": "COMMUNITY TESTED",
             "subtext": "Real world results"
           }
@@ -235,7 +248,11 @@
       "type": "social-feed",
       "settings": {
         "heading": "@POLARISCARCARE",
-        "subtext": "Follow along on TikTok and Instagram"
+        "subtext": "Follow along on TikTok and Instagram",
+        "tiktok_url": "",
+        "tiktok_label": "FOLLOW US ON TIKTOK ↗",
+        "instagram_url": "",
+        "instagram_label": "FOLLOW ON INSTAGRAM ↗"
       }
     },
     "email_popup": {
@@ -244,6 +261,7 @@
         "enabled": true,
         "headline": "GET 10% OFF YOUR FIRST ORDER",
         "subheadline": "Join the Polaris community. Enter your email below.",
+        "input_placeholder": "YOUR EMAIL ADDRESS",
         "button_text": "CLAIM MY 10% OFF",
         "fine_print": "We respect your inbox. No spam, ever."
       }
