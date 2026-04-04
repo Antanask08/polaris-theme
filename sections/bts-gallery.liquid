@@ -170,9 +170,9 @@
     <div class="bts-grid {{ grid_class }}">
       {% for block in section.blocks %}
         <div class="bts-photo" {{ block.shopify_attributes }}>
-          {% if block.settings.photo != blank %}
+          {% if block.settings.image != blank %}
             <img
-              src="{{ block.settings.photo | image_url: width: 800 }}"
+              src="{{ block.settings.image | image_url: width: 800 }}"
               alt="{{ block.settings.caption | default: 'Behind the scenes' }}"
               loading="lazy"
               width="800"
@@ -224,7 +224,7 @@
       "settings": [
         {
           "type": "image_picker",
-          "id": "photo",
+          "id": "image",
           "label": "Photo"
         },
         {
