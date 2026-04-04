@@ -59,10 +59,9 @@
 .os-hero {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 60px 80px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 0 60px;
   overflow: hidden;
 }
 
@@ -73,7 +72,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  opacity: 0.08;
+  opacity: 0.06;
   mix-blend-mode: luminosity;
 }
 
@@ -86,100 +85,154 @@
   height: 48px;
   border-color: var(--bp-lineLg);
   border-style: solid;
+  pointer-events: none;
 }
 .os-hero::before { top: 40px; left: 40px; border-width: 2px 0 0 2px; }
 .os-hero::after  { bottom: 40px; right: 40px; border-width: 0 2px 2px 0; }
 
-.os-hero-tag {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--bp-dim);
-  text-transform: uppercase;
-  margin-bottom: 32px;
+/* Top bar */
+.os-hero-topbar {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  padding: 40px 0 48px;
+  border-bottom: 1px solid var(--bp-line);
+  position: relative;
+  z-index: 1;
+}
+
+.os-hero-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--bp-dim);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .os-hero-tag::before {
   content: '';
   display: block;
-  width: 24px;
+  width: 20px;
   height: 1px;
   background: var(--bp-dim);
+}
+
+.os-hero-topbar-right {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--bp-dim);
+  text-transform: uppercase;
+}
+
+/* Main body — 2 column */
+.os-hero-body {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 80px;
+  align-items: center;
+  padding: 64px 0;
+  position: relative;
+  z-index: 1;
 }
 
 .os-hero-title {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
-  font-size: clamp(4.5rem, 12vw, 11rem);
+  font-size: clamp(5rem, 11vw, 10rem);
   text-transform: uppercase;
   line-height: 0.88;
   color: rgba(255,255,255,0.95);
   letter-spacing: -0.01em;
-  margin-bottom: 40px;
-  position: relative;
 }
 
-.os-hero-title span {
+.os-hero-title-dim {
   display: block;
-  color: rgba(100,160,255,0.4);
+  color: rgba(100,160,255,0.35);
+}
+
+/* Right side */
+.os-hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .os-hero-desc {
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: 1rem;
   color: var(--bp-text);
-  max-width: 520px;
-  line-height: 1.8;
-  margin-bottom: 48px;
+  line-height: 1.85;
 }
 
-/* Crosshair annotation */
-.os-crosshair {
-  position: absolute;
-  right: 10%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 160px;
-  height: 160px;
-  opacity: 0.15;
-}
-.os-crosshair::before,
-.os-crosshair::after {
-  content: '';
-  position: absolute;
-  background: rgba(100,160,255,0.8);
-}
-.os-crosshair::before {
-  width: 1px;
-  height: 100%;
-  left: 50%;
-}
-.os-crosshair::after {
-  height: 1px;
+.os-hero-right-rule {
   width: 100%;
-  top: 50%;
+  height: 1px;
+  background: var(--bp-lineLg);
 }
 
-.os-hero-meta {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
+.os-hero-quote {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.3;
 }
+.os-hero-quote em {
+  font-style: normal;
+  color: rgba(255,255,255,0.85);
+}
+
+.os-hero-right-annotation {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bp-dim);
+  border-left: 2px solid var(--bp-lineLg);
+  padding-left: 12px;
+  line-height: 1.7;
+}
+
+/* Bottom meta bar */
+.os-hero-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--bp-line);
+  position: relative;
+  z-index: 1;
+}
+
 .os-hero-meta-item {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.15em;
   color: var(--bp-dim);
   text-transform: uppercase;
+  padding: 28px 0;
+  border-right: 1px solid var(--bp-line);
 }
+.os-hero-meta-item:last-child { border-right: none; }
+
 .os-hero-meta-item strong {
   display: block;
   color: var(--bp-text);
-  font-size: 13px;
-  margin-bottom: 4px;
+  font-size: 11px;
+  margin-bottom: 6px;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 900px) {
+  .os-hero { padding: 0 28px; grid-template-rows: auto 1fr auto; }
+  .os-hero-body { grid-template-columns: 1fr; gap: 40px; padding: 48px 0; }
+  .os-hero-title { font-size: clamp(4rem, 14vw, 6rem); }
+  .os-hero-meta { grid-template-columns: repeat(2, 1fr); }
+  .os-hero-meta-item:nth-child(2) { border-right: none; }
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -805,7 +858,6 @@
   .os-launch-grid    { grid-template-columns: 1fr; gap: 48px; }
   .os-launch-notes   { padding-top: 0; }
   .os-mission-inner  { grid-template-columns: 1fr; gap: 40px; }
-  .os-crosshair      { display: none; }
   .os-founders-heading { font-size: 3rem; }
   .os-stat-row       { grid-template-columns: repeat(3, 1fr); }
 }
@@ -825,33 +877,54 @@
       <img src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="Our Story" class="os-hero-bg-img" loading="eager">
     {% endif %}
 
-    <div class="os-crosshair"></div>
+    {%- comment -%} Top bar {%- endcomment -%}
+    <div class="os-hero-topbar">
+      <div class="os-hero-tag">Project / Polaris Car Care // Chicago, IL</div>
+      <div class="os-hero-topbar-right">Est. 2024 — Doc. 001</div>
+    </div>
 
-    <div class="os-hero-tag">PROJECT / POLARIS CAR CARE // CHICAGO, IL</div>
+    {%- comment -%} Main 2-col body {%- endcomment -%}
+    <div class="os-hero-body">
+      <h1 class="os-hero-title">
+        Built<br>
+        <span class="os-hero-title-dim">From</span><br>
+        Scratch.
+      </h1>
 
-    <h1 class="os-hero-title">
-      {{ section.settings.hero_headline | default: 'Built' }}<br>
-      <span>From</span><br>
-      Scratch.
-    </h1>
+      <div class="os-hero-right">
+        <p class="os-hero-desc">{{ section.settings.hero_subhead | default: 'Two guys from Chicago who got tired of paying $40 for a towel — and decided to build something better. This is how Polaris Car Care started.' }}</p>
 
-    <p class="os-hero-desc">{{ section.settings.hero_subhead | default: 'Two guys from Chicago who got tired of paying $40 for a towel — and decided to build something better. This is how Polaris Car Care started.' }}</p>
+        <div class="os-hero-right-rule"></div>
 
+        <p class="os-hero-quote">
+          "Our goal isn't to be the <em>cheapest</em> brand.<br>
+          It's to be the <em>most honest</em> one."
+        </p>
+
+        <p class="os-hero-right-annotation">
+          — Antanas Kubilius &amp; Jacob Klepacki<br>
+          Co-Founders, Polaris Car Care<br>
+          Chicago, Illinois / 2024
+        </p>
+      </div>
+    </div>
+
+    {%- comment -%} Bottom meta bar {%- endcomment -%}
     <div class="os-hero-meta">
       <div class="os-hero-meta-item">
-        <strong>EST.</strong>
+        <strong>Est.</strong>
         2024
       </div>
       <div class="os-hero-meta-item">
-        <strong>LOCATION</strong>
+        <strong>Location</strong>
         Chicago, Illinois
       </div>
       <div class="os-hero-meta-item">
-        <strong>FOUNDERS</strong>
+        <strong>Founders</strong>
         Antanas K. &amp; Jacob K.
       </div>
       <div class="os-hero-meta-item">
-        <strong>FLAGSHIP</strong>
+        <strong>Flagship</strong>
         The Nova — 1200 GSM
       </div>
     </div>
