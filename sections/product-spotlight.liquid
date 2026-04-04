@@ -9,6 +9,9 @@
     gap: 80px;
     align-items: center;
   }
+  .spotlight-image {
+    display: block;
+  }
   .spotlight-image img {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -19,45 +22,64 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     background: #f0f0f0;
+    display: block;
+  }
+  .spotlight-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .spotlight-label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 16px;
+    color: #000;
   }
   .spotlight-name {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 16px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 16px;
     color: #000;
+    line-height: 1;
+    text-transform: uppercase;
   }
   .spotlight-desc {
     font-family: 'Inter', sans-serif;
     line-height: 1.7;
     margin-bottom: 32px;
     font-size: 1.05rem;
-    opacity: 0.8;
+    opacity: 0.7;
     color: #000;
   }
   .spotlight-specs {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 32px;
     padding-bottom: 32px;
     border-bottom: 1px solid #000;
   }
-  .spec-row {
+  .spotlight-spec-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
-  .spec-icon {
-    font-size: 16px;
-    line-height: 1;
+  .spotlight-spec-dot {
+    width: 6px;
+    height: 6px;
+    background: #000;
+    flex-shrink: 0;
   }
-  .spec-label {
+  .spotlight-spec-label {
     font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: #000;
   }
   .spotlight-pricing {
@@ -72,51 +94,77 @@
     color: #000;
   }
   .spotlight-shipping {
+    font-family: 'DM Sans', sans-serif;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    opacity: 0.6;
+    opacity: 0.5;
     color: #000;
   }
   .spotlight-actions {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
-  .btn--full {
+  .spotlight-btn-primary {
+    display: block;
     width: 100%;
     text-align: center;
+    background: #000;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 24px;
+    border: 2px solid #000;
+    transition: background 200ms ease, color 200ms ease;
+    cursor: pointer;
   }
-  .spotlight-details-link {
+  .spotlight-btn-primary:hover {
+    background: #fff;
+    color: #000;
+  }
+  .spotlight-btn-secondary {
+    display: block;
+    width: 100%;
     text-align: center;
     font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.1em;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     text-decoration: none;
     color: #000;
-    text-transform: uppercase;
-    display: block;
-    transition: text-decoration 150ms ease;
+    opacity: 0.5;
+    transition: opacity 150ms ease;
   }
-  .spotlight-details-link:hover {
-    text-decoration: underline;
+  .spotlight-btn-secondary:hover {
+    opacity: 1;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .spotlight-grid {
       grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .product-spotlight {
+      padding: 64px 0;
     }
   }
 </style>
 
-<section class="product-spotlight section--white fade-in">
+<section class="product-spotlight fade-in">
   <div class="container">
     <div class="spotlight-grid">
+
       <div class="spotlight-image">
         {% if section.settings.product_image != blank %}
           <img
-            src="{{ section.settings.product_image | img_url: 'large' }}"
+            src="{{ section.settings.product_image | image_url: width: 800 }}"
             alt="{{ section.settings.product_name }}"
             loading="lazy"
+            width="800"
           >
         {% else %}
           <div class="spotlight-image-placeholder"></div>
@@ -124,48 +172,34 @@
       </div>
 
       <div class="spotlight-content">
-        <span class="section-label">{{ section.settings.product_label }}</span>
+        <span class="spotlight-label">{{ section.settings.product_label }}</span>
         <h2 class="spotlight-name">{{ section.settings.product_name }}</h2>
         <p class="spotlight-desc">{{ section.settings.product_description }}</p>
 
-        <div class="spotlight-specs">
-          {% for block in section.blocks %}
-            {% if block.type == 'spec' %}
-              <div class="spec-row" {{ block.shopify_attributes }}>
-                <span class="spec-icon">{{ block.settings.icon_svg }}</span>
-                <span class="spec-label">{{ block.settings.label }}</span>
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
+        {% if section.blocks.size > 0 %}
+          <div class="spotlight-specs">
+            {% for block in section.blocks %}
+              {% if block.type == 'spec' %}
+                <div class="spotlight-spec-row" {{ block.shopify_attributes }}>
+                  <div class="spotlight-spec-dot"></div>
+                  <span class="spotlight-spec-label">{{ block.settings.label }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
 
         <div class="spotlight-pricing">
           <span class="spotlight-price">{{ section.settings.price }}</span>
-          <span class="spotlight-shipping">FREE SHIPPING ON EVERY ORDER</span>
+          <span class="spotlight-shipping">Free shipping on every order</span>
         </div>
 
         <div class="spotlight-actions">
-          {% if section.settings.product_handle != blank %}
-            {% assign spotlight_product = all_products[section.settings.product_handle] %}
-            <button
-              class="btn btn--primary btn--full btn-atc"
-              data-variant-id="{{ spotlight_product.first_available_variant.id }}"
-            >
-              ADD TO CART
-            </button>
-          {% else %}
-            <button
-              class="btn btn--primary btn--full btn-atc"
-              data-variant-id="{{ section.settings.variant_id }}"
-            >
-              ADD TO CART
-            </button>
-          {% endif %}
-          <a href="{{ section.settings.product_url }}" class="spotlight-details-link">
-            VIEW DETAILS →
-          </a>
+          <a href="{{ section.settings.product_url }}" class="spotlight-btn-primary">Shop Now</a>
+          <a href="{{ section.settings.product_url }}" class="spotlight-btn-secondary">View Details &rarr;</a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -174,105 +208,22 @@
 {
   "name": "Product Spotlight",
   "settings": [
-    {
-      "type": "text",
-      "id": "product_label",
-      "label": "Product label",
-      "default": "Featured Product"
-    },
-    {
-      "type": "text",
-      "id": "product_name",
-      "label": "Product name",
-      "default": "THE NOVA"
-    },
-    {
-      "type": "textarea",
-      "id": "product_description",
-      "label": "Product description",
-      "default": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint."
-    },
-    {
-      "type": "image_picker",
-      "id": "product_image",
-      "label": "Product image"
-    },
-    {
-      "type": "text",
-      "id": "product_handle",
-      "label": "Product handle (for dynamic price)"
-    },
-    {
-      "type": "text",
-      "id": "variant_id",
-      "label": "Variant ID (fallback)"
-    },
-    {
-      "type": "url",
-      "id": "product_url",
-      "label": "Product page link"
-    },
-    {
-      "type": "text",
-      "id": "price",
-      "label": "Price display",
-      "default": "$29.99"
-    }
+    { "type": "text", "id": "product_label", "label": "Product label", "default": "Featured Product" },
+    { "type": "text", "id": "product_name", "label": "Product name", "default": "THE NOVA" },
+    { "type": "textarea", "id": "product_description", "label": "Product description", "default": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint." },
+    { "type": "image_picker", "id": "product_image", "label": "Product image" },
+    { "type": "url", "id": "product_url", "label": "Product page link" },
+    { "type": "text", "id": "price", "label": "Price display", "default": "$29.99" }
   ],
   "blocks": [
     {
       "type": "spec",
       "name": "Product Spec",
       "settings": [
-        {
-          "type": "text",
-          "id": "icon_svg",
-          "label": "Icon (SVG code or emoji)",
-          "default": "✓"
-        },
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Spec label",
-          "default": "1200 GSM"
-        }
+        { "type": "text", "id": "label", "label": "Spec label", "default": "1200 GSM" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Product Spotlight",
-      "blocks": [
-        {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "✓",
-            "label": "1200 GSM Microfiber"
-          }
-        },
-        {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "✓",
-            "label": "Twisted Loop Technology"
-          }
-        },
-        {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "✓",
-            "label": "Scratch-Free Guaranteed"
-          }
-        },
-        {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "✓",
-            "label": "Free Shipping on Every Order"
-          }
-        }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Product Spotlight" }]
 }
 {% endschema %}
