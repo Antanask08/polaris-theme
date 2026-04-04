@@ -37,6 +37,15 @@
         "cta_url": ""
       }
     },
+    "bts_gallery_L34gUG": {
+      "type": "bts-gallery",
+      "name": "BTS Gallery",
+      "settings": {
+        "eyebrow": "Behind the build",
+        "headline": "Built in Chicago.Not a boardroom.",
+        "body": "Polaris started in a garage with two guys who couldn't find detailing products they actually trusted. So we built our own. Every product is tested on real cars before it ever reaches yours."
+      }
+    },
     "product_spotlight": {
       "type": "product-spotlight",
       "blocks": {
@@ -262,28 +271,19 @@
         "button_text": "CLAIM MY 10% OFF",
         "fine_print": "We respect your inbox. No spam, ever."
       }
-    },
-    "bts_gallery_L34gUG": {
-      "type": "bts-gallery",
-      "name": "BTS Gallery",
-      "settings": {
-        "eyebrow": "Behind the build",
-        "headline": "Built in Chicago.Not a boardroom.",
-        "body": "Polaris started in a garage with two guys who couldn't find detailing products they actually trusted. So we built our own. Every product is tested on real cars before it ever reaches yours."
-      }
     }
   },
   "order": [
     "hero",
     "brand_statement",
     "brand_story",
+    "bts_gallery_L34gUG",
     "product_spotlight",
     "why_polaris",
     "social_proof",
     "trust_badges",
     "press_bar",
     "social_feed",
-    "email_popup",
-    "bts_gallery_L34gUG"
+    "email_popup"
   ]
 }
