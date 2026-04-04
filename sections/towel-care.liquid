@@ -1,0 +1,403 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Barlow:wght@300;400&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  .tc-wrap {
+    background: #000;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Hero */
+  .tc-hero {
+    padding: 96px 48px 80px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  @media (max-width: 640px) { .tc-hero { padding: 64px 24px 56px; } }
+
+  .tc-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 20px;
+  }
+
+  .tc-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    text-transform: uppercase;
+    line-height: 0.93;
+    letter-spacing: 0.01em;
+    color: #fff;
+    margin-bottom: 28px;
+  }
+
+  .tc-sub {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+    max-width: 520px;
+  }
+
+  /* Section shared */
+  .tc-section {
+    padding: 80px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  @media (max-width: 640px) { .tc-section { padding: 56px 24px; } }
+
+  .tc-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+  }
+
+  .tc-section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+
+  /* Step list */
+  .tc-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .tc-step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    align-items: start;
+  }
+
+  .tc-step-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 2.2rem;
+    color: rgba(255,255,255,0.12);
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .tc-step-title {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .tc-step-body {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .tc-step-body strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* Do / Don't grid */
+  .tc-do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  @media (max-width: 640px) { .tc-do-dont { grid-template-columns: 1fr; } }
+
+  .tc-do, .tc-dont {
+    padding: 40px 36px;
+  }
+
+  .tc-do { background: rgba(255,255,255,0.03); }
+  .tc-dont { background: rgba(255,255,255,0.015); }
+
+  .tc-do-label, .tc-dont-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .tc-do-label { color: rgba(255,255,255,0.5); }
+  .tc-dont-label { color: rgba(255,80,80,0.6); }
+
+  .tc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .tc-list li {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.6);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .tc-do .tc-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  .tc-dont .tc-list li::before {
+    content: '✕';
+    position: absolute;
+    left: 0;
+    color: rgba(255,80,80,0.5);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  /* Pro tip */
+  .tc-tip {
+    background: rgba(255,255,255,0.04);
+    border-left: 2px solid rgba(255,255,255,0.2);
+    padding: 28px 32px;
+    margin-top: 40px;
+  }
+
+  .tc-tip-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 10px;
+  }
+
+  .tc-tip p {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .tc-tip p strong { color: #fff; font-weight: 600; }
+
+  /* CTA */
+  .tc-cta {
+    padding: 80px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  @media (max-width: 640px) { .tc-cta { padding: 56px 24px; } }
+
+  .tc-cta-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .tc-cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    text-decoration: none;
+    transition: opacity 200ms;
+  }
+
+  .tc-cta-btn:hover { opacity: 0.85; }
+</style>
+
+<div class="tc-wrap">
+
+  <!-- Hero -->
+  <div class="tc-hero">
+    <p class="tc-eyebrow">Polaris Car Care — Care Guide</p>
+    <h1 class="tc-headline">Towel<br>Care Guide.</h1>
+    <p class="tc-sub">Your Polaris microfiber is built to last. Follow these steps to keep it performing at 100% wash after wash.</p>
+  </div>
+
+  <!-- Washing Instructions -->
+  <div class="tc-section">
+    <p class="tc-section-label">Step by step</p>
+    <h2 class="tc-section-title">How to Wash</h2>
+
+    <div class="tc-steps">
+
+      <div class="tc-step">
+        <div class="tc-step-num">01</div>
+        <div>
+          <p class="tc-step-title">Shake it out first</p>
+          <p class="tc-step-body">Before washing, shake the towel outside to remove loose dirt, dust, and debris. This prevents grit from scratching the fibers during the wash cycle.</p>
+        </div>
+      </div>
+
+      <div class="tc-step">
+        <div class="tc-step-num">02</div>
+        <div>
+          <p class="tc-step-title">Wash separately or with microfiber only</p>
+          <p class="tc-step-body">Never mix with cotton towels, clothing, or anything with lint. Cotton sheds fibers that clog the microfiber weave and kill its ability to absorb. <strong>Microfiber only.</strong></p>
+        </div>
+      </div>
+
+      <div class="tc-step">
+        <div class="tc-step-num">03</div>
+        <div>
+          <p class="tc-step-title">Use the right settings</p>
+          <p class="tc-step-body">Set your machine to <strong>delicate or gentle cycle</strong> with <strong>warm water only</strong> — never hot. Hot water breaks down the polyester fibers over time and reduces softness and absorption.</p>
+        </div>
+      </div>
+
+      <div class="tc-step">
+        <div class="tc-step-num">04</div>
+        <div>
+          <p class="tc-step-title">Skip the detergent and softener</p>
+          <p class="tc-step-body">Standard detergents leave residue that clogs the fibers. Fabric softener is even worse — it coats the microfiber and permanently reduces absorption. <strong>Use no detergent, or a microfiber-specific detergent only.</strong></p>
+        </div>
+      </div>
+
+      <div class="tc-step">
+        <div class="tc-step-num">05</div>
+        <div>
+          <p class="tc-step-title">Optional: restore with white vinegar</p>
+          <p class="tc-step-body">Add <strong>¼ cup of plain white vinegar</strong> to the rinse cycle to strip detergent buildup and restore softness. Do this every 5–10 washes for best results.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tc-tip">
+      <p class="tc-tip-label">Pro Tip</p>
+      <p>If your towel feels stiff or less absorbent, it's likely detergent or softener buildup. Run it through a wash cycle with <strong>no detergent and ¼ cup white vinegar</strong> — it will come back to life.</p>
+    </div>
+  </div>
+
+  <!-- Drying Instructions -->
+  <div class="tc-section">
+    <p class="tc-section-label">After washing</p>
+    <h2 class="tc-section-title">How to Dry</h2>
+
+    <div class="tc-steps">
+
+      <div class="tc-step">
+        <div class="tc-step-num">01</div>
+        <div>
+          <p class="tc-step-title">Tumble dry on low heat</p>
+          <p class="tc-step-body">Use your dryer on the <strong>lowest heat setting</strong> or the air-only / no-heat cycle. Low heat is safe and effective — it fluffs the fibers back up without damaging them.</p>
+        </div>
+      </div>
+
+      <div class="tc-step">
+        <div class="tc-step-num">02</div>
+        <div>
+          <p class="tc-step-title">No dryer sheets — ever</p>
+          <p class="tc-step-body">Dryer sheets coat the microfiber with a waxy residue that permanently kills absorption. Even one sheet can do lasting damage. <strong>Never use dryer sheets with microfiber.</strong></p>
+        </div>
+      </div>
+
+      <div class="tc-step">
+        <div class="tc-step-num">03</div>
+        <div>
+          <p class="tc-step-title">Air dry is always best</p>
+          <p class="tc-step-body">When in doubt, lay flat or hang to air dry. Air drying is the gentlest option and extends the life of your towel significantly. Avoid direct sunlight for extended periods.</p>
+        </div>
+      </div>
+
+      <div class="tc-step">
+        <div class="tc-step-num">04</div>
+        <div>
+          <p class="tc-step-title">Store dry and folded</p>
+          <p class="tc-step-body">Make sure the towel is completely dry before storing. Folding loosely in a drawer or bin keeps the fibers from getting crushed. Avoid storing in sealed plastic bags which trap moisture.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Do / Don't -->
+  <div class="tc-section" style="padding-bottom: 0; border-bottom: none;">
+    <p class="tc-section-label">Quick reference</p>
+    <h2 class="tc-section-title">Do's &amp; Don'ts</h2>
+  </div>
+
+  <div class="tc-do-dont">
+    <div class="tc-do">
+      <p class="tc-do-label">Always do</p>
+      <ul class="tc-list">
+        <li>Wash on delicate / gentle cycle</li>
+        <li>Use warm water only</li>
+        <li>Wash with other microfiber only</li>
+        <li>Tumble dry on low or air dry</li>
+        <li>Add white vinegar occasionally to restore</li>
+        <li>Store completely dry</li>
+      </ul>
+    </div>
+    <div class="tc-dont">
+      <p class="tc-dont-label">Never do</p>
+      <ul class="tc-list">
+        <li>Use fabric softener</li>
+        <li>Use standard detergent</li>
+        <li>Wash with cotton or clothing</li>
+        <li>Use dryer sheets</li>
+        <li>Dry on high heat</li>
+        <li>Store while damp</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="tc-cta">
+    <h2 class="tc-cta-title">Ready for a fresh set?</h2>
+    <a href="/collections/all" class="tc-cta-btn">Shop Towels</a>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Towel Care Guide",
+  "settings": [],
+  "presets": [
+    { "name": "Towel Care Guide" }
+  ]
+}
+{% endschema %}

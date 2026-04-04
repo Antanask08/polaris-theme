@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "towel_care": {
+      "type": "towel-care",
+      "settings": {}
+    }
+  },
+  "order": ["towel_care"]
+}
