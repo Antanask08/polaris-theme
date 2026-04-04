@@ -493,6 +493,97 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
+   THE STANDARD
+───────────────────────────────────────────────────────────── */
+.os-standard {
+  padding: 100px 60px;
+}
+@media (max-width: 900px) { .os-standard { padding: 64px 28px; } }
+
+.os-standard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+@media (max-width: 900px) { .os-standard-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+.os-standard-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  line-height: 0.95;
+  margin-bottom: 28px;
+}
+
+.os-standard-body {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--bp-text);
+}
+
+.os-checklist-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--bp-dim);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--bp-lineLg);
+}
+
+.os-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.os-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--bp-line);
+}
+
+.os-check-mark {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.os-check--pass .os-check-mark { color: rgba(100,220,100,0.8); }
+
+.os-check-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 4px;
+}
+
+.os-check-desc {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: var(--bp-dim);
+  line-height: 1.5;
+}
+
+.os-standard-stamp-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* ─────────────────────────────────────────────────────────────
    FOUNDERS — CORK BOARD
 ───────────────────────────────────────────────────────────── */
 .os-founders {
@@ -878,7 +969,7 @@
     {%- comment -%} Top bar {%- endcomment -%}
     <div class="os-hero-topbar">
       <div class="os-hero-tag">Project / Polaris Car Care // Chicago, IL</div>
-      <div class="os-hero-topbar-right">Est. 2024 — Doc. 001</div>
+      <div class="os-hero-topbar-right">Est. 2025 — Doc. 001</div>
     </div>
 
     {%- comment -%} Title + info {%- endcomment -%}
@@ -898,7 +989,7 @@
         <p class="os-hero-annotation">
           — Antanas Kubilius &amp; Jacob Klepacki<br>
           Co-Founders, Polaris Car Care<br>
-          Chicago, Illinois / 2024
+          Chicago, Illinois / 2025
         </p>
       </div>
     </div>
@@ -907,7 +998,7 @@
     <div class="os-hero-meta">
       <div class="os-hero-meta-item">
         <strong>Est.</strong>
-        2024
+        2025
       </div>
       <div class="os-hero-meta-item">
         <strong>Location</strong>
@@ -1011,6 +1102,79 @@
     </div>
   </section>
 
+  {%- comment -%} ── THE STANDARD ── {%- endcomment -%}
+  <section class="os-standard bp-bg os-fade">
+    <div class="os-section-annotation">03 — The Standard</div>
+
+    <div class="os-standard-grid">
+      <div class="os-standard-left">
+        <h2 class="os-standard-heading">
+          If It Doesn't Pass<br>
+          <span style="color:rgba(100,160,255,0.35);">Jacob's Test.</span><br>
+          It Doesn't Ship.
+        </h2>
+        <p class="os-standard-body">
+          Jacob Klepacki brings real professional detailing experience to Polaris. He's worked alongside detailers who service high-end vehicles — including exotic and luxury cars — which means he knows exactly what a product needs to do under real conditions, not just in a lab.
+        </p>
+        <p class="os-standard-body" style="margin-top:20px;">
+          Every Polaris product is first tested on the founders' own vehicles. Then it goes to trusted friends inside the car community. Only after it passes both rounds does it ever get listed for sale. No shortcuts. No marketing fluff. Just real feedback from real enthusiasts.
+        </p>
+        <p class="os-standard-body" style="margin-top:20px;">
+          This blend of business strategy and technical detailing knowledge is what lets Polaris balance performance, durability, and price without sacrificing any of the three.
+        </p>
+      </div>
+
+      <div class="os-standard-right">
+        <div class="os-checklist-label">Quality Control Checklist</div>
+        <div class="os-checklist">
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Absorbency</div>
+              <div class="os-check-desc">Must pull water without streaking or smearing across paint</div>
+            </div>
+          </div>
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Paint Safety</div>
+              <div class="os-check-desc">Zero marring on coated, ceramic, and PPF surfaces</div>
+            </div>
+          </div>
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Durability</div>
+              <div class="os-check-desc">Holds up wash after wash — no fiber degradation after 30+ cycles</div>
+            </div>
+          </div>
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Consistency</div>
+              <div class="os-check-desc">Every unit performs the same as the sample. No batch variance</div>
+            </div>
+          </div>
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Honest Price</div>
+              <div class="os-check-desc">Premium quality at a price that doesn't require a justification</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="os-standard-stamp-row">
+          <div class="os-stamp">
+            <span class="os-stamp-text">REAL WORLD</span>
+            <span class="os-stamp-text--big">TESTED</span>
+            <span class="os-stamp-text">✓ APPROVED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   {%- comment -%} ── FOUNDERS — CORK BOARD ── {%- endcomment -%}
   <section class="os-founders cork-bg os-fade">
     <div class="os-founders-header">
@@ -1052,11 +1216,11 @@
 
   {%- comment -%} ── LAUNCH EVENT ── {%- endcomment -%}
   <section class="os-launch bp-bg os-fade">
-    <div class="os-section-annotation">03 — The Launch</div>
+    <div class="os-section-annotation">04 — The Launch</div>
 
     <div class="os-launch-grid">
       <div class="os-launch-text">
-        <p class="os-launch-eyebrow">Community First // Chicago, 2024</p>
+        <p class="os-launch-eyebrow">Community First // Chicago, 2025</p>
         <h2 class="os-launch-heading">
           50 Cars Showed Up<br>
           <span style="color:rgba(100,160,255,0.4);">For a Brand Nobody<br>Had Heard Of Yet.</span>
@@ -1103,7 +1267,7 @@
 
   {%- comment -%} ── MISSION ── {%- endcomment -%}
   <section class="os-mission bp-bg os-fade">
-    <div class="os-section-annotation">04 — The Mission</div>
+    <div class="os-section-annotation">05 — The Mission</div>
 
     <div class="os-mission-inner">
       <div class="os-mission-left">
