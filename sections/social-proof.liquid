@@ -260,6 +260,8 @@
   </div>
 </section>
 
+{% assign video_count = section.blocks | where: 'type', 'video' | size %}
+{% if video_count > 0 %}
 {% comment %}6b: Video UGC Grid{% endcomment %}
 <section class="video-ugc section--black fade-in">
   <div class="container">
@@ -292,6 +294,7 @@
     </div>
   </div>
 </section>
+{% endif %}
 
 {% comment %}6c: Photo UGC Grid{% endcomment %}
 <section class="photo-ugc section--white fade-in">
