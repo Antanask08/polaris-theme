@@ -265,17 +265,6 @@
     },
     "bts_gallery_L34gUG": {
       "type": "bts-gallery",
-      "blocks": {
-        "photo_WhqCXc": {
-          "type": "photo",
-          "settings": {
-            "caption": "Behind the scenes"
-          }
-        }
-      },
-      "block_order": [
-        "photo_WhqCXc"
-      ],
       "name": "BTS Gallery",
       "settings": {
         "eyebrow": "Behind the build",
