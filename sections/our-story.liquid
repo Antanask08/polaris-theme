@@ -33,13 +33,12 @@
   background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
 }
 
-/* ── Cork Board ──────────────────────────────────────────────── */
+/* ── Dark Board ──────────────────────────────────────────────── */
 .cork-bg {
-  background-color: #8B6914;
+  background-color: #0d1117;
   background-image:
-    radial-gradient(ellipse at 20% 30%, rgba(180,130,50,0.4) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 70%, rgba(100,70,20,0.4) 0%, transparent 60%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Ccircle cx='1' cy='1' r='0.6' fill='rgba(0,0,0,0.08)'/%3E%3C/svg%3E");
+    radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.015) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(255,255,255,0.01) 0%, transparent 60%);
 }
 
 /* ── OS Container ────────────────────────────────────────────── */
@@ -59,8 +58,8 @@
 .os-hero {
   position: relative;
   min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  display: flex;
+  flex-direction: column;
   padding: 0 60px;
   overflow: hidden;
 }
@@ -95,10 +94,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 0 48px;
+  padding: 36px 0 36px;
   border-bottom: 1px solid var(--bp-line);
   position: relative;
   z-index: 1;
+  flex-shrink: 0;
 }
 
 .os-hero-tag {
@@ -129,11 +129,12 @@
 
 /* Main body — 2 column */
 .os-hero-body {
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 80px;
   align-items: center;
-  padding: 64px 0;
+  padding: 56px 0;
   position: relative;
   z-index: 1;
 }
@@ -206,6 +207,8 @@
   border-top: 1px solid var(--bp-line);
   position: relative;
   z-index: 1;
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 .os-hero-meta-item {
@@ -516,7 +519,7 @@
   font-weight: 900;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   text-transform: uppercase;
-  color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
   line-height: 0.95;
   letter-spacing: -0.01em;
 }
@@ -525,7 +528,7 @@
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
   font-size: 0.9rem;
-  color: var(--bp-dim);
+  color: rgba(255,255,255,0.35);
   max-width: 240px;
   line-height: 1.6;
   text-align: right;
