@@ -1,0 +1,415 @@
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  .faq-page {
+    background: #000;
+    min-height: 60vh;
+    padding: 80px 0 120px;
+  }
+
+  .faq-page__header {
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 48px;
+    margin-bottom: 72px;
+  }
+
+  .faq-page__label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+  }
+
+  .faq-page__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 7rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .faq-chapter {
+    margin-bottom: 64px;
+  }
+
+  .faq-chapter__heading {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .faq-item__question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    text-align: left;
+    padding: 24px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    transition: color 200ms ease;
+  }
+
+  .faq-item__question:hover {
+    color: rgba(255,255,255,0.75);
+  }
+
+  .faq-item__icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    opacity: 0.5;
+    transition: opacity 200ms, transform 300ms ease;
+  }
+
+  .faq-item__icon::before,
+  .faq-item__icon::after {
+    content: '';
+    position: absolute;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .faq-item__icon::before {
+    width: 14px;
+    height: 1.5px;
+  }
+
+  .faq-item__icon::after {
+    width: 1.5px;
+    height: 14px;
+    transition: transform 300ms ease, opacity 300ms ease;
+  }
+
+  .faq-item.is-open .faq-item__icon {
+    opacity: 1;
+  }
+
+  .faq-item.is-open .faq-item__icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+    opacity: 0;
+  }
+
+  .faq-item__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 350ms ease;
+  }
+
+  .faq-item__answer-inner {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    padding-bottom: 28px;
+    max-width: 720px;
+  }
+
+  .faq-item__answer-inner a {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .faq-page {
+      padding: 60px 0 80px;
+    }
+    .faq-page__header {
+      margin-bottom: 48px;
+    }
+    .faq-chapter {
+      margin-bottom: 48px;
+    }
+  }
+</style>
+
+<section class="faq-page">
+  <div class="container">
+
+    <div class="faq-page__header">
+      <span class="faq-page__label">Help Center</span>
+      <h1 class="faq-page__title">FAQ</h1>
+    </div>
+
+    <!-- SECTION 1: ABOUT POLARIS -->
+    <div class="faq-chapter">
+      <div class="faq-chapter__heading">About Polaris</div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          What is Polaris Car Care?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Polaris Car Care is a premium automotive detailing brand built by car enthusiasts, for car enthusiasts. We make professional-grade detailing products accessible — no inflated prices, no gimmicks. Just products that actually perform.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          Who founded Polaris Car Care?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Polaris was founded by Antanas Kubilius and Jacob Klepacki — two entrepreneurs who were active in the car community and tired of paying premium prices for products that didn't earn it. Jacob brings hands-on professional detailing experience, including work on exotic and luxury vehicles. Antanas handles brand strategy and operations.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          Where is Polaris Car Care based?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            We're based in Illinois, USA.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: PRODUCTS -->
+    <div class="faq-chapter">
+      <div class="faq-chapter__heading">Products</div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          What products does Polaris Car Care sell?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            We launched with our flagship product, The Nova — a 1200 GSM twisted-loop microfiber drying towel. We're actively expanding into a full detailing catalog including wash soap, iron remover, graphene spray coating, water spot remover, tire dressing, wash mitts, foam cannons, and more.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          How is The Nova different from other microfiber towels?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            The Nova is a 1200 GSM twisted-loop microfiber towel built for maximum water absorption, softness, and streak-free drying. We tested it directly against leading brands and it matched or outperformed them at a fraction of the cost. 60×90cm, free shipping included.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          Are your products tested before being sold?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Every product is tested on our own vehicles first, then evaluated by members of our car community before it ever goes live. Jacob's professional detailing background means we're not guessing — we're testing against real standards.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          Will you be releasing more products?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Yes. We're building a full car-care ecosystem. New products drop as they pass our testing process — follow @polariscarcare on TikTok and Instagram to stay updated.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: ORDERS & SHIPPING -->
+    <div class="faq-chapter">
+      <div class="faq-chapter__heading">Orders &amp; Shipping</div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          How much does shipping cost?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Free shipping on The Nova. Always.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          How long does shipping take?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Standard delivery within the US typically takes 5–8 business days. You'll receive a tracking number as soon as your order ships.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          Do you ship internationally?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Currently we ship within the US. International shipping is something we're actively working toward.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          Can I change or cancel my order?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Orders are processed quickly. If you need to make a change, contact us as soon as possible and we'll do our best to accommodate before it ships.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: RETURNS & QUALITY -->
+    <div class="faq-chapter">
+      <div class="faq-chapter__heading">Returns &amp; Quality</div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          What is your return policy?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            If you're not satisfied with your order, reach out to us within 30 days of receiving it and we'll make it right. We stand behind our products.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          What if my product arrives damaged or defective?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Contact us immediately with a photo and your order number. We'll send a replacement, no questions asked.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: COMMUNITY -->
+    <div class="faq-chapter">
+      <div class="faq-chapter__heading">Brand &amp; Community</div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          How can I get involved with the Polaris community?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Follow us on TikTok and Instagram @polariscarcare. We host local events, car meets, and community ride-outs. If you're in the Midwest and love cars, keep an eye out — we want to meet you in person.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          Do you have an affiliate or creator program?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Yes. If you create car content and want to partner with Polaris, apply at polariscarcare.com/pages/partner. Our affiliate program pays 20% commission on every sale you drive.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" aria-expanded="false">
+          How can I stay updated on new product drops?
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Sign up for our email list on the website. Subscribers get early access to new products, exclusive discounts, and community updates before anyone else.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    var items = document.querySelectorAll('.faq-item__question');
+    items.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.faq-item');
+        var answer = item.querySelector('.faq-item__answer');
+        var isOpen = item.classList.contains('is-open');
+
+        // Close all
+        document.querySelectorAll('.faq-item.is-open').forEach(function (openItem) {
+          openItem.classList.remove('is-open');
+          openItem.querySelector('.faq-item__answer').style.maxHeight = '0';
+          openItem.querySelector('.faq-item__question').setAttribute('aria-expanded', 'false');
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('is-open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Page",
+  "settings": [],
+  "presets": [{ "name": "FAQ Page" }]
+}
+{% endschema %}
