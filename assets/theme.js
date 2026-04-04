@@ -441,7 +441,7 @@
 
     // sessionStorage: clears when tab closes, so popup shows again next session
     var SESSION_KEY   = 'polaris_popup_seen';
-    var DISCOUNT_CODE = 'POLARIS10';
+    var DISCOUNT_CODE = 'NOVA-X7K4M';
     var shown = false;
 
     function typewriterReveal(targetEl, text, intervalMs) {
