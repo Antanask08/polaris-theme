@@ -9,7 +9,7 @@
     <div id="popup-form-wrap">
       <h2 class="popup-headline">{{ section.settings.headline }}</h2>
       <p class="popup-subhead">{{ section.settings.subheadline }}</p>
-      {% form 'customer', id: 'popup-form' %}
+      {% form 'customer' %}
         <input type="hidden" name="contact[tags]" value="newsletter,email_popup">
         <input
           type="email"
@@ -20,7 +20,7 @@
           required
           autocomplete="email"
         >
-        <button type="submit" class="popup-submit">{{ section.settings.button_text }}</button>
+        <button type="submit" class="popup-submit" id="popup-submit-btn">{{ section.settings.button_text }}</button>
         <p class="popup-fine-print">{{ section.settings.fine_print }}</p>
       {% endform %}
     </div>

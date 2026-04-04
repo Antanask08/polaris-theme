@@ -430,7 +430,7 @@
     var popup        = document.getElementById('email-popup');
     var popupOverlay = document.getElementById('popup-overlay');
     var closeBtn     = document.getElementById('popup-close');
-    var form         = document.getElementById('popup-form');
+    var form         = popup ? popup.querySelector('form') : null;
     var copyBtn      = document.getElementById('copy-code');
 
     if (!popup) return;
