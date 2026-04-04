@@ -1,101 +1,167 @@
 <style>
-.social-feed {
-  background: #fff;
-  padding: 96px 0;
-}
-
-.social-feed .section-header {
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-.social-feed-subtext {
-  text-align: center;
-  margin-bottom: 64px;
-  opacity: 0.6;
-  font-size: 14px;
-  color: #000;
-}
-
-.social-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 48px;
-}
-
-.social-slot {
-  position: relative;
-}
-
-.social-embed-wrap {
-  overflow: hidden;
-  aspect-ratio: 9 / 16;
-}
-
-.social-embed-wrap iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.social-placeholder {
-  aspect-ratio: 9 / 16;
-  background: #f5f5f5;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.social-ctas {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-  .social-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .sf-section {
+    background: #000;
+    padding: 96px 48px;
+    font-family: 'DM Sans', sans-serif;
   }
-}
+
+  @media (max-width: 640px) { .sf-section { padding: 64px 24px; } }
+
+  .sf-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .sf-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    text-transform: uppercase;
+    line-height: 0.93;
+    color: #fff;
+  }
+
+  .sf-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 16px;
+  }
+
+  .sf-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .sf-cta {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 13px 24px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    transition: border-color 200ms, background 200ms, color 200ms;
+  }
+
+  .sf-cta:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+  }
+
+  .sf-cta--primary {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+  }
+
+  .sf-cta--primary:hover {
+    background: transparent;
+    color: #fff;
+  }
+
+  .sf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  @media (max-width: 768px) {
+    .sf-grid { grid-template-columns: repeat(2, 1fr); }
+    .sf-header { flex-direction: column; align-items: flex-start; }
+  }
+
+  .sf-slot {
+    background: #000;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .sf-slot iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .sf-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .sf-placeholder svg {
+    width: 32px;
+    height: 32px;
+    fill: none;
+    stroke: rgba(255,255,255,0.15);
+    stroke-width: 1.5;
+  }
+
+  .sf-placeholder span {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.15);
+  }
 </style>
 
-<section class="social-feed section--white fade-in">
-  <div class="container">
-    <div class="section-header">
-      <h2>{{ section.settings.heading }}</h2>
-      <p class="social-feed-subtext">{{ section.settings.subtext }}</p>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<section class="sf-section fade-in">
+
+  <div class="sf-header">
+    <div>
+      <p class="sf-eyebrow">Follow along</p>
+      <h2 class="sf-headline">{{ section.settings.heading }}</h2>
     </div>
-    <div class="social-grid">
-      {% for block in section.blocks %}
-        {% if block.type == 'embed' %}
-          <div class="social-slot" {{ block.shopify_attributes }}>
-            {% if block.settings.embed_code != blank %}
-              <div class="social-embed-wrap">{{ block.settings.embed_code }}</div>
-            {% else %}
-              <div class="social-placeholder">
-                <span>@polariscarcare</span>
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-    <div class="social-ctas">
+    <div class="sf-ctas">
       {% if section.settings.tiktok_url != blank %}
-        <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" class="btn btn--primary">{{ section.settings.tiktok_label }}</a>
+        <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" class="sf-cta sf-cta--primary">{{ section.settings.tiktok_label }}</a>
       {% endif %}
       {% if section.settings.instagram_url != blank %}
-        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="btn btn--secondary">{{ section.settings.instagram_label }}</a>
+        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="sf-cta">{{ section.settings.instagram_label }}</a>
       {% endif %}
     </div>
   </div>
+
+  <div class="sf-grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'embed' %}
+        <div class="sf-slot" {{ block.shopify_attributes }}>
+          {% if block.settings.embed_code != blank %}
+            {{ block.settings.embed_code }}
+          {% else %}
+            <div class="sf-placeholder">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              <span>@polariscarcare</span>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
 </section>
 
 {% schema %}
@@ -109,12 +175,6 @@
       "default": "@POLARISCARCARE"
     },
     {
-      "type": "text",
-      "id": "subtext",
-      "label": "Subtext",
-      "default": "Follow along on TikTok and Instagram"
-    },
-    {
       "type": "url",
       "id": "tiktok_url",
       "label": "TikTok profile URL"
@@ -123,7 +183,7 @@
       "type": "text",
       "id": "tiktok_label",
       "label": "TikTok button label",
-      "default": "FOLLOW US ON TIKTOK \u2197"
+      "default": "FOLLOW US ON TIKTOK ↗"
     },
     {
       "type": "url",
@@ -134,7 +194,7 @@
       "type": "text",
       "id": "instagram_label",
       "label": "Instagram button label",
-      "default": "FOLLOW ON INSTAGRAM \u2197"
+      "default": "FOLLOW ON INSTAGRAM ↗"
     }
   ],
   "blocks": [

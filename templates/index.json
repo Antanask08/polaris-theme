@@ -193,6 +193,16 @@
         "photo_heading": ""
       }
     },
+    "bts_gallery": {
+      "type": "bts-gallery",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "eyebrow": "Behind the build",
+        "headline": "Built in Chicago. Not a boardroom.",
+        "body": "Polaris started with two guys who couldn't find detailing products they actually trusted. So we built our own. Every product is tested on real cars before it ever reaches yours."
+      }
+    },
     "trust_badges": {
       "type": "trust-badges",
       "blocks": {
@@ -274,6 +284,7 @@
     "product_spotlight",
     "why_polaris",
     "social_proof",
+    "bts_gallery",
     "trust_badges",
     "press_bar",
     "social_feed",
