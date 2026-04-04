@@ -1,0 +1,344 @@
+<style>
+  .contact-wrap {
+    background: #000;
+    min-height: 100vh;
+    padding: 0 48px 96px;
+    font-family: 'DM Sans', sans-serif;
+    color: #fff;
+  }
+
+  @media (max-width: 640px) { .contact-wrap { padding: 0 24px 72px; } }
+
+  .contact-header {
+    padding: 80px 0 64px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 72px;
+  }
+
+  .contact-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 20px;
+  }
+
+  .contact-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    text-transform: uppercase;
+    line-height: 0.93;
+    letter-spacing: 0.01em;
+    color: #fff;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 56px; }
+  }
+
+  /* Left — info */
+  .contact-info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .contact-info-item {}
+
+  .contact-info-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 12px;
+  }
+
+  .contact-info-value {
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.6;
+  }
+
+  .contact-info-value a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    transition: border-color 200ms;
+  }
+
+  .contact-info-value a:hover { border-color: #fff; }
+
+  .contact-response-note {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 24px 28px;
+  }
+
+  .contact-response-note p {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .contact-response-note strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .contact-rule {
+    width: 40px;
+    height: 2px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  /* Right — form */
+  .contact-form-block {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contact-field label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .contact-field input,
+  .contact-field textarea,
+  .contact-field select {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 200ms;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+
+  .contact-field input::placeholder,
+  .contact-field textarea::placeholder {
+    color: rgba(255,255,255,0.2);
+  }
+
+  .contact-field input:focus,
+  .contact-field textarea:focus,
+  .contact-field select:focus {
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  .contact-field textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+
+  .contact-field select option {
+    background: #111;
+    color: #fff;
+  }
+
+  .contact-field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 640px) { .contact-field-row { grid-template-columns: 1fr; } }
+
+  .contact-submit {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 16px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 200ms;
+    align-self: flex-start;
+  }
+
+  .contact-submit:hover { opacity: 0.85; }
+
+  .contact-success {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 28px 32px;
+    display: none;
+  }
+
+  .contact-success p {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  .contact-success strong { color: #fff; font-weight: 600; }
+
+  .contact-errors {
+    font-size: 12px;
+    color: rgba(255,80,80,0.9);
+    line-height: 1.6;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Barlow:wght@300;400&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<div class="contact-wrap">
+
+  <div class="contact-header">
+    <p class="contact-eyebrow">Polaris Car Care — Support</p>
+    <h1 class="contact-headline">Get in<br>touch.</h1>
+  </div>
+
+  <div class="contact-grid">
+
+    <!-- Left: info -->
+    <div class="contact-info-block">
+
+      <div class="contact-info-item">
+        <p class="contact-info-label">Email us</p>
+        <p class="contact-info-value">
+          <a href="mailto:support@polariscarcare.com">support@polariscarcare.com</a>
+        </p>
+      </div>
+
+      <div class="contact-rule"></div>
+
+      <div class="contact-response-note">
+        <p>We read every message personally. Response times are <strong>1–3 business days</strong> depending on volume. We appreciate your patience and will always get back to you.</p>
+      </div>
+
+      <div class="contact-info-item">
+        <p class="contact-info-label">Follow us</p>
+        <p class="contact-info-value">
+          {% if settings.tiktok_url != blank %}
+            <a href="{{ settings.tiktok_url }}" target="_blank" rel="noopener">TikTok</a> &nbsp;·&nbsp;
+          {% endif %}
+          {% if settings.instagram_url != blank %}
+            <a href="{{ settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>
+          {% endif %}
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Right: form -->
+    <div>
+      {% form 'contact', id: 'ContactForm' %}
+
+        {%- if form.posted_successfully? -%}
+          <div class="contact-success" style="display:block;">
+            <p><strong>Message received.</strong> We'll get back to you within 1–3 business days at {{ form.email }}.</p>
+          </div>
+        {%- else -%}
+
+          {%- if form.errors -%}
+            <div class="contact-errors">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <div class="contact-form-block">
+
+            <div class="contact-field-row">
+              <div class="contact-field">
+                <label for="ContactForm-name">Name</label>
+                <input
+                  type="text"
+                  id="ContactForm-name"
+                  name="contact[name]"
+                  value="{{ form.name }}"
+                  placeholder="Your name"
+                  autocomplete="name"
+                >
+              </div>
+              <div class="contact-field">
+                <label for="ContactForm-email">Email</label>
+                <input
+                  type="email"
+                  id="ContactForm-email"
+                  name="contact[email]"
+                  value="{{ form.email }}"
+                  placeholder="your@email.com"
+                  autocomplete="email"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="contact-field">
+              <label for="ContactForm-subject">Subject</label>
+              <select id="ContactForm-subject" name="contact[subject]">
+                <option value="">Select a topic</option>
+                <option value="Order Question">Order question</option>
+                <option value="Product Question">Product question</option>
+                <option value="Return or Exchange">Return or exchange</option>
+                <option value="Wholesale Inquiry">Wholesale inquiry</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="contact-field">
+              <label for="ContactForm-body">Message</label>
+              <textarea
+                id="ContactForm-body"
+                name="contact[body]"
+                placeholder="Tell us what's on your mind..."
+                required
+              >{{ form.body }}</textarea>
+            </div>
+
+            <button type="submit" class="contact-submit">Send Message</button>
+
+          </div>
+
+        {%- endif -%}
+
+      {% endform %}
+    </div>
+
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": [],
+  "presets": [
+    { "name": "Contact Page" }
+  ]
+}
+{% endschema %}
