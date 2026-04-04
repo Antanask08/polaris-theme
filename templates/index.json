@@ -265,10 +265,21 @@
     },
     "bts_gallery_L34gUG": {
       "type": "bts-gallery",
+      "blocks": {
+        "photo_WhqCXc": {
+          "type": "photo",
+          "settings": {
+            "caption": "Behind the scenes"
+          }
+        }
+      },
+      "block_order": [
+        "photo_WhqCXc"
+      ],
       "name": "BTS Gallery",
       "settings": {
         "eyebrow": "Behind the build",
-        "headline": "Built in Chicago.\nNot a boardroom.",
+        "headline": "Built in Chicago.Not a boardroom.",
         "body": "Polaris started in a garage with two guys who couldn't find detailing products they actually trusted. So we built our own. Every product is tested on real cars before it ever reaches yours."
       }
     }
