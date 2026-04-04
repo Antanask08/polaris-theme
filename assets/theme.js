@@ -478,78 +478,32 @@
       });
     }
 
-    var DISCOUNT_CODE = 'NOVA-X7K4M';
-
-    // --- Typewriter animation ---
-
-    function typewriterReveal(targetEl, text, intervalMs) {
-      intervalMs = intervalMs || 80;
-      var index = 0;
-      targetEl.textContent = '';
-      var interval = setInterval(function () {
-        targetEl.textContent += text[index];
-        index++;
-        if (index >= text.length) clearInterval(interval);
-      }, intervalMs);
+    // --- Show success if returning from form POST ---
+    if (localStorage.getItem('polaris_popup_submitted') === '1') {
+      localStorage.removeItem('polaris_popup_submitted');
+      var formWrap = document.getElementById('popup-form-wrap');
+      var successWrap = document.getElementById('popup-success');
+      if (formWrap) formWrap.style.display = 'none';
+      if (successWrap) successWrap.style.display = 'block';
+      showPopup();
     }
 
-    // --- Form submit ---
-
+    // --- Form submit: set flag then let Shopify handle POST ---
     if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
+      form.addEventListener('submit', function () {
         var emailInput = form.querySelector('input[type="email"]');
-        var emailValue = emailInput ? emailInput.value.trim() : '';
-
-        if (!emailValue) return;
-
-        var code = DISCOUNT_CODE;
-
-        // Show code reveal section
-        var codeReveal  = document.getElementById('popup-code-reveal') || popup.querySelector('.popup-code-reveal');
-        var codeDisplay = popup.querySelector('.popup-code-display');
-        var formSection = popup.querySelector('.popup-form-section') || form.parentElement;
-
-        if (codeReveal) codeReveal.classList.add('is-visible');
-
-        // Hide form
-        form.style.display = 'none';
-
-        // Typewriter
-        if (codeDisplay) typewriterReveal(codeDisplay, code, 80);
-
-        // Store code for copy button
-        if (copyBtn) copyBtn.setAttribute('data-code', code);
-
-        // POST to Shopify newsletter endpoint — saves email to Customers list
-        var newsletterData = new FormData();
-        newsletterData.append('form_type', 'customer');
-        newsletterData.append('utf8', '✓');
-        newsletterData.append('customer[email]', emailValue);
-        newsletterData.append('customer[tags]', 'newsletter,email_popup,discount_10');
-
-        fetch('/contact#contact_form', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: newsletterData
-        }).catch(function (err) {
-          console.warn('[Polaris] Newsletter submission error:', err);
-        });
+        if (emailInput && emailInput.value.trim()) {
+          localStorage.setItem('polaris_popup_submitted', '1');
+          localStorage.setItem(STORAGE_KEY, 'true');
+        }
       });
     }
 
-    // --- Copy button ---
+    // --- Copy button (kept for reference but no longer used) ---
 
     if (copyBtn) {
       copyBtn.addEventListener('click', function () {
         var code = copyBtn.getAttribute('data-code') || '';
-        if (!code) {
-          // Fallback: read from display
-          var disp = popup.querySelector('.popup-code-display');
-          if (disp) code = disp.textContent.trim();
-        }
-
         if (navigator.clipboard && code) {
           navigator.clipboard.writeText(code).then(function () {
             var orig = copyBtn.textContent;

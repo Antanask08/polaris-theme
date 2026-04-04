@@ -9,14 +9,12 @@
     <div id="popup-form-wrap">
       <h2 class="popup-headline">{{ section.settings.headline }}</h2>
       <p class="popup-subhead">{{ section.settings.subheadline }}</p>
-      <form id="popup-form" action="/contact#contact_form" method="post" novalidate>
-        <input type="hidden" name="form_type" value="customer">
-        <input type="hidden" name="utf8" value="✓">
-        <input type="hidden" name="customer[tags]" value="newsletter,email_popup,discount_10">
+      {% form 'customer', id: 'popup-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter,email_popup">
         <input
           type="email"
           id="popup-email"
-          name="customer[email]"
+          name="contact[email]"
           class="popup-input"
           placeholder="{{ section.settings.input_placeholder }}"
           required
@@ -24,14 +22,12 @@
         >
         <button type="submit" class="popup-submit">{{ section.settings.button_text }}</button>
         <p class="popup-fine-print">{{ section.settings.fine_print }}</p>
-      </form>
+      {% endform %}
     </div>
 
-    <div id="popup-code-reveal" class="popup-code-reveal">
-      <p class="popup-code-label">YOUR DISCOUNT CODE:</p>
-      <div id="popup-code-display" class="popup-code-display"></div>
-      <p style="color:rgba(255,255,255,0.7);font-size:13px;text-align:center;margin-bottom:20px;">Copy this code and use it at checkout.</p>
-      <button id="copy-code" class="popup-code-copy">COPY CODE</button>
+    <div id="popup-success" class="popup-code-reveal" style="display:none;">
+      <p class="popup-code-label">YOU'RE ON THE LIST</p>
+      <p style="color:rgba(255,255,255,0.7);font-size:13px;text-align:center;margin-top:12px;">We'll be in touch when we launch.</p>
     </div>
   </div>
 </div>
