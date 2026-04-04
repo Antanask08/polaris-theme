@@ -522,20 +522,19 @@
         // Store code for copy button
         if (copyBtn) copyBtn.setAttribute('data-code', code);
 
-        // POST to Shopify contact form
-        // NOTE: This uses the Shopify /contact endpoint for newsletter sign-ups.
-        // Actual customer account creation requires the Storefront API.
-        var contactData = new FormData();
-        contactData.append('form_type', 'customer');
-        contactData.append('email', emailValue);
-        contactData.append('tags', 'email_popup,discount_10');
+        // POST to Shopify newsletter endpoint — saves email to Customers list
+        var newsletterData = new FormData();
+        newsletterData.append('form_type', 'customer');
+        newsletterData.append('utf8', '✓');
+        newsletterData.append('customer[email]', emailValue);
+        newsletterData.append('customer[tags]', 'newsletter,email_popup,discount_10');
 
-        fetch('/contact', {
+        fetch('/contact#contact_form', {
           method: 'POST',
           headers: { 'Accept': 'application/json' },
-          body: contactData
+          body: newsletterData
         }).catch(function (err) {
-          console.warn('[Polaris] Contact form submission error:', err);
+          console.warn('[Polaris] Newsletter submission error:', err);
         });
       });
     }

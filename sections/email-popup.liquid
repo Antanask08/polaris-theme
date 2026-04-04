@@ -9,10 +9,14 @@
     <div id="popup-form-wrap">
       <h2 class="popup-headline">{{ section.settings.headline }}</h2>
       <p class="popup-subhead">{{ section.settings.subheadline }}</p>
-      <form id="popup-form" novalidate>
+      <form id="popup-form" action="/contact#contact_form" method="post" novalidate>
+        <input type="hidden" name="form_type" value="customer">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="customer[tags]" value="newsletter,email_popup,discount_10">
         <input
           type="email"
           id="popup-email"
+          name="customer[email]"
           class="popup-input"
           placeholder="{{ section.settings.input_placeholder }}"
           required
