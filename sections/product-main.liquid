@@ -1,283 +1,666 @@
 {{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@300;400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-  /* ─── Base / Container ─────────────────────────────────────────────────────── */
-  .product-page {
+  /* ─── Reset / Base ─────────────────────────────────────────────────────────── */
+  .pp {
     font-family: 'DM Sans', sans-serif;
+    background: #fff;
     color: #000;
-    background: #fff;
   }
 
-  .container {
-    max-width: 1200px;
+  .pp-container {
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 40px;
   }
 
-  .container--narrow {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 24px;
+  @media (max-width: 640px) { .pp-container { padding: 0 20px; } }
+
+  /* ─── Breadcrumb ───────────────────────────────────────────────────────────── */
+  .pp-breadcrumb {
+    padding: 16px 0 0;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.35);
+  }
+  .pp-breadcrumb a { color: inherit; text-decoration: none; }
+  .pp-breadcrumb a:hover { color: #000; }
+  .pp-breadcrumb span { margin: 0 6px; }
+
+  /* ─── Top Layout ───────────────────────────────────────────────────────────── */
+  .pp-top {
+    padding: 32px 0 80px;
   }
 
-  /* ─── Fade-in ──────────────────────────────────────────────────────────────── */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 600ms ease, transform 600ms ease;
-  }
-
-  .fade-in.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ─── Product Top ──────────────────────────────────────────────────────────── */
-  .product-top {
-    padding: 64px 0;
-    background: #fff;
-  }
-
-  .product-layout {
+  .pp-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    grid-template-columns: 55% 1fr;
+    gap: 72px;
     align-items: start;
   }
 
-  /* ─── Gallery ──────────────────────────────────────────────────────────────── */
-  .gallery-main {
-    position: relative;
-    margin-bottom: 16px;
+  @media (max-width: 900px) {
+    .pp-layout { grid-template-columns: 1fr; gap: 40px; }
+    .pp-top { padding: 24px 0 60px; }
   }
 
-  .product-main-image {
+  /* ─── Gallery ──────────────────────────────────────────────────────────────── */
+  .pp-gallery {
+    position: sticky;
+    top: 80px;
+  }
+
+  @media (max-width: 900px) { .pp-gallery { position: static; } }
+
+  .pp-gallery-main {
+    position: relative;
+    overflow: hidden;
+    background: #f5f5f5;
+    margin-bottom: 12px;
+  }
+
+  .pp-gallery-main img {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    transition: opacity 200ms ease;
     display: block;
+    transition: opacity 180ms ease;
   }
 
-  .gallery-placeholder {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background: #f0f0f0;
-  }
-
-  .gallery-thumbs {
-    display: flex;
+  .pp-gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 8px;
-    flex-wrap: wrap;
   }
 
-  .gallery-thumb {
-    width: 72px;
-    height: 72px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+  .pp-thumb {
     background: none;
-    cursor: pointer;
+    border: 2px solid transparent;
     padding: 0;
+    cursor: pointer;
     overflow: hidden;
     transition: border-color 200ms;
+    aspect-ratio: 1/1;
   }
 
-  .gallery-thumb.is-active,
-  .gallery-thumb:hover {
+  .pp-thumb.is-active,
+  .pp-thumb:hover {
     border-color: #000;
   }
 
-  .gallery-thumb img {
+  .pp-thumb img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  /* ─── Product Info ─────────────────────────────────────────────────────────── */
-  .product-title {
-    font-family: 'DM Sans', sans-serif;
+  /* ─── Info Column ──────────────────────────────────────────────────────────── */
+  .pp-info {}
+
+  .pp-eyebrow {
+    font-size: 10px;
     font-weight: 700;
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    margin-bottom: 16px;
-    line-height: 1.1;
-    color: #000;
+    color: rgba(0,0,0,0.35);
+    margin-bottom: 10px;
   }
 
-  .product-rating {
+  .pp-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    text-transform: uppercase;
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: #000;
+    margin-bottom: 20px;
+  }
+
+  /* Rating row */
+  .pp-rating {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
+  .pp-stars { font-size: 14px; letter-spacing: 2px; color: #000; }
+  .pp-rating-text { font-size: 13px; color: rgba(0,0,0,0.5); }
+  .pp-rating-sep { width: 1px; height: 14px; background: rgba(0,0,0,0.15); }
 
-  .rating-stars {
-    color: #000;
-    font-size: 16px;
-    letter-spacing: 2px;
-  }
-
-  .rating-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    opacity: 0.6;
-    color: #000;
-  }
-
-  .product-price-wrap {
-    margin-bottom: 20px;
-  }
-
-  .product-price {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 6px;
-    color: #000;
-  }
-
-  .product-shipping-note {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #000;
-    opacity: 0.6;
-  }
-
-  .product-short-desc {
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 28px;
-    opacity: 0.8;
-    color: #000;
-  }
-
-  /* ─── Specs Strip ──────────────────────────────────────────────────────────── */
-  .product-specs-strip {
+  /* Price */
+  .pp-price-row {
     display: flex;
-    gap: 24px;
-    padding: 24px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    margin-bottom: 28px;
-  }
-
-  .spec-item {
-    text-align: center;
-    flex: 1;
-  }
-
-  .spec-item-icon {
-    font-size: 20px;
+    align-items: baseline;
+    gap: 12px;
     margin-bottom: 6px;
   }
-
-  .spec-item-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+  .pp-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
     color: #000;
+    letter-spacing: 0.02em;
+  }
+  .pp-price-compare {
+    font-size: 1rem;
+    color: rgba(0,0,0,0.35);
+    text-decoration: line-through;
+  }
+  .pp-price-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: #000;
+    color: #fff;
+    padding: 3px 8px;
   }
 
-  /* ─── Variant Buttons ──────────────────────────────────────────────────────── */
-  .product-variants {
+  .pp-shipping-note {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
     margin-bottom: 24px;
   }
 
-  .variant-group {
-    margin-bottom: 16px;
+  /* Divider */
+  .pp-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 24px 0;
   }
 
-  .variant-label {
-    display: block;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
+  /* Short desc */
+  .pp-short-desc {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(0,0,0,0.65);
+    margin-bottom: 24px;
+  }
+
+  /* Spec pills */
+  .pp-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .pp-spec-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 7px 14px;
+    font-size: 11px;
+    font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-bottom: 10px;
     color: #000;
   }
+  .pp-spec-pill-icon { font-size: 13px; }
 
-  .variant-options {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+  /* Variant selector */
+  .pp-variants { margin-bottom: 20px; }
+  .pp-variant-group { margin-bottom: 14px; }
+  .pp-variant-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: rgba(0,0,0,0.5);
   }
-
-  .variant-btn {
-    padding: 8px 20px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+  .pp-variant-opts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pp-variant-btn {
+    padding: 9px 20px;
+    border: 1px solid rgba(0,0,0,0.2);
     background: transparent;
     cursor: pointer;
     font-family: 'DM Sans', sans-serif;
     font-size: 13px;
-    transition: background 200ms, color 200ms, border-color 200ms;
+    font-weight: 500;
+    transition: background 180ms, border-color 180ms, color 180ms;
     color: #000;
   }
-
-  .variant-btn:hover,
-  .variant-btn.is-selected {
+  .pp-variant-btn:hover,
+  .pp-variant-btn.is-selected {
     background: #000;
     color: #fff;
     border-color: #000;
   }
 
-  /* ─── ATC Button ───────────────────────────────────────────────────────────── */
-  .btn {
-    display: inline-block;
+  /* Qty + ATC row */
+  .pp-atc-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .pp-qty {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(0,0,0,0.2);
+    flex-shrink: 0;
+  }
+  .pp-qty-btn {
+    width: 42px;
+    height: 56px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 300;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 150ms;
+  }
+  .pp-qty-btn:hover { background: rgba(0,0,0,0.05); }
+  .pp-qty-num {
+    width: 36px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .pp-atc-btn {
+    flex: 1;
+    height: 56px;
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     font-size: 13px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    cursor: pointer;
-    border: none;
-    transition: background 200ms, color 200ms;
+    transition: background 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .pp-atc-btn:hover { background: #1a1a1a; }
+  .pp-atc-btn:active { background: #333; }
+
+  /* Trust row */
+  .pp-trust-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(0,0,0,0.07);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    margin-bottom: 20px;
+  }
+  .pp-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+  }
+  .pp-trust-item svg {
+    width: 14px; height: 14px;
+    stroke: rgba(0,0,0,0.4);
+    fill: none;
+    stroke-width: 2;
+    flex-shrink: 0;
   }
 
-  .btn--primary {
+  /* Guarantee line */
+  .pp-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: #f8f8f8;
+    border-left: 3px solid #000;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.7);
+  }
+  .pp-guarantee svg {
+    width: 18px; height: 18px;
+    stroke: #000;
+    fill: none;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
+
+  /* ─── Feature Strip ────────────────────────────────────────────────────────── */
+  .pp-feature-strip {
+    background: #000;
+    padding: 0;
+  }
+  .pp-feature-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  @media (max-width: 768px) {
+    .pp-feature-strip-inner { grid-template-columns: repeat(2, 1fr); }
+  }
+  .pp-feature-item {
+    padding: 40px 32px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .pp-feature-item:last-child { border-right: none; }
+  .pp-feature-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 2.8rem;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .pp-feature-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ─── Description Blocks ───────────────────────────────────────────────────── */
+  .pp-desc-block {
+    padding: 100px 0;
+  }
+  .pp-desc-block:nth-child(even) { background: #f9f9f9; }
+
+  .pp-desc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .pp-desc-grid { grid-template-columns: 1fr; gap: 40px; }
+    .pp-desc-block { padding: 64px 0; }
+    .pp-desc-block--reverse .pp-desc-img { order: -1; }
+  }
+
+  .pp-desc-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.3);
+    margin-bottom: 14px;
+  }
+  .pp-desc-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    line-height: 0.95;
+    color: #000;
+    margin-bottom: 20px;
+  }
+  .pp-desc-rule {
+    width: 36px; height: 2px;
+    background: rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+  }
+  .pp-desc-body {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(0,0,0,0.6);
+  }
+  .pp-desc-img img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+  }
+  .pp-desc-img-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #e8e8e8;
+  }
+
+  /* ─── GSM Dark Section ─────────────────────────────────────────────────────── */
+  .pp-gsm {
+    background: #000;
+    padding: 100px 0;
+    text-align: center;
+  }
+  @media (max-width: 768px) { .pp-gsm { padding: 64px 0; } }
+
+  .pp-gsm-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+  }
+  .pp-gsm-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 56px;
+    line-height: 0.95;
+  }
+  .pp-gsm-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    max-width: 760px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.1);
+  }
+  @media (max-width: 600px) { .pp-gsm-cards { grid-template-columns: 1fr; } }
+  .pp-gsm-card {
+    background: #000;
+    padding: 48px 32px;
+  }
+  .pp-gsm-card--polaris {
+    background: #fff;
+  }
+  .pp-gsm-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 2.8rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+  .pp-gsm-card--polaris .pp-gsm-val { color: #000; }
+  .pp-gsm-lbl {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  .pp-gsm-card--polaris .pp-gsm-lbl { color: rgba(0,0,0,0.5); }
+
+  /* ─── Reviews ──────────────────────────────────────────────────────────────── */
+  .pp-reviews {
+    background: #fff;
+    padding: 100px 0;
+    border-top: 1px solid rgba(0,0,0,0.07);
+  }
+  @media (max-width: 768px) { .pp-reviews { padding: 64px 0; } }
+
+  .pp-reviews-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .pp-reviews-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.3);
+    margin-bottom: 16px;
+  }
+  .pp-reviews-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 12px;
+    line-height: 0.95;
+  }
+  .pp-reviews-rating {
+    font-size: 13px;
+    color: rgba(0,0,0,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  .pp-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(0,0,0,0.07);
+  }
+  @media (max-width: 900px) { .pp-reviews-grid { grid-template-columns: 1fr; } }
+
+  .pp-review-card {
+    background: #fff;
+    padding: 40px 36px;
+  }
+  .pp-review-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .pp-review-avatar {
+    width: 40px; height: 40px;
     background: #000;
     color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-transform: uppercase;
   }
-
-  .btn--primary:hover {
-    background: #222;
-  }
-
-  .btn--full {
-    width: 100%;
-    display: block;
-    text-align: center;
-    padding: 18px 24px;
-  }
-
-  .btn-atc {
-    margin-top: 4px;
-  }
-
-  /* ─── Trust Line ───────────────────────────────────────────────────────────── */
-  .product-trust-line {
-    margin-top: 16px;
-    font-size: 12px;
-    text-align: center;
-    opacity: 0.5;
-    letter-spacing: 0.05em;
+  .pp-review-name {
+    font-weight: 700;
+    font-size: 13px;
     color: #000;
+    letter-spacing: 0.02em;
+  }
+  .pp-review-date {
+    font-size: 11px;
+    color: rgba(0,0,0,0.35);
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+  .pp-review-stars {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #000;
+    margin-bottom: 14px;
+  }
+  .pp-review-text {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(0,0,0,0.6);
+    margin: 0;
+  }
+
+  /* ─── FAQ ──────────────────────────────────────────────────────────────────── */
+  .pp-faq {
+    padding: 100px 0;
+    background: #f9f9f9;
+    border-top: 1px solid rgba(0,0,0,0.07);
+  }
+  @media (max-width: 768px) { .pp-faq { padding: 64px 0; } }
+
+  .pp-faq-inner { max-width: 720px; margin: 0 auto; }
+  .pp-faq-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 48px;
+    text-align: center;
+    line-height: 0.95;
+  }
+  .pp-faq-item {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .pp-faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    color: #000;
+  }
+  .pp-faq-icon {
+    font-size: 22px;
+    font-weight: 300;
+    transition: transform 300ms;
+    flex-shrink: 0;
+    margin-left: 16px;
+    color: rgba(0,0,0,0.4);
+    line-height: 1;
+  }
+  .pp-faq-item.is-open .pp-faq-icon { transform: rotate(45deg); }
+  .pp-faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 400ms ease;
+  }
+  .pp-faq-item.is-open .pp-faq-a { max-height: 500px; }
+  .pp-faq-a-inner {
+    padding: 0 0 24px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(0,0,0,0.6);
   }
 
   /* ─── Sticky Mobile ATC ────────────────────────────────────────────────────── */
-  .sticky-atc {
+  .pp-sticky {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     background: #000;
-    color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -285,449 +668,152 @@
     z-index: 900;
     transform: translateY(100%);
     transition: transform 300ms ease;
+    gap: 16px;
   }
-
-  .sticky-atc.is-visible {
-    transform: translateY(0);
-  }
-
-  .sticky-atc-info {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .sticky-atc-title {
+  .pp-sticky.is-visible { transform: translateY(0); }
+  .pp-sticky-info { display: flex; flex-direction: column; min-width: 0; }
+  .pp-sticky-title {
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     font-size: 13px;
     text-transform: uppercase;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-
-  .sticky-atc-price {
-    font-size: 12px;
-    opacity: 0.7;
-    color: #fff;
-  }
-
-  .sticky-atc-btn {
+  .pp-sticky-price { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .pp-sticky-btn {
     background: #fff;
     color: #000;
     border: none;
-    padding: 12px 24px;
+    padding: 13px 24px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     font-size: 12px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
     transition: opacity 200ms;
   }
+  .pp-sticky-btn:hover { opacity: 0.85; }
+  @media (min-width: 901px) { .pp-sticky { display: none !important; } }
 
-  .sticky-atc-btn:hover {
-    opacity: 0.85;
+  /* ─── Fade-in ──────────────────────────────────────────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 600ms ease, transform 600ms ease;
   }
-
-  @media (min-width: 769px) {
-    .sticky-atc {
-      display: none !important;
-    }
-  }
-
-  /* ─── Description Blocks ───────────────────────────────────────────────────── */
-  .product-description {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .desc-block {
-    padding: 96px 0;
-    background: #fff;
-  }
-
-  .desc-block:nth-child(even) {
-    background: #f8f8f8;
-  }
-
-  .desc-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .desc-text h2 {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    margin-bottom: 24px;
-    text-transform: uppercase;
-    color: #000;
-  }
-
-  .desc-body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.8;
-    opacity: 0.8;
-    font-size: 15px;
-    color: #000;
-  }
-
-  .desc-image img {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    display: block;
-  }
-
-  .desc-image-placeholder {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    background: #e8e8e8;
-  }
-
-  /* ─── GSM Section ──────────────────────────────────────────────────────────── */
-  .desc-block--gsm {
-    background: #000 !important;
-    color: #fff;
-    text-align: center;
-  }
-
-  .gsm-heading {
-    color: #fff;
-    margin-bottom: 48px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    text-transform: uppercase;
-  }
-
-  .gsm-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .gsm-card {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 40px 24px;
-    color: #fff;
-  }
-
-  .gsm-card--featured {
-    background: #fff;
-    color: #000;
-  }
-
-  .gsm-value {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: 12px;
-  }
-
-  .gsm-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.7;
-  }
-
-  .gsm-card--featured .gsm-label {
+  .fade-in.is-visible {
     opacity: 1;
-  }
-
-  /* ─── Reviews ──────────────────────────────────────────────────────────────── */
-  .product-reviews {
-    background: #fff;
-    padding: 96px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .reviews-heading {
-    text-align: center;
-    margin-bottom: 48px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    text-transform: uppercase;
-    color: #000;
-  }
-
-  .product-reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .review-card {
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 32px;
-  }
-
-  .review-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 16px;
-  }
-
-  .reviewer-initial {
-    width: 40px;
-    height: 40px;
-    background: #000;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    text-transform: uppercase;
-    flex-shrink: 0;
-  }
-
-  .reviewer-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .reviewer-name {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    color: #000;
-  }
-
-  .reviewer-date {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    opacity: 0.5;
-    color: #000;
-  }
-
-  .review-stars {
-    color: #000;
-    font-size: 14px;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-  }
-
-  .review-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    line-height: 1.7;
-    opacity: 0.75;
-    color: #000;
-    margin: 0;
-  }
-
-  /* ─── FAQ ──────────────────────────────────────────────────────────────────── */
-  .product-faq {
-    padding: 96px 0;
-    background: #fff;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .product-faq h2 {
-    text-align: center;
-    margin-bottom: 48px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    text-transform: uppercase;
-    color: #000;
-  }
-
-  .faq-item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .faq-question {
-    width: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: left;
-    color: #000;
-  }
-
-  .faq-icon {
-    font-size: 20px;
-    transition: transform 300ms ease;
-    flex-shrink: 0;
-    color: #000;
-    margin-left: 16px;
-  }
-
-  .faq-item.is-open .faq-icon {
-    transform: rotate(180deg);
-  }
-
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 400ms ease;
-  }
-
-  .faq-item.is-open .faq-answer {
-    max-height: 500px;
-  }
-
-  .faq-answer-inner {
-    padding: 0 0 24px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    opacity: 0.75;
-    color: #000;
-  }
-
-  /* ─── Mobile ───────────────────────────────────────────────────────────────── */
-  @media (max-width: 768px) {
-    .product-top {
-      padding: 32px 0 64px;
-    }
-
-    .product-layout {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .desc-block {
-      padding: 64px 0;
-    }
-
-    .desc-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .desc-block--text-right .desc-image {
-      order: -1;
-    }
-
-    .gsm-cards {
-      grid-template-columns: 1fr;
-    }
-
-    .product-reviews-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .product-specs-strip {
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .spec-item {
-      min-width: 40%;
-    }
-
-    .product-reviews {
-      padding: 64px 0;
-    }
-
-    .product-faq {
-      padding: 64px 0;
-    }
+    transform: translateY(0);
   }
 </style>
 
-<div class="product-page">
+<div class="pp">
 
-  {%- comment -%}TOP: Image Gallery + Product Info{%- endcomment -%}
-  <section class="product-top">
-    <div class="container">
-      <div class="product-layout">
+  {%- comment -%} Breadcrumb {%- endcomment -%}
+  <div class="pp-container">
+    <nav class="pp-breadcrumb">
+      <a href="/">Home</a><span>/</span>
+      <a href="/collections/all">Shop</a><span>/</span>
+      {{ product.title }}
+    </nav>
+  </div>
 
-        {%- comment -%}LEFT: Image Gallery{%- endcomment -%}
-        <div class="product-gallery">
-          <div class="gallery-main">
+  {%- comment -%} ── TOP: Gallery + Info ── {%- endcomment -%}
+  <section class="pp-top">
+    <div class="pp-container">
+      <div class="pp-layout">
+
+        {%- comment -%} Gallery {%- endcomment -%}
+        <div class="pp-gallery">
+          <div class="pp-gallery-main">
             {% if product.featured_image %}
               <img
-                id="main-product-image"
-                class="product-main-image"
-                src="{{ product.featured_image | img_url: 'large' }}"
+                id="pp-main-img"
+                src="{{ product.featured_image | image_url: width: 1000 }}"
                 alt="{{ product.featured_image.alt | escape }}"
                 loading="eager"
+                width="1000"
               >
             {% else %}
-              <div class="gallery-placeholder"></div>
+              <div style="aspect-ratio:1/1;background:#f0f0f0;"></div>
             {% endif %}
           </div>
           {% if product.images.size > 1 %}
-            <div class="gallery-thumbs">
-              {% for image in product.images limit: 8 %}
+            <div class="pp-gallery-thumbs">
+              {% for image in product.images limit: 5 %}
                 <button
-                  class="gallery-thumb {% if forloop.first %}is-active{% endif %}"
-                  data-image-url="{{ image | img_url: 'large' }}"
-                  data-image-alt="{{ image.alt | escape }}"
-                  aria-label="Product image {{ forloop.index }}"
+                  class="pp-thumb {% if forloop.first %}is-active{% endif %}"
+                  data-src="{{ image | image_url: width: 1000 }}"
+                  data-alt="{{ image.alt | escape }}"
+                  aria-label="View image {{ forloop.index }}"
                 >
-                  <img src="{{ image | img_url: 'small' }}" alt="{{ image.alt | escape }}">
+                  <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | escape }}">
                 </button>
               {% endfor %}
             </div>
           {% endif %}
         </div>
 
-        {%- comment -%}RIGHT: Product Info{%- endcomment -%}
-        <div class="product-info">
-          <h1 class="product-title">THE NOVA</h1>
+        {%- comment -%} Info {%- endcomment -%}
+        <div class="pp-info">
+          <p class="pp-eyebrow">{{ section.settings.eyebrow | default: 'Premium Microfiber' }}</p>
+          <h1 class="pp-title">{{ product.title }}</h1>
 
-          {%- comment -%}Star rating (schema-driven, no app){%- endcomment -%}
           {% if section.settings.show_rating %}
-            <div class="product-rating">
-              <span class="rating-stars">★★★★★</span>
-              <span class="rating-text">{{ section.settings.avg_rating }} ({{ section.settings.review_count }} reviews)</span>
+            <div class="pp-rating">
+              <span class="pp-stars">★★★★★</span>
+              <span class="pp-rating-sep"></span>
+              <span class="pp-rating-text">{{ section.settings.avg_rating }} · {{ section.settings.review_count }} reviews</span>
             </div>
           {% endif %}
 
-          {%- comment -%}Price{%- endcomment -%}
-          <div class="product-price-wrap">
-            <span class="product-price">{{ product.price | money }}</span>
-            <span class="product-shipping-note">FREE SHIPPING ON EVERY ORDER</span>
+          <div class="pp-price-row">
+            <span class="pp-price">{{ product.price | money }}</span>
+            {% if section.settings.compare_price != blank %}
+              <span class="pp-price-compare">{{ section.settings.compare_price }}</span>
+              <span class="pp-price-badge">BEST VALUE</span>
+            {% endif %}
           </div>
+          <p class="pp-shipping-note">Free shipping on every order · No minimum</p>
 
-          {%- comment -%}Short description{%- endcomment -%}
-          <div class="product-short-desc">
-            {{ section.settings.short_description }}
-          </div>
+          <div class="pp-divider"></div>
 
-          {%- comment -%}Specs strip{%- endcomment -%}
-          <div class="product-specs-strip">
-            {% for block in section.blocks %}
-              {% if block.type == 'spec' %}
-                <div class="spec-item" {{ block.shopify_attributes }}>
-                  <div class="spec-item-icon">{{ block.settings.icon }}</div>
-                  <div class="spec-item-label">{{ block.settings.label }}</div>
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
+          <div class="pp-short-desc">{{ section.settings.short_description }}</div>
 
-          {%- comment -%}Variant selector (if product has variants){%- endcomment -%}
+          {%- comment -%} Spec pills {%- endcomment -%}
+          {% assign has_specs = false %}
+          {% for block in section.blocks %}
+            {% if block.type == 'spec' %}{% assign has_specs = true %}{% endif %}
+          {% endfor %}
+          {% if has_specs %}
+            <div class="pp-specs">
+              {% for block in section.blocks %}
+                {% if block.type == 'spec' %}
+                  <div class="pp-spec-pill" {{ block.shopify_attributes }}>
+                    {% if block.settings.icon != blank %}<span class="pp-spec-pill-icon">{{ block.settings.icon }}</span>{% endif %}
+                    {{ block.settings.label }}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {%- comment -%} Variants {%- endcomment -%}
           {% if product.variants.size > 1 %}
-            <div class="product-variants">
+            <div class="pp-variants">
               {% for option in product.options_with_values %}
-                <div class="variant-group">
-                  <label class="variant-label">{{ option.name }}</label>
-                  <div class="variant-options">
+                <div class="pp-variant-group">
+                  <label class="pp-variant-label">{{ option.name }}</label>
+                  <div class="pp-variant-opts">
                     {% for value in option.values %}
                       <button
-                        class="variant-btn"
+                        class="pp-variant-btn {% if forloop.first %}is-selected{% endif %}"
                         data-option="{{ option.position }}"
                         data-value="{{ value }}"
                       >{{ value }}</button>
@@ -738,116 +824,159 @@
             </div>
           {% endif %}
 
-          {%- comment -%}ATC Button{%- endcomment -%}
-          {% form 'product', product, id: 'product-form' %}
-            <input type="hidden" name="id" id="selected-variant" value="{{ product.first_available_variant.id }}">
-            <button
-              type="button"
-              id="main-atc-btn"
-              class="btn btn--primary btn--full btn-atc"
-              data-variant-id="{{ product.first_available_variant.id }}"
-            >
-              ADD TO CART — {{ product.price | money }}
-            </button>
+          {%- comment -%} Qty + ATC {%- endcomment -%}
+          {% form 'product', product, id: 'pp-product-form' %}
+            <input type="hidden" name="id" id="pp-selected-variant" value="{{ product.first_available_variant.id }}">
+            <div class="pp-atc-row">
+              <div class="pp-qty">
+                <button type="button" class="pp-qty-btn" id="pp-qty-minus" aria-label="Decrease quantity">−</button>
+                <span class="pp-qty-num" id="pp-qty-display">1</span>
+                <button type="button" class="pp-qty-btn" id="pp-qty-plus" aria-label="Increase quantity">+</button>
+              </div>
+              <button
+                type="button"
+                id="pp-atc-btn"
+                class="pp-atc-btn"
+                data-variant-id="{{ product.first_available_variant.id }}"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                Add to Cart — {{ product.price | money }}
+              </button>
+            </div>
           {% endform %}
 
-          <div class="product-trust-line">
-            Secure checkout · Free shipping · Ships in 1–3 days
+          {%- comment -%} Trust row {%- endcomment -%}
+          <div class="pp-trust-row">
+            <div class="pp-trust-item">
+              <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="m16 8 5 0 3 5v3h-8z"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg>
+              Free Shipping
+            </div>
+            <div class="pp-trust-item">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Secure Checkout
+            </div>
+            <div class="pp-trust-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Ships in 1–3 Days
+            </div>
           </div>
-        </div>
 
+          <div class="pp-guarantee">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <span>30-day satisfaction guarantee — if you're not happy, we'll make it right.</span>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
 
-  {%- comment -%}Sticky Mobile ATC Bar{%- endcomment -%}
-  <div id="sticky-atc" class="sticky-atc">
-    <div class="sticky-atc-info">
-      <span class="sticky-atc-title">{{ product.title }}</span>
-      <span class="sticky-atc-price">{{ product.price | money }}</span>
+  {%- comment -%} Sticky Mobile ATC {%- endcomment -%}
+  <div id="pp-sticky" class="pp-sticky">
+    <div class="pp-sticky-info">
+      <span class="pp-sticky-title">{{ product.title }}</span>
+      <span class="pp-sticky-price">{{ product.price | money }}</span>
     </div>
-    <button class="btn sticky-atc-btn btn-atc" data-variant-id="{{ product.first_available_variant.id }}">
-      ADD TO CART
+    <button class="pp-sticky-btn btn-atc" data-variant-id="{{ product.first_available_variant.id }}">
+      Add to Cart
     </button>
   </div>
 
-  {%- comment -%}BELOW FOLD: Description blocks{%- endcomment -%}
-  <section class="product-description">
+  {%- comment -%} ── FEATURE STRIP ── {%- endcomment -%}
+  <div class="pp-feature-strip">
+    <div class="pp-feature-strip-inner">
+      {% for block in section.blocks %}
+        {% if block.type == 'feature_stat' %}
+          <div class="pp-feature-item" {{ block.shopify_attributes }}>
+            <div class="pp-feature-num">{{ block.settings.stat }}</div>
+            <div class="pp-feature-label">{{ block.settings.stat_label }}</div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 
-    {%- comment -%}Block 1: Nova Overview — text left, image right{%- endcomment -%}
-    <div class="desc-block desc-block--text-left fade-in">
-      <div class="container">
-        <div class="desc-grid">
-          <div class="desc-text">
-            <h2>{{ section.settings.desc1_heading }}</h2>
-            <div class="desc-body">{{ section.settings.desc1_body }}</div>
-          </div>
-          <div class="desc-image">
-            {% if section.settings.desc1_image != blank %}
-              <img src="{{ section.settings.desc1_image | img_url: 'large' }}" alt="{{ section.settings.desc1_heading }}" loading="lazy">
-            {% else %}
-              <div class="desc-image-placeholder"></div>
-            {% endif %}
-          </div>
+  {%- comment -%} ── DESCRIPTION BLOCKS ── {%- endcomment -%}
+
+  <div class="pp-desc-block fade-in">
+    <div class="pp-container">
+      <div class="pp-desc-grid">
+        <div class="pp-desc-text">
+          <p class="pp-desc-eyebrow">The Nova</p>
+          <h2 class="pp-desc-heading">{{ section.settings.desc1_heading }}</h2>
+          <div class="pp-desc-rule"></div>
+          <div class="pp-desc-body">{{ section.settings.desc1_body }}</div>
+        </div>
+        <div class="pp-desc-img">
+          {% if section.settings.desc1_image != blank %}
+            <img src="{{ section.settings.desc1_image | image_url: width: 900 }}" alt="{{ section.settings.desc1_heading }}" loading="lazy">
+          {% else %}
+            <div class="pp-desc-img-placeholder"></div>
+          {% endif %}
         </div>
       </div>
     </div>
+  </div>
 
-    {%- comment -%}Block 2: GSM Comparison — centered, stat cards{%- endcomment -%}
-    <div class="desc-block desc-block--gsm fade-in">
-      <div class="container">
-        <h2 class="gsm-heading">{{ section.settings.gsm_heading }}</h2>
-        <div class="gsm-cards">
-          {% for block in section.blocks %}
-            {% if block.type == 'gsm_card' %}
-              <div class="gsm-card {% if block.settings.is_featured %}gsm-card--featured{% endif %}" {{ block.shopify_attributes }}>
-                <div class="gsm-value">{{ block.settings.gsm_value }}</div>
-                <div class="gsm-label">{{ block.settings.gsm_label }}</div>
-              </div>
-            {% endif %}
-          {% endfor %}
+  {%- comment -%} GSM Dark Block {%- endcomment -%}
+  <div class="pp-gsm fade-in">
+    <div class="pp-container">
+      <p class="pp-gsm-eyebrow">Why it matters</p>
+      <h2 class="pp-gsm-heading">{{ section.settings.gsm_heading }}</h2>
+      <div class="pp-gsm-cards">
+        {% for block in section.blocks %}
+          {% if block.type == 'gsm_card' %}
+            <div class="pp-gsm-card {% if block.settings.is_featured %}pp-gsm-card--polaris{% endif %}" {{ block.shopify_attributes }}>
+              <div class="pp-gsm-val">{{ block.settings.gsm_value }}</div>
+              <div class="pp-gsm-lbl">{{ block.settings.gsm_label }}</div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="pp-desc-block pp-desc-block--reverse fade-in">
+    <div class="pp-container">
+      <div class="pp-desc-grid">
+        <div class="pp-desc-img">
+          {% if section.settings.desc3_image != blank %}
+            <img src="{{ section.settings.desc3_image | image_url: width: 900 }}" alt="{{ section.settings.desc3_heading }}" loading="lazy">
+          {% else %}
+            <div class="pp-desc-img-placeholder"></div>
+          {% endif %}
+        </div>
+        <div class="pp-desc-text">
+          <p class="pp-desc-eyebrow">Real World Tested</p>
+          <h2 class="pp-desc-heading">{{ section.settings.desc3_heading }}</h2>
+          <div class="pp-desc-rule"></div>
+          <div class="pp-desc-body">{{ section.settings.desc3_body }}</div>
         </div>
       </div>
     </div>
+  </div>
 
-    {%- comment -%}Block 3: Real World Tested — image left, text right{%- endcomment -%}
-    <div class="desc-block desc-block--text-right fade-in">
-      <div class="container">
-        <div class="desc-grid">
-          <div class="desc-image">
-            {% if section.settings.desc3_image != blank %}
-              <img src="{{ section.settings.desc3_image | img_url: 'large' }}" alt="{{ section.settings.desc3_heading }}" loading="lazy">
-            {% else %}
-              <div class="desc-image-placeholder"></div>
-            {% endif %}
-          </div>
-          <div class="desc-text">
-            <h2>{{ section.settings.desc3_heading }}</h2>
-            <div class="desc-body">{{ section.settings.desc3_body }}</div>
-          </div>
-        </div>
+  {%- comment -%} ── REVIEWS ── {%- endcomment -%}
+  <section class="pp-reviews fade-in">
+    <div class="pp-container">
+      <div class="pp-reviews-header">
+        <p class="pp-reviews-eyebrow">Social Proof</p>
+        <h2 class="pp-reviews-heading">{{ section.settings.reviews_heading }}</h2>
+        <p class="pp-reviews-rating">{{ section.settings.avg_rating }} ★★★★★ · {{ section.settings.review_count }} verified reviews</p>
       </div>
-    </div>
-
-  </section>
-
-  {%- comment -%}PRODUCT PAGE SOCIAL PROOF{%- endcomment -%}
-  <section class="product-reviews fade-in">
-    <div class="container">
-      <h2 class="reviews-heading">{{ section.settings.reviews_heading }}</h2>
-      <div class="product-reviews-grid">
+      <div class="pp-reviews-grid">
         {% for block in section.blocks %}
           {% if block.type == 'review' %}
-            <div class="review-card" {{ block.shopify_attributes }}>
-              <div class="review-header">
-                <div class="reviewer-initial">{{ block.settings.name | slice: 0, 1 }}</div>
-                <div class="reviewer-meta">
-                  <div class="reviewer-name">{{ block.settings.name }}</div>
-                  <div class="reviewer-date">{{ block.settings.date }}</div>
+            <div class="pp-review-card" {{ block.shopify_attributes }}>
+              <div class="pp-review-top">
+                <div class="pp-review-avatar">{{ block.settings.name | slice: 0, 1 }}</div>
+                <div>
+                  <div class="pp-review-name">{{ block.settings.name }}</div>
+                  <div class="pp-review-date">{{ block.settings.date }}</div>
                 </div>
               </div>
-              <div class="review-stars">{% for i in (1..block.settings.stars) %}★{% endfor %}</div>
-              <p class="review-text">{{ block.settings.review_text }}</p>
+              <div class="pp-review-stars">{% for i in (1..block.settings.stars) %}★{% endfor %}</div>
+              <p class="pp-review-text">{{ block.settings.review_text }}</p>
             </div>
           {% endif %}
         {% endfor %}
@@ -855,125 +984,143 @@
     </div>
   </section>
 
-  {%- comment -%}FAQ SECTION{%- endcomment -%}
-  <section class="product-faq fade-in">
-    <div class="container container--narrow">
-      <h2>{{ section.settings.faq_heading }}</h2>
-      {% for block in section.blocks %}
-        {% if block.type == 'faq' %}
-          <div class="faq-item" {{ block.shopify_attributes }}>
-            <button class="faq-question">
-              <span>{{ block.settings.question }}</span>
-              <span class="faq-icon">↓</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">{{ block.settings.answer }}</div>
+  {%- comment -%} ── FAQ ── {%- endcomment -%}
+  <section class="pp-faq fade-in">
+    <div class="pp-container">
+      <div class="pp-faq-inner">
+        <h2 class="pp-faq-heading">{{ section.settings.faq_heading }}</h2>
+        {% for block in section.blocks %}
+          {% if block.type == 'faq' %}
+            <div class="pp-faq-item" {{ block.shopify_attributes }}>
+              <button class="pp-faq-q">
+                <span>{{ block.settings.question }}</span>
+                <span class="pp-faq-icon">+</span>
+              </button>
+              <div class="pp-faq-a">
+                <div class="pp-faq-a-inner">{{ block.settings.answer }}</div>
+              </div>
             </div>
-          </div>
-        {% endif %}
-      {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
   </section>
 
 </div>
 
 <script>
-  (function () {
-    /* ── Gallery thumbnails ─────────────────────────────────────── */
-    var mainImg = document.getElementById('main-product-image');
-    var thumbs  = document.querySelectorAll('.gallery-thumb');
+(function () {
+  /* ── Gallery ──────────────────────────────────────── */
+  var mainImg = document.getElementById('pp-main-img');
+  document.querySelectorAll('.pp-thumb').forEach(function (thumb) {
+    thumb.addEventListener('click', function () {
+      if (mainImg) {
+        mainImg.style.opacity = '0';
+        setTimeout(function () {
+          mainImg.src = thumb.dataset.src;
+          mainImg.alt = thumb.dataset.alt;
+          mainImg.style.opacity = '1';
+        }, 150);
+      }
+      document.querySelectorAll('.pp-thumb').forEach(function (t) { t.classList.remove('is-active'); });
+      thumb.classList.add('is-active');
+    });
+  });
 
-    thumbs.forEach(function (thumb) {
-      thumb.addEventListener('click', function () {
-        if (mainImg) {
-          mainImg.style.opacity = '0';
-          setTimeout(function () {
-            mainImg.src = thumb.dataset.imageUrl;
-            mainImg.alt = thumb.dataset.imageAlt;
-            mainImg.style.opacity = '1';
-          }, 150);
+  /* ── Quantity ─────────────────────────────────────── */
+  var qtyDisplay = document.getElementById('pp-qty-display');
+  var qty = 1;
+  document.getElementById('pp-qty-plus') && document.getElementById('pp-qty-plus').addEventListener('click', function () {
+    qty = Math.min(qty + 1, 99);
+    qtyDisplay.textContent = qty;
+  });
+  document.getElementById('pp-qty-minus') && document.getElementById('pp-qty-minus').addEventListener('click', function () {
+    qty = Math.max(qty - 1, 1);
+    qtyDisplay.textContent = qty;
+  });
+
+  /* ── Variant selection ────────────────────────────── */
+  document.querySelectorAll('.pp-variant-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var optPos = btn.dataset.option;
+      document.querySelectorAll('.pp-variant-btn[data-option="' + optPos + '"]').forEach(function (b) {
+        b.classList.remove('is-selected');
+      });
+      btn.classList.add('is-selected');
+    });
+  });
+
+  /* ── ATC ──────────────────────────────────────────── */
+  function handleAtc(btn) {
+    var variantId = btn.dataset.variantId;
+    if (!variantId) return;
+    var origText = btn.textContent;
+    btn.textContent = 'Adding…';
+    btn.disabled = true;
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: variantId, quantity: qty || 1 })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function () {
+      btn.textContent = 'Added ✓';
+      document.dispatchEvent(new CustomEvent('cart:open'));
+      document.dispatchEvent(new CustomEvent('cart:refresh'));
+      setTimeout(function () {
+        btn.textContent = origText;
+        btn.disabled = false;
+      }, 2000);
+    })
+    .catch(function (err) {
+      console.error('ATC error', err);
+      btn.textContent = origText;
+      btn.disabled = false;
+    });
+  }
+
+  var mainAtcBtn = document.getElementById('pp-atc-btn');
+  if (mainAtcBtn) mainAtcBtn.addEventListener('click', function () { handleAtc(mainAtcBtn); });
+
+  document.querySelectorAll('.pp-sticky-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { handleAtc(btn); });
+  });
+
+  /* ── Sticky visibility ────────────────────────────── */
+  var stickyBar = document.getElementById('pp-sticky');
+  var topSection = document.querySelector('.pp-top');
+  if (stickyBar && topSection) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        stickyBar.classList.toggle('is-visible', !e.isIntersecting);
+      });
+    }, { threshold: 0 }).observe(topSection);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────── */
+  document.querySelectorAll('.pp-faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.pp-faq-item');
+      item.classList.toggle('is-open');
+    });
+  });
+
+  /* ── Fade-in ──────────────────────────────────────── */
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          obs.unobserve(e.target);
         }
-        thumbs.forEach(function (t) { t.classList.remove('is-active'); });
-        thumb.classList.add('is-active');
       });
-    });
-
-    /* ── Variant selection ──────────────────────────────────────── */
-    var variantBtns = document.querySelectorAll('.variant-btn');
-    var selectedVariantInput = document.getElementById('selected-variant');
-    var mainAtcBtn   = document.getElementById('main-atc-btn');
-    var stickyAtcBtn = document.querySelector('.sticky-atc-btn');
-
-    variantBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var optionPos = btn.dataset.option;
-        document.querySelectorAll('.variant-btn[data-option="' + optionPos + '"]').forEach(function (b) {
-          b.classList.remove('is-selected');
-        });
-        btn.classList.add('is-selected');
-      });
-    });
-
-    /* ── ATC — opens cart drawer via custom event ───────────────── */
-    function handleAtc(btn) {
-      var variantId = btn.dataset.variantId;
-      if (!variantId) return;
-
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: variantId, quantity: 1 })
-      })
-      .then(function (res) { return res.json(); })
-      .then(function () {
-        document.dispatchEvent(new CustomEvent('cart:open'));
-        document.dispatchEvent(new CustomEvent('cart:refresh'));
-      })
-      .catch(function (err) { console.error('ATC error:', err); });
-    }
-
-    if (mainAtcBtn) {
-      mainAtcBtn.addEventListener('click', function () { handleAtc(mainAtcBtn); });
-    }
-    if (stickyAtcBtn) {
-      stickyAtcBtn.addEventListener('click', function () { handleAtc(stickyAtcBtn); });
-    }
-
-    /* ── Sticky ATC visibility ──────────────────────────────────── */
-    var stickyBar = document.getElementById('sticky-atc');
-    var atcSection = mainAtcBtn ? mainAtcBtn.closest('.product-top') : null;
-
-    if (stickyBar && atcSection) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) {
-            stickyBar.classList.add('is-visible');
-          } else {
-            stickyBar.classList.remove('is-visible');
-          }
-        });
-      }, { threshold: 0 });
-      observer.observe(atcSection);
-    }
-
-    /* ── Fade-in on scroll ──────────────────────────────────────── */
-    var fadeEls = document.querySelectorAll('.fade-in');
-
-    if ('IntersectionObserver' in window) {
-      var fadeObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            fadeObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-
-      fadeEls.forEach(function (el) { fadeObserver.observe(el); });
-    } else {
-      fadeEls.forEach(function (el) { el.classList.add('is-visible'); });
-    }
-  })();
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(function (el) { obs.observe(el); });
+  } else {
+    document.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
 </script>
 
 {% schema %}
@@ -981,6 +1128,12 @@
   "name": "Product Main",
   "tag": "div",
   "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Premium Microfiber"
+    },
     {
       "type": "checkbox",
       "id": "show_rating",
@@ -1000,6 +1153,12 @@
       "default": "47"
     },
     {
+      "type": "text",
+      "id": "compare_price",
+      "label": "Compare-at price (leave blank to hide)",
+      "default": ""
+    },
+    {
       "type": "textarea",
       "id": "short_description",
       "label": "Short description",
@@ -1009,7 +1168,7 @@
       "type": "text",
       "id": "desc1_heading",
       "label": "Description block 1 heading",
-      "default": "THE NOVA"
+      "default": "Built Different. Absorbed Faster."
     },
     {
       "type": "textarea",
@@ -1026,48 +1185,48 @@
       "type": "text",
       "id": "gsm_heading",
       "label": "GSM section heading",
-      "default": "WHY GSM MATTERS"
+      "default": "Why GSM Matters"
     },
     {
       "type": "text",
       "id": "desc3_heading",
-      "label": "Description block 3 heading",
-      "default": "REAL WORLD TESTED"
+      "label": "Description block 2 heading",
+      "default": "Real World Tested. Not Lab Only."
     },
     {
       "type": "textarea",
       "id": "desc3_body",
-      "label": "Description block 3 body",
+      "label": "Description block 2 body",
       "default": "Every Polaris product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years — if it doesn't pass his standard, it doesn't get sold. Simple as that."
     },
     {
       "type": "image_picker",
       "id": "desc3_image",
-      "label": "Description block 3 image"
+      "label": "Description block 2 image"
     },
     {
       "type": "text",
       "id": "reviews_heading",
-      "label": "Reviews section heading",
-      "default": "WHAT THE COMMUNITY SAYS"
+      "label": "Reviews heading",
+      "default": "What the Community Says"
     },
     {
       "type": "text",
       "id": "faq_heading",
       "label": "FAQ heading",
-      "default": "FREQUENTLY ASKED QUESTIONS"
+      "default": "Frequently Asked Questions"
     }
   ],
   "blocks": [
     {
       "type": "spec",
-      "name": "Product Spec",
+      "name": "Spec Pill",
       "limit": 6,
       "settings": [
         {
           "type": "text",
           "id": "icon",
-          "label": "Icon (emoji or text)",
+          "label": "Icon (emoji)",
           "default": "✓"
         },
         {
@@ -1079,26 +1238,45 @@
       ]
     },
     {
+      "type": "feature_stat",
+      "name": "Feature Stat",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat",
+          "label": "Stat value",
+          "default": "1200"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Stat label",
+          "default": "GSM Rating"
+        }
+      ]
+    },
+    {
       "type": "gsm_card",
-      "name": "GSM Card",
+      "name": "GSM Comparison Card",
       "limit": 3,
       "settings": [
         {
           "type": "text",
           "id": "gsm_value",
-          "label": "GSM value",
+          "label": "Value",
           "default": "1200 GSM"
         },
         {
           "type": "text",
           "id": "gsm_label",
-          "label": "Card label",
+          "label": "Label",
           "default": "The Nova"
         },
         {
           "type": "checkbox",
           "id": "is_featured",
-          "label": "Highlight this card",
+          "label": "Highlight as Polaris (white card)",
           "default": false
         }
       ]
@@ -1106,7 +1284,7 @@
     {
       "type": "review",
       "name": "Review Card",
-      "limit": 3,
+      "limit": 6,
       "settings": [
         {
           "type": "text",
@@ -1117,7 +1295,7 @@
         {
           "type": "range",
           "id": "stars",
-          "label": "Star rating",
+          "label": "Stars",
           "min": 1,
           "max": 5,
           "step": 1,
@@ -1126,7 +1304,8 @@
         {
           "type": "textarea",
           "id": "review_text",
-          "label": "Review text"
+          "label": "Review text",
+          "default": "Absolutely incredible towel. The 1200 GSM is a game changer on my ceramic coated car."
         },
         {
           "type": "text",
@@ -1139,130 +1318,26 @@
     {
       "type": "faq",
       "name": "FAQ Item",
-      "limit": 10,
+      "limit": 8,
       "settings": [
         {
           "type": "text",
           "id": "question",
           "label": "Question",
-          "default": "What size is The Nova?"
+          "default": "How do I wash the Nova?"
         },
         {
           "type": "textarea",
           "id": "answer",
           "label": "Answer",
-          "default": "The Nova measures 16\" × 24\" — large enough to cover a full panel with a single pass."
+          "default": "Machine wash cold, no fabric softener, tumble dry low. Never use dryer sheets — they coat the fibers and reduce absorbency."
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Product Main",
-      "category": "Product",
-      "blocks": [
-        {
-          "type": "spec",
-          "settings": {
-            "icon": "🧵",
-            "label": "1200 GSM"
-          }
-        },
-        {
-          "type": "spec",
-          "settings": {
-            "icon": "🌀",
-            "label": "Twisted Loop"
-          }
-        },
-        {
-          "type": "spec",
-          "settings": {
-            "icon": "✨",
-            "label": "70/30 Blend"
-          }
-        },
-        {
-          "type": "spec",
-          "settings": {
-            "icon": "📐",
-            "label": "16\"×24\""
-          }
-        },
-        {
-          "type": "gsm_card",
-          "settings": {
-            "gsm_value": "600 GSM",
-            "gsm_label": "Entry Level",
-            "is_featured": false
-          }
-        },
-        {
-          "type": "gsm_card",
-          "settings": {
-            "gsm_value": "800 GSM",
-            "gsm_label": "Mid Range",
-            "is_featured": false
-          }
-        },
-        {
-          "type": "gsm_card",
-          "settings": {
-            "gsm_value": "1200 GSM",
-            "gsm_label": "THE NOVA",
-            "is_featured": true
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "What size is The Nova?",
-            "answer": "The Nova measures 16\" × 24\" — large enough to cover a full panel with a single pass."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "What makes 1200 GSM special?",
-            "answer": "GSM (grams per square meter) measures how dense the microfiber pile is. At 1200 GSM, The Nova holds significantly more water than standard towels, meaning fewer passes and less risk of marring your paint."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "Is it safe for ceramic coated cars?",
-            "answer": "Yes. The twisted loop weave is specifically designed to be safe on all coatings including ceramic and PPF. The soft loops glide over the surface without dragging."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "How do I wash and care for it?",
-            "answer": "Machine wash cold, gentle cycle, no fabric softener, no heat dry. Air dry or tumble dry low. Never wash with cotton towels."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "Do you offer free shipping?",
-            "answer": "Yes — every single order ships free. No minimum, no code needed."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "What is your return policy?",
-            "answer": "We offer a 30-day satisfaction guarantee. If you're not happy, reach out and we'll make it right."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "How is Polaris different from other brands?",
-            "answer": "We're built by car enthusiasts, not corporations. We test everything ourselves, price fairly, and actually respond to our community."
-          }
-        }
-      ]
+      "name": "Product Main"
     }
   ]
 }
