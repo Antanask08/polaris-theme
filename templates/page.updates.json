@@ -1,0 +1,33 @@
+{
+  "sections": {
+    "brand_updates": {
+      "type": "brand-updates",
+      "blocks": {
+        "entry_1": {
+          "type": "entry",
+          "settings": {
+            "date": "April 2025",
+            "badge": "Product",
+            "entry_title": "Drying Towel — Now Live",
+            "body": "Our flagship microfiber drying towel is officially available. Engineered for a scratch-free, streak-free finish on any paint surface.\n\n1200 GSM twisted loop construction. 70/30 polyester-polyamide blend. Safe on ceramic coatings, PPF, and bare paint. This is what we built Polaris around."
+          }
+        },
+        "entry_2": {
+          "type": "entry",
+          "settings": {
+            "date": "April 2025",
+            "badge": "Behind the Scenes",
+            "entry_title": "Building Polaris",
+            "body": "We started Polaris because we couldn't find detailing products that matched the standard we held our cars to. Everything either cost too much, cut corners on materials, or came from a brand that clearly didn't use their own products.\n\nThis is the beginning. We're starting with the towel because it's the one tool every detailer reaches for every single time. Get that right, and everything else follows."
+          }
+        }
+      },
+      "block_order": ["entry_1", "entry_2"],
+      "settings": {
+        "page_title": "Updates",
+        "page_subtitle": "What we're working on."
+      }
+    }
+  },
+  "order": ["brand_updates"]
+}

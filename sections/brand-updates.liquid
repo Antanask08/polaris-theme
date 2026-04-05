@@ -1,0 +1,284 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@300;400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  .bu-wrap {
+    background: #fff;
+    min-height: 60vh;
+    padding-bottom: 120px;
+  }
+
+  /* ── Header ────────────────────────────────────────────────── */
+  .bu-header {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 40px 0;
+    border-bottom: 1px solid #000;
+    padding-bottom: 40px;
+  }
+
+  .bu-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.35);
+    margin-bottom: 20px;
+  }
+
+  .bu-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    text-transform: uppercase;
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    color: #000;
+    margin-bottom: 20px;
+  }
+
+  .bu-subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 1.05rem;
+    color: rgba(0,0,0,0.5);
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  /* ── Entry List ─────────────────────────────────────────────── */
+  .bu-list {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .bu-entry {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    padding: 48px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    align-items: start;
+  }
+
+  /* Left meta column */
+  .bu-meta {
+    padding-top: 4px;
+  }
+
+  .bu-date {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(0,0,0,0.4);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .bu-badge {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0.25);
+    padding: 4px 10px;
+    line-height: 1;
+  }
+
+  /* Right content column */
+  .bu-content {}
+
+  .bu-entry-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #000;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .bu-body {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.975rem;
+    line-height: 1.85;
+    color: rgba(0,0,0,0.65);
+  }
+
+  .bu-body p + p {
+    margin-top: 12px;
+  }
+
+  /* ── Empty state ─────────────────────────────────────────────── */
+  .bu-empty {
+    padding: 80px 40px;
+    max-width: 860px;
+    margin: 0 auto;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.25);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .bu-header,
+    .bu-list   { padding-left: 24px; padding-right: 24px; }
+    .bu-header { padding-top: 56px; }
+    .bu-entry  { grid-template-columns: 1fr; gap: 16px; padding: 36px 0; }
+    .bu-meta   { display: flex; align-items: center; gap: 14px; padding-top: 0; }
+    .bu-date   { margin-bottom: 0; }
+  }
+</style>
+
+<div class="bu-wrap">
+
+  <div class="bu-header">
+    <p class="bu-eyebrow">Polaris Car Care</p>
+    <h1 class="bu-title">{{ section.settings.page_title | default: 'Updates' }}</h1>
+    <p class="bu-subtitle">{{ section.settings.page_subtitle | default: 'What we\'re working on.' }}</p>
+  </div>
+
+  <div class="bu-list">
+
+    {%- comment -%} Schema-driven entries (added via theme editor) {%- endcomment -%}
+    {% assign has_blocks = false %}
+    {% for block in section.blocks %}
+      {% assign has_blocks = true %}
+      <article class="bu-entry" {{ block.shopify_attributes }}>
+        <div class="bu-meta">
+          <span class="bu-date">{{ block.settings.date }}</span>
+          {% if block.settings.badge != blank %}
+            <span class="bu-badge">{{ block.settings.badge }}</span>
+          {% endif %}
+        </div>
+        <div class="bu-content">
+          <h2 class="bu-entry-title">{{ block.settings.entry_title }}</h2>
+          <div class="bu-body">{{ block.settings.body | newline_to_br }}</div>
+        </div>
+      </article>
+    {% endfor %}
+
+    {%- comment -%} Hardcoded starter entries — shown only if no blocks added yet {%- endcomment -%}
+    {% unless has_blocks %}
+      <article class="bu-entry">
+        <div class="bu-meta">
+          <span class="bu-date">April 2025</span>
+          <span class="bu-badge">Product</span>
+        </div>
+        <div class="bu-content">
+          <h2 class="bu-entry-title">Drying Towel — Now Live</h2>
+          <div class="bu-body">
+            <p>Our flagship microfiber drying towel is officially available. Engineered for a scratch-free, streak-free finish on any paint surface.</p>
+            <p>1200 GSM twisted loop construction. 70/30 polyester-polyamide blend. Safe on ceramic coatings, PPF, and bare paint. This is what we built Polaris around.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="bu-entry">
+        <div class="bu-meta">
+          <span class="bu-date">April 2025</span>
+          <span class="bu-badge">Behind the Scenes</span>
+        </div>
+        <div class="bu-content">
+          <h2 class="bu-entry-title">Building Polaris</h2>
+          <div class="bu-body">
+            <p>We started Polaris because we couldn't find detailing products that matched the standard we held our cars to. Everything either cost too much, cut corners on materials, or came from a brand that clearly didn't use their own products.</p>
+            <p>This is the beginning. We're starting with the towel because it's the one tool every detailer reaches for every single time. Get that right, and everything else follows.</p>
+          </div>
+        </div>
+      </article>
+    {% endunless %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Updates",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page title",
+      "default": "Updates"
+    },
+    {
+      "type": "text",
+      "id": "page_subtitle",
+      "label": "Page subtitle",
+      "default": "What we're working on."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "entry",
+      "name": "Update Entry",
+      "settings": [
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "April 2025"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge / Tag",
+          "info": "e.g. Product, Behind the Scenes, Coming Soon, Operations",
+          "default": "Product"
+        },
+        {
+          "type": "text",
+          "id": "entry_title",
+          "label": "Entry title",
+          "default": "Update Title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body text",
+          "info": "Use a blank line between paragraphs",
+          "default": "Write your update here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Updates",
+      "blocks": [
+        {
+          "type": "entry",
+          "settings": {
+            "date": "April 2025",
+            "badge": "Product",
+            "entry_title": "Drying Towel — Now Live",
+            "body": "Our flagship microfiber drying towel is officially available. Engineered for a scratch-free, streak-free finish on any paint surface.\n\n1200 GSM twisted loop construction. 70/30 polyester-polyamide blend. Safe on ceramic coatings, PPF, and bare paint. This is what we built Polaris around."
+          }
+        },
+        {
+          "type": "entry",
+          "settings": {
+            "date": "April 2025",
+            "badge": "Behind the Scenes",
+            "entry_title": "Building Polaris",
+            "body": "We started Polaris because we couldn't find detailing products that matched the standard we held our cars to. Everything either cost too much, cut corners on materials, or came from a brand that clearly didn't use their own products.\n\nThis is the beginning. We're starting with the towel because it's the one tool every detailer reaches for every single time. Get that right, and everything else follows."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
