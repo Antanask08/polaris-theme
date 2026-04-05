@@ -16,16 +16,14 @@
           "type": "founder",
           "settings": {
             "name": "Antanas K.",
-            "role": "Co-Founder",
-            "bio": "Brand builder, designer, and the creative brain behind Polaris."
+            "role": "Co-Founder"
           }
         },
         "founder_KqAjgX": {
           "type": "founder",
           "settings": {
             "name": "Antanas K.",
-            "role": "Co-Founder",
-            "bio": "Brand builder, designer, and the creative brain behind Polaris."
+            "role": "Co-Founder"
           }
         }
       },
@@ -36,18 +34,6 @@
       "settings": {
         "hero_headline": "BUILT FROM THE COMMUNITY",
         "hero_subhead": "Two guys from Chicago who got tired of paying $40 for a towel — and decided to build something better. This is how Polaris Car Care started.",
-        "block_a_label": "How It Started",
-        "block_a_heading": "TIRED OF THE SAME STORY.",
-        "block_a_body": "We started Polaris because we were tired of the same story — overpriced detailing products from brands that don't know what it's like to actually love a car. We built Polaris for the people who do.",
-        "block_b_caption": "",
-        "block_c_label": "The Product",
-        "block_c_heading": "TESTED BEFORE IT'S SOLD.",
-        "block_c_body": "Every product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years — if it doesn't pass his standard, it doesn't get sold. Simple as that.",
-        "block_d_caption": "",
-        "quote_text": "Our goal isn't to be the cheapest brand. It's to be the most honest one.",
-        "founders_heading": "THE FOUNDERS",
-        "community_heading": "THE COMMUNITY IS THE BRAND",
-        "community_body": "We launched Polaris at a community car meet in Chicago. Over 50 cars showed up for a brand no one had heard of yet. That told us everything we needed to know.",
         "vision_headline": "WE'RE JUST GETTING STARTED.",
         "vision_subtext": "The Nova is the first chapter. Follow along as we build.",
         "vision_cta1_text": "SHOP THE NOVA →",
