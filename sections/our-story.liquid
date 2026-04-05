@@ -103,9 +103,9 @@
 
 .os-hero-tag {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  color: var(--bp-dim);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(160,200,255,0.7);
   text-transform: uppercase;
   display: flex;
   align-items: center;
@@ -116,14 +116,14 @@
   display: block;
   width: 20px;
   height: 1px;
-  background: var(--bp-dim);
+  background: rgba(160,200,255,0.5);
 }
 
 .os-hero-topbar-right {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  color: var(--bp-dim);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(160,200,255,0.7);
   text-transform: uppercase;
 }
 
@@ -296,10 +296,10 @@
 
 .os-section-annotation {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--bp-dim);
+  color: rgba(160,200,255,0.75);
   margin-bottom: 48px;
   display: flex;
   align-items: center;
@@ -343,7 +343,7 @@
 
 .os-big-question em {
   font-style: normal;
-  color: rgba(100,160,255,0.5);
+  color: rgba(100,160,255,0.75);
 }
 
 .os-problem-body {
@@ -479,16 +479,16 @@
 }
 .os-stamp-text {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.2em;
+  font-size: 10px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(100,200,100,0.7);
+  color: rgba(100,200,100,0.85);
   text-align: center;
 }
 .os-stamp-text--big {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
-  color: rgba(100,200,100,0.9);
+  color: rgba(100,200,100,0.95);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -527,10 +527,10 @@
 
 .os-checklist-label {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.25em;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--bp-dim);
+  color: rgba(160,200,255,0.7);
   margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--bp-lineLg);
@@ -571,9 +571,9 @@
 .os-check-desc {
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
-  font-size: 0.85rem;
-  color: var(--bp-dim);
-  line-height: 1.5;
+  font-size: 0.9rem;
+  color: rgba(180,210,255,0.8);
+  line-height: 1.55;
 }
 
 .os-standard-stamp-row {
@@ -612,8 +612,8 @@
 .os-founders-annotation {
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.35);
+  font-size: 0.95rem;
+  color: rgba(220,232,248,0.6);
   max-width: 240px;
   line-height: 1.6;
   text-align: right;
@@ -734,10 +734,10 @@
 
 .os-launch-eyebrow {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--bp-dim);
+  color: rgba(160,200,255,0.75);
   margin-bottom: 20px;
 }
 
@@ -785,10 +785,10 @@
 
 .os-stat-lbl {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--bp-dim);
+  color: rgba(160,200,255,0.75);
 }
 
 .os-launch-notes {
@@ -869,10 +869,10 @@
 
 .os-cta-eyebrow {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.3em;
+  font-size: 12px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.5);
   margin-bottom: 24px;
 }
 
@@ -889,8 +889,8 @@
 .os-cta-sub {
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.5);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
   margin-bottom: 48px;
   max-width: 420px;
   margin-left: auto;
@@ -954,6 +954,20 @@
   .os-steps          { grid-template-columns: 1fr; }
   .os-hero-meta      { gap: 20px; }
   .os-stat-row       { grid-template-columns: 1fr; }
+
+  /* Mobile readability bumps */
+  .os-step-body      { font-size: 1rem; line-height: 1.8; }
+  .os-section-annotation { font-size: 11px; }
+  .os-hero-desc      { font-size: 1rem; }
+  .os-hero-quote     { font-size: 1.1rem; }
+  .os-problem-body,
+  .os-launch-body,
+  .os-standard-body,
+  .os-mission-body   { font-size: 1rem; line-height: 1.85; }
+  .sticky            { font-size: 0.95rem; }
+  .os-check-desc     { font-size: 0.9rem; }
+  .os-stat-num       { font-size: 2rem; }
+  .os-hero-annotation { font-size: 11px; line-height: 1.8; }
 }
 </style>
 
