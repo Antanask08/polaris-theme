@@ -1,0 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "page_content": {
+      "type": "page-content",
+      "disabled": true,
+      "settings": {}
+    },
+    "faq_page_nyUVBL": {
+      "type": "faq-page",
+      "name": "FAQ Page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "page_content",
+    "faq_page_nyUVBL"
+  ]
+}
