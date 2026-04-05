@@ -11,7 +11,7 @@
         "desc1_body": "We built the Nova because we were tired of microfiber towels that leave water spots, tug at paint, and fall apart after three washes. The Nova is 1200 GSM with a twisted loop weave that traps water and lifts it away from your paint safely.",
         "gsm_heading": "WHY GSM MATTERS",
         "desc3_heading": "REAL WORLD TESTED",
-        "desc3_body": "Every Polaris product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years — if it doesn't pass his standard, it doesn't get sold. Simple as that.",
+        "desc3_body": "Every Polaris product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years. If it doesn't pass his standard, it doesn't ship.",
         "reviews_heading": "WHAT THE COMMUNITY SAYS",
         "faq_heading": "FREQUENTLY ASKED QUESTIONS"
       },
@@ -99,7 +99,7 @@
           "type": "faq",
           "settings": {
             "question": "What size is The Nova?",
-            "answer": "The Nova measures 16 x 24 inches — large enough to cover a full panel with a single pass."
+            "answer": "The Nova measures 16 x 24 inches, large enough to cover a full panel with a single pass."
           }
         },
         "faq_2": {
@@ -127,7 +127,7 @@
           "type": "faq",
           "settings": {
             "question": "Do you offer free shipping?",
-            "answer": "Yes — every single order ships free. No minimum, no code needed."
+            "answer": "Yes. Every single order ships free. No minimum, no code needed."
           }
         },
         "faq_6": {
