@@ -14,14 +14,41 @@
       "disabled": true,
       "settings": {}
     },
-    "faq_page_nyUVBL": {
-      "type": "faq-page",
-      "name": "FAQ Page",
-      "settings": {}
+    "brand_updates_GtYjRX": {
+      "type": "brand-updates",
+      "blocks": {
+        "entry_VtDwFg": {
+          "type": "entry",
+          "settings": {
+            "date": "April 2025",
+            "badge": "Product",
+            "entry_title": "Drying Towel — Now Live",
+            "body": "Our flagship microfiber drying towel is officially available. Engineered for a scratch-free, streak-free finish on any paint surface."
+          }
+        },
+        "entry_rRRfVP": {
+          "type": "entry",
+          "settings": {
+            "date": "April 2025",
+            "badge": "Behind the Scenes",
+            "entry_title": "Building Polaris",
+            "body": "We started Polaris because we could not find detailing products that matched the standard we held our cars to. This is the beginning."
+          }
+        }
+      },
+      "block_order": [
+        "entry_VtDwFg",
+        "entry_rRRfVP"
+      ],
+      "name": "Brand Updates",
+      "settings": {
+        "page_title": "Updates",
+        "page_subtitle": "What we are working on."
+      }
     }
   },
   "order": [
     "page_content",
-    "faq_page_nyUVBL"
+    "brand_updates_GtYjRX"
   ]
 }
