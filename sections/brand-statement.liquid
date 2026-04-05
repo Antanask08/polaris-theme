@@ -15,7 +15,7 @@
   }
   @keyframes marquee-bs {
     from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    to { transform: translateX(-16.6667%); }
   }
   .bs-text {
     font-family: 'DM Sans', sans-serif;
@@ -34,6 +34,10 @@
     style="--bs-speed: {{ section.settings.speed }}s"
   >
     <div class="bs-track">
+      <span class="bs-text">{{ section.settings.statement }}</span>
+      <span class="bs-text">{{ section.settings.statement }}</span>
+      <span class="bs-text">{{ section.settings.statement }}</span>
+      <span class="bs-text">{{ section.settings.statement }}</span>
       <span class="bs-text">{{ section.settings.statement }}</span>
       <span class="bs-text">{{ section.settings.statement }}</span>
     </div>
