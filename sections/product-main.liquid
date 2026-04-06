@@ -621,16 +621,12 @@
     color: #fff;
     line-height: 0.95;
   }
-  .pp-ugc-track-wrap { overflow: hidden; padding: 0 40px; }
-  @keyframes pp-ugc-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
+  .pp-ugc-track-wrap { overflow: hidden; }
   .pp-ugc-track {
     display: flex;
     gap: 10px;
     width: max-content;
-    animation: pp-ugc-scroll 35s linear infinite;
+    will-change: transform;
   }
   .pp-ugc-track:hover { animation-play-state: paused; }
   .pp-ugc-item {
@@ -1151,26 +1147,6 @@
             </div>
           {% endif %}
         {% endfor %}
-        {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
-        {% for block in section.blocks %}
-          {% if block.type == 'ugc_item' %}
-            <div class="pp-ugc-item" aria-hidden="true">
-              {% if block.settings.image != blank %}
-                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="" loading="lazy">
-              {% elsif block.settings.video != blank %}
-                {{- block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'pp-ugc-vid' -}}
-              {% else %}
-                <div class="pp-ugc-placeholder">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                  <span>Add photo or video</span>
-                </div>
-              {% endif %}
-              {% if block.settings.caption != blank %}
-                <div class="pp-ugc-caption">{{ block.settings.caption }}</div>
-              {% endif %}
-            </div>
-          {% endif %}
-        {% endfor %}
       </div>
     </div>
   </section>
@@ -1396,15 +1372,69 @@
     startTimer();
   })();
 
-  /* ── UGC touch pause ─────────────────────────────── */
+  /* ── UGC infinite scroll ─────────────────────────── */
   (function () {
-    var ugcTrack = document.getElementById('pp-ugc-track');
-    if (!ugcTrack) return;
-    ugcTrack.addEventListener('touchstart', function () {
-      ugcTrack.style.animationPlayState = 'paused';
+    var track = document.getElementById('pp-ugc-track');
+    if (!track) return;
+
+    var GAP = 10; // matches CSS gap: 10px
+
+    // Grab the original items before any cloning
+    var origItems = Array.from(track.children);
+    if (!origItems.length) return;
+
+    // Clone a full set of originals and append
+    function cloneSet() {
+      origItems.forEach(function (item) {
+        var clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        // Re-trigger autoplay on any cloned videos
+        var vids = clone.querySelectorAll('video');
+        vids.forEach(function (v) { v.play && v.play(); });
+        track.appendChild(clone);
+      });
+    }
+
+    // Keep cloning until the track is at least 2.5x the viewport wide
+    // so there's always enough content to scroll through without gaps
+    cloneSet();
+    while (track.scrollWidth < window.innerWidth * 2.5) {
+      cloneSet();
+    }
+
+    // Calculate the pixel distance of exactly one original set
+    // (item widths + gap after each item)
+    var origWidth = 0;
+    origItems.forEach(function (item) {
+      origWidth += item.offsetWidth + GAP;
+    });
+
+    // Inject a precise keyframe and apply the animation
+    var styleEl = document.createElement('style');
+    styleEl.textContent =
+      '@keyframes ugc-infinite{' +
+        'from{transform:translateX(0)}' +
+        'to{transform:translateX(-' + origWidth + 'px)}' +
+      '}';
+    document.head.appendChild(styleEl);
+
+    var speed = 35; // seconds for one full set to scroll past
+    track.style.animation = 'ugc-infinite ' + speed + 's linear infinite';
+
+    // Pause on hover (desktop)
+    track.addEventListener('mouseenter', function () {
+      track.style.animationPlayState = 'paused';
+    });
+    track.addEventListener('mouseleave', function () {
+      track.style.animationPlayState = 'running';
+    });
+
+    // Pause on touch (mobile)
+    track.addEventListener('touchstart', function () {
+      track.style.animationPlayState = 'paused';
     }, { passive: true });
-    ugcTrack.addEventListener('touchend', function () {
-      ugcTrack.style.animationPlayState = 'running';
+    track.addEventListener('touchend', function () {
+      track.style.animationPlayState = 'running';
     }, { passive: true });
   })();
 
