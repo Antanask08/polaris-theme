@@ -1097,7 +1097,7 @@
                       <div class="pp-review-date">{{ block.settings.date }}</div>
                     </div>
                   </div>
-                  <div class="pp-review-stars">{% for i in (1..block.settings.stars) %}★{% endfor %}</div>
+                  <div class="pp-review-stars">{% assign star_count = block.settings.stars | default: 5 %}{% for i in (1..star_count) %}★{% endfor %}</div>
                   <p class="pp-review-text">{{ block.settings.review_text }}</p>
                 </div>
               {% endif %}
@@ -1114,8 +1114,11 @@
   </section>
 
   {%- comment -%} ── UGC CAROUSEL ── {%- endcomment -%}
-  {% assign ugc_blocks = section.blocks | where: "type", "ugc_item" %}
-  {% if ugc_blocks.size > 0 %}
+  {% assign has_ugc = false %}
+  {% for block in section.blocks %}
+    {% if block.type == 'ugc_item' %}{% assign has_ugc = true %}{% endif %}
+  {% endfor %}
+  {% if has_ugc %}
   <section class="pp-ugc fade-in">
     <div class="pp-ugc-header">
       {% if section.settings.ugc_eyebrow != blank %}
@@ -1610,7 +1613,7 @@
     },
     {
       "type": "ugc_item",
-      "name": "UGC Photo / Video",
+      "name": "UGC Item",
       "limit": 12,
       "settings": [
         {
@@ -1647,7 +1650,7 @@
           "type": "textarea",
           "id": "answer",
           "label": "Answer",
-          "default": "Machine wash cold, no fabric softener, tumble dry low. Never use dryer sheets — they coat the fibers and reduce absorbency."
+          "default": "Machine wash cold, no fabric softener, tumble dry low. Never use dryer sheets. They coat the fibers and kill absorbency."
         }
       ]
     }
