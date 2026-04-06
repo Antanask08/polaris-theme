@@ -9,22 +9,79 @@
     font-family: 'DM Sans', sans-serif;
   }
 
-  /* ── Top: manifesto ───────────────────────────── */
-  .bv-manifesto {
-    padding: 96px 60px 80px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+  /* ── Single-row: heading right, pillars left ── */
+  .bv-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: end;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
 
   @media (max-width: 900px) {
-    .bv-manifesto {
-      grid-template-columns: 1fr;
-      gap: 28px;
-      padding: 64px 28px 56px;
+    .bv-inner { grid-template-columns: 1fr; }
+  }
+
+  /* ── Left: pillars ── */
+  .bv-pillars {
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+
+  @media (max-width: 900px) {
+    .bv-pillars {
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
+  }
+
+  .bv-pillar {
+    padding: 36px 52px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .bv-pillar:last-child { border-bottom: none; }
+
+  @media (max-width: 900px) {
+    .bv-pillar { padding: 32px 28px; }
+  }
+
+  .bv-pillar-num {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+    margin-bottom: 10px;
+  }
+
+  .bv-pillar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    text-transform: uppercase;
+    line-height: 0.95;
+    color: #fff;
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .bv-pillar-body {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ── Right: heading + body ── */
+  .bv-manifesto {
+    padding: 56px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    .bv-manifesto { padding: 48px 28px; }
   }
 
   .bv-eyebrow {
@@ -40,107 +97,50 @@
   .bv-heading {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
-    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-size: clamp(2.8rem, 4.5vw, 4.5rem);
     text-transform: uppercase;
     line-height: 0.92;
     letter-spacing: -0.01em;
     color: #fff;
+    margin-bottom: 24px;
   }
 
   .bv-body {
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.85;
-    color: rgba(255,255,255,0.55);
-    max-width: 400px;
-  }
-
-  /* ── Bottom: pillars ──────────────────────────── */
-  .bv-pillars {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (max-width: 900px) {
-    .bv-pillars { grid-template-columns: 1fr; }
-  }
-
-  .bv-pillar {
-    padding: 56px 52px 64px;
-    border-right: 1px solid rgba(255,255,255,0.06);
-    position: relative;
-  }
-
-  .bv-pillar:last-child { border-right: none; }
-
-  @media (max-width: 900px) {
-    .bv-pillar {
-      padding: 40px 28px;
-      border-right: none;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .bv-pillar:last-child { border-bottom: none; }
-  }
-
-  .bv-pillar-num {
-    display: block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.18);
-    margin-bottom: 32px;
-  }
-
-  .bv-pillar-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-    text-transform: uppercase;
-    line-height: 0.95;
-    color: #fff;
-    margin-bottom: 18px;
-    letter-spacing: 0.01em;
-  }
-
-  .bv-pillar-body {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
     font-size: 0.95rem;
-    line-height: 1.8;
+    line-height: 1.85;
     color: rgba(255,255,255,0.5);
+    max-width: 360px;
   }
 </style>
 
 <section class="bv-section fade-in">
+  <div class="bv-inner">
 
-  <div class="bv-manifesto">
-    <div>
+    {% if section.blocks.size > 0 %}
+      <div class="bv-pillars">
+        {% for block in section.blocks %}
+          {% if block.type == 'pillar' %}
+            <div class="bv-pillar" {{ block.shopify_attributes }}>
+              <span class="bv-pillar-num">0{{ forloop.index }}</span>
+              <h3 class="bv-pillar-title">{{ block.settings.title }}</h3>
+              <p class="bv-pillar-body">{{ block.settings.body }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="bv-manifesto">
       {% if section.settings.eyebrow != blank %}
         <span class="bv-eyebrow">{{ section.settings.eyebrow }}</span>
       {% endif %}
       <h2 class="bv-heading">{{ section.settings.heading }}</h2>
-    </div>
-    <div>
       <p class="bv-body">{{ section.settings.body }}</p>
     </div>
+
   </div>
-
-  {% if section.blocks.size > 0 %}
-    <div class="bv-pillars">
-      {% for block in section.blocks %}
-        {% if block.type == 'pillar' %}
-          <div class="bv-pillar" {{ block.shopify_attributes }}>
-            <span class="bv-pillar-num">0{{ forloop.index }}</span>
-            <h3 class="bv-pillar-title">{{ block.settings.title }}</h3>
-            <p class="bv-pillar-body">{{ block.settings.body }}</p>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-  {% endif %}
-
 </section>
 
 {% schema %}
