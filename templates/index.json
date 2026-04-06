@@ -35,17 +35,10 @@
           "settings": {
             "caption": "Behind the scenes"
           }
-        },
-        "photo_UmTxkD": {
-          "type": "photo",
-          "settings": {
-            "caption": "Behind the scenes"
-          }
         }
       },
       "block_order": [
-        "photo_pwPPDg",
-        "photo_UmTxkD"
+        "photo_pwPPDg"
       ],
       "name": "BTS Gallery",
       "settings": {
