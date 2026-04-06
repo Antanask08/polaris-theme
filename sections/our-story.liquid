@@ -11,8 +11,8 @@
   --bp-blue:    #1a3a5c;
   --bp-line:    rgba(100, 160, 255, 0.12);
   --bp-lineLg:  rgba(100, 160, 255, 0.22);
-  --bp-text:    rgba(220, 232, 248, 0.9);
-  --bp-dim:     rgba(160, 190, 230, 0.5);
+  --bp-text:    rgba(220, 232, 248, 1);
+  --bp-dim:     rgba(180, 210, 255, 0.7);
   /* Muted, desaturated sticky colors — not rainbow */
   --sticky-y:   #f5e9c8;
   --sticky-p:   #e8d5d5;
@@ -175,12 +175,12 @@
   font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.85);
   line-height: 1.35;
 }
 .os-hero-quote em {
   font-style: normal;
-  color: rgba(255,255,255,0.95);
+  color: #fff;
 }
 
 .os-hero-annotation {
@@ -844,7 +844,6 @@
    VISION CTA — CLEAN DARK
 ───────────────────────────────────────────────────────────── */
 .os-cta {
-  background: #000;
   padding: 120px 60px;
   text-align: center;
   position: relative;
@@ -890,7 +889,7 @@
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
   font-size: 1.05rem;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.85);
   margin-bottom: 48px;
   max-width: 420px;
   margin-left: auto;
@@ -1189,7 +1188,7 @@
   </section>
 
   {%- comment -%} ── FOUNDERS — CORK BOARD ── {%- endcomment -%}
-  <section class="os-founders cork-bg os-fade">
+  <section class="os-founders bp-bg os-fade">
     <div class="os-founders-header">
       <h2 class="os-founders-heading">THE<br>FOUNDERS</h2>
       <p class="os-founders-annotation">Two guys from Chicago who couldn't find products they trusted — so they built them.</p>
@@ -1305,7 +1304,7 @@
   </section>
 
   {%- comment -%} ── CTA ── {%- endcomment -%}
-  <section class="os-cta">
+  <section class="os-cta bp-bg">
     <p class="os-cta-eyebrow">Polaris Car Care — Chicago, IL</p>
     <h2 class="os-cta-heading">
       Built for<br>People Like Us.
