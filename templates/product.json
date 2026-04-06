@@ -12,6 +12,13 @@
     "product_main": {
       "type": "product-main",
       "blocks": {
+        "ugc_item_TxAtnQ": {
+          "type": "ugc_item",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4108.jpg",
+            "caption": "@polariscarcare"
+          }
+        },
         "ugc_item_FTKpUF": {
           "type": "ugc_item",
           "settings": {
@@ -149,6 +156,7 @@
         }
       },
       "block_order": [
+        "ugc_item_TxAtnQ",
         "ugc_item_FTKpUF",
         "spec_gsm",
         "spec_loop",
