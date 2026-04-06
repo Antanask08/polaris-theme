@@ -1,21 +1,24 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "product_main": {
       "type": "product-main",
-      "settings": {
-        "show_rating": true,
-        "avg_rating": "4.9",
-        "review_count": "47",
-        "short_description": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint. Twisted loop technology absorbs water faster with zero scratching.",
-        "desc1_heading": "THE NOVA",
-        "desc1_body": "We built the Nova because we were tired of microfiber towels that leave water spots, tug at paint, and fall apart after three washes. The Nova is 1200 GSM with a twisted loop weave that traps water and lifts it away from your paint safely.",
-        "gsm_heading": "WHY GSM MATTERS",
-        "desc3_heading": "REAL WORLD TESTED",
-        "desc3_body": "Every Polaris product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years. If it doesn't pass his standard, it doesn't ship.",
-        "reviews_heading": "WHAT THE COMMUNITY SAYS",
-        "faq_heading": "FREQUENTLY ASKED QUESTIONS"
-      },
       "blocks": {
+        "ugc_item_FTKpUF": {
+          "type": "ugc_item",
+          "settings": {
+            "video": "shopify://files/videos/IMG_1189 (1).MOV",
+            "caption": "@polariscarcare"
+          }
+        },
         "spec_gsm": {
           "type": "spec",
           "settings": {
@@ -146,6 +149,7 @@
         }
       },
       "block_order": [
+        "ugc_item_FTKpUF",
         "spec_gsm",
         "spec_loop",
         "spec_blend",
@@ -163,8 +167,27 @@
         "faq_5",
         "faq_6",
         "faq_7"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Premium Microfiber",
+        "show_rating": true,
+        "avg_rating": "4.9",
+        "review_count": "47",
+        "compare_price": "",
+        "short_description": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint. Twisted loop technology absorbs water faster with zero scratching.",
+        "desc1_heading": "THE NOVA",
+        "desc1_body": "We built the Nova because we were tired of microfiber towels that leave water spots, tug at paint, and fall apart after three washes. The Nova is 1200 GSM with a twisted loop weave that traps water and lifts it away from your paint safely.",
+        "gsm_heading": "WHY GSM MATTERS",
+        "desc3_heading": "REAL WORLD TESTED",
+        "desc3_body": "Every Polaris product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years. If it doesn't pass his standard, it doesn't ship.",
+        "reviews_heading": "WHAT THE COMMUNITY SAYS",
+        "ugc_eyebrow": "Real People. Real Cars.",
+        "ugc_heading": "The Community In Action",
+        "faq_heading": "FREQUENTLY ASKED QUESTIONS"
+      }
     }
   },
-  "order": ["product_main"]
+  "order": [
+    "product_main"
+  ]
 }
