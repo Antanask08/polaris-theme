@@ -15,7 +15,7 @@
         "bg_type": "image",
         "video_url": "",
         "headline": "BUILT FOR THE ONES WHO CARE",
-        "subheadline": "Premium detailing tools for the car community. Founded in Chicago, Illinois.",
+        "subheadline": "We got tired of paying premium prices for products that didn't earn it. So we built our own. Chicago, 2025.",
         "cta_text": "SHOP THE NOVA",
         "cta_url": "/collections/all"
       }
@@ -27,23 +27,55 @@
         "speed": 25
       }
     },
+    "bts_gallery_L34gUG": {
+      "type": "bts-gallery",
+      "name": "BTS Gallery",
+      "settings": {
+        "eyebrow": "Behind the build",
+        "headline": "Built in Chicago.\nNot a boardroom.",
+        "body": "Polaris started with two guys who couldn't find detailing products they actually trusted. So they built their own. Every product is tested on real cars before it ever reaches yours."
+      }
+    },
+    "brand_values": {
+      "type": "brand-values",
+      "blocks": {
+        "pillar_1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Community First",
+            "body": "We started in the car scene, not a boardroom. Everything we build starts with what the community actually needs."
+          }
+        },
+        "pillar_2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Tested on Ours",
+            "body": "Every product goes on our own cars before it goes on yours. If it doesn't pass that test, it doesn't ship."
+          }
+        },
+        "pillar_3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Priced Honestly",
+            "body": "We price from what's fair, not what the market will tolerate. Quality shouldn't require a justification."
+          }
+        }
+      },
+      "block_order": ["pillar_1", "pillar_2", "pillar_3"],
+      "settings": {
+        "eyebrow": "What We Stand For",
+        "heading": "Not just a brand. A standard.",
+        "body": "We started Polaris because the car community deserved better. Better quality, honest pricing, and a brand that actually gives a damn about the people buying from it."
+      }
+    },
     "brand_story": {
       "type": "brand-story",
       "settings": {
         "label": "Our Story",
         "heading": "BUILT BY ENTHUSIASTS.",
         "body_text": "We started Polaris because we were tired of overpaying for detailing products that didn't perform. Built from the car community, tested on real cars, priced for real people.",
-        "cta_text": "READ OUR STORY →",
-        "cta_url": ""
-      }
-    },
-    "bts_gallery_L34gUG": {
-      "type": "bts-gallery",
-      "name": "BTS Gallery",
-      "settings": {
-        "eyebrow": "Behind the build",
-        "headline": "Built in Chicago.Not a boardroom.",
-        "body": "Polaris started in a garage with two guys who couldn't find detailing products they actually trusted. So we built our own. Every product is tested on real cars before it ever reaches yours."
+        "cta_text": "READ OUR STORY",
+        "cta_url": "/pages/our-story"
       }
     },
     "product_spotlight": {
@@ -81,82 +113,12 @@
         "ps_spec_4"
       ],
       "settings": {
-        "product_label": "Featured Product",
+        "product_label": "The Nova",
         "product_name": "THE NOVA",
         "product_description": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint.",
         "product_image": "shopify://shop_images/3813488-removebg-preview.png",
         "product_url": "",
         "price": "$29.99"
-      }
-    },
-    "why_polaris": {
-      "type": "why-polaris",
-      "blocks": {
-        "wp_row_1": {
-          "type": "row",
-          "settings": {
-            "feature": "Price",
-            "polaris_value": "$29.99",
-            "premium_value": "$60-80+",
-            "cheap_value": "$8-12"
-          }
-        },
-        "wp_row_2": {
-          "type": "row",
-          "settings": {
-            "feature": "GSM Rating",
-            "polaris_value": "1200 GSM",
-            "premium_value": "800-1000 GSM",
-            "cheap_value": "300-500 GSM"
-          }
-        },
-        "wp_row_3": {
-          "type": "row",
-          "settings": {
-            "feature": "Material Quality",
-            "polaris_value": "70/30 Blend",
-            "premium_value": "Varies",
-            "cheap_value": "Low Grade"
-          }
-        },
-        "wp_row_4": {
-          "type": "row",
-          "settings": {
-            "feature": "Shipping Cost",
-            "polaris_value": "Always Free",
-            "premium_value": "$8-15",
-            "cheap_value": "Sometimes Free"
-          }
-        },
-        "wp_row_5": {
-          "type": "row",
-          "settings": {
-            "feature": "Community Tested",
-            "polaris_value": "Yes",
-            "premium_value": "Lab Only",
-            "cheap_value": "No"
-          }
-        },
-        "wp_row_6": {
-          "type": "row",
-          "settings": {
-            "feature": "Founder Accessible",
-            "polaris_value": "DM us anytime",
-            "premium_value": "Corporate",
-            "cheap_value": "No response"
-          }
-        }
-      },
-      "block_order": [
-        "wp_row_1",
-        "wp_row_2",
-        "wp_row_3",
-        "wp_row_4",
-        "wp_row_5",
-        "wp_row_6"
-      ],
-      "settings": {
-        "heading": "WHY POLARIS?"
       }
     },
     "social_proof": {
@@ -198,6 +160,16 @@
       "settings": {
         "avg_rating": "4.9",
         "rating_subtext": "From the Polaris community"
+      }
+    },
+    "social_feed": {
+      "type": "social-feed",
+      "settings": {
+        "heading": "@POLARISCARCARE",
+        "tiktok_url": "https://www.tiktok.com/@polariscarcare",
+        "tiktok_label": "FOLLOW US ON TIKTOK ↗",
+        "instagram_url": "https://www.instagram.com/polariscarcare/",
+        "instagram_label": "FOLLOW ON INSTAGRAM ↗"
       }
     },
     "trust_badges": {
@@ -244,23 +216,6 @@
       ],
       "settings": {}
     },
-    "press_bar": {
-      "type": "press-bar",
-      "settings": {
-        "enabled": false,
-        "label": "AS SEEN IN"
-      }
-    },
-    "social_feed": {
-      "type": "social-feed",
-      "settings": {
-        "heading": "@POLARISCARCARE",
-        "tiktok_url": "https://www.tiktok.com/@polariscarcare",
-        "tiktok_label": "FOLLOW US ON TIKTOK ↗",
-        "instagram_url": "https://www.instagram.com/polariscarcare/",
-        "instagram_label": "FOLLOW ON INSTAGRAM ↗"
-      }
-    },
     "email_popup": {
       "type": "email-popup",
       "settings": {
@@ -276,14 +231,13 @@
   "order": [
     "hero",
     "brand_statement",
-    "brand_story",
     "bts_gallery_L34gUG",
+    "brand_values",
+    "brand_story",
     "product_spotlight",
-    "why_polaris",
     "social_proof",
-    "trust_badges",
-    "press_bar",
     "social_feed",
+    "trust_badges",
     "email_popup"
   ]
 }
