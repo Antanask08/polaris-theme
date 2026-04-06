@@ -115,7 +115,7 @@
   .pp-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-size: clamp(3rem, 6vw, 5.5rem);
     text-transform: uppercase;
     line-height: 0.92;
     letter-spacing: 0.01em;
@@ -305,11 +305,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
     padding: 14px 0;
     border-top: 1px solid rgba(0,0,0,0.07);
     border-bottom: 1px solid rgba(0,0,0,0.07);
     margin-bottom: 20px;
+    flex-wrap: wrap;
   }
   .pp-trust-item {
     display: flex;
@@ -317,9 +318,10 @@
     gap: 6px;
     font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(0,0,0,0.5);
+    white-space: nowrap;
   }
   .pp-trust-item svg {
     width: 14px; height: 14px;
@@ -363,10 +365,11 @@
     .pp-feature-strip-inner { grid-template-columns: repeat(2, 1fr); }
   }
   .pp-feature-item {
-    padding: 40px 32px;
+    padding: 36px 28px;
     border-right: 1px solid rgba(255,255,255,0.06);
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
+  @media (max-width: 540px) { .pp-feature-item { padding: 28px 20px; } }
   .pp-feature-item:last-child { border-right: none; }
   .pp-feature-num {
     font-family: 'Barlow Condensed', sans-serif;
@@ -502,18 +505,132 @@
   }
   .pp-gsm-card--polaris .pp-gsm-lbl { color: rgba(0,0,0,0.5); }
 
+  /* ─── Benefits Bar ─────────────────────────────────────────────────────────── */
+  .pp-benefits {
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.07);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+  .pp-benefits-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 900px) { .pp-benefits-inner { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px)  { .pp-benefits-inner { grid-template-columns: 1fr; } }
+  .pp-benefit-item {
+    padding: 40px 32px;
+    border-right: 1px solid rgba(0,0,0,0.07);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+  @media (max-width: 900px) {
+    .pp-benefit-item:nth-child(2n) { border-right: none; }
+  }
+  @media (min-width: 901px) {
+    .pp-benefit-item:last-child { border-right: none; }
+  }
+  .pp-benefit-icon {
+    font-size: 22px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .pp-benefit-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+  .pp-benefit-desc {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: rgba(0,0,0,0.55);
+    line-height: 1.65;
+  }
+
+  /* ─── Why Nova ──────────────────────────────────────────────────────────────── */
+  .pp-why {
+    background: #050505;
+    padding: 100px 0;
+  }
+  @media (max-width: 768px) { .pp-why { padding: 64px 0; } }
+  .pp-why-header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+  .pp-why-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+  }
+  .pp-why-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 0.95;
+  }
+  .pp-why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.07);
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  @media (max-width: 560px) {
+    .pp-why-grid { grid-template-columns: 1fr; }
+  }
+  .pp-why-col { background: #050505; }
+  .pp-why-col-head {
+    padding: 20px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .pp-why-col--nova .pp-why-col-head {
+    color: #fff;
+    background: rgba(255,255,255,0.03);
+  }
+  .pp-why-col--other .pp-why-col-head { color: rgba(255,255,255,0.25); }
+  .pp-why-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+  }
+  .pp-why-row:last-child { border-bottom: none; }
+  .pp-why-col--nova .pp-why-row  { color: rgba(255,255,255,0.8); }
+  .pp-why-col--other .pp-why-row { color: rgba(255,255,255,0.25); }
+  .pp-why-check { font-size: 13px; flex-shrink: 0; width: 16px; }
+  .pp-why-col--nova .pp-why-check  { color: #fff; }
+  .pp-why-col--other .pp-why-check { color: rgba(255,255,255,0.2); }
+
   /* ─── Reviews ──────────────────────────────────────────────────────────────── */
   .pp-reviews {
-    background: #fff;
+    background: #fafafa;
     padding: 100px 0;
     border-top: 1px solid rgba(0,0,0,0.07);
+    overflow: hidden;
   }
   @media (max-width: 768px) { .pp-reviews { padding: 64px 0; } }
 
   .pp-reviews-header {
     text-align: center;
-    margin-bottom: 56px;
+    margin-bottom: 52px;
+    padding: 0 40px;
   }
+  @media (max-width: 640px) { .pp-reviews-header { padding: 0 20px; } }
   .pp-reviews-eyebrow {
     font-size: 10px;
     font-weight: 700;
@@ -537,61 +654,24 @@
     letter-spacing: 0.05em;
   }
 
-  /* Reviews carousel */
-  .pp-reviews-carousel { position: relative; }
-  .pp-reviews-track-wrap { overflow: hidden; }
+  /* Reviews marquee */
+  .pp-reviews-marquee-wrap { overflow: hidden; }
   .pp-reviews-track {
     display: flex;
+    width: max-content;
     will-change: transform;
-    cursor: grab;
-    user-select: none;
   }
-  .pp-reviews-track:active { cursor: grabbing; }
+  .pp-reviews-track:hover { animation-play-state: paused; }
   .pp-review-card {
-    flex: 0 0 33.333%;
-    min-width: 0;
+    flex-shrink: 0;
+    width: 360px;
     background: #fff;
-    padding: 40px 36px;
+    padding: 36px 32px;
     border-right: 1px solid rgba(0,0,0,0.07);
     border-bottom: 1px solid rgba(0,0,0,0.07);
     box-sizing: border-box;
   }
-  @media (max-width: 900px) { .pp-review-card { flex: 0 0 80%; } }
-  @media (max-width: 540px)  { .pp-review-card { flex: 0 0 92%; } }
-
-  .pp-reviews-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-top: 32px;
-  }
-  .pp-reviews-btn {
-    width: 40px; height: 40px;
-    border: 1px solid rgba(0,0,0,0.15);
-    background: none;
-    cursor: pointer;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    transition: background 150ms, border-color 150ms, color 150ms;
-    flex-shrink: 0;
-    line-height: 1;
-  }
-  .pp-reviews-btn:hover { background: #000; color: #fff; border-color: #000; }
-  .pp-reviews-dots { display: flex; gap: 6px; align-items: center; }
-  .pp-reviews-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.15);
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: background 200ms, width 200ms, border-radius 200ms;
-  }
-  .pp-reviews-dot.is-active { background: #000; width: 20px; border-radius: 3px; }
+  @media (max-width: 540px) { .pp-review-card { width: 280px; padding: 28px 22px; } }
 
   /* UGC carousel */
   .pp-ugc {
@@ -1016,6 +1096,32 @@
     </div>
   </div>
 
+  {%- comment -%} ── BENEFITS BAR ── {%- endcomment -%}
+  <div class="pp-benefits fade-in">
+    <div class="pp-benefits-inner">
+      <div class="pp-benefit-item">
+        <span class="pp-benefit-icon">💧</span>
+        <div class="pp-benefit-title">Absorbs 3x More</div>
+        <div class="pp-benefit-desc">1200 GSM is more than double the density of most microfibers. One pass dries a full panel with no re-wipes.</div>
+      </div>
+      <div class="pp-benefit-item">
+        <span class="pp-benefit-icon">🛡</span>
+        <div class="pp-benefit-title">Zero Swirl Marks</div>
+        <div class="pp-benefit-desc">Twisted loop construction lifts water up and off your paint instead of dragging across it. Safe on bare paint, PPF, and ceramic.</div>
+      </div>
+      <div class="pp-benefit-item">
+        <span class="pp-benefit-icon">♻</span>
+        <div class="pp-benefit-title">Built to Last</div>
+        <div class="pp-benefit-desc">Machine washable 300+ times without losing a thread of softness or absorbency. Cold wash, tumble dry low. Done.</div>
+      </div>
+      <div class="pp-benefit-item">
+        <span class="pp-benefit-icon">✔</span>
+        <div class="pp-benefit-title">Tested by Real Detailers</div>
+        <div class="pp-benefit-desc">Every Nova goes through real-world testing before it ships. If Jacob wouldn't use it on his own car, it doesn't leave the warehouse.</div>
+      </div>
+    </div>
+  </div>
+
   {%- comment -%} ── DESCRIPTION BLOCKS ── {%- endcomment -%}
 
   <div class="pp-desc-block fade-in">
@@ -1076,39 +1182,60 @@
     </div>
   </div>
 
+  {%- comment -%} ── WHY THE NOVA ── {%- endcomment -%}
+  <section class="pp-why fade-in">
+    <div class="pp-container">
+      <div class="pp-why-header">
+        <p class="pp-why-eyebrow">The Difference</p>
+        <h2 class="pp-why-heading">Why the Nova Wins</h2>
+      </div>
+      <div class="pp-why-grid">
+        <div class="pp-why-col pp-why-col--nova">
+          <div class="pp-why-col-head">The Nova</div>
+          <div class="pp-why-row"><span class="pp-why-check">✓</span>1200 GSM density</div>
+          <div class="pp-why-row"><span class="pp-why-check">✓</span>Twisted loop weave</div>
+          <div class="pp-why-row"><span class="pp-why-check">✓</span>Zero swirl marks</div>
+          <div class="pp-why-row"><span class="pp-why-check">✓</span>300+ machine washes</div>
+          <div class="pp-why-row"><span class="pp-why-check">✓</span>Safe on PPF and ceramic</div>
+          <div class="pp-why-row"><span class="pp-why-check">✓</span>Dries a full car in one pass</div>
+        </div>
+        <div class="pp-why-col pp-why-col--other">
+          <div class="pp-why-col-head">Generic Towels</div>
+          <div class="pp-why-row"><span class="pp-why-check">✗</span>300–400 GSM</div>
+          <div class="pp-why-row"><span class="pp-why-check">✗</span>Flat weave, no lift</div>
+          <div class="pp-why-row"><span class="pp-why-check">✗</span>Leaves micro-scratches</div>
+          <div class="pp-why-row"><span class="pp-why-check">✗</span>Falls apart after 30 washes</div>
+          <div class="pp-why-row"><span class="pp-why-check">✗</span>Can lift coatings</div>
+          <div class="pp-why-row"><span class="pp-why-check">✗</span>Multiple passes, still streaks</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   {%- comment -%} ── REVIEWS ── {%- endcomment -%}
   <section class="pp-reviews fade-in">
-    <div class="pp-container">
-      <div class="pp-reviews-header">
-        <p class="pp-reviews-eyebrow">Social Proof</p>
-        <h2 class="pp-reviews-heading">{{ section.settings.reviews_heading }}</h2>
-        <p class="pp-reviews-rating">{{ section.settings.avg_rating }} ★★★★★ · {{ section.settings.review_count }} verified reviews</p>
-      </div>
-      <div class="pp-reviews-carousel">
-        <div class="pp-reviews-track-wrap">
-          <div class="pp-reviews-track" id="pp-reviews-track">
-            {% for block in section.blocks %}
-              {% if block.type == 'review' %}
-                <div class="pp-review-card" {{ block.shopify_attributes }}>
-                  <div class="pp-review-top">
-                    <div class="pp-review-avatar">{{ block.settings.name | slice: 0, 1 }}</div>
-                    <div>
-                      <div class="pp-review-name">{{ block.settings.name }}</div>
-                      <div class="pp-review-date">{{ block.settings.date }}</div>
-                    </div>
-                  </div>
-                  <div class="pp-review-stars">{% assign star_count = block.settings.stars | default: 5 %}{% for i in (1..star_count) %}★{% endfor %}</div>
-                  <p class="pp-review-text">{{ block.settings.review_text }}</p>
+    <div class="pp-reviews-header">
+      <p class="pp-reviews-eyebrow">Social Proof</p>
+      <h2 class="pp-reviews-heading">{{ section.settings.reviews_heading }}</h2>
+      <p class="pp-reviews-rating">{{ section.settings.avg_rating }} ★★★★★ · {{ section.settings.review_count }} verified reviews</p>
+    </div>
+    <div class="pp-reviews-marquee-wrap">
+      <div class="pp-reviews-track" id="pp-reviews-track">
+        {% for block in section.blocks %}
+          {% if block.type == 'review' %}
+            <div class="pp-review-card" {{ block.shopify_attributes }}>
+              <div class="pp-review-top">
+                <div class="pp-review-avatar">{{ block.settings.name | slice: 0, 1 }}</div>
+                <div>
+                  <div class="pp-review-name">{{ block.settings.name }}</div>
+                  <div class="pp-review-date">{{ block.settings.date }}</div>
                 </div>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-        <div class="pp-reviews-nav">
-          <button class="pp-reviews-btn pp-reviews-prev" aria-label="Previous">&#8249;</button>
-          <div class="pp-reviews-dots" id="pp-reviews-dots"></div>
-          <button class="pp-reviews-btn pp-reviews-next" aria-label="Next">&#8250;</button>
-        </div>
+              </div>
+              <div class="pp-review-stars">{% assign star_count = block.settings.stars | default: 5 %}{% for i in (1..star_count) %}★{% endfor %}</div>
+              <p class="pp-review-text">{{ block.settings.review_text }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -1289,87 +1416,51 @@
     document.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ── Reviews Carousel ────────────────────────────── */
+  /* ── Reviews infinite scroll ────────────────────── */
   (function () {
     var track = document.getElementById('pp-reviews-track');
     if (!track) return;
-    var wrap = track.parentElement;
 
+    var GAP = 0; // cards use border-right, no CSS gap needed
     var origCards = Array.from(track.querySelectorAll('.pp-review-card'));
-    var total = origCards.length;
-    if (total < 2) return;
+    if (!origCards.length) return;
 
-    // Prepend clones (for seamless backward wrap)
-    var prepFrag = document.createDocumentFragment();
-    origCards.forEach(function (card) { prepFrag.appendChild(card.cloneNode(true)); });
-    track.insertBefore(prepFrag, track.firstChild);
-
-    // Append clones (for seamless forward wrap)
-    origCards.forEach(function (card) { track.appendChild(card.cloneNode(true)); });
-
-    // Layout: [clones_before | originals | clones_after]
-    // Real cards start at index `total`
-    var current = total;
-    var transitioning = false;
-    var autoTimer = null;
-
-    var dotsEl = document.getElementById('pp-reviews-dots');
-    var dots = [];
-
-    for (var i = 0; i < total; i++) {
-      var dot = document.createElement('button');
-      dot.className = 'pp-reviews-dot' + (i === 0 ? ' is-active' : '');
-      dot.setAttribute('aria-label', 'Review ' + (i + 1));
-      (function (idx) {
-        dot.addEventListener('click', function () { resetTimer(); goTo(total + idx); });
-      })(i);
-      if (dotsEl) dotsEl.appendChild(dot);
-      dots.push(dot);
+    function cloneSet() {
+      origCards.forEach(function (card) {
+        var clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
     }
 
-    function perPage() { return window.innerWidth <= 900 ? 1 : 3; }
-    function cardWidth() { return wrap.getBoundingClientRect().width / perPage(); }
+    cloneSet();
+    while (track.scrollWidth < window.innerWidth * 2.5) { cloneSet(); }
 
-    function updateDots() {
-      var realIdx = ((current - total) % total + total) % total;
-      dots.forEach(function (d, i) { d.classList.toggle('is-active', i === realIdx); });
-    }
+    var origWidth = 0;
+    origCards.forEach(function (card) { origWidth += card.offsetWidth + GAP; });
 
-    function goTo(idx, instant) {
-      if (transitioning && !instant) return;
-      current = idx;
-      var offset = current * cardWidth();
-      track.style.transition = instant ? 'none' : 'transform 420ms ease';
-      track.style.transform = 'translateX(-' + offset + 'px)';
-      updateDots();
-      if (!instant) transitioning = true;
-    }
+    var styleEl = document.createElement('style');
+    styleEl.textContent =
+      '@keyframes rev-infinite{' +
+        'from{transform:translateX(0)}' +
+        'to{transform:translateX(-' + origWidth + 'px)}' +
+      '}';
+    document.head.appendChild(styleEl);
 
-    track.addEventListener('transitionend', function () {
-      transitioning = false;
-      if (current >= total * 2) { goTo(current - total, true); }
-      else if (current < total)  { goTo(current + total, true); }
+    track.style.animation = 'rev-infinite 50s linear infinite';
+
+    track.addEventListener('mouseenter', function () {
+      track.style.animationPlayState = 'paused';
     });
-
-    function next() { goTo(current + 1); }
-    function prev() { goTo(current - 1); }
-    function startTimer() { autoTimer = setInterval(next, 4000); }
-    function stopTimer()  { clearInterval(autoTimer); }
-    function resetTimer() { stopTimer(); startTimer(); }
-
-    var prevBtn = document.querySelector('.pp-reviews-prev');
-    var nextBtn = document.querySelector('.pp-reviews-next');
-    if (prevBtn) prevBtn.addEventListener('click', function () { resetTimer(); prev(); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { resetTimer(); next(); });
-
-    var carousel = document.querySelector('.pp-reviews-carousel');
-    if (carousel) {
-      carousel.addEventListener('mouseenter', stopTimer);
-      carousel.addEventListener('mouseleave', startTimer);
-    }
-
-    goTo(current, true);
-    startTimer();
+    track.addEventListener('mouseleave', function () {
+      track.style.animationPlayState = 'running';
+    });
+    track.addEventListener('touchstart', function () {
+      track.style.animationPlayState = 'paused';
+    }, { passive: true });
+    track.addEventListener('touchend', function () {
+      track.style.animationPlayState = 'running';
+    }, { passive: true });
   })();
 
   /* ── UGC infinite scroll ─────────────────────────── */
