@@ -661,7 +661,6 @@
     width: max-content;
     will-change: transform;
   }
-  .pp-reviews-track:hover { animation-play-state: paused; }
   .pp-review-card {
     flex-shrink: 0;
     width: 360px;
@@ -708,7 +707,6 @@
     width: max-content;
     will-change: transform;
   }
-  .pp-ugc-track:hover { animation-play-state: paused; }
   .pp-ugc-item {
     flex-shrink: 0;
     width: 220px;
@@ -1214,10 +1212,12 @@
 
   {%- comment -%} ── REVIEWS ── {%- endcomment -%}
   <section class="pp-reviews fade-in">
-    <div class="pp-reviews-header">
-      <p class="pp-reviews-eyebrow">Social Proof</p>
-      <h2 class="pp-reviews-heading">{{ section.settings.reviews_heading }}</h2>
-      <p class="pp-reviews-rating">{{ section.settings.avg_rating }} ★★★★★ · {{ section.settings.review_count }} verified reviews</p>
+    <div class="pp-container">
+      <div class="pp-reviews-header">
+        <p class="pp-reviews-eyebrow">Social Proof</p>
+        <h2 class="pp-reviews-heading">{{ section.settings.reviews_heading }}</h2>
+        <p class="pp-reviews-rating">{{ section.settings.avg_rating }} ★★★★★ · {{ section.settings.review_count }} verified reviews</p>
+      </div>
     </div>
     <div class="pp-reviews-marquee-wrap">
       <div class="pp-reviews-track" id="pp-reviews-track">
@@ -1349,8 +1349,8 @@
   function handleAtc(btn) {
     var variantId = btn.dataset.variantId;
     if (!variantId) return;
-    var origText = btn.textContent;
-    btn.textContent = 'Adding…';
+    var origHTML = btn.innerHTML;
+    btn.innerHTML = 'Adding…';
     btn.disabled = true;
 
     fetch('/cart/add.js', {
@@ -1360,17 +1360,17 @@
     })
     .then(function (r) { return r.json(); })
     .then(function () {
-      btn.textContent = 'Added ✓';
+      btn.innerHTML = 'Added ✓';
       document.dispatchEvent(new CustomEvent('cart:open'));
       document.dispatchEvent(new CustomEvent('cart:refresh'));
       setTimeout(function () {
-        btn.textContent = origText;
+        btn.innerHTML = origHTML;
         btn.disabled = false;
       }, 2000);
     })
     .catch(function (err) {
       console.error('ATC error', err);
-      btn.textContent = origText;
+      btn.innerHTML = origHTML;
       btn.disabled = false;
     });
   }
