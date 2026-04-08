@@ -234,6 +234,8 @@
           '  <a href="/collections/all" class="cart-checkout-btn">SHOP THE NOVA &rarr;</a>',
           '</div>'
         ].join('\n');
+        var emptyFooter = cartDrawer.querySelector('.cart-footer');
+        if (emptyFooter) emptyFooter.style.display = 'none';
         return;
       }
 
@@ -271,13 +273,14 @@
       // Render footer separately (outside cart-body scroll area)
       var cartFooter = cartDrawer.querySelector('.cart-footer');
       if (cartFooter) {
+        cartFooter.style.display = '';
         cartFooter.innerHTML = [
           '<div class="cart-subtotal-row">',
-          '  <span class="cart-subtotal-label">Subtotal</span>',
+          '  <span class="cart-subtotal-label">SUBTOTAL</span>',
           '  <span class="cart-subtotal-price">' + formatMoney(cart.total_price) + '</span>',
           '</div>',
-          '<div class="cart-shipping-note">FREE SHIPPING INCLUDED</div>',
-          '<a href="/checkout" class="cart-checkout-btn">CHECKOUT</a>'
+          '<p class="cart-shipping-note">FREE SHIPPING INCLUDED</p>',
+          '<a href="/checkout" class="cart-checkout-btn">CHECKOUT &rarr;</a>'
         ].join('\n');
       }
     }
