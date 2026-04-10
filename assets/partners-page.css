@@ -210,6 +210,12 @@
   text-align: center;
 }
 
+.partners-form-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
 .partners-form-sub {
   font-size: 15px;
   color: #777;
@@ -217,12 +223,12 @@
 }
 
 .partners-typeform {
-  max-width: 700px;
+  max-width: 100%;
   margin: 0 auto;
-  min-height: 480px;
+  min-height: 560px;
 }
 
 .partners-typeform [data-tf-live] {
   width: 100%;
-  min-height: 480px;
+  min-height: 560px;
 }
