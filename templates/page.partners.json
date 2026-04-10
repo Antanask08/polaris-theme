@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "partners": {
+      "type": "partners-page",
+      "settings": {
+        "hero_headline": "GET FREE PRODUCT. MAKE CONTENT. GROW WITH US.",
+        "hero_subhead": "We're looking for car enthusiasts who love authentic content. Apply to the Polaris Creator Program — we'll send you the Nova, you show the world what it does."
+      }
+    }
+  },
+  "order": ["partners"]
+}

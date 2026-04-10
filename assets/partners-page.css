@@ -1,0 +1,180 @@
+/* ============================================================
+   Partners Page
+   ============================================================ */
+
+.partners-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Hero ── */
+.partners-hero {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 100px 24px 80px;
+}
+
+.partners-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: #888;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.partners-headline {
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin: 0 0 24px;
+  text-transform: uppercase;
+}
+
+.partners-subhead {
+  font-size: 17px;
+  color: #aaa;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── How It Works ── */
+.partners-how {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.partners-section-title {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 48px;
+}
+
+.partners-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 48px;
+}
+
+@media (max-width: 640px) {
+  .partners-steps {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.partners-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.partners-step-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e8e8e8;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 48px;
+}
+
+.partners-step-body h3 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  color: #000;
+}
+
+.partners-step-body p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Split Section ── */
+.partners-split {
+  background: #f5f5f5;
+  padding: 80px 0;
+}
+
+.partners-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 640px) {
+  .partners-split-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.partners-split-title {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+
+.partners-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.partners-list li {
+  font-size: 15px;
+  color: #333;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.partners-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #000;
+  font-size: 12px;
+  top: 2px;
+}
+
+/* ── Form ── */
+.partners-form-section {
+  padding: 80px 0 100px;
+  background: #fff;
+  text-align: center;
+}
+
+.partners-form-sub {
+  font-size: 15px;
+  color: #777;
+  margin: -32px 0 40px;
+}
+
+.partners-typeform {
+  max-width: 700px;
+  margin: 0 auto;
+  min-height: 480px;
+}
+
+.partners-typeform [data-tf-live] {
+  width: 100%;
+  min-height: 480px;
+}

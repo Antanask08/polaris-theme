@@ -1,0 +1,106 @@
+{{ 'partners-page.css' | asset_url | stylesheet_tag }}
+
+<section class="partners-hero">
+  <div class="partners-container">
+    <p class="partners-eyebrow">POLARIS CREATOR PROGRAM</p>
+    <h1 class="partners-headline">{{ section.settings.hero_headline }}</h1>
+    <p class="partners-subhead">{{ section.settings.hero_subhead }}</p>
+  </div>
+</section>
+
+<section class="partners-how">
+  <div class="partners-container">
+    <h2 class="partners-section-title">HOW IT WORKS</h2>
+    <div class="partners-steps">
+      <div class="partners-step">
+        <div class="partners-step-num">01</div>
+        <div class="partners-step-body">
+          <h3>Apply Below</h3>
+          <p>Fill out the form. Tell us about your content and audience.</p>
+        </div>
+      </div>
+      <div class="partners-step">
+        <div class="partners-step-num">02</div>
+        <div class="partners-step-body">
+          <h3>We Review &amp; Reach Out</h3>
+          <p>We'll review your application and follow up within a few days if it's a fit.</p>
+        </div>
+      </div>
+      <div class="partners-step">
+        <div class="partners-step-num">03</div>
+        <div class="partners-step-body">
+          <h3>Get Free Product</h3>
+          <p>We ship you the Nova. You put it to the test.</p>
+        </div>
+      </div>
+      <div class="partners-step">
+        <div class="partners-step-num">04</div>
+        <div class="partners-step-body">
+          <h3>Create &amp; Post</h3>
+          <p>Make authentic content showing the Nova in action. That's it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partners-split">
+  <div class="partners-container">
+    <div class="partners-split-grid">
+      <div class="partners-split-col">
+        <h2 class="partners-split-title">WHAT YOU GET</h2>
+        <ul class="partners-list">
+          <li>Free Polaris Nova Microfiber Towel</li>
+          <li>Early access to new products</li>
+          <li>Affiliate commission on sales from your content</li>
+          <li>Featured on our brand channels</li>
+        </ul>
+      </div>
+      <div class="partners-split-col">
+        <h2 class="partners-split-title">WHAT WE NEED</h2>
+        <ul class="partners-list">
+          <li>At least 1 video featuring the Nova</li>
+          <li>Authentic, honest review — no scripts</li>
+          <li>Tag @polariscarcare or use #PolarisNova</li>
+          <li>TikTok, Instagram Reels, or YouTube Shorts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partners-form-section">
+  <div class="partners-container">
+    <h2 class="partners-section-title">APPLY NOW</h2>
+    <p class="partners-form-sub">Takes less than 2 minutes. We read every application.</p>
+    <div class="partners-typeform">
+      <div data-tf-live="01KHT9TTTCFGA9SD9ZHYV15JS5"></div>
+      <script src="//embed.typeform.com/next/embed.js"></script>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Partners Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_headline",
+      "label": "Hero Headline",
+      "default": "GET FREE PRODUCT. MAKE CONTENT. GROW WITH US."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subhead",
+      "label": "Hero Subheadline",
+      "default": "We're looking for car enthusiasts who love authentic content. Apply to the Polaris Creator Program — we'll send you the Nova, you show the world what it does."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partners Page"
+    }
+  ]
+}
+{% endschema %}
