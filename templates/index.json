@@ -17,7 +17,7 @@
         "headline": "BUILT FOR THE ONES WHO CARE",
         "subheadline": "Premium detailing tools for the car community. Founded in Chicago, Illinois.",
         "cta_text": "SHOP THE NOVA",
-        "cta_url": "/collections/all"
+        "cta_url": "shopify://products/the-nova"
       }
     },
     "brand_statement": {
@@ -30,6 +30,12 @@
     "bts_gallery_L34gUG": {
       "type": "bts-gallery",
       "blocks": {
+        "photo_HLbBDw": {
+          "type": "photo",
+          "settings": {
+            "caption": "Behind the scenes"
+          }
+        },
         "photo_pwPPDg": {
           "type": "photo",
           "settings": {
@@ -38,6 +44,7 @@
         }
       },
       "block_order": [
+        "photo_HLbBDw",
         "photo_pwPPDg"
       ],
       "name": "BTS Gallery",
