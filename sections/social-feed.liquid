@@ -1,126 +1,93 @@
 <style>
   .sf-section {
-    background: #000;
+    background: #fff;
     padding: 96px 48px;
     font-family: 'DM Sans', sans-serif;
   }
 
   @media (max-width: 640px) { .sf-section { padding: 64px 24px; } }
 
-  .sf-header {
+  .sf-inner {
+    max-width: 900px;
+    margin: 0 auto;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 48px;
-    gap: 24px;
+    gap: 48px;
     flex-wrap: wrap;
   }
 
-  .sf-headline {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    text-transform: uppercase;
-    line-height: 0.93;
-    color: #fff;
-  }
+  .sf-left {}
 
   .sf-eyebrow {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
+    color: #aaa;
     margin-bottom: 16px;
   }
 
-  .sf-ctas {
+  .sf-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-transform: uppercase;
+    line-height: 0.95;
+    color: #000;
+    margin-bottom: 20px;
+  }
+
+  .sf-sub {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    max-width: 380px;
+  }
+
+  .sf-right {
     display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 14px;
     flex-shrink: 0;
   }
 
   .sf-cta {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 28px;
+    border: 1.5px solid #000;
     text-decoration: none;
-    padding: 13px 24px;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    transition: border-color 200ms, background 200ms, color 200ms;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: background 200ms, color 200ms;
+    min-width: 280px;
   }
 
   .sf-cta:hover {
-    background: #fff;
-    color: #000;
-    border-color: #fff;
-  }
-
-  .sf-cta--primary {
-    background: #fff;
-    color: #000;
-    border-color: #fff;
-  }
-
-  .sf-cta--primary:hover {
-    background: transparent;
+    background: #000;
     color: #fff;
   }
 
-  .sf-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: rgba(255,255,255,0.06);
+  .sf-cta svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
   }
 
-  @media (max-width: 768px) {
-    .sf-grid { grid-template-columns: repeat(2, 1fr); }
-    .sf-header { flex-direction: column; align-items: flex-start; }
+  .sf-cta-arrow {
+    margin-left: auto;
+    font-size: 14px;
   }
 
-  .sf-slot {
-    background: #000;
-    aspect-ratio: 9 / 16;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .sf-slot iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .sf-placeholder {
-    width: 100%;
-    height: 100%;
-    background: #0a0a0a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .sf-placeholder svg {
-    width: 32px;
-    height: 32px;
-    fill: none;
-    stroke: rgba(255,255,255,0.15);
-    stroke-width: 1.5;
-  }
-
-  .sf-placeholder span {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.15);
+  @media (max-width: 640px) {
+    .sf-inner { flex-direction: column; }
+    .sf-right { width: 100%; }
+    .sf-cta { min-width: unset; width: 100%; }
   }
 </style>
 
@@ -129,39 +96,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 <section class="sf-section fade-in">
-
-  <div class="sf-header">
-    <div>
+  <div class="sf-inner">
+    <div class="sf-left">
       <p class="sf-eyebrow">Follow along</p>
       <h2 class="sf-headline">{{ section.settings.heading }}</h2>
+      <p class="sf-sub">{{ section.settings.subtext }}</p>
     </div>
-    <div class="sf-ctas">
+    <div class="sf-right">
       {% if section.settings.tiktok_url != blank %}
-        <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" class="sf-cta sf-cta--primary">{{ section.settings.tiktok_label }}</a>
+        <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" class="sf-cta">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          {{ section.settings.tiktok_label }}
+          <span class="sf-cta-arrow">↗</span>
+        </a>
       {% endif %}
       {% if section.settings.instagram_url != blank %}
-        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="sf-cta">{{ section.settings.instagram_label }}</a>
+        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="sf-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          {{ section.settings.instagram_label }}
+          <span class="sf-cta-arrow">↗</span>
+        </a>
       {% endif %}
     </div>
   </div>
-
-  <div class="sf-grid">
-    {% for block in section.blocks %}
-      {% if block.type == 'embed' %}
-        <div class="sf-slot" {{ block.shopify_attributes }}>
-          {% if block.settings.embed_code != blank %}
-            {{ block.settings.embed_code }}
-          {% else %}
-            <div class="sf-placeholder">
-              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              <span>@polariscarcare</span>
-            </div>
-          {% endif %}
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-
 </section>
 
 {% schema %}
@@ -175,6 +132,12 @@
       "default": "@POLARISCARCARE"
     },
     {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Body text",
+      "default": "See the Nova in action. Real cars, real results. Follow us for tips, drops, and behind-the-scenes content."
+    },
+    {
       "type": "url",
       "id": "tiktok_url",
       "label": "TikTok profile URL"
@@ -183,7 +146,7 @@
       "type": "text",
       "id": "tiktok_label",
       "label": "TikTok button label",
-      "default": "FOLLOW US ON TIKTOK ↗"
+      "default": "FOLLOW US ON TIKTOK"
     },
     {
       "type": "url",
@@ -194,21 +157,7 @@
       "type": "text",
       "id": "instagram_label",
       "label": "Instagram button label",
-      "default": "FOLLOW ON INSTAGRAM ↗"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "embed",
-      "name": "Social Post",
-      "limit": 6,
-      "settings": [
-        {
-          "type": "textarea",
-          "id": "embed_code",
-          "label": "Embed code (TikTok or Instagram)"
-        }
-      ]
+      "default": "FOLLOW ON INSTAGRAM"
     }
   ],
   "presets": [

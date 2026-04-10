@@ -1,0 +1,225 @@
+<style>
+  .hfc-section {
+    background: #000;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── Main CTA block ── */
+  .hfc-main {
+    padding: 120px 48px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  @media (max-width: 640px) { .hfc-main { padding: 80px 24px; } }
+
+  .hfc-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 24px;
+  }
+
+  .hfc-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.0;
+    margin-bottom: 24px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hfc-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 48px;
+  }
+
+  .hfc-btn {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 48px;
+    transition: background 200ms, color 200ms;
+  }
+
+  .hfc-btn:hover {
+    background: transparent;
+    color: #fff;
+    outline: 1.5px solid #fff;
+  }
+
+  .hfc-price-note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── Trust strip ── */
+  .hfc-trust {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  @media (max-width: 768px) {
+    .hfc-trust { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .hfc-trust-item {
+    background: #000;
+    padding: 32px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hfc-trust-icon {
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .hfc-trust-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.5;
+    display: block;
+  }
+
+  .hfc-trust-label {
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+
+  .hfc-trust-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.04em;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<section class="hfc-section fade-in">
+
+  <div class="hfc-main">
+    <p class="hfc-eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="hfc-headline">{{ section.settings.headline }}</h2>
+    <p class="hfc-sub">{{ section.settings.subtext }}</p>
+    <a href="{{ section.settings.cta_url }}" class="hfc-btn">{{ section.settings.cta_text }}</a>
+    <p class="hfc-price-note">{{ section.settings.price_note }}</p>
+  </div>
+
+  <div class="hfc-trust">
+    <div class="hfc-trust-item">
+      <div class="hfc-trust-icon">
+        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="m16 8 5 0 3 5v3h-8z"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg>
+      </div>
+      <div>
+        <div class="hfc-trust-label">Free Shipping</div>
+        <div class="hfc-trust-sub">Every order</div>
+      </div>
+    </div>
+    <div class="hfc-trust-item">
+      <div class="hfc-trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div>
+        <div class="hfc-trust-label">1200 GSM</div>
+        <div class="hfc-trust-sub">Professional grade</div>
+      </div>
+    </div>
+    <div class="hfc-trust-item">
+      <div class="hfc-trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="hfc-trust-label">Paint-Safe</div>
+        <div class="hfc-trust-sub">Zero scratches</div>
+      </div>
+    </div>
+    <div class="hfc-trust-item">
+      <div class="hfc-trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div>
+        <div class="hfc-trust-label">Community Tested</div>
+        <div class="hfc-trust-sub">Real world results</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Final CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "The Nova Microfiber Towel"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "YOUR CAR DESERVES BETTER THAN A GAS STATION TOWEL."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "1200 GSM. Twisted loop weave. Paint-safe. $29.99 with free shipping. No brainer."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "SHOP THE NOVA →"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "price_note",
+      "label": "Price note below button",
+      "default": "$29.99 · Free Shipping · Ships in 1–3 days"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Final CTA"
+    }
+  ]
+}
+{% endschema %}
