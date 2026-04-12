@@ -1,0 +1,1452 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@300;400&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Blueprint Variables ─────────────────────────────────────── */
+:root {
+  --bp-navy:    #000000;
+  --bp-blue:    #111111;
+  --bp-line:    rgba(255, 255, 255, 0.07);
+  --bp-lineLg:  rgba(255, 255, 255, 0.12);
+  --bp-text:    rgba(255, 255, 255, 0.7);
+  --bp-dim:     rgba(255, 255, 255, 0.5);
+  /* Muted, desaturated sticky colors — not rainbow */
+  --sticky-y:   #ffffff;
+  --sticky-p:   #f0f0f0;
+  --sticky-b:   #e8e8e8;
+  --sticky-g:   #f5f5f5;
+  --sticky-o:   #ebebeb;
+}
+
+/* ── Blueprint Background ────────────────────────────────────── */
+.bp-bg {
+  background-color: #000;
+  background-image:
+    linear-gradient(var(--bp-lineLg) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-lineLg) 1px, transparent 1px),
+    linear-gradient(var(--bp-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-line) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+/* ── Dark Board ──────────────────────────────────────────────── */
+.cork-bg {
+  background-color: #0a0a0a;
+}
+
+/* ── OS Container ────────────────────────────────────────────── */
+.os-wrap { overflow: hidden; }
+
+/* ── Fade-in ─────────────────────────────────────────────────── */
+.os-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.os-fade.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ─────────────────────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────────────────────── */
+.os-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 60px;
+  overflow: hidden;
+}
+
+.os-hero-bg-img {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.06;
+  mix-blend-mode: luminosity;
+}
+
+/* Blueprint corner brackets */
+.os-hero::before,
+.os-hero::after {
+  content: '';
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-color: var(--bp-lineLg);
+  border-style: solid;
+  pointer-events: none;
+}
+.os-hero::before { top: 40px; left: 40px; border-width: 2px 0 0 2px; }
+.os-hero::after  { bottom: 40px; right: 40px; border-width: 0 2px 2px 0; }
+
+/* Top bar */
+.os-hero-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--bp-line);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.os-hero-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.os-hero-tag::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+}
+
+.os-hero-topbar-right {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+}
+
+/* Title — full width, massive */
+.os-hero-title-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.os-hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(6rem, 15vw, 15rem);
+  text-transform: uppercase;
+  line-height: 0.85;
+  color: rgba(255,255,255,0.95);
+  letter-spacing: -0.02em;
+}
+
+.os-hero-title-dim {
+  color: rgba(255,255,255,0.2);
+}
+
+/* Info row below title */
+.os-hero-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  padding-top: 36px;
+  border-top: 1px solid var(--bp-lineLg);
+}
+
+.os-hero-desc {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  color: rgba(220,232,248,0.95);
+  line-height: 1.85;
+}
+
+.os-hero-quote {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.35;
+}
+.os-hero-quote em {
+  font-style: normal;
+  color: #fff;
+}
+
+.os-hero-annotation {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  border-left: 2px solid rgba(255,255,255,0.12);
+  padding-left: 14px;
+  line-height: 2;
+  align-self: start;
+}
+
+/* Bottom meta bar */
+.os-hero-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--bp-line);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.os-hero-meta-item {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  padding: 24px 0;
+  border-right: 1px solid var(--bp-line);
+}
+.os-hero-meta-item:last-child { border-right: none; }
+
+.os-hero-meta-item strong {
+  display: block;
+  color: rgba(255,255,255,0.9);
+  font-size: 11px;
+  margin-bottom: 6px;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 900px) {
+  .os-hero { padding: 0 28px; }
+  .os-hero-title { font-size: clamp(4.5rem, 18vw, 8rem); }
+  .os-hero-info { grid-template-columns: 1fr; gap: 28px; }
+  .os-hero-meta { grid-template-columns: repeat(2, 1fr); }
+  .os-hero-meta-item:nth-child(2) { border-right: none; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   POST-IT NOTES
+───────────────────────────────────────────────────────────── */
+.sticky {
+  position: relative;
+  padding: 24px 22px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(0,0,0,0.8);
+  box-shadow: 3px 5px 18px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Tape strip at top */
+.sticky::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 20px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 2px;
+}
+
+.sticky--y  { background: var(--sticky-y); }
+.sticky--p  { background: var(--sticky-p); }
+.sticky--b  { background: var(--sticky-b); }
+.sticky--g  { background: var(--sticky-g); }
+.sticky--o  { background: var(--sticky-o); }
+
+.sticky-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+  color: rgba(0,0,0,0.4);
+}
+
+.sticky-quote {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: rgba(0,0,0,0.8);
+  line-height: 1.65;
+  border-left: 2px solid rgba(0,0,0,0.15);
+  padding-left: 12px;
+  margin-top: 10px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PROBLEM SECTION
+───────────────────────────────────────────────────────────── */
+.os-problem {
+  padding: 100px 60px;
+  position: relative;
+}
+
+.os-section-annotation {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.os-section-annotation::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--bp-lineLg);
+}
+
+.os-problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 64px;
+}
+
+.os-problem-intro {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--bp-lineLg);
+}
+
+.os-big-question {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 5rem);
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: -0.01em;
+}
+
+.os-big-question em {
+  font-style: normal;
+  color: rgba(255,255,255,0.9);
+}
+
+.os-problem-body {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--bp-text);
+}
+
+.sticky-r2  { transform: rotate(-2deg); }
+.sticky-r3  { transform: rotate(3deg);  }
+.sticky-r1n { transform: rotate(-1deg); }
+.sticky-r4  { transform: rotate(4deg);  }
+.sticky-r1  { transform: rotate(1deg);  }
+
+/* ─────────────────────────────────────────────────────────────
+   HOW WE BUILT IT — DIAGRAM SECTION
+───────────────────────────────────────────────────────────── */
+.os-diagram {
+  padding: 80px 60px 100px;
+  position: relative;
+}
+
+.os-diagram-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  line-height: 0.95;
+  margin-bottom: 64px;
+}
+
+.os-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+/* Connecting line */
+.os-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--bp-lineLg) 10%, var(--bp-lineLg) 90%, transparent);
+  z-index: 0;
+}
+
+.os-step {
+  position: relative;
+  padding: 0 24px 0 0;
+  z-index: 1;
+}
+
+.os-step-num {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--bp-lineLg);
+  background: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--bp-text);
+  margin-bottom: 24px;
+  position: relative;
+}
+.os-step-num::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border: 1px solid var(--bp-line);
+  border-radius: 50%;
+}
+
+.os-step-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 12px;
+}
+
+.os-step-body {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--bp-text);
+}
+
+/* Big quote stamp */
+.os-stamp-wrap {
+  margin-top: 80px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.os-stamp-quote {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  line-height: 1;
+  flex: 1;
+}
+
+.os-stamp {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-12deg);
+  gap: 4px;
+  padding: 12px;
+}
+.os-stamp-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+}
+.os-stamp-text--big {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.95);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   THE STANDARD
+───────────────────────────────────────────────────────────── */
+.os-standard {
+  padding: 100px 60px;
+}
+@media (max-width: 900px) { .os-standard { padding: 64px 28px; } }
+
+.os-standard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+@media (max-width: 900px) { .os-standard-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+.os-standard-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  line-height: 0.95;
+  margin-bottom: 28px;
+}
+
+.os-standard-body {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--bp-text);
+}
+
+.os-checklist-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--bp-lineLg);
+}
+
+.os-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.os-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--bp-line);
+}
+
+.os-check-mark {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.os-check--pass .os-check-mark { color: rgba(255,255,255,0.8); }
+
+.os-check-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 4px;
+}
+
+.os-check-desc {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.55;
+}
+
+.os-standard-stamp-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOUNDERS — CORK BOARD
+───────────────────────────────────────────────────────────── */
+.os-founders {
+  padding: 80px 60px 100px;
+  position: relative;
+}
+
+.os-founders-header {
+  margin-bottom: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.os-founders-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+.os-founders-annotation {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: rgba(220,232,248,0.6);
+  max-width: 240px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.os-founders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+/* Polaroid card */
+.os-polaroid {
+  position: relative;
+  background: #fff;
+  padding: 12px 12px 56px;
+  box-shadow: 4px 6px 24px rgba(0,0,0,0.45), 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* Push pin */
+.os-polaroid::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #e53e3e, #991b1b);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
+.os-polaroid-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  background: #e8e8e8;
+}
+.os-polaroid-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(135deg, #d1d5db, #9ca3af);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.os-polaroid-photo-placeholder svg {
+  width: 48px;
+  height: 48px;
+  stroke: rgba(255,255,255,0.4);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.os-polaroid-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px 14px;
+  text-align: center;
+}
+
+.os-polaroid-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #000;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.os-polaroid-role {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+}
+
+.os-polaroid--left  { transform: rotate(-3deg); }
+.os-polaroid--right { transform: rotate(2.5deg); }
+
+/* Sticky note next to founders */
+.os-founder-note {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+}
+.os-founder-note .sticky {
+  max-width: 420px;
+  transform: rotate(-1deg);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LAUNCH EVENT
+───────────────────────────────────────────────────────────── */
+.os-launch {
+  padding: 100px 60px;
+  position: relative;
+}
+
+.os-launch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.os-launch-text {}
+
+.os-launch-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 20px;
+}
+
+.os-launch-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  line-height: 0.95;
+  margin-bottom: 28px;
+}
+
+.os-launch-body {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--bp-text);
+  margin-bottom: 36px;
+}
+
+.os-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--bp-lineLg);
+  border: 1px solid var(--bp-lineLg);
+}
+
+.os-stat {
+  padding: 24px 20px;
+  background: #000;
+  text-align: center;
+}
+
+.os-stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.os-stat-lbl {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+.os-launch-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: 32px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MISSION / VISION — BIG STICKY
+───────────────────────────────────────────────────────────── */
+.os-mission {
+  padding: 100px 60px;
+  position: relative;
+}
+
+.os-mission-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.os-mission-left {}
+
+.os-mission-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  line-height: 0.92;
+  margin-bottom: 28px;
+}
+
+.os-mission-body {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--bp-text);
+}
+
+.os-mission-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   VISION CTA — CLEAN DARK
+───────────────────────────────────────────────────────────── */
+.os-cta {
+  padding: 120px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.os-cta::before {
+  content: 'POLARIS';
+  position: absolute;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 22vw;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.03);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -0.02em;
+}
+
+.os-cta-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 24px;
+}
+
+.os-cta-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 6rem);
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 0.92;
+  margin-bottom: 20px;
+}
+
+.os-cta-sub {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 48px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.os-cta-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.os-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 36px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 200ms, color 200ms;
+}
+.os-btn--white  { background: #fff; color: #000; }
+.os-btn--white:hover { background: #e8e8e8; }
+.os-btn--outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+.os-btn--outline:hover { background: rgba(255,255,255,0.08); }
+
+/* ─────────────────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .os-hero           { padding: 100px 28px 60px; }
+  .os-problem,
+  .os-diagram,
+  .os-founders,
+  .os-launch,
+  .os-mission        { padding: 64px 28px; }
+  .os-cta            { padding: 80px 28px; }
+
+  .os-problem-intro  { grid-template-columns: 1fr; gap: 32px; grid-column: span 3; }
+  .os-problem-grid   { grid-template-columns: 1fr; gap: 32px; }
+  .os-steps          { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .os-steps::before  { display: none; }
+  .os-stamp-wrap     { flex-direction: column; gap: 24px; }
+  .os-founders-grid  { grid-template-columns: 1fr; max-width: 360px; }
+  .os-polaroid--left,
+  .os-polaroid--right { transform: none; }
+  .os-founder-note   { grid-column: span 1; }
+  .os-launch-grid    { grid-template-columns: 1fr; gap: 48px; }
+  .os-launch-notes   { padding-top: 0; }
+  .os-mission-inner  { grid-template-columns: 1fr; gap: 40px; }
+  .os-founders-heading { font-size: 3rem; }
+  .os-stat-row       { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .os-steps          { grid-template-columns: 1fr; }
+  .os-hero-meta      { gap: 20px; }
+  .os-stat-row       { grid-template-columns: 1fr; }
+
+  /* Mobile readability bumps */
+  .os-step-body      { font-size: 1rem; line-height: 1.8; }
+  .os-section-annotation { font-size: 11px; }
+  .os-hero-desc      { font-size: 1rem; }
+  .os-hero-quote     { font-size: 1.1rem; }
+  .os-problem-body,
+  .os-launch-body,
+  .os-standard-body,
+  .os-mission-body   { font-size: 1rem; line-height: 1.85; }
+  .sticky            { font-size: 0.95rem; }
+  .os-check-desc     { font-size: 0.9rem; }
+  .os-stat-num       { font-size: 2rem; }
+  .os-hero-annotation { font-size: 11px; line-height: 1.8; }
+}
+</style>
+
+<div class="os-wrap">
+
+  {%- comment -%} ── HERO ── {%- endcomment -%}
+  <section class="os-hero bp-bg">
+    {% if section.settings.hero_image != blank %}
+      <img src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="Our Story" class="os-hero-bg-img" loading="eager">
+    {% endif %}
+
+    {%- comment -%} Top bar {%- endcomment -%}
+    <div class="os-hero-topbar">
+      <div class="os-hero-tag">Project / Polaris Car Care // Chicago, IL</div>
+      <div class="os-hero-topbar-right">Est. 2025 — Doc. 001</div>
+    </div>
+
+    {%- comment -%} Title + info {%- endcomment -%}
+    <div class="os-hero-title-wrap">
+      <h1 class="os-hero-title">
+        Built <span class="os-hero-title-dim">From</span><br>Scratch.
+      </h1>
+
+      <div class="os-hero-info">
+        <p class="os-hero-desc">{{ section.settings.hero_subhead | default: 'Two guys from Chicago who got tired of paying $40 for a towel, so they built something better. This is how Polaris Car Care started.' }}</p>
+
+        <p class="os-hero-quote">
+          "Our goal isn't to be the <em>cheapest</em> brand.
+          It's to be the <em>most honest</em> one."
+        </p>
+
+        <p class="os-hero-annotation">
+          — Antanas Kubilius &amp; Jacob Klepacki<br>
+          Co-Founders, Polaris Car Care<br>
+          Chicago, Illinois / 2025
+        </p>
+      </div>
+    </div>
+
+    {%- comment -%} Bottom meta bar {%- endcomment -%}
+    <div class="os-hero-meta">
+      <div class="os-hero-meta-item">
+        <strong>Est.</strong>
+        2025
+      </div>
+      <div class="os-hero-meta-item">
+        <strong>Location</strong>
+        Chicago, Illinois
+      </div>
+      <div class="os-hero-meta-item">
+        <strong>Founders</strong>
+        Antanas K. &amp; Jacob K.
+      </div>
+      <div class="os-hero-meta-item">
+        <strong>Flagship</strong>
+        The Nova — 1200 GSM
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── THE PROBLEM ── {%- endcomment -%}
+  <section class="os-problem bp-bg os-fade">
+    <div class="os-section-annotation">01 — The Problem</div>
+
+    <div class="os-problem-intro">
+      <h2 class="os-big-question">
+        Why <em>Does</em><br>
+        Premium<br>
+        Mean<br>
+        Over&shy;priced?
+      </h2>
+      <div>
+        <p class="os-problem-body">
+          We were buying products from well-known brands and couldn't stop asking the same question: why does a microfiber towel cost nearly $40 before shipping? And why are so many "affordable" options clearly cutting corners on the things that actually matter — fiber quality, absorbency, paint safety?
+        </p>
+        <br>
+        <p class="os-problem-body">
+          Founded by <strong style="color:rgba(255,255,255,0.9)">Antanas Kubilius and Jacob Klepacki</strong>, Polaris Car Care was built on a simple realization — quality automotive detailing tools shouldn't be a luxury reserved for professionals or high-budget consumers. As active members of the car community themselves, the founders saw firsthand how many enthusiasts were forced to choose between overpriced "top-tier" brands or cheaper products that simply didn't perform.
+        </p>
+      </div>
+    </div>
+
+    <div class="os-problem-grid">
+      <div class="sticky sticky--y sticky-r2">
+        <span class="sticky-title">The real problem ↓</span>
+        <p>"Why does a microfiber towel cost nearly $40 before shipping?"</p>
+        <div class="sticky-quote">That question became the foundation of Polaris.</div>
+      </div>
+
+      <div class="sticky sticky--p sticky-r3">
+        <span class="sticky-title">Budget options 🚫</span>
+        <p>The cheap stuff falls apart after 3 washes. Fibers scratch your paint. No consistency. Can't trust it.</p>
+      </div>
+
+      <div class="sticky sticky--b sticky-r1n">
+        <span class="sticky-title">The gap we saw 💡</span>
+        <p>Nobody was building for <em>us</em> — young enthusiasts who love cars but can't afford $40 per towel. So we did.</p>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── HOW WE BUILT IT ── {%- endcomment -%}
+  <section class="os-diagram bp-bg os-fade">
+    <div class="os-section-annotation">02 — How We Built It</div>
+
+    <h2 class="os-diagram-heading">
+      Built by Enthusiasts.<br>
+      <span style="color:rgba(255,255,255,0.15);">Tested in the</span><br>
+      Real World.
+    </h2>
+
+    <div class="os-steps">
+      <div class="os-step">
+        <div class="os-step-num">01</div>
+        <div class="os-step-title">The Idea</div>
+        <p class="os-step-body">Two co-founders fed up with the market. One handles brand strategy and business — the other brings professional detailing expertise. Different skills, same obsession.</p>
+      </div>
+      <div class="os-step">
+        <div class="os-step-num">02</div>
+        <div class="os-step-title">Real Testing</div>
+        <p class="os-step-body">Every product is first tested on the founders' own vehicles. Jacob has worked alongside detailers servicing exotic and luxury cars — if it doesn't pass his standard, it doesn't get sold.</p>
+      </div>
+      <div class="os-step">
+        <div class="os-step-num">03</div>
+        <div class="os-step-title">Community Review</div>
+        <p class="os-step-body">Before any product hits the store, it goes through friends and trusted voices in the local car community. Real feedback. No marketing fluff.</p>
+      </div>
+      <div class="os-step">
+        <div class="os-step-num">04</div>
+        <div class="os-step-title">Honest Pricing</div>
+        <p class="os-step-body">We reverse-engineer from the customer backward. What performance do you need? What's a fair price? We refuse to inflate margins at the expense of access to the hobby.</p>
+      </div>
+    </div>
+
+    <div class="os-stamp-wrap">
+      <div class="os-stamp-quote">
+        "Our goal isn't to be the cheapest brand.<br>
+        <span style="color:rgba(255,255,255,0.2);">It's to be the most honest one."</span>
+      </div>
+      <div class="os-stamp">
+        <span class="os-stamp-text">REAL WORLD</span>
+        <span class="os-stamp-text--big">TESTED</span>
+        <span class="os-stamp-text">✓ APPROVED</span>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── THE STANDARD ── {%- endcomment -%}
+  <section class="os-standard bp-bg os-fade">
+    <div class="os-section-annotation">03 — The Standard</div>
+
+    <div class="os-standard-grid">
+      <div class="os-standard-left">
+        <h2 class="os-standard-heading">
+          If It Doesn't Pass<br>
+          <span style="color:rgba(255,255,255,0.15);">Jacob's Test.</span><br>
+          It Doesn't Ship.
+        </h2>
+        <p class="os-standard-body">
+          Jacob Klepacki brings real professional detailing experience to Polaris. He's worked alongside detailers who service exotic and luxury vehicles, which means he knows exactly what a product needs to do under real conditions, not just in a lab.
+        </p>
+        <p class="os-standard-body" style="margin-top:20px;">
+          Every Polaris product is first tested on the founders' own vehicles. Then it goes to trusted friends inside the car community. Only after it passes both rounds does it ever get listed for sale. No shortcuts. No marketing fluff. Just real feedback from real enthusiasts.
+        </p>
+        <p class="os-standard-body" style="margin-top:20px;">
+          This blend of business strategy and technical detailing knowledge is what lets Polaris balance performance, durability, and price without sacrificing any of the three.
+        </p>
+      </div>
+
+      <div class="os-standard-right">
+        <div class="os-checklist-label">Quality Control Checklist</div>
+        <div class="os-checklist">
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Absorbency</div>
+              <div class="os-check-desc">Must pull water without streaking or smearing across paint</div>
+            </div>
+          </div>
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Paint Safety</div>
+              <div class="os-check-desc">Zero marring on coated, ceramic, and PPF surfaces</div>
+            </div>
+          </div>
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Durability</div>
+              <div class="os-check-desc">Holds up wash after wash — no fiber degradation after 30+ cycles</div>
+            </div>
+          </div>
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Consistency</div>
+              <div class="os-check-desc">Every unit performs the same as the sample. No batch variance</div>
+            </div>
+          </div>
+          <div class="os-check-item os-check--pass">
+            <span class="os-check-mark">✓</span>
+            <div>
+              <div class="os-check-name">Honest Price</div>
+              <div class="os-check-desc">Premium quality at a price that doesn't require a justification</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="os-standard-stamp-row">
+          <div class="os-stamp">
+            <span class="os-stamp-text">REAL WORLD</span>
+            <span class="os-stamp-text--big">TESTED</span>
+            <span class="os-stamp-text">✓ APPROVED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── FOUNDERS — CORK BOARD ── {%- endcomment -%}
+  <section class="os-founders bp-bg os-fade">
+    <div class="os-founders-header">
+      <h2 class="os-founders-heading">THE<br>FOUNDERS</h2>
+      <p class="os-founders-annotation">Two guys from Chicago who couldn't find products they trusted — so they built them.</p>
+    </div>
+
+    <div class="os-founders-grid">
+      {% assign founder_count = 0 %}
+      {% for block in section.blocks %}
+        {% if block.type == 'founder' %}
+          {% assign founder_count = founder_count | plus: 1 %}
+          <div class="os-polaroid {% if founder_count == 1 %}os-polaroid--left{% else %}os-polaroid--right{% endif %}" {{ block.shopify_attributes }}>
+            {% if block.settings.photo != blank %}
+              <img src="{{ block.settings.photo | image_url: width: 600 }}" alt="{{ block.settings.name }}" class="os-polaroid-photo" loading="lazy">
+            {% else %}
+              <div class="os-polaroid-photo-placeholder">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+              </div>
+            {% endif %}
+            <div class="os-polaroid-info">
+              <span class="os-polaroid-name">{{ block.settings.name }}</span>
+              <span class="os-polaroid-role">{{ block.settings.role }}</span>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <div class="os-founder-note">
+        <div class="sticky sticky--o sticky-r1">
+          <span class="sticky-title">From the founders —</span>
+          <p>"We're building Polaris for people like us. People who love cars, care about quality, and don't believe premium has to mean overpriced."</p>
+          <br>
+          <p style="font-size:0.85rem;opacity:0.6;">— Antanas &amp; Jacob, Co-Founders</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── LAUNCH EVENT ── {%- endcomment -%}
+  <section class="os-launch bp-bg os-fade">
+    <div class="os-section-annotation">04 — The Launch</div>
+
+    <div class="os-launch-grid">
+      <div class="os-launch-text">
+        <p class="os-launch-eyebrow">Community First // Chicago, 2025</p>
+        <h2 class="os-launch-heading">
+          50 Cars Showed Up<br>
+          <span style="color:rgba(255,255,255,0.15);">For a Brand Nobody<br>Had Heard Of Yet.</span>
+        </h2>
+        <p class="os-launch-body">
+          To celebrate the brand's launch, Polaris hosted a large community ride-out where attendees received free microfiber towels in exchange for creating content. The event was proof of concept — not just for the product, but for the mission itself.
+        </p>
+        <p class="os-launch-body">
+          Community-driven growth. Authenticity over advertising. Real engagement over paid reach. The plan has always been to grow from inside the car community.
+        </p>
+        <br>
+        <div class="os-stat-row">
+          <div class="os-stat">
+            <div class="os-stat-num">50+</div>
+            <div class="os-stat-lbl">Cars at Launch</div>
+          </div>
+          <div class="os-stat">
+            <div class="os-stat-num">4</div>
+            <div class="os-stat-lbl">Months to Launch</div>
+          </div>
+          <div class="os-stat">
+            <div class="os-stat-num">0</div>
+            <div class="os-stat-lbl">Paid Ads to Start</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="os-launch-notes">
+        <div class="sticky sticky--g sticky-r2">
+          <span class="sticky-title">What the event meant 🚗</span>
+          <p>50 cars at a brand nobody had heard of. That wasn't luck — it was proof the community was hungry for something honest.</p>
+        </div>
+        <div class="sticky sticky--y sticky-r3">
+          <span class="sticky-title">Growth strategy 📈</span>
+          <p>No traditional advertising. Just product, community, and authenticity. If the product is right, the people will talk.</p>
+        </div>
+        <div class="sticky sticky--p sticky-r1n">
+          <span class="sticky-title">What's next 🔭</span>
+          <p>Expanding beyond microfiber towels into additional detailing tools and chemical products. The mission stays the same. Honest gear for real enthusiasts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── MISSION ── {%- endcomment -%}
+  <section class="os-mission bp-bg os-fade">
+    <div class="os-section-annotation">05 — The Mission</div>
+
+    <div class="os-mission-inner">
+      <div class="os-mission-left">
+        <h2 class="os-mission-heading">
+          {{ section.settings.vision_headline | default: "We're Just Getting Started." }}
+        </h2>
+        <p class="os-mission-body">
+          {{ section.settings.vision_subtext | default: "Polaris Car Care isn't trying to be a hype brand. Kubilius and Klepacki see it as a long-term platform built around transparency, education, and accessibility. As the brand grows beyond microfiber towels, the mission stays the same. Make great car care accessible to the next generation of enthusiasts." }}
+        </p>
+      </div>
+      <div class="os-mission-right">
+        <div class="sticky sticky--b sticky-r2" style="max-width:340px;">
+          <span class="sticky-title">Our promise ✌️</span>
+          <div class="sticky-quote">"We refuse to compromise on quality, but we also refuse to price people out of the hobby."</div>
+        </div>
+        <div class="sticky sticky--y sticky-r1n" style="max-width:280px; align-self:flex-end;">
+          <span class="sticky-title">Long-term vision 🌟</span>
+          <p>Premium isn't about exclusivity — it's about inclusion. The best products should be for everyone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── CTA ── {%- endcomment -%}
+  <section class="os-cta bp-bg">
+    <p class="os-cta-eyebrow">Polaris Car Care — Chicago, IL</p>
+    <h2 class="os-cta-heading">
+      Built for<br>People Like Us.
+    </h2>
+    <p class="os-cta-sub">{{ section.settings.vision_subtext | default: "The Nova is the first chapter. Follow along as we build the rest." }}</p>
+    <div class="os-cta-btns">
+      <a href="{{ section.settings.vision_cta1_url | default: '/collections/all' }}" class="os-btn os-btn--white">{{ section.settings.vision_cta1_text | default: 'Shop The Nova →' }}</a>
+      {% if section.settings.vision_cta2_url != blank %}
+        <a href="{{ section.settings.vision_cta2_url }}" class="os-btn os-btn--outline" target="_blank" rel="noopener">{{ section.settings.vision_cta2_text | default: 'Follow on TikTok →' }}</a>
+      {% else %}
+        <a href="https://www.tiktok.com/@polariscarcare" class="os-btn os-btn--outline" target="_blank" rel="noopener">Follow on TikTok →</a>
+      {% endif %}
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.os-fade').forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.os-fade').forEach(function (el) { obs.observe(el); });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image (optional — shows faintly)"
+    },
+    {
+      "type": "text",
+      "id": "hero_headline",
+      "label": "Hero Headline (first word)",
+      "default": "Built"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subhead",
+      "label": "Hero description",
+      "default": "Two guys from Chicago who got tired of paying $40 for a towel — and decided to build something better. This is how Polaris Car Care started."
+    },
+    {
+      "type": "header",
+      "content": "Vision CTA"
+    },
+    {
+      "type": "text",
+      "id": "vision_headline",
+      "label": "Mission heading",
+      "default": "We're Just Getting Started."
+    },
+    {
+      "type": "textarea",
+      "id": "vision_subtext",
+      "label": "Mission body / CTA subtext",
+      "default": "Polaris Car Care isn't trying to be a hype brand. It's a long-term platform built around transparency, education, and accessibility — for the next generation of enthusiasts."
+    },
+    {
+      "type": "text",
+      "id": "vision_cta1_text",
+      "label": "CTA 1 Text",
+      "default": "Shop The Nova →"
+    },
+    {
+      "type": "url",
+      "id": "vision_cta1_url",
+      "label": "CTA 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "vision_cta2_text",
+      "label": "CTA 2 Text",
+      "default": "Follow on TikTok →"
+    },
+    {
+      "type": "url",
+      "id": "vision_cta2_url",
+      "label": "CTA 2 URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "founder",
+      "name": "Founder",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Antanas K."
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Co-Founder"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story",
+      "blocks": [
+        {
+          "type": "founder",
+          "settings": {
+            "name": "Antanas K.",
+            "role": "Co-Founder — Brand & Strategy"
+          }
+        },
+        {
+          "type": "founder",
+          "settings": {
+            "name": "Jacob K.",
+            "role": "Co-Founder — Product & Detailing"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -5,904 +5,475 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── Blueprint Variables ─────────────────────────────────────── */
-:root {
-  --bp-navy:    #000000;
-  --bp-blue:    #111111;
-  --bp-line:    rgba(255, 255, 255, 0.07);
-  --bp-lineLg:  rgba(255, 255, 255, 0.12);
-  --bp-text:    rgba(255, 255, 255, 0.7);
-  --bp-dim:     rgba(255, 255, 255, 0.5);
-  /* Muted, desaturated sticky colors — not rainbow */
-  --sticky-y:   #ffffff;
-  --sticky-p:   #f0f0f0;
-  --sticky-b:   #e8e8e8;
-  --sticky-g:   #f5f5f5;
-  --sticky-o:   #ebebeb;
+.ns-wrap { font-family: 'DM Sans', sans-serif; overflow: hidden; }
+
+.ns-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
 }
+@media (max-width: 640px) { .ns-container { padding: 0 24px; } }
 
-/* ── Blueprint Background ────────────────────────────────────── */
-.bp-bg {
-  background-color: #000;
-  background-image:
-    linear-gradient(var(--bp-lineLg) 1px, transparent 1px),
-    linear-gradient(90deg, var(--bp-lineLg) 1px, transparent 1px),
-    linear-gradient(var(--bp-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--bp-line) 1px, transparent 1px);
-  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
-  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
-}
-
-/* ── Dark Board ──────────────────────────────────────────────── */
-.cork-bg {
-  background-color: #0a0a0a;
-}
-
-/* ── OS Container ────────────────────────────────────────────── */
-.os-wrap { overflow: hidden; }
-
-/* ── Fade-in ─────────────────────────────────────────────────── */
-.os-fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.os-fade.is-visible { opacity: 1; transform: translateY(0); }
-
-/* ─────────────────────────────────────────────────────────────
-   HERO
-───────────────────────────────────────────────────────────── */
-.os-hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 0 60px;
-  overflow: hidden;
-}
-
-.os-hero-bg-img {
-  position: absolute;
-  inset: 0;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+.ns-eyebrow {
   display: block;
-  opacity: 0.06;
-  mix-blend-mode: luminosity;
-}
-
-/* Blueprint corner brackets */
-.os-hero::before,
-.os-hero::after {
-  content: '';
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  border-color: var(--bp-lineLg);
-  border-style: solid;
-  pointer-events: none;
-}
-.os-hero::before { top: 40px; left: 40px; border-width: 2px 0 0 2px; }
-.os-hero::after  { bottom: 40px; right: 40px; border-width: 0 2px 2px 0; }
-
-/* Top bar */
-.os-hero-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--bp-line);
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-}
-
-.os-hero-tag {
-  font-family: 'DM Sans', sans-serif;
   font-size: 11px;
-  letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.os-hero-tag::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: rgba(255,255,255,0.2);
-}
-
-.os-hero-topbar-right {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-}
-
-/* Title — full width, massive */
-.os-hero-title-wrap {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 48px 0 40px;
-  position: relative;
-  z-index: 1;
-}
-
-.os-hero-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(6rem, 15vw, 15rem);
-  text-transform: uppercase;
-  line-height: 0.85;
-  color: rgba(255,255,255,0.95);
-  letter-spacing: -0.02em;
-}
-
-.os-hero-title-dim {
-  color: rgba(255,255,255,0.2);
-}
-
-/* Info row below title */
-.os-hero-info {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
-  padding-top: 36px;
-  border-top: 1px solid var(--bp-lineLg);
-}
-
-.os-hero-desc {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  font-size: 1.05rem;
-  color: rgba(220,232,248,0.95);
-  line-height: 1.85;
-}
-
-.os-hero-quote {
-  font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
-  font-size: 1.25rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: rgba(255,255,255,0.85);
-  line-height: 1.35;
-}
-.os-hero-quote em {
-  font-style: normal;
-  color: #fff;
-}
-
-.os-hero-annotation {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  border-left: 2px solid rgba(255,255,255,0.12);
-  padding-left: 14px;
-  line-height: 2;
-  align-self: start;
-}
-
-/* Bottom meta bar */
-.os-hero-meta {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--bp-line);
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-}
-
-.os-hero-meta-item {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  padding: 24px 0;
-  border-right: 1px solid var(--bp-line);
-}
-.os-hero-meta-item:last-child { border-right: none; }
-
-.os-hero-meta-item strong {
-  display: block;
-  color: rgba(255,255,255,0.9);
-  font-size: 11px;
-  margin-bottom: 6px;
-  letter-spacing: 0.12em;
-}
-
-@media (max-width: 900px) {
-  .os-hero { padding: 0 28px; }
-  .os-hero-title { font-size: clamp(4.5rem, 18vw, 8rem); }
-  .os-hero-info { grid-template-columns: 1fr; gap: 28px; }
-  .os-hero-meta { grid-template-columns: repeat(2, 1fr); }
-  .os-hero-meta-item:nth-child(2) { border-right: none; }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   POST-IT NOTES
-───────────────────────────────────────────────────────────── */
-.sticky {
-  position: relative;
-  padding: 24px 22px 20px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: rgba(0,0,0,0.8);
-  box-shadow: 3px 5px 18px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.2);
-}
-
-/* Tape strip at top */
-.sticky::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 56px;
-  height: 20px;
-  background: rgba(0,0,0,0.12);
-  border-radius: 2px;
-}
-
-.sticky--y  { background: var(--sticky-y); }
-.sticky--p  { background: var(--sticky-p); }
-.sticky--b  { background: var(--sticky-b); }
-.sticky--g  { background: var(--sticky-g); }
-.sticky--o  { background: var(--sticky-o); }
-
-.sticky-title {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  display: block;
-  color: rgba(0,0,0,0.4);
-}
-
-.sticky-quote {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 400;
-  font-size: 0.95rem;
-  color: rgba(0,0,0,0.8);
-  line-height: 1.65;
-  border-left: 2px solid rgba(0,0,0,0.15);
-  padding-left: 12px;
-  margin-top: 10px;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   PROBLEM SECTION
-───────────────────────────────────────────────────────────── */
-.os-problem {
-  padding: 100px 60px;
-  position: relative;
-}
-
-.os-section-annotation {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 48px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.os-section-annotation::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--bp-lineLg);
-}
-
-.os-problem-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-  margin-bottom: 64px;
-}
-
-.os-problem-intro {
-  grid-column: span 3;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 60px;
-  align-items: center;
-  margin-bottom: 56px;
-  padding-bottom: 56px;
-  border-bottom: 1px solid var(--bp-lineLg);
-}
-
-.os-big-question {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(3rem, 6vw, 5rem);
-  text-transform: uppercase;
-  line-height: 0.95;
-  color: rgba(255,255,255,0.9);
-  letter-spacing: -0.01em;
-}
-
-.os-big-question em {
-  font-style: normal;
-  color: rgba(255,255,255,0.9);
-}
-
-.os-problem-body {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.85;
-  color: var(--bp-text);
-}
-
-.sticky-r2  { transform: rotate(-2deg); }
-.sticky-r3  { transform: rotate(3deg);  }
-.sticky-r1n { transform: rotate(-1deg); }
-.sticky-r4  { transform: rotate(4deg);  }
-.sticky-r1  { transform: rotate(1deg);  }
-
-/* ─────────────────────────────────────────────────────────────
-   HOW WE BUILT IT — DIAGRAM SECTION
-───────────────────────────────────────────────────────────── */
-.os-diagram {
-  padding: 80px 60px 100px;
-  position: relative;
-}
-
-.os-diagram-heading {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
-  line-height: 0.95;
-  margin-bottom: 64px;
-}
-
-.os-steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  position: relative;
-}
-
-/* Connecting line */
-.os-steps::before {
-  content: '';
-  position: absolute;
-  top: 28px;
-  left: 5%;
-  right: 5%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--bp-lineLg) 10%, var(--bp-lineLg) 90%, transparent);
-  z-index: 0;
-}
-
-.os-step {
-  position: relative;
-  padding: 0 24px 0 0;
-  z-index: 1;
-}
-
-.os-step-num {
-  width: 56px;
-  height: 56px;
-  border: 1px solid var(--bp-lineLg);
-  background: #000;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  color: var(--bp-text);
-  margin-bottom: 24px;
-  position: relative;
-}
-.os-step-num::after {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  border: 1px solid var(--bp-line);
-  border-radius: 50%;
-}
-
-.os-step-title {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.95);
-  margin-bottom: 12px;
-}
-
-.os-step-body {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--bp-text);
-}
-
-/* Big quote stamp */
-.os-stamp-wrap {
-  margin-top: 80px;
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: 48px;
-}
-
-.os-stamp-quote {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
-  line-height: 1;
-  flex: 1;
-}
-
-.os-stamp {
-  flex-shrink: 0;
-  width: 120px;
-  height: 120px;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(-12deg);
-  gap: 4px;
-  padding: 12px;
-}
-.os-stamp-text {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  text-align: center;
-}
-.os-stamp-text--big {
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.95);
-}
-
-/* ─────────────────────────────────────────────────────────────
-   THE STANDARD
-───────────────────────────────────────────────────────────── */
-.os-standard {
-  padding: 100px 60px;
-}
-@media (max-width: 900px) { .os-standard { padding: 64px 28px; } }
-
-.os-standard-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-@media (max-width: 900px) { .os-standard-grid { grid-template-columns: 1fr; gap: 48px; } }
-
-.os-standard-heading {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2.5rem, 4vw, 3.8rem);
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
-  line-height: 0.95;
-  margin-bottom: 28px;
-}
-
-.os-standard-body {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.85;
-  color: var(--bp-text);
-}
-
-.os-checklist-label {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
   margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--bp-lineLg);
 }
 
-.os-checklist {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+.ns-fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
+.ns-fade.is-visible { opacity: 1; transform: translateY(0); }
 
-.os-check-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--bp-line);
-}
-
-.os-check-mark {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.os-check--pass .os-check-mark { color: rgba(255,255,255,0.8); }
-
-.os-check-name {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 4px;
-}
-
-.os-check-desc {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.55;
-}
-
-.os-standard-stamp-row {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 24px;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   FOUNDERS — CORK BOARD
-───────────────────────────────────────────────────────────── */
-.os-founders {
-  padding: 80px 60px 100px;
+/* ── HERO ── */
+.ns-hero {
   position: relative;
-}
-
-.os-founders-header {
-  margin-bottom: 60px;
+  background: #000;
+  min-height: 80vh;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
+  overflow: hidden;
 }
-
-.os-founders-heading {
+.ns-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  display: block;
+}
+.ns-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+}
+.ns-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 48px;
+  max-width: 900px;
+}
+@media (max-width: 640px) {
+  .ns-hero { min-height: 70vh; }
+  .ns-hero-content { padding: 60px 24px; }
+}
+.ns-hero-eyebrow { color: rgba(255,255,255,0.4); }
+.ns-hero-headline {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(3.5rem, 8vw, 8rem);
   text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  line-height: 0.95;
+  line-height: 0.9;
   letter-spacing: -0.01em;
+  color: #fff;
+  margin-bottom: 28px;
 }
-
-.os-founders-annotation {
+.ns-hero-sub {
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
-  font-size: 0.95rem;
-  color: rgba(220,232,248,0.6);
-  max-width: 240px;
-  line-height: 1.6;
-  text-align: right;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  max-width: 560px;
 }
 
-.os-founders-grid {
+/* ── SPLITS ── */
+.ns-split {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 48px;
-  max-width: 840px;
-  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
 }
+.ns-split--flip .ns-split-img  { order: 2; }
+.ns-split--flip .ns-split-text { order: 1; }
 
-/* Polaroid card */
-.os-polaroid {
+.ns-split-img {
   position: relative;
-  background: #fff;
-  padding: 12px 12px 56px;
-  box-shadow: 4px 6px 24px rgba(0,0,0,0.45), 0 1px 4px rgba(0,0,0,0.2);
+  overflow: hidden;
+  background: #111;
 }
-
-/* Push pin */
-.os-polaroid::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #e53e3e, #991b1b);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-  z-index: 2;
-}
-
-.os-polaroid-photo {
-  width: 100%;
-  aspect-ratio: 3 / 4;
+.ns-split-img img {
+  width: 100%; height: 100%;
   object-fit: cover;
   display: block;
-  background: #e8e8e8;
+  transition: transform 600ms ease;
 }
-.os-polaroid-photo-placeholder {
+.ns-split:hover .ns-split-img img { transform: scale(1.03); }
+.ns-split-img-placeholder {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  background: linear-gradient(135deg, #d1d5db, #9ca3af);
+  min-height: 400px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.os-polaroid-photo-placeholder svg {
-  width: 48px;
-  height: 48px;
-  stroke: rgba(255,255,255,0.4);
-  fill: none;
-  stroke-width: 1.5;
+.ns-split-img-placeholder svg {
+  width: 40px; height: 40px;
+  stroke: rgba(255,255,255,0.12);
+  fill: none; stroke-width: 1;
 }
 
-.os-polaroid-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 12px 16px 14px;
-  text-align: center;
-}
-
-.os-polaroid-name {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 1.3rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #000;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.os-polaroid-role {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.4);
-}
-
-.os-polaroid--left  { transform: rotate(-3deg); }
-.os-polaroid--right { transform: rotate(2.5deg); }
-
-/* Sticky note next to founders */
-.os-founder-note {
-  grid-column: span 2;
+.ns-split-text {
+  padding: 72px 64px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
-.os-founder-note .sticky {
-  max-width: 420px;
-  transform: rotate(-1deg);
-}
 
-/* ─────────────────────────────────────────────────────────────
-   LAUNCH EVENT
-───────────────────────────────────────────────────────────── */
-.os-launch {
-  padding: 100px 60px;
-  position: relative;
-}
+.ns-split--dark  { background: #000; }
+.ns-split--dark  .ns-eyebrow         { color: rgba(255,255,255,0.35); }
+.ns-split--dark  .ns-split-heading   { color: #fff; }
+.ns-split--dark  .ns-split-body      { color: rgba(255,255,255,0.58); }
+.ns-split--dark  .ns-split-rule      { background: rgba(255,255,255,0.15); }
 
-.os-launch-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
+.ns-split--light { background: #fff; }
+.ns-split--light .ns-eyebrow         { color: rgba(0,0,0,0.35); }
+.ns-split--light .ns-split-heading   { color: #000; }
+.ns-split--light .ns-split-body      { color: rgba(0,0,0,0.58); }
+.ns-split--light .ns-split-rule      { background: rgba(0,0,0,0.12); }
+.ns-split--light .ns-split-img-placeholder { background: #f0f0f0; }
+.ns-split--light .ns-split-img-placeholder svg { stroke: rgba(0,0,0,0.12); }
 
-.os-launch-text {}
+.ns-split--off   { background: #f5f5f5; }
+.ns-split--off   .ns-eyebrow         { color: rgba(0,0,0,0.35); }
+.ns-split--off   .ns-split-heading   { color: #000; }
+.ns-split--off   .ns-split-body      { color: rgba(0,0,0,0.58); }
+.ns-split--off   .ns-split-rule      { background: rgba(0,0,0,0.12); }
+.ns-split--off   .ns-split-img-placeholder { background: #e8e8e8; }
+.ns-split--off   .ns-split-img-placeholder svg { stroke: rgba(0,0,0,0.12); }
 
-.os-launch-eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 20px;
-}
-
-.os-launch-heading {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2.5rem, 4vw, 3.8rem);
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
-  line-height: 0.95;
+.ns-split-rule {
+  width: 40px; height: 2px;
   margin-bottom: 28px;
 }
-
-.os-launch-body {
+.ns-split-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  margin-bottom: 24px;
+}
+.ns-split-body {
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.85;
-  color: var(--bp-text);
-  margin-bottom: 36px;
+}
+.ns-split-body + .ns-split-body { margin-top: 16px; }
+
+@media (max-width: 900px) {
+  .ns-split { grid-template-columns: 1fr; min-height: unset; }
+  .ns-split--flip .ns-split-img  { order: unset; }
+  .ns-split--flip .ns-split-text { order: unset; }
+  .ns-split-img { min-height: 320px; }
+  .ns-split-text { padding: 52px 32px; }
+}
+@media (max-width: 480px) {
+  .ns-split-text { padding: 40px 24px; }
+  .ns-split-img  { min-height: 260px; }
 }
 
-.os-stat-row {
+/* ── STATS ── */
+.ns-stats {
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.ns-stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--bp-lineLg);
-  border: 1px solid var(--bp-lineLg);
+  background: rgba(255,255,255,0.07);
 }
-
-.os-stat {
-  padding: 24px 20px;
+@media (max-width: 640px) { .ns-stats-grid { grid-template-columns: 1fr; } }
+.ns-stat {
   background: #000;
+  padding: 52px 40px;
   text-align: center;
 }
-
-.os-stat-num {
+.ns-stat-num {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
-  font-size: 2.2rem;
-  color: rgba(255,255,255,0.9);
+  font-size: clamp(3rem, 5vw, 5rem);
+  color: #fff;
   line-height: 1;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
 }
-
-.os-stat-lbl {
-  font-family: 'DM Sans', sans-serif;
+.ns-stat-label {
   font-size: 11px;
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.3);
 }
 
-.os-launch-notes {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  padding-top: 32px;
+/* ── ACCORDION ── */
+.ns-accordion-section {
+  background: #fff;
+  padding: 100px 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
 }
-
-/* ─────────────────────────────────────────────────────────────
-   MISSION / VISION — BIG STICKY
-───────────────────────────────────────────────────────────── */
-.os-mission {
-  padding: 100px 60px;
-  position: relative;
-}
-
-.os-mission-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
-
-.os-mission-left {}
-
-.os-mission-heading {
+@media (max-width: 640px) { .ns-accordion-section { padding: 64px 0; } }
+.ns-accordion-header { margin-bottom: 64px; }
+.ns-accordion-eyebrow { color: rgba(0,0,0,0.35); }
+.ns-accordion-title {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
   line-height: 0.92;
-  margin-bottom: 28px;
+  color: #000;
 }
-
-.os-mission-body {
+.ns-accordion { border-top: 1px solid rgba(0,0,0,0.1); }
+.ns-accordion-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.ns-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 24px;
+}
+.ns-accordion-trigger-title {
+  font-weight: 700;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #000;
+  transition: opacity 200ms;
+}
+.ns-accordion-trigger:hover .ns-accordion-trigger-title { opacity: 0.45; }
+.ns-accordion-icon {
+  width: 28px; height: 28px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background 200ms, border-color 200ms;
+}
+.ns-accordion-icon::before,
+.ns-accordion-icon::after {
+  content: '';
+  position: absolute;
+  background: #000;
+  transition: transform 250ms, opacity 250ms;
+}
+.ns-accordion-icon::before { width: 10px; height: 1.5px; }
+.ns-accordion-icon::after  { width: 1.5px; height: 10px; }
+.ns-accordion-item.is-open .ns-accordion-icon { background: #000; border-color: #000; }
+.ns-accordion-item.is-open .ns-accordion-icon::before { background: #fff; }
+.ns-accordion-item.is-open .ns-accordion-icon::after  { background: #fff; transform: rotate(90deg); opacity: 0; }
+.ns-accordion-body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 350ms ease;
+}
+.ns-accordion-body-inner { padding: 0 0 32px; max-width: 680px; }
+.ns-accordion-body-text {
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.85;
-  color: var(--bp-text);
+  color: rgba(0,0,0,0.58);
 }
 
-.os-mission-right {
+/* ── VALUES ── */
+.ns-values { background: #000; padding: 100px 0; }
+@media (max-width: 640px) { .ns-values { padding: 64px 0; } }
+.ns-values-header { margin-bottom: 60px; }
+.ns-values-eyebrow { color: rgba(255,255,255,0.3); }
+.ns-values-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+  line-height: 0.92;
+  color: #fff;
+}
+.ns-values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.07);
+}
+@media (max-width: 900px) { .ns-values-grid { grid-template-columns: 1fr; } }
+.ns-value-card {
+  background: #000;
+  padding: 48px 40px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  align-items: flex-start;
+  gap: 16px;
+}
+@media (max-width: 480px) { .ns-value-card { padding: 36px 24px; } }
+.ns-value-num {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+.ns-value-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 0.95;
+}
+.ns-value-body {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.5);
 }
 
-/* ─────────────────────────────────────────────────────────────
-   VISION CTA — CLEAN DARK
-───────────────────────────────────────────────────────────── */
-.os-cta {
-  padding: 120px 60px;
+/* ── FOUNDERS ── */
+.ns-founders { background: #f5f5f5; padding: 100px 0; }
+@media (max-width: 640px) { .ns-founders { padding: 64px 0; } }
+.ns-founders-header { margin-bottom: 60px; }
+.ns-founders-eyebrow { color: rgba(0,0,0,0.35); }
+.ns-founders-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+  line-height: 0.92;
+  color: #000;
+}
+.ns-founders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 760px;
+}
+@media (max-width: 640px) {
+  .ns-founders-grid { grid-template-columns: 1fr; max-width: 360px; }
+}
+.ns-founder-card { background: #fff; }
+.ns-founder-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+.ns-founder-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ns-founder-photo-placeholder svg {
+  width: 40px; height: 40px;
+  stroke: rgba(0,0,0,0.2);
+  fill: none; stroke-width: 1.5;
+}
+.ns-founder-info {
+  padding: 20px 24px 24px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+.ns-founder-name {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #000;
+  margin-bottom: 4px;
+}
+.ns-founder-role {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+}
+.ns-founders-quote {
+  margin-top: 56px;
+  max-width: 680px;
+  padding-left: 28px;
+  border-left: 3px solid #000;
+}
+.ns-founders-quote-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 14px;
+}
+.ns-founders-quote-attr {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+}
+
+/* ── FINAL CTA ── */
+.ns-cta {
+  background: #000;
+  padding: 120px 48px;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-
-.os-cta::before {
+@media (max-width: 640px) { .ns-cta { padding: 80px 24px; } }
+.ns-cta::before {
   content: 'POLARIS';
   position: absolute;
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
   font-size: 22vw;
-  text-transform: uppercase;
   color: rgba(255,255,255,0.03);
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   white-space: nowrap;
   pointer-events: none;
   letter-spacing: -0.02em;
 }
-
-.os-cta-eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 24px;
-}
-
-.os-cta-heading {
+.ns-cta-eyebrow { color: rgba(255,255,255,0.3); margin-bottom: 20px; }
+.ns-cta-heading {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
   font-size: clamp(3rem, 6vw, 6rem);
   text-transform: uppercase;
   color: #fff;
   line-height: 0.92;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  position: relative;
 }
-
-.os-cta-sub {
+.ns-cta-sub {
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
   font-size: 1.05rem;
-  color: rgba(255,255,255,0.85);
-  margin-bottom: 48px;
-  max-width: 420px;
-  margin-left: auto;
-  margin-right: auto;
+  color: rgba(255,255,255,0.5);
   line-height: 1.7;
+  max-width: 440px;
+  margin: 0 auto 48px;
+  position: relative;
 }
-
-.os-cta-btns {
+.ns-cta-btns {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;
 }
-
-.os-btn {
-  font-family: 'DM Sans', sans-serif;
+.ns-btn {
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.15em;
@@ -910,409 +481,236 @@
   text-decoration: none;
   padding: 16px 36px;
   display: inline-block;
-  cursor: pointer;
-  transition: background 200ms, color 200ms;
+  transition: background 200ms, color 200ms, border-color 200ms;
 }
-.os-btn--white  { background: #fff; color: #000; }
-.os-btn--white:hover { background: #e8e8e8; }
-.os-btn--outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
-.os-btn--outline:hover { background: rgba(255,255,255,0.08); }
-
-/* ─────────────────────────────────────────────────────────────
-   RESPONSIVE
-───────────────────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .os-hero           { padding: 100px 28px 60px; }
-  .os-problem,
-  .os-diagram,
-  .os-founders,
-  .os-launch,
-  .os-mission        { padding: 64px 28px; }
-  .os-cta            { padding: 80px 28px; }
-
-  .os-problem-intro  { grid-template-columns: 1fr; gap: 32px; grid-column: span 3; }
-  .os-problem-grid   { grid-template-columns: 1fr; gap: 32px; }
-  .os-steps          { grid-template-columns: 1fr 1fr; gap: 40px; }
-  .os-steps::before  { display: none; }
-  .os-stamp-wrap     { flex-direction: column; gap: 24px; }
-  .os-founders-grid  { grid-template-columns: 1fr; max-width: 360px; }
-  .os-polaroid--left,
-  .os-polaroid--right { transform: none; }
-  .os-founder-note   { grid-column: span 1; }
-  .os-launch-grid    { grid-template-columns: 1fr; gap: 48px; }
-  .os-launch-notes   { padding-top: 0; }
-  .os-mission-inner  { grid-template-columns: 1fr; gap: 40px; }
-  .os-founders-heading { font-size: 3rem; }
-  .os-stat-row       { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 540px) {
-  .os-steps          { grid-template-columns: 1fr; }
-  .os-hero-meta      { gap: 20px; }
-  .os-stat-row       { grid-template-columns: 1fr; }
-
-  /* Mobile readability bumps */
-  .os-step-body      { font-size: 1rem; line-height: 1.8; }
-  .os-section-annotation { font-size: 11px; }
-  .os-hero-desc      { font-size: 1rem; }
-  .os-hero-quote     { font-size: 1.1rem; }
-  .os-problem-body,
-  .os-launch-body,
-  .os-standard-body,
-  .os-mission-body   { font-size: 1rem; line-height: 1.85; }
-  .sticky            { font-size: 0.95rem; }
-  .os-check-desc     { font-size: 0.9rem; }
-  .os-stat-num       { font-size: 2rem; }
-  .os-hero-annotation { font-size: 11px; line-height: 1.8; }
-}
+.ns-btn--white   { background: #fff; color: #000; }
+.ns-btn--white:hover { background: #e8e8e8; }
+.ns-btn--outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+.ns-btn--outline:hover { border-color: #fff; }
 </style>
 
-<div class="os-wrap">
+<div class="ns-wrap">
 
-  {%- comment -%} ── HERO ── {%- endcomment -%}
-  <section class="os-hero bp-bg">
+  <!-- HERO -->
+  <section class="ns-hero">
     {% if section.settings.hero_image != blank %}
-      <img src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="Our Story" class="os-hero-bg-img" loading="eager">
+      <img src="{{ section.settings.hero_image | image_url: width: 1800 }}" alt="Our Story" class="ns-hero-bg" loading="eager">
     {% endif %}
-
-    {%- comment -%} Top bar {%- endcomment -%}
-    <div class="os-hero-topbar">
-      <div class="os-hero-tag">Project / Polaris Car Care // Chicago, IL</div>
-      <div class="os-hero-topbar-right">Est. 2025 — Doc. 001</div>
-    </div>
-
-    {%- comment -%} Title + info {%- endcomment -%}
-    <div class="os-hero-title-wrap">
-      <h1 class="os-hero-title">
-        Built <span class="os-hero-title-dim">From</span><br>Scratch.
-      </h1>
-
-      <div class="os-hero-info">
-        <p class="os-hero-desc">{{ section.settings.hero_subhead | default: 'Two guys from Chicago who got tired of paying $40 for a towel, so they built something better. This is how Polaris Car Care started.' }}</p>
-
-        <p class="os-hero-quote">
-          "Our goal isn't to be the <em>cheapest</em> brand.
-          It's to be the <em>most honest</em> one."
-        </p>
-
-        <p class="os-hero-annotation">
-          — Antanas Kubilius &amp; Jacob Klepacki<br>
-          Co-Founders, Polaris Car Care<br>
-          Chicago, Illinois / 2025
-        </p>
-      </div>
-    </div>
-
-    {%- comment -%} Bottom meta bar {%- endcomment -%}
-    <div class="os-hero-meta">
-      <div class="os-hero-meta-item">
-        <strong>Est.</strong>
-        2025
-      </div>
-      <div class="os-hero-meta-item">
-        <strong>Location</strong>
-        Chicago, Illinois
-      </div>
-      <div class="os-hero-meta-item">
-        <strong>Founders</strong>
-        Antanas K. &amp; Jacob K.
-      </div>
-      <div class="os-hero-meta-item">
-        <strong>Flagship</strong>
-        The Nova — 1200 GSM
-      </div>
+    <div class="ns-hero-overlay"></div>
+    <div class="ns-hero-content">
+      <span class="ns-eyebrow ns-hero-eyebrow">Our Story / Polaris Car Care — Chicago, IL</span>
+      <h1 class="ns-hero-headline">{{ section.settings.hero_headline | default: 'Why Polaris Exists.' }}</h1>
+      <p class="ns-hero-sub">{{ section.settings.hero_subhead | default: 'Two guys from Chicago who got tired of paying $40 for a towel — and decided to build something better.' }}</p>
     </div>
   </section>
 
-  {%- comment -%} ── THE PROBLEM ── {%- endcomment -%}
-  <section class="os-problem bp-bg os-fade">
-    <div class="os-section-annotation">01 — The Problem</div>
-
-    <div class="os-problem-intro">
-      <h2 class="os-big-question">
-        Why <em>Does</em><br>
-        Premium<br>
-        Mean<br>
-        Over&shy;priced?
-      </h2>
-      <div>
-        <p class="os-problem-body">
-          We were buying products from well-known brands and couldn't stop asking the same question: why does a microfiber towel cost nearly $40 before shipping? And why are so many "affordable" options clearly cutting corners on the things that actually matter — fiber quality, absorbency, paint safety?
-        </p>
-        <br>
-        <p class="os-problem-body">
-          Founded by <strong style="color:rgba(255,255,255,0.9)">Antanas Kubilius and Jacob Klepacki</strong>, Polaris Car Care was built on a simple realization — quality automotive detailing tools shouldn't be a luxury reserved for professionals or high-budget consumers. As active members of the car community themselves, the founders saw firsthand how many enthusiasts were forced to choose between overpriced "top-tier" brands or cheaper products that simply didn't perform.
-        </p>
-      </div>
+  <!-- THE PROBLEM -->
+  <section class="ns-split ns-split--dark ns-fade">
+    <div class="ns-split-text">
+      <span class="ns-eyebrow">01 — The Problem</span>
+      <div class="ns-split-rule"></div>
+      <h2 class="ns-split-heading">Why Does Premium Mean Overpriced?</h2>
+      <p class="ns-split-body">We were buying products from well-known brands and couldn't stop asking the same question: why does a microfiber towel cost nearly $40 before shipping?</p>
+      <p class="ns-split-body">The cheap stuff falls apart after 3 washes. The expensive stuff is marked up beyond reason. Nobody was building for people like us — young enthusiasts who love cars but can't justify $40 per towel. So we did.</p>
     </div>
-
-    <div class="os-problem-grid">
-      <div class="sticky sticky--y sticky-r2">
-        <span class="sticky-title">The real problem ↓</span>
-        <p>"Why does a microfiber towel cost nearly $40 before shipping?"</p>
-        <div class="sticky-quote">That question became the foundation of Polaris.</div>
-      </div>
-
-      <div class="sticky sticky--p sticky-r3">
-        <span class="sticky-title">Budget options 🚫</span>
-        <p>The cheap stuff falls apart after 3 washes. Fibers scratch your paint. No consistency. Can't trust it.</p>
-      </div>
-
-      <div class="sticky sticky--b sticky-r1n">
-        <span class="sticky-title">The gap we saw 💡</span>
-        <p>Nobody was building for <em>us</em> — young enthusiasts who love cars but can't afford $40 per towel. So we did.</p>
-      </div>
-    </div>
-  </section>
-
-  {%- comment -%} ── HOW WE BUILT IT ── {%- endcomment -%}
-  <section class="os-diagram bp-bg os-fade">
-    <div class="os-section-annotation">02 — How We Built It</div>
-
-    <h2 class="os-diagram-heading">
-      Built by Enthusiasts.<br>
-      <span style="color:rgba(255,255,255,0.15);">Tested in the</span><br>
-      Real World.
-    </h2>
-
-    <div class="os-steps">
-      <div class="os-step">
-        <div class="os-step-num">01</div>
-        <div class="os-step-title">The Idea</div>
-        <p class="os-step-body">Two co-founders fed up with the market. One handles brand strategy and business — the other brings professional detailing expertise. Different skills, same obsession.</p>
-      </div>
-      <div class="os-step">
-        <div class="os-step-num">02</div>
-        <div class="os-step-title">Real Testing</div>
-        <p class="os-step-body">Every product is first tested on the founders' own vehicles. Jacob has worked alongside detailers servicing exotic and luxury cars — if it doesn't pass his standard, it doesn't get sold.</p>
-      </div>
-      <div class="os-step">
-        <div class="os-step-num">03</div>
-        <div class="os-step-title">Community Review</div>
-        <p class="os-step-body">Before any product hits the store, it goes through friends and trusted voices in the local car community. Real feedback. No marketing fluff.</p>
-      </div>
-      <div class="os-step">
-        <div class="os-step-num">04</div>
-        <div class="os-step-title">Honest Pricing</div>
-        <p class="os-step-body">We reverse-engineer from the customer backward. What performance do you need? What's a fair price? We refuse to inflate margins at the expense of access to the hobby.</p>
-      </div>
-    </div>
-
-    <div class="os-stamp-wrap">
-      <div class="os-stamp-quote">
-        "Our goal isn't to be the cheapest brand.<br>
-        <span style="color:rgba(255,255,255,0.2);">It's to be the most honest one."</span>
-      </div>
-      <div class="os-stamp">
-        <span class="os-stamp-text">REAL WORLD</span>
-        <span class="os-stamp-text--big">TESTED</span>
-        <span class="os-stamp-text">✓ APPROVED</span>
-      </div>
-    </div>
-  </section>
-
-  {%- comment -%} ── THE STANDARD ── {%- endcomment -%}
-  <section class="os-standard bp-bg os-fade">
-    <div class="os-section-annotation">03 — The Standard</div>
-
-    <div class="os-standard-grid">
-      <div class="os-standard-left">
-        <h2 class="os-standard-heading">
-          If It Doesn't Pass<br>
-          <span style="color:rgba(255,255,255,0.15);">Jacob's Test.</span><br>
-          It Doesn't Ship.
-        </h2>
-        <p class="os-standard-body">
-          Jacob Klepacki brings real professional detailing experience to Polaris. He's worked alongside detailers who service exotic and luxury vehicles, which means he knows exactly what a product needs to do under real conditions, not just in a lab.
-        </p>
-        <p class="os-standard-body" style="margin-top:20px;">
-          Every Polaris product is first tested on the founders' own vehicles. Then it goes to trusted friends inside the car community. Only after it passes both rounds does it ever get listed for sale. No shortcuts. No marketing fluff. Just real feedback from real enthusiasts.
-        </p>
-        <p class="os-standard-body" style="margin-top:20px;">
-          This blend of business strategy and technical detailing knowledge is what lets Polaris balance performance, durability, and price without sacrificing any of the three.
-        </p>
-      </div>
-
-      <div class="os-standard-right">
-        <div class="os-checklist-label">Quality Control Checklist</div>
-        <div class="os-checklist">
-          <div class="os-check-item os-check--pass">
-            <span class="os-check-mark">✓</span>
-            <div>
-              <div class="os-check-name">Absorbency</div>
-              <div class="os-check-desc">Must pull water without streaking or smearing across paint</div>
-            </div>
-          </div>
-          <div class="os-check-item os-check--pass">
-            <span class="os-check-mark">✓</span>
-            <div>
-              <div class="os-check-name">Paint Safety</div>
-              <div class="os-check-desc">Zero marring on coated, ceramic, and PPF surfaces</div>
-            </div>
-          </div>
-          <div class="os-check-item os-check--pass">
-            <span class="os-check-mark">✓</span>
-            <div>
-              <div class="os-check-name">Durability</div>
-              <div class="os-check-desc">Holds up wash after wash — no fiber degradation after 30+ cycles</div>
-            </div>
-          </div>
-          <div class="os-check-item os-check--pass">
-            <span class="os-check-mark">✓</span>
-            <div>
-              <div class="os-check-name">Consistency</div>
-              <div class="os-check-desc">Every unit performs the same as the sample. No batch variance</div>
-            </div>
-          </div>
-          <div class="os-check-item os-check--pass">
-            <span class="os-check-mark">✓</span>
-            <div>
-              <div class="os-check-name">Honest Price</div>
-              <div class="os-check-desc">Premium quality at a price that doesn't require a justification</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="os-standard-stamp-row">
-          <div class="os-stamp">
-            <span class="os-stamp-text">REAL WORLD</span>
-            <span class="os-stamp-text--big">TESTED</span>
-            <span class="os-stamp-text">✓ APPROVED</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {%- comment -%} ── FOUNDERS — CORK BOARD ── {%- endcomment -%}
-  <section class="os-founders bp-bg os-fade">
-    <div class="os-founders-header">
-      <h2 class="os-founders-heading">THE<br>FOUNDERS</h2>
-      <p class="os-founders-annotation">Two guys from Chicago who couldn't find products they trusted — so they built them.</p>
-    </div>
-
-    <div class="os-founders-grid">
-      {% assign founder_count = 0 %}
-      {% for block in section.blocks %}
-        {% if block.type == 'founder' %}
-          {% assign founder_count = founder_count | plus: 1 %}
-          <div class="os-polaroid {% if founder_count == 1 %}os-polaroid--left{% else %}os-polaroid--right{% endif %}" {{ block.shopify_attributes }}>
-            {% if block.settings.photo != blank %}
-              <img src="{{ block.settings.photo | image_url: width: 600 }}" alt="{{ block.settings.name }}" class="os-polaroid-photo" loading="lazy">
-            {% else %}
-              <div class="os-polaroid-photo-placeholder">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
-              </div>
-            {% endif %}
-            <div class="os-polaroid-info">
-              <span class="os-polaroid-name">{{ block.settings.name }}</span>
-              <span class="os-polaroid-role">{{ block.settings.role }}</span>
-            </div>
-          </div>
-        {% endif %}
-      {% endfor %}
-
-      <div class="os-founder-note">
-        <div class="sticky sticky--o sticky-r1">
-          <span class="sticky-title">From the founders —</span>
-          <p>"We're building Polaris for people like us. People who love cars, care about quality, and don't believe premium has to mean overpriced."</p>
-          <br>
-          <p style="font-size:0.85rem;opacity:0.6;">— Antanas &amp; Jacob, Co-Founders</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {%- comment -%} ── LAUNCH EVENT ── {%- endcomment -%}
-  <section class="os-launch bp-bg os-fade">
-    <div class="os-section-annotation">04 — The Launch</div>
-
-    <div class="os-launch-grid">
-      <div class="os-launch-text">
-        <p class="os-launch-eyebrow">Community First // Chicago, 2025</p>
-        <h2 class="os-launch-heading">
-          50 Cars Showed Up<br>
-          <span style="color:rgba(255,255,255,0.15);">For a Brand Nobody<br>Had Heard Of Yet.</span>
-        </h2>
-        <p class="os-launch-body">
-          To celebrate the brand's launch, Polaris hosted a large community ride-out where attendees received free microfiber towels in exchange for creating content. The event was proof of concept — not just for the product, but for the mission itself.
-        </p>
-        <p class="os-launch-body">
-          Community-driven growth. Authenticity over advertising. Real engagement over paid reach. The plan has always been to grow from inside the car community.
-        </p>
-        <br>
-        <div class="os-stat-row">
-          <div class="os-stat">
-            <div class="os-stat-num">50+</div>
-            <div class="os-stat-lbl">Cars at Launch</div>
-          </div>
-          <div class="os-stat">
-            <div class="os-stat-num">4</div>
-            <div class="os-stat-lbl">Months to Launch</div>
-          </div>
-          <div class="os-stat">
-            <div class="os-stat-num">0</div>
-            <div class="os-stat-lbl">Paid Ads to Start</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="os-launch-notes">
-        <div class="sticky sticky--g sticky-r2">
-          <span class="sticky-title">What the event meant 🚗</span>
-          <p>50 cars at a brand nobody had heard of. That wasn't luck — it was proof the community was hungry for something honest.</p>
-        </div>
-        <div class="sticky sticky--y sticky-r3">
-          <span class="sticky-title">Growth strategy 📈</span>
-          <p>No traditional advertising. Just product, community, and authenticity. If the product is right, the people will talk.</p>
-        </div>
-        <div class="sticky sticky--p sticky-r1n">
-          <span class="sticky-title">What's next 🔭</span>
-          <p>Expanding beyond microfiber towels into additional detailing tools and chemical products. The mission stays the same. Honest gear for real enthusiasts.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {%- comment -%} ── MISSION ── {%- endcomment -%}
-  <section class="os-mission bp-bg os-fade">
-    <div class="os-section-annotation">05 — The Mission</div>
-
-    <div class="os-mission-inner">
-      <div class="os-mission-left">
-        <h2 class="os-mission-heading">
-          {{ section.settings.vision_headline | default: "We're Just Getting Started." }}
-        </h2>
-        <p class="os-mission-body">
-          {{ section.settings.vision_subtext | default: "Polaris Car Care isn't trying to be a hype brand. Kubilius and Klepacki see it as a long-term platform built around transparency, education, and accessibility. As the brand grows beyond microfiber towels, the mission stays the same. Make great car care accessible to the next generation of enthusiasts." }}
-        </p>
-      </div>
-      <div class="os-mission-right">
-        <div class="sticky sticky--b sticky-r2" style="max-width:340px;">
-          <span class="sticky-title">Our promise ✌️</span>
-          <div class="sticky-quote">"We refuse to compromise on quality, but we also refuse to price people out of the hobby."</div>
-        </div>
-        <div class="sticky sticky--y sticky-r1n" style="max-width:280px; align-self:flex-end;">
-          <span class="sticky-title">Long-term vision 🌟</span>
-          <p>Premium isn't about exclusivity — it's about inclusion. The best products should be for everyone.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {%- comment -%} ── CTA ── {%- endcomment -%}
-  <section class="os-cta bp-bg">
-    <p class="os-cta-eyebrow">Polaris Car Care — Chicago, IL</p>
-    <h2 class="os-cta-heading">
-      Built for<br>People Like Us.
-    </h2>
-    <p class="os-cta-sub">{{ section.settings.vision_subtext | default: "The Nova is the first chapter. Follow along as we build the rest." }}</p>
-    <div class="os-cta-btns">
-      <a href="{{ section.settings.vision_cta1_url | default: '/collections/all' }}" class="os-btn os-btn--white">{{ section.settings.vision_cta1_text | default: 'Shop The Nova →' }}</a>
-      {% if section.settings.vision_cta2_url != blank %}
-        <a href="{{ section.settings.vision_cta2_url }}" class="os-btn os-btn--outline" target="_blank" rel="noopener">{{ section.settings.vision_cta2_text | default: 'Follow on TikTok →' }}</a>
+    <div class="ns-split-img">
+      {% if section.settings.image_problem != blank %}
+        <img src="{{ section.settings.image_problem | image_url: width: 900 }}" alt="The Problem" loading="lazy">
       {% else %}
-        <a href="https://www.tiktok.com/@polariscarcare" class="os-btn os-btn--outline" target="_blank" rel="noopener">Follow on TikTok →</a>
+        <div class="ns-split-img-placeholder">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- THE FOUNDERS -->
+  <section class="ns-split ns-split--light ns-split--flip ns-fade">
+    <div class="ns-split-img">
+      {% if section.settings.image_founders != blank %}
+        <img src="{{ section.settings.image_founders | image_url: width: 900 }}" alt="The Founders" loading="lazy">
+      {% else %}
+        <div class="ns-split-img-placeholder">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+      {% endif %}
+    </div>
+    <div class="ns-split-text">
+      <span class="ns-eyebrow">02 — The Founders</span>
+      <div class="ns-split-rule"></div>
+      <h2 class="ns-split-heading">Built by Enthusiasts. Tested on Ours.</h2>
+      <p class="ns-split-body">Founded by <strong>Antanas Kubilius and Jacob Klepacki</strong>, Polaris Car Care was born from a simple realization — quality automotive detailing tools shouldn't be a luxury.</p>
+      <p class="ns-split-body">Jacob brings real professional detailing experience, having worked alongside detailers who service exotic and luxury vehicles. Antanas handles brand strategy and operations. Different skills, same obsession.</p>
+    </div>
+  </section>
+
+  <!-- THE STANDARD -->
+  <section class="ns-split ns-split--off ns-fade">
+    <div class="ns-split-text">
+      <span class="ns-eyebrow">03 — The Standard</span>
+      <div class="ns-split-rule"></div>
+      <h2 class="ns-split-heading">If It Doesn't Pass Jacob's Test, It Doesn't Ship.</h2>
+      <p class="ns-split-body">Every Polaris product is first tested on the founders' own vehicles. Then trusted voices in the local car community put it through real conditions. Only after it clears both rounds does it get listed for sale.</p>
+      <p class="ns-split-body">No shortcuts. No marketing fluff. No batch variance. Just honest gear that performs the same every single time.</p>
+    </div>
+    <div class="ns-split-img">
+      {% if section.settings.image_standard != blank %}
+        <img src="{{ section.settings.image_standard | image_url: width: 900 }}" alt="The Standard" loading="lazy">
+      {% else %}
+        <div class="ns-split-img-placeholder">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="ns-stats ns-fade">
+    <div class="ns-stats-grid">
+      <div class="ns-stat">
+        <div class="ns-stat-num">50+</div>
+        <div class="ns-stat-label">Cars at Launch Event</div>
+      </div>
+      <div class="ns-stat">
+        <div class="ns-stat-num">4.9★</div>
+        <div class="ns-stat-label">Average Rating</div>
+      </div>
+      <div class="ns-stat">
+        <div class="ns-stat-num">$0</div>
+        <div class="ns-stat-label">Paid Ads to Start</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION -->
+  <section class="ns-accordion-section ns-fade">
+    <div class="ns-container">
+      <div class="ns-accordion-header">
+        <span class="ns-eyebrow ns-accordion-eyebrow">Our Approach</span>
+        <h2 class="ns-accordion-title">What Makes<br>Us Different?</h2>
+      </div>
+      <div class="ns-accordion">
+        <div class="ns-accordion-item">
+          <button class="ns-accordion-trigger" aria-expanded="false">
+            <span class="ns-accordion-trigger-title">Tested on Real Vehicles</span>
+            <span class="ns-accordion-icon" aria-hidden="true"></span>
+          </button>
+          <div class="ns-accordion-body">
+            <div class="ns-accordion-body-inner">
+              <p class="ns-accordion-body-text">Every product is tested on the founders' own cars before it gets anywhere near a customer. Jacob's professional detailing background means nothing ships that doesn't perform under real conditions — not just in a controlled environment.</p>
+            </div>
+          </div>
+        </div>
+        <div class="ns-accordion-item">
+          <button class="ns-accordion-trigger" aria-expanded="false">
+            <span class="ns-accordion-trigger-title">Community Before Advertising</span>
+            <span class="ns-accordion-icon" aria-hidden="true"></span>
+          </button>
+          <div class="ns-accordion-body">
+            <div class="ns-accordion-body-inner">
+              <p class="ns-accordion-body-text">We launched with a community ride-out where 50+ cars showed up for a brand nobody had heard of yet. That's the proof of concept — growth from inside the car community, not from paid media. We build with people, not at them.</p>
+            </div>
+          </div>
+        </div>
+        <div class="ns-accordion-item">
+          <button class="ns-accordion-trigger" aria-expanded="false">
+            <span class="ns-accordion-trigger-title">Honest Pricing, Always</span>
+            <span class="ns-accordion-icon" aria-hidden="true"></span>
+          </button>
+          <div class="ns-accordion-body">
+            <div class="ns-accordion-body-inner">
+              <p class="ns-accordion-body-text">We reverse-engineer from the customer backward. What performance do you actually need? What's a fair price to deliver it? We refuse to inflate margins at the expense of making the hobby accessible to the next generation of enthusiasts.</p>
+            </div>
+          </div>
+        </div>
+        <div class="ns-accordion-item">
+          <button class="ns-accordion-trigger" aria-expanded="false">
+            <span class="ns-accordion-trigger-title">Obsessed with Consistency</span>
+            <span class="ns-accordion-icon" aria-hidden="true"></span>
+          </button>
+          <div class="ns-accordion-body">
+            <div class="ns-accordion-body-inner">
+              <p class="ns-accordion-body-text">Every unit performs the same as the sample. No batch variance. No "this one was a bad run." If our standard drops, we don't ship it. Quality is non-negotiable — not a marketing claim.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="ns-values ns-fade">
+    <div class="ns-container">
+      <div class="ns-values-header">
+        <span class="ns-eyebrow ns-values-eyebrow">What We Stand For</span>
+        <h2 class="ns-values-title">The Polaris<br>Standard.</h2>
+      </div>
+      <div class="ns-values-grid">
+        <div class="ns-value-card">
+          <span class="ns-value-num">01</span>
+          <h3 class="ns-value-title">Community First</h3>
+          <p class="ns-value-body">We started in the car scene, not a boardroom. Every product decision starts with what the community actually needs — not what looks good on a margin sheet.</p>
+        </div>
+        <div class="ns-value-card">
+          <span class="ns-value-num">02</span>
+          <h3 class="ns-value-title">Tested on Ours</h3>
+          <p class="ns-value-body">Every product goes on our own cars before it goes on yours. If it doesn't pass that test, it doesn't ship. No exceptions, no shortcuts.</p>
+        </div>
+        <div class="ns-value-card">
+          <span class="ns-value-num">03</span>
+          <h3 class="ns-value-title">Priced Honestly</h3>
+          <p class="ns-value-body">We price from what's fair, not what the market will tolerate. Quality shouldn't require a justification. Premium gear should be for everyone who cares.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDERS -->
+  <section class="ns-founders ns-fade">
+    <div class="ns-container">
+      <div class="ns-founders-header">
+        <span class="ns-eyebrow ns-founders-eyebrow">The People Behind It</span>
+        <h2 class="ns-founders-title">The Founders.</h2>
+      </div>
+      <div class="ns-founders-grid">
+        {% assign founder_count = 0 %}
+        {% for block in section.blocks %}
+          {% if block.type == 'founder' %}
+            {% assign founder_count = founder_count | plus: 1 %}
+            <div class="ns-founder-card" {{ block.shopify_attributes }}>
+              {% if block.settings.photo != blank %}
+                <img src="{{ block.settings.photo | image_url: width: 600 }}" alt="{{ block.settings.name }}" class="ns-founder-photo" loading="lazy">
+              {% else %}
+                <div class="ns-founder-photo-placeholder">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+                </div>
+              {% endif %}
+              <div class="ns-founder-info">
+                <div class="ns-founder-name">{{ block.settings.name }}</div>
+                <div class="ns-founder-role">{{ block.settings.role }}</div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="ns-founders-quote">
+        <p class="ns-founders-quote-text">"Our goal isn't to be the cheapest brand. It's to be the most honest one."</p>
+        <p class="ns-founders-quote-attr">— Antanas &amp; Jacob, Co-Founders · Chicago, 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="ns-cta">
+    <span class="ns-eyebrow ns-cta-eyebrow">Polaris Car Care</span>
+    <h2 class="ns-cta-heading">{{ section.settings.vision_headline | default: "Built for People Like Us." }}</h2>
+    <p class="ns-cta-sub">{{ section.settings.vision_subtext | default: "The Nova is the first chapter. Follow along as we build the rest." }}</p>
+    <div class="ns-cta-btns">
+      <a href="{{ section.settings.vision_cta1_url | default: '/collections/all' }}" class="ns-btn ns-btn--white">{{ section.settings.vision_cta1_text | default: 'Shop The Nova →' }}</a>
+      {% if section.settings.vision_cta2_url != blank %}
+        <a href="{{ section.settings.vision_cta2_url }}" class="ns-btn ns-btn--outline" target="_blank" rel="noopener">{{ section.settings.vision_cta2_text | default: 'Follow on TikTok →' }}</a>
+      {% else %}
+        <a href="https://www.tiktok.com/@polariscarcare" class="ns-btn ns-btn--outline" target="_blank" rel="noopener">Follow on TikTok →</a>
       {% endif %}
     </div>
   </section>
@@ -1321,19 +719,34 @@
 
 <script>
 (function () {
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.os-fade').forEach(function (el) { el.classList.add('is-visible'); });
-    return;
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.ns-fade').forEach(function (el) { obs.observe(el); });
+  } else {
+    document.querySelectorAll('.ns-fade').forEach(function (el) { el.classList.add('is-visible'); });
   }
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('is-visible');
-        obs.unobserve(e.target);
+
+  document.querySelectorAll('.ns-accordion-trigger').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.ns-accordion-item');
+      var body = item.querySelector('.ns-accordion-body');
+      var isOpen = item.classList.contains('is-open');
+      document.querySelectorAll('.ns-accordion-item.is-open').forEach(function (open) {
+        open.classList.remove('is-open');
+        open.querySelector('.ns-accordion-body').style.maxHeight = '0';
+        open.querySelector('.ns-accordion-trigger').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('is-open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
       }
     });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.os-fade').forEach(function (el) { obs.observe(el); });
+  });
 })();
 </script>
 
@@ -1341,65 +754,21 @@
 {
   "name": "Our Story",
   "settings": [
-    {
-      "type": "header",
-      "content": "Hero"
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero Background Image (optional — shows faintly)"
-    },
-    {
-      "type": "text",
-      "id": "hero_headline",
-      "label": "Hero Headline (first word)",
-      "default": "Built"
-    },
-    {
-      "type": "textarea",
-      "id": "hero_subhead",
-      "label": "Hero description",
-      "default": "Two guys from Chicago who got tired of paying $40 for a towel — and decided to build something better. This is how Polaris Car Care started."
-    },
-    {
-      "type": "header",
-      "content": "Vision CTA"
-    },
-    {
-      "type": "text",
-      "id": "vision_headline",
-      "label": "Mission heading",
-      "default": "We're Just Getting Started."
-    },
-    {
-      "type": "textarea",
-      "id": "vision_subtext",
-      "label": "Mission body / CTA subtext",
-      "default": "Polaris Car Care isn't trying to be a hype brand. It's a long-term platform built around transparency, education, and accessibility — for the next generation of enthusiasts."
-    },
-    {
-      "type": "text",
-      "id": "vision_cta1_text",
-      "label": "CTA 1 Text",
-      "default": "Shop The Nova →"
-    },
-    {
-      "type": "url",
-      "id": "vision_cta1_url",
-      "label": "CTA 1 URL"
-    },
-    {
-      "type": "text",
-      "id": "vision_cta2_text",
-      "label": "CTA 2 Text",
-      "default": "Follow on TikTok →"
-    },
-    {
-      "type": "url",
-      "id": "vision_cta2_url",
-      "label": "CTA 2 URL"
-    }
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero background image" },
+    { "type": "text", "id": "hero_headline", "label": "Hero headline", "default": "Why Polaris Exists." },
+    { "type": "textarea", "id": "hero_subhead", "label": "Hero subheadline", "default": "Two guys from Chicago who got tired of paying $40 for a towel — and decided to build something better." },
+    { "type": "header", "content": "Section Images" },
+    { "type": "image_picker", "id": "image_problem",  "label": "The Problem — image" },
+    { "type": "image_picker", "id": "image_founders", "label": "The Founders — image" },
+    { "type": "image_picker", "id": "image_standard", "label": "The Standard — image" },
+    { "type": "header", "content": "Vision CTA" },
+    { "type": "text",     "id": "vision_headline",  "label": "CTA heading",         "default": "Built for People Like Us." },
+    { "type": "textarea", "id": "vision_subtext",   "label": "CTA subtext",          "default": "The Nova is the first chapter. Follow along as we build the rest." },
+    { "type": "text",     "id": "vision_cta1_text", "label": "Primary CTA text",    "default": "Shop The Nova \u2192" },
+    { "type": "url",      "id": "vision_cta1_url",  "label": "Primary CTA URL" },
+    { "type": "text",     "id": "vision_cta2_text", "label": "Secondary CTA text",  "default": "Follow on TikTok \u2192" },
+    { "type": "url",      "id": "vision_cta2_url",  "label": "Secondary CTA URL" }
   ],
   "blocks": [
     {
@@ -1407,23 +776,9 @@
       "name": "Founder",
       "limit": 2,
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "photo",
-          "label": "Photo"
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Name",
-          "default": "Antanas K."
-        },
-        {
-          "type": "text",
-          "id": "role",
-          "label": "Role",
-          "default": "Co-Founder"
-        }
+        { "type": "image_picker", "id": "photo", "label": "Photo" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Antanas K." },
+        { "type": "text", "id": "role", "label": "Role", "default": "Co-Founder \u2014 Brand & Strategy" }
       ]
     }
   ],
@@ -1431,20 +786,8 @@
     {
       "name": "Our Story",
       "blocks": [
-        {
-          "type": "founder",
-          "settings": {
-            "name": "Antanas K.",
-            "role": "Co-Founder — Brand & Strategy"
-          }
-        },
-        {
-          "type": "founder",
-          "settings": {
-            "name": "Jacob K.",
-            "role": "Co-Founder — Product & Detailing"
-          }
-        }
+        { "type": "founder", "settings": { "name": "Antanas K.", "role": "Co-Founder \u2014 Brand & Strategy" } },
+        { "type": "founder", "settings": { "name": "Jacob K.",   "role": "Co-Founder \u2014 Product & Detailing" } }
       ]
     }
   ]
