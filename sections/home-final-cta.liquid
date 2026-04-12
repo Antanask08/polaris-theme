@@ -83,6 +83,28 @@
     .hfc-trust { grid-template-columns: repeat(2, 1fr); }
   }
 
+  @media (max-width: 480px) {
+    .hfc-main {
+      padding: 64px 20px;
+    }
+    .hfc-trust {
+      grid-template-columns: 1fr 1fr;
+    }
+    .hfc-trust-item {
+      padding: 24px 16px;
+      gap: 10px;
+    }
+    .hfc-trust-label {
+      font-size: 10px;
+    }
+    .hfc-trust-sub {
+      font-size: 10px;
+    }
+    .hfc-headline {
+      font-size: clamp(2.2rem, 9vw, 3.5rem);
+    }
+  }
+
   .hfc-trust-item {
     background: #000;
     padding: 32px 24px;

@@ -62,11 +62,29 @@
     background: #111;
   }
   @media (max-width: 768px) {
+    .brand-story {
+      padding: 64px 0;
+    }
     .brand-story-grid {
       grid-template-columns: 1fr;
+      gap: 40px;
     }
     .brand-story-image {
       order: -1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand-story {
+      padding: 48px 0;
+    }
+    .brand-story-heading {
+      font-size: clamp(1.8rem, 8vw, 2.5rem);
+      margin-bottom: 16px;
+    }
+    .brand-story-body {
+      font-size: 1rem;
+      margin-bottom: 28px;
     }
   }
 </style>
@@ -85,8 +103,9 @@
       <div class="brand-story-image">
         {% if section.settings.image != blank %}
           <img
-            src="{{ section.settings.image | img_url: 'large' }}"
+            src="{{ section.settings.image | image_url: width: 800 }}"
             alt="{{ section.settings.heading }}"
+            width="800"
             loading="lazy"
           >
         {% else %}

@@ -35,6 +35,23 @@
     text-align: center;
     color: #fff;
     padding: 0 24px;
+    width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      min-height: 100svh;
+      align-items: flex-end;
+      padding-bottom: 60px;
+    }
+    .hero-headline {
+      font-size: clamp(2.2rem, 11vw, 3rem);
+      margin-bottom: 16px;
+    }
+    .hero-subhead {
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
   }
   .hero-headline {
     font-family: 'DM Sans', sans-serif;
@@ -87,7 +104,7 @@
     {% elsif section.settings.image != blank %}
       <img
         class="hero-bg hero-parallax"
-        src="{{ section.settings.image | img_url: 'master' }}"
+        src="{{ section.settings.image | image_url: width: 2000 }}"
         alt="Hero background"
         loading="eager"
       >
