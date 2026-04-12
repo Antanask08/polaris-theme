@@ -24,6 +24,13 @@
 /* ── Blueprint Background ────────────────────────────────────── */
 .bp-bg {
   background-color: #000;
+  background-image:
+    linear-gradient(var(--bp-lineLg) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-lineLg) 1px, transparent 1px),
+    linear-gradient(var(--bp-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-line) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
 }
 
 /* ── Dark Board ──────────────────────────────────────────────── */
