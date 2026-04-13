@@ -1,0 +1,123 @@
+<style>
+  .tsg-section {
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 0 48px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    .tsg-section { padding: 0 24px; }
+  }
+
+  .tsg-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.07);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .tsg-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .tsg-grid { grid-template-columns: 1fr; }
+  }
+
+  .tsg-item {
+    background: #000;
+    padding: 28px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .tsg-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.65;
+  }
+
+  .tsg-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .tsg-label {
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  .tsg-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.04em;
+  }
+</style>
+
+<div class="tsg-section">
+  <div class="tsg-grid">
+
+    <!-- Free Shipping -->
+    <div class="tsg-item">
+      <div class="tsg-icon">
+        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="m16 8 5 0 3 5v3h-8z"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg>
+      </div>
+      <div>
+        <div class="tsg-label">Free Shipping</div>
+        <div class="tsg-sub">Every single order</div>
+      </div>
+    </div>
+
+    <!-- Secure Checkout -->
+    <div class="tsg-item">
+      <div class="tsg-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div>
+        <div class="tsg-label">Secure Checkout</div>
+        <div class="tsg-sub">256-bit encrypted</div>
+      </div>
+    </div>
+
+    <!-- 30-Day Returns -->
+    <div class="tsg-item">
+      <div class="tsg-icon">
+        <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
+      </div>
+      <div>
+        <div class="tsg-label">30-Day Returns</div>
+        <div class="tsg-sub">Hassle-free guarantee</div>
+      </div>
+    </div>
+
+    <!-- Community Tested -->
+    <div class="tsg-item">
+      <div class="tsg-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div>
+        <div class="tsg-label">Community Tested</div>
+        <div class="tsg-sub">Real world results</div>
+      </div>
+    </div>
+
+  </div>
+</div>
