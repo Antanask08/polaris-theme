@@ -963,6 +963,39 @@
   .os-stat-num       { font-size: 2rem; }
   .os-hero-annotation { font-size: 11px; line-height: 1.8; }
 }
+
+/* ── LAUNCH PHOTOS ── */
+.os-launch-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.os-launch-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.os-launch-photo:first-child:last-child,
+.os-launch-photo:nth-child(1):nth-last-child(3),
+.os-launch-photo:nth-child(1):nth-last-child(2) {
+  /* handled via grid placement */
+}
+.os-launch-photos--1 .os-launch-photo { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+.os-launch-photos--2 .os-launch-photo { aspect-ratio: 4 / 3; }
+.os-launch-photos--3 .os-launch-photo:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+
+/* ── STANDARD PHOTO ── */
+.os-standard-photo-wrap {
+  margin-top: 32px;
+  width: 100%;
+}
+.os-standard-photo-wrap img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.08);
+}
 </style>
 
 <div class="os-wrap">
@@ -1129,6 +1162,11 @@
         <p class="os-standard-body" style="margin-top:20px;">
           This blend of business strategy and technical detailing knowledge is what lets Polaris balance performance, durability, and price without sacrificing any of the three.
         </p>
+        {% if section.settings.standard_photo != blank %}
+          <div class="os-standard-photo-wrap">
+            <img src="{{ section.settings.standard_photo | image_url: width: 900 }}" alt="Product testing" loading="lazy">
+          </div>
+        {% endif %}
       </div>
 
       <div class="os-standard-right">
@@ -1255,20 +1293,39 @@
         </div>
       </div>
 
-      <div class="os-launch-notes">
-        <div class="sticky sticky--g sticky-r2">
-          <span class="sticky-title">What the event meant 🚗</span>
-          <p>50 cars at a brand nobody had heard of. That wasn't luck — it was proof the community was hungry for something honest.</p>
+      {% assign launch_count = 0 %}
+      {% if section.settings.launch_photo_1 != blank %}{% assign launch_count = launch_count | plus: 1 %}{% endif %}
+      {% if section.settings.launch_photo_2 != blank %}{% assign launch_count = launch_count | plus: 1 %}{% endif %}
+      {% if section.settings.launch_photo_3 != blank %}{% assign launch_count = launch_count | plus: 1 %}{% endif %}
+
+      {% if launch_count > 0 %}
+        <div class="os-launch-photos os-launch-photos--{{ launch_count }}">
+          {% if section.settings.launch_photo_1 != blank %}
+            <img src="{{ section.settings.launch_photo_1 | image_url: width: 900 }}" alt="Polaris launch event" class="os-launch-photo" loading="lazy">
+          {% endif %}
+          {% if section.settings.launch_photo_2 != blank %}
+            <img src="{{ section.settings.launch_photo_2 | image_url: width: 900 }}" alt="Polaris launch event" class="os-launch-photo" loading="lazy">
+          {% endif %}
+          {% if section.settings.launch_photo_3 != blank %}
+            <img src="{{ section.settings.launch_photo_3 | image_url: width: 900 }}" alt="Polaris launch event" class="os-launch-photo" loading="lazy">
+          {% endif %}
         </div>
-        <div class="sticky sticky--y sticky-r3">
-          <span class="sticky-title">Growth strategy 📈</span>
-          <p>No traditional advertising. Just product, community, and authenticity. If the product is right, the people will talk.</p>
+      {% else %}
+        <div class="os-launch-notes">
+          <div class="sticky sticky--g sticky-r2">
+            <span class="sticky-title">What the event meant 🚗</span>
+            <p>50 cars at a brand nobody had heard of. That wasn't luck — it was proof the community was hungry for something honest.</p>
+          </div>
+          <div class="sticky sticky--y sticky-r3">
+            <span class="sticky-title">Growth strategy 📈</span>
+            <p>No traditional advertising. Just product, community, and authenticity. If the product is right, the people will talk.</p>
+          </div>
+          <div class="sticky sticky--p sticky-r1n">
+            <span class="sticky-title">What's next 🔭</span>
+            <p>Expanding beyond microfiber towels into additional detailing tools and chemical products. The mission stays the same. Honest gear for real enthusiasts.</p>
+          </div>
         </div>
-        <div class="sticky sticky--p sticky-r1n">
-          <span class="sticky-title">What's next 🔭</span>
-          <p>Expanding beyond microfiber towels into additional detailing tools and chemical products. The mission stays the same. Honest gear for real enthusiasts.</p>
-        </div>
-      </div>
+      {% endif %}
     </div>
   </section>
 
@@ -1359,6 +1416,34 @@
       "id": "hero_subhead",
       "label": "Hero description",
       "default": "Two guys from Chicago who got tired of paying $40 for a towel — and decided to build something better. This is how Polaris Car Care started."
+    },
+    {
+      "type": "header",
+      "content": "Section 03 — The Standard"
+    },
+    {
+      "type": "image_picker",
+      "id": "standard_photo",
+      "label": "Testing / Product Photo (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Section 04 — Launch Event Photos"
+    },
+    {
+      "type": "image_picker",
+      "id": "launch_photo_1",
+      "label": "Launch Photo 1 (shows full width)"
+    },
+    {
+      "type": "image_picker",
+      "id": "launch_photo_2",
+      "label": "Launch Photo 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "launch_photo_3",
+      "label": "Launch Photo 3"
     },
     {
       "type": "header",
