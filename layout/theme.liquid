@@ -52,6 +52,15 @@
         --max-width: 1280px;
       }
     </style>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BW302W5Z7F"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BW302W5Z7F');
+    </script>
   </head>
 
   <body class="{% if template == 'index' %}page-home{% else %}page-not-home{% endif %} template-{{ template | replace: '.', '-' }}">
