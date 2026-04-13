@@ -215,6 +215,76 @@
     margin-bottom: 4px;
   }
 
+  /* ── Return Eligibility block ── */
+  .sr-eligibility {
+    margin: 40px 0 48px;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 32px 36px;
+    max-width: 780px;
+  }
+  .sr-eligibility__heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .sr-eligibility__sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.62);
+    margin-bottom: 20px;
+  }
+  .sr-eligibility__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .sr-eligibility__list li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.82);
+    padding-left: 20px;
+    position: relative;
+  }
+  .sr-eligibility__list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+  }
+  .sr-eligibility__list li strong {
+    color: #fff;
+  }
+  .sr-eligibility__warning {
+    background: rgba(255,255,255,0.05);
+    border-left: 3px solid rgba(255,255,255,0.35);
+    padding: 16px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .sr-eligibility__warning strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .sr-eligibility__deny {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    font-style: italic;
+    margin: 0;
+  }
+
   .sr-note {
     margin-top: 32px;
     padding: 20px 24px;
@@ -508,34 +578,49 @@
   <div class="sr-container">
     <span class="sr-eyebrow sr-eyebrow--light">Policy</span>
     <h2 class="sr-heading sr-heading--white">30-Day Returns</h2>
-    <p class="sr-body sr-body--light" style="max-width: 640px;">We stand behind every product we make. If something isn't right, we'll make it right. Items must be unused, unwashed, and returned in their original packaging within <strong style="color:#fff;">30 days</strong> of delivery.</p>
+    <p class="sr-body sr-body--light" style="max-width: 680px;">We stand behind every product we sell. If something isn't right, reach out — we'll make it right. Returns are accepted within <strong style="color:#fff;">30 days of confirmed delivery</strong>, provided the item meets all conditions below.</p>
+
+    <div class="sr-eligibility">
+      <h3 class="sr-eligibility__heading">Return Eligibility</h3>
+      <p class="sr-eligibility__sub">To qualify for a return, all of the following must apply:</p>
+      <ul class="sr-eligibility__list">
+        <li>The item is <strong>unused, unopened, and in its original packaging</strong></li>
+        <li>All original labels and accessories are included</li>
+        <li>Proof of purchase is provided</li>
+        <li>The product has not been used, tested, or tampered with in any way</li>
+      </ul>
+      <div class="sr-eligibility__warning">
+        <strong>Opened or used items cannot be returned or refunded.</strong> This applies to all liquid or chemical products — including soaps, dressings, air fresheners, cleaners, and coatings — once opened or partially used.
+      </div>
+      <p class="sr-eligibility__deny">Items that do not meet these conditions will not be accepted. Polaris Car Care reserves the right to deny any return that does not comply with this policy.</p>
+    </div>
 
     <ul class="sr-steps">
       <li class="sr-step">
         <span class="sr-step__num">01</span>
         <div class="sr-step__text">
           <strong>Email Us</strong>
-          Send a message to <a href="mailto:{{ section.settings.contact_email }}" style="color: rgba(255,255,255,0.65); text-decoration: underline;">{{ section.settings.contact_email }}</a> with your order number and reason for return. We'll respond within one business day with a return authorization and instructions.
+          Send a message to <a href="mailto:{{ section.settings.contact_email }}" style="color: rgba(255,255,255,0.65); text-decoration: underline;">{{ section.settings.contact_email }}</a> with your order number and reason for return. We'll respond within one business day with a return authorization and next steps.
         </div>
       </li>
       <li class="sr-step">
         <span class="sr-step__num">02</span>
         <div class="sr-step__text">
           <strong>Ship It Back</strong>
-          Pack the item securely and ship it to the address we provide. We recommend using a tracked service. Return shipping costs are the responsibility of the customer unless the item was defective or incorrect.
+          Pack the item securely and ship it to the address we provide. We recommend a tracked shipping method. Return shipping costs are the customer's responsibility unless the item was defective or sent in error.
         </div>
       </li>
       <li class="sr-step">
         <span class="sr-step__num">03</span>
         <div class="sr-step__text">
           <strong>Refund Issued</strong>
-          Once we receive and inspect your return, your refund will be processed to the original payment method within <strong style="color:#fff;">5 business days</strong>. You'll receive a confirmation email when it's done.
+          Once received and inspected, your refund will be processed to the original payment method within <strong style="color:#fff;">5 business days</strong>. You'll receive a confirmation email when complete.
         </div>
       </li>
     </ul>
 
     <div class="sr-note">
-      <strong>Please note:</strong> Sale items, limited releases, and items marked "Final Sale" at time of purchase are not eligible for return or exchange. All sales on these items are final.
+      <strong>Final Sale:</strong> Sale items, limited releases, and items marked "Final Sale" at time of purchase are not eligible for return or exchange.
     </div>
   </div>
 </section>
