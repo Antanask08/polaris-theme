@@ -1,280 +1,689 @@
 <style>
-  .tc-wrap {
-    background: #000;
-    color: #fff;
-    font-family: 'DM Sans', sans-serif;
-  }
+/* ═══════════════════════════════════════════
+   TOWEL CARE GUIDE — full redesign
+═══════════════════════════════════════════ */
 
-  /* ── Hero ── */
-  .tc-hero {
-    padding: 96px 60px 80px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    max-width: 900px;
-  }
-  @media (max-width: 640px) { .tc-hero { padding: 64px 24px 56px; } }
+.tc { background: #000; color: #fff; font-family: 'DM Sans', sans-serif; }
 
-  .tc-eyebrow {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 20px;
-  }
+/* Grid pattern reusable */
+.tc-grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
 
-  .tc-headline {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(3rem, 8vw, 7rem);
-    text-transform: uppercase;
-    line-height: 0.93;
-    letter-spacing: 0.01em;
-    color: #fff;
-    margin-bottom: 28px;
-  }
+/* ── HERO ─────────────────────────────────── */
+.tc-hero {
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 60px;
+  position: relative;
+  overflow: hidden;
+}
 
-  .tc-sub {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    font-size: 1.1rem;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.62);
-    max-width: 560px;
-  }
+.tc-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
 
-  /* ── Article body ── */
-  .tc-article {
-    padding: 80px 60px;
-    max-width: 780px;
-  }
-  @media (max-width: 640px) { .tc-article { padding: 56px 24px; } }
+.tc-hero-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 0;
+}
 
-  .tc-article h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    color: #fff;
-    margin: 56px 0 20px;
-    padding-top: 40px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-  .tc-article h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.tc-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.tc-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+}
 
-  .tc-article p {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.72);
-    margin-bottom: 20px;
-  }
+.tc-hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(4rem, 10vw, 9rem);
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin-bottom: 40px;
+}
 
-  .tc-article strong {
-    color: #fff;
-    font-weight: 600;
-  }
+.tc-hero-title span {
+  color: rgba(255,255,255,0.2);
+}
 
-  .tc-article ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+.tc-hero-sub {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  max-width: 480px;
+}
 
-  .tc-article ul li {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.72);
-    padding-left: 22px;
-    position: relative;
-  }
+/* Hero stat bar */
+.tc-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 0 -60px;
+  padding: 0 60px;
+}
 
-  .tc-article ul li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: rgba(255,255,255,0.25);
-    font-size: 0.85rem;
-  }
+.tc-hero-stat {
+  padding: 28px 0;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+.tc-hero-stat:last-child { border-right: none; }
 
-  /* Highlight rule — stands out from body copy */
-  .tc-rule {
-    border-left: 2px solid rgba(255,255,255,0.25);
-    padding: 16px 20px;
-    margin: 28px 0;
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.78);
-    background: rgba(255,255,255,0.03);
-  }
-  .tc-rule strong { color: #fff; }
+.tc-hero-stat__num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 6px;
+}
 
-  /* ── Coming Soon callout ── */
-  .tc-coming-soon {
-    background: #fff;
-    color: #000;
-    padding: 80px 60px;
-    margin-top: 0;
-  }
-  @media (max-width: 640px) { .tc-coming-soon { padding: 56px 24px; } }
+.tc-hero-stat__label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
 
-  .tc-coming-soon__eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.4);
-    margin-bottom: 16px;
-  }
+/* ── SECTION SHARED ───────────────────────── */
+.tc-section {
+  padding: 100px 60px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
 
-  .tc-coming-soon__heading {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(2rem, 5vw, 3.8rem);
-    text-transform: uppercase;
-    line-height: 0.95;
-    color: #000;
-    margin-bottom: 24px;
-    max-width: 600px;
-  }
+.tc-section-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 64px;
+}
 
-  .tc-coming-soon__body {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.75;
-    color: rgba(0,0,0,0.65);
-    max-width: 520px;
-    margin-bottom: 40px;
-  }
+.tc-section-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.2);
+  padding-top: 6px;
+}
 
-  .tc-coming-soon__form {
-    display: flex;
-    gap: 0;
-    max-width: 480px;
-  }
-  @media (max-width: 480px) {
-    .tc-coming-soon__form { flex-direction: column; gap: 8px; }
-  }
+.tc-section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 12px;
+}
 
-  .tc-coming-soon__input {
-    flex: 1;
-    padding: 14px 18px;
-    border: 1.5px solid #000;
-    border-right: none;
-    background: #fff;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: #000;
-    outline: none;
-    border-radius: 0;
-    appearance: none;
-  }
-  .tc-coming-soon__input::placeholder { color: rgba(0,0,0,0.35); }
-  @media (max-width: 480px) {
-    .tc-coming-soon__input { border-right: 1.5px solid #000; }
-  }
+.tc-section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  text-transform: uppercase;
+  line-height: 0.92;
+  color: #fff;
+}
 
-  .tc-coming-soon__btn {
-    padding: 14px 28px;
-    background: #000;
-    color: #fff;
-    border: 1.5px solid #000;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 0;
-    transition: background 200ms, color 200ms;
-    white-space: nowrap;
-  }
-  .tc-coming-soon__btn:hover { background: #222; }
+/* ── STEP CARDS ───────────────────────────── */
+.tc-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
-  .tc-coming-soon__success {
-    display: none;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: #000;
-    margin-top: 14px;
-  }
+.tc-step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: background 200ms;
+}
+.tc-step:hover { background: rgba(255,255,255,0.02); }
+
+.tc-step-num-col {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 0 32px;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+
+.tc-step-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.05em;
+}
+
+.tc-step-body {
+  padding: 32px 36px;
+}
+
+.tc-step-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.tc-step-desc {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.78;
+  color: rgba(255,255,255,0.62);
+}
+
+.tc-step-desc strong { color: #fff; font-weight: 600; }
+
+/* ── WARNING BANNER ───────────────────────── */
+.tc-warning {
+  margin: 40px 0;
+  display: grid;
+  grid-template-columns: 4px 1fr;
+}
+
+.tc-warning-bar { background: #fff; }
+
+.tc-warning-content {
+  padding: 24px 28px;
+  background: rgba(255,255,255,0.05);
+}
+
+.tc-warning-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 8px;
+}
+
+.tc-warning-text {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* ── CONTAMINATION — 2-col layout ─────────── */
+.tc-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.tc-col-card {
+  padding: 48px 44px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.tc-col-card__label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  margin-bottom: 20px;
+}
+
+.tc-col-card__heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.tc-col-card__body {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.78;
+  color: rgba(255,255,255,0.62);
+}
+.tc-col-card__body strong { color: #fff; font-weight: 600; }
+
+/* ── STOP DOING — full-width stop list ────── */
+.tc-stop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.tc-stop-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 28px 32px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.tc-stop-x {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.2);
+  padding-top: 2px;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.tc-stop-text {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.65);
+}
+
+.tc-stop-text strong { color: #fff; font-weight: 600; }
+
+/* ── COMING SOON ──────────────────────────── */
+.tc-coming {
+  background: #fff;
+  color: #000;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 440px;
+}
+
+.tc-coming-left {
+  padding: 80px 60px;
+  border-right: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tc-coming-right {
+  padding: 80px 60px;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tc-coming-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+  margin-bottom: 20px;
+}
+
+.tc-coming-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: #000;
+}
+
+.tc-coming-body {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.78;
+  color: rgba(0,0,0,0.62);
+  max-width: 380px;
+}
+
+.tc-coming-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 380px;
+}
+
+.tc-coming-input {
+  width: 100%;
+  padding: 15px 18px;
+  border: 1.5px solid rgba(0,0,0,0.2);
+  background: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #000;
+  outline: none;
+  border-radius: 0;
+  appearance: none;
+  transition: border-color 200ms;
+}
+.tc-coming-input:focus { border-color: #000; }
+.tc-coming-input::placeholder { color: rgba(0,0,0,0.3); }
+
+.tc-coming-btn {
+  width: 100%;
+  padding: 16px;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 200ms;
+}
+.tc-coming-btn:hover { background: #1a1a1a; }
+
+.tc-coming-note {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: rgba(0,0,0,0.35);
+  letter-spacing: 0.03em;
+}
+
+.tc-coming-success {
+  display: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  padding: 16px;
+  border: 1.5px solid rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.03);
+  letter-spacing: 0.02em;
+}
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width: 900px) {
+  .tc-two-col { grid-template-columns: 1fr; }
+  .tc-coming   { grid-template-columns: 1fr; }
+  .tc-coming-left, .tc-coming-right { padding: 56px 32px; }
+  .tc-coming-right { border-right: none; border-top: 1px solid rgba(0,0,0,0.1); }
+  .tc-stop-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .tc-hero { padding: 0 24px; min-height: 100svh; }
+  .tc-hero-stats { margin: 0 -24px; padding: 0 24px;
+    grid-template-columns: 1fr 1fr; }
+  .tc-hero-stat:nth-child(3) { grid-column: span 2; border-right: none; }
+  .tc-section { padding: 64px 24px; }
+  .tc-section-header { grid-template-columns: 1fr; gap: 12px; }
+  .tc-section-num { display: none; }
+  .tc-step { grid-template-columns: 52px 1fr; }
+  .tc-step-body { padding: 24px 20px; }
+  .tc-stop-item { padding: 20px 20px; }
+  .tc-coming-left, .tc-coming-right { padding: 48px 24px; }
+}
 </style>
 
-<div class="tc-wrap">
+<div class="tc">
 
-  <!-- Hero -->
-  <div class="tc-hero">
-    <p class="tc-eyebrow">Polaris Car Care — Care Guide</p>
-    <h1 class="tc-headline">How To Clean<br>Your Microfiber<br>Towels.</h1>
-    <p class="tc-sub">Most people ruin their microfibers in the wash. Here's how to not do that.</p>
+  <!-- ═══ HERO ═══ -->
+  <div class="tc-hero tc-grid-bg">
+    <div class="tc-hero-top">
+      <span>Polaris Car Care</span>
+      <span>Care Guide — Doc. 005</span>
+    </div>
+
+    <div class="tc-hero-main">
+      <p class="tc-eyebrow">Microfiber Care</p>
+      <h1 class="tc-hero-title">
+        How To<br>
+        Clean Your<br>
+        <span>Microfiber.</span>
+      </h1>
+      <p class="tc-hero-sub">Most people ruin their microfibers in the wash. Here's how to not do that.</p>
+    </div>
+
+    <div class="tc-hero-stats">
+      <div class="tc-hero-stat">
+        <div class="tc-hero-stat__num">8×</div>
+        <div class="tc-hero-stat__label">Water weight capacity</div>
+      </div>
+      <div class="tc-hero-stat">
+        <div class="tc-hero-stat__num">1</div>
+        <div class="tc-hero-stat__label">Softener wash = dead fiber</div>
+      </div>
+      <div class="tc-hero-stat">
+        <div class="tc-hero-stat__num">30°C</div>
+        <div class="tc-hero-stat__label">Max wash temperature</div>
+      </div>
+    </div>
   </div>
 
-  <!-- Article Body -->
-  <div class="tc-article">
+  <!-- ═══ 01 — WHY MICROFIBER IS DIFFERENT ═══ -->
+  <div class="tc-section tc-grid-bg">
+    <div class="tc-section-header">
+      <span class="tc-section-num">01</span>
+      <div>
+        <p class="tc-section-label">The science</p>
+        <h2 class="tc-section-title">Why Microfiber<br>Is Different</h2>
+      </div>
+    </div>
 
-    <h2>Why Microfiber Is Different</h2>
-    <p>Microfiber works by trapping contamination inside millions of tiny split loops. A single towel can hold 8x its weight in water. That performance depends entirely on those loops staying open and uncoated.</p>
-    <p>The wrong wash routine doesn't just clean less effectively — it permanently degrades the fiber structure. <strong>Fabric softener is the biggest offender.</strong> It coats the fibers in a waxy film that prevents them from absorbing anything. One wash with softener and the towel is functionally dead.</p>
-    <p>Cotton lint from washing with regular towels or clothes is second. It embeds into the loops and kills absorption.</p>
+    <div class="tc-two-col">
+      <div class="tc-col-card">
+        <p class="tc-col-card__label">How it works</p>
+        <h3 class="tc-col-card__heading">Millions of Split Loops</h3>
+        <p class="tc-col-card__body">Microfiber works by trapping contamination inside millions of tiny split loops. A single towel can hold <strong>8× its weight in water</strong>. That performance depends entirely on those loops staying open and uncoated.</p>
+        <p class="tc-col-card__body">The wrong wash routine doesn't just clean less effectively — it permanently degrades the fiber structure.</p>
+      </div>
+      <div class="tc-col-card">
+        <p class="tc-col-card__label">The two killers</p>
+        <h3 class="tc-col-card__heading">Softener &amp; Cotton Lint</h3>
+        <p class="tc-col-card__body"><strong>Fabric softener is the biggest offender.</strong> It coats the fibers in a waxy film that prevents absorption. One wash with softener and the towel is functionally dead.</p>
+        <p class="tc-col-card__body">Cotton lint from washing with regular towels or clothes is second. It embeds into the loops and kills absorption permanently.</p>
+      </div>
+    </div>
+  </div>
 
-    <h2>The Right Way To Wash</h2>
-    <p><strong>Shake the towel out first.</strong> Knock off loose dirt before it goes into the machine.</p>
-    <p><strong>Wash alone or with other microfiber only.</strong> Never with cotton, denim, or anything that sheds lint.</p>
-    <p><strong>Cold or warm water only.</strong> Hot water shrinks and damages the polyester/polyamide split fibers. 30°C / 90°F max.</p>
-    <p><strong>Use a free and clear detergent.</strong> No dyes, no fragrance, no fabric softener built in. All Free &amp; Clear works. So does Seventh Generation. A small amount of Dawn dish soap in a pinch — strong surfactant, rinses clean, just use a little.</p>
-    <div class="tc-rule"><strong>No fabric softener. Ever.</strong> Not in the wash. Not in the dryer. No dryer sheets either.</div>
-    <p><strong>Add ¼ cup white vinegar to the wash.</strong> Not as a cleaner — as a rinse aid. It strips mineral buildup from hard water and keeps fibers soft without clogging them.</p>
-    <p><strong>Low heat or air dry.</strong> High heat degrades the fiber split. Air dry when possible. If you use the dryer, no heat or low heat only.</p>
+  <!-- ═══ 02 — THE RIGHT WAY TO WASH ═══ -->
+  <div class="tc-section">
+    <div class="tc-section-header">
+      <span class="tc-section-num">02</span>
+      <div>
+        <p class="tc-section-label">Step by step</p>
+        <h2 class="tc-section-title">The Right Way<br>To Wash</h2>
+      </div>
+    </div>
 
-    <h2>For Heavily Contaminated Towels</h2>
-    <p>Wash polish and wax towels separately from drying towels. Product contamination transfers and is hard to fully flush out.</p>
-    <p>If a towel has a heavy wax or sealant load, a hot bucket soak (around 60°C / 140°F) with a few drops of dish soap before washing will help break down the oils before the machine cycle.</p>
+    <div class="tc-steps">
+      <div class="tc-step">
+        <div class="tc-step-num-col"><span class="tc-step-num">01</span></div>
+        <div class="tc-step-body">
+          <p class="tc-step-title">Shake it out first</p>
+          <p class="tc-step-desc">Knock off loose dirt before it goes into the machine. Grit in the drum scratches fiber loops during the spin cycle.</p>
+        </div>
+      </div>
+      <div class="tc-step">
+        <div class="tc-step-num-col"><span class="tc-step-num">02</span></div>
+        <div class="tc-step-body">
+          <p class="tc-step-title">Microfiber only — never mix</p>
+          <p class="tc-step-desc">Never with cotton, denim, or anything that sheds lint. Cotton embeds into the loops and cannot be removed. <strong>Microfiber washes only.</strong></p>
+        </div>
+      </div>
+      <div class="tc-step">
+        <div class="tc-step-num-col"><span class="tc-step-num">03</span></div>
+        <div class="tc-step-body">
+          <p class="tc-step-title">Cold or warm water — 30°C / 90°F max</p>
+          <p class="tc-step-desc">Hot water shrinks and damages the polyester/polyamide split fibers. Use the cold or warm setting — never hot.</p>
+        </div>
+      </div>
+      <div class="tc-step">
+        <div class="tc-step-num-col"><span class="tc-step-num">04</span></div>
+        <div class="tc-step-body">
+          <p class="tc-step-title">Free &amp; clear detergent — small amount</p>
+          <p class="tc-step-desc">No dyes, no fragrance, no built-in softener. All Free &amp; Clear works. Seventh Generation works. A few drops of Dawn in a pinch — strong surfactant, rinses completely clean.</p>
+        </div>
+      </div>
+      <div class="tc-step">
+        <div class="tc-step-num-col"><span class="tc-step-num">05</span></div>
+        <div class="tc-step-body">
+          <p class="tc-step-title">Add ¼ cup white vinegar</p>
+          <p class="tc-step-desc">Not as a cleaner — as a rinse aid. Strips mineral buildup from hard water and keeps fibers soft without clogging them. Do this every wash.</p>
+        </div>
+      </div>
+      <div class="tc-step">
+        <div class="tc-step-num-col"><span class="tc-step-num">06</span></div>
+        <div class="tc-step-body">
+          <p class="tc-step-title">Low heat or air dry — never high heat</p>
+          <p class="tc-step-desc">High heat degrades the fiber split permanently. Air dry when possible. If using the dryer, set to no heat or low heat only.</p>
+        </div>
+      </div>
+    </div>
 
-    <h2>What To Stop Doing</h2>
-    <ul>
-      <li>Washing with regular laundry</li>
-      <li>Any fabric softener or dryer sheet</li>
-      <li>Hot water or high heat drying</li>
-      <li>Storing contaminated towels with clean ones</li>
-      <li>Using the same towel for everything — paint, glass, interior, and drying all need separate towels</li>
-    </ul>
+    <div class="tc-warning">
+      <div class="tc-warning-bar"></div>
+      <div class="tc-warning-content">
+        <p class="tc-warning-label">Non-negotiable</p>
+        <p class="tc-warning-text"><strong>No fabric softener. Ever.</strong> Not in the wash. Not in the dryer. No dryer sheets either. This is the one rule that matters more than all the others.</p>
+      </div>
+    </div>
+  </div>
 
+  <!-- ═══ 03 — HEAVY CONTAMINATION ═══ -->
+  <div class="tc-section tc-grid-bg">
+    <div class="tc-section-header">
+      <span class="tc-section-num">03</span>
+      <div>
+        <p class="tc-section-label">Advanced</p>
+        <h2 class="tc-section-title">Heavily Contaminated<br>Towels</h2>
+      </div>
+    </div>
+
+    <div class="tc-two-col">
+      <div class="tc-col-card">
+        <p class="tc-col-card__label">Always separate</p>
+        <h3 class="tc-col-card__heading">Sort by Use</h3>
+        <p class="tc-col-card__body">Wash polish and wax towels separately from drying towels. Product contamination transfers between towels in the wash and is hard to fully flush out once it does.</p>
+      </div>
+      <div class="tc-col-card">
+        <p class="tc-col-card__label">Wax &amp; sealant load</p>
+        <h3 class="tc-col-card__heading">Pre-Soak First</h3>
+        <p class="tc-col-card__body">If a towel has heavy wax or sealant load, do a <strong>hot bucket soak at 60°C / 140°F</strong> with a few drops of dish soap before the machine cycle. It breaks down oils before they go into the drum.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 04 — STOP DOING ═══ -->
+  <div class="tc-section">
+    <div class="tc-section-header">
+      <span class="tc-section-num">04</span>
+      <div>
+        <p class="tc-section-label">Quick reference</p>
+        <h2 class="tc-section-title">What To<br>Stop Doing</h2>
+      </div>
+    </div>
+
+    <div class="tc-stop-grid">
+      <div class="tc-stop-item">
+        <span class="tc-stop-x">✕</span>
+        <span class="tc-stop-text"><strong>Washing with regular laundry</strong> — cotton lint embeds permanently</span>
+      </div>
+      <div class="tc-stop-item">
+        <span class="tc-stop-x">✕</span>
+        <span class="tc-stop-text"><strong>Any fabric softener or dryer sheet</strong> — coats fibers and kills absorption</span>
+      </div>
+      <div class="tc-stop-item">
+        <span class="tc-stop-x">✕</span>
+        <span class="tc-stop-text"><strong>Hot water or high heat drying</strong> — degrades the polyester split fiber structure</span>
+      </div>
+      <div class="tc-stop-item">
+        <span class="tc-stop-x">✕</span>
+        <span class="tc-stop-text"><strong>Storing contaminated towels with clean ones</strong> — contamination transfers in storage</span>
+      </div>
+      <div class="tc-stop-item">
+        <span class="tc-stop-x">✕</span>
+        <span class="tc-stop-text"><strong>One towel for everything</strong> — paint, glass, interior, and drying all need dedicated towels</span>
+      </div>
+      <div class="tc-stop-item">
+        <span class="tc-stop-x">✕</span>
+        <span class="tc-stop-text"><strong>Storing while damp</strong> — bacteria and mildew destroy the fiber from the inside out</span>
+      </div>
+    </div>
   </div>
 
 </div>
 
-<!-- Coming Soon: Polaris Microfiber Wash -->
-<div class="tc-coming-soon">
-  <p class="tc-coming-soon__eyebrow">Coming Soon</p>
-  <h2 class="tc-coming-soon__heading">Polaris Microfiber Wash</h2>
-  <p class="tc-coming-soon__body">We built a detergent specifically for microfiber. No fillers. No fragrance. Formulated to strip wax, sealant, and product contamination without touching the fiber structure. Join the list to get early access.</p>
-
-  {% form 'customer', id: 'tc-notify-form' %}
-    <input type="hidden" name="contact[tags]" value="microfiber-detergent-waitlist">
-    <div class="tc-coming-soon__form">
-      <input
-        type="email"
-        name="contact[email]"
-        class="tc-coming-soon__input"
-        placeholder="your@email.com"
-        required
-        autocomplete="email"
-      >
-      <button type="submit" class="tc-coming-soon__btn">Notify Me</button>
+<!-- ═══ COMING SOON ═══ -->
+<div class="tc-coming">
+  <div class="tc-coming-left">
+    <div>
+      <p class="tc-coming-eyebrow">Coming Soon</p>
+      <h2 class="tc-coming-heading">Polaris<br>Microfiber<br>Wash.</h2>
     </div>
-    <p class="tc-coming-soon__success" id="tc-notify-success">You're on the list. We'll reach out when it's ready.</p>
-  {% endform %}
+    <p class="tc-coming-body">We built a detergent specifically for microfiber. No fillers. No fragrance. Formulated to strip wax, sealant, and product contamination without touching the fiber structure.</p>
+  </div>
+
+  <div class="tc-coming-right">
+    <p class="tc-coming-eyebrow" style="color:rgba(0,0,0,0.4); margin-bottom:8px;">Get early access</p>
+    <p style="font-family:'Barlow',sans-serif; font-weight:300; font-size:0.9rem; line-height:1.7; color:rgba(0,0,0,0.55); margin-bottom:32px;">Join the list. We'll email you when it's ready — before anyone else.</p>
+
+    {% form 'customer', id: 'tc-notify-form' %}
+      <input type="hidden" name="contact[tags]" value="microfiber-detergent-waitlist">
+      <div class="tc-coming-form">
+        <input
+          type="email"
+          name="contact[email]"
+          class="tc-coming-input"
+          placeholder="your@email.com"
+          required
+          autocomplete="email"
+        >
+        <button type="submit" class="tc-coming-btn">Notify Me</button>
+        <p class="tc-coming-note">No spam. One email when it launches.</p>
+      </div>
+      <p class="tc-coming-success" id="tc-notify-success">✓ &nbsp;You're on the list. We'll reach out when it's ready.</p>
+    {% endform %}
+  </div>
 </div>
 
 <script>
@@ -285,8 +694,8 @@
       setTimeout(function () {
         var success = document.getElementById('tc-notify-success');
         if (success) success.style.display = 'block';
-        var btn = form.querySelector('.tc-coming-soon__btn');
-        if (btn) { btn.disabled = true; btn.textContent = 'Done'; }
+        var formWrap = form.querySelector('.tc-coming-form');
+        if (formWrap) formWrap.style.display = 'none';
       }, 400);
     });
   })();

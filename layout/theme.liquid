@@ -62,9 +62,8 @@
     <!-- Announcement Bar -->
     <div class="announcement-bar" id="announcement-bar" aria-label="Announcement">
       <div class="announcement-bar__inner">
-        <div class="marquee-track" id="marquee-track" style="animation-duration: 20s;">
-          <span>Free shipping on every order.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Built for the ones who care.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Free shipping on every order.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Built for the ones who care.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;</span>
-          <span aria-hidden="true">Free shipping on every order.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Built for the ones who care.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Free shipping on every order.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Built for the ones who care.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;</span>
+        <div class="marquee-track" id="marquee-track">
+          <span>FREE SHIPPING ON EVERY ORDER.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;BUILT FOR THE ONES WHO CARE.&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;</span>
         </div>
       </div>
     </div>
@@ -190,7 +189,7 @@
               <img
                 src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/PNG_2.png?v=1775814683"
                 alt="{{ shop.name }}"
-                width="110"
+                width="160"
                 height="auto"
                 loading="lazy"
               >
@@ -281,6 +280,26 @@
 
     <!-- Theme JS -->
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+    <script>
+      // Infinite marquee — clone spans until track fills 4x viewport, then set speed
+      (function () {
+        var track = document.getElementById('marquee-track');
+        if (!track) return;
+        var original = track.children[0];
+        var limit = 60;
+        var i = 0;
+        while (track.scrollWidth < window.innerWidth * 4 && i < limit) {
+          var clone = original.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+          i++;
+        }
+        // ~80px per second scroll speed
+        var dur = (track.scrollWidth / 2) / 80;
+        track.style.animationDuration = Math.max(dur, 8) + 's';
+      })();
+    </script>
 
     <script>
       // Announcement bar hide/show on scroll
