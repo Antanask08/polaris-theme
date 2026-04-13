@@ -1,0 +1,196 @@
+<style>
+  .ecg-section {
+    background: #000;
+    width: 100%;
+    padding: 64px 32px;
+    box-sizing: border-box;
+  }
+
+  .ecg-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .ecg-left {
+    flex: 1 1 auto;
+  }
+
+  .ecg-heading {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+  }
+
+  .ecg-subtext {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .ecg-right {
+    flex: 0 0 420px;
+    max-width: 420px;
+  }
+
+  .ecg-form-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .ecg-input {
+    flex: 1 1 auto;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: none;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .ecg-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .ecg-input:focus {
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .ecg-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #000;
+    background: #fff;
+    border: 1px solid #fff;
+    padding: 14px 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+    flex: 0 0 auto;
+  }
+
+  .ecg-btn:hover {
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .ecg-success {
+    display: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .ecg-note {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 10px;
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 768px) {
+    .ecg-section {
+      padding: 48px 24px;
+    }
+
+    .ecg-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+    }
+
+    .ecg-heading {
+      font-size: 1.4rem;
+    }
+
+    .ecg-right {
+      flex: 1 1 auto;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ecg-form-row {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .ecg-input {
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+      border-bottom: none;
+    }
+
+    .ecg-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+
+<section class="ecg-section">
+  <div class="ecg-inner">
+    <div class="ecg-left">
+      <h2 class="ecg-heading">Join the Polaris Community</h2>
+      <p class="ecg-subtext">Limited drops, exclusive discounts, and updates — for subscribers only.</p>
+    </div>
+
+    <div class="ecg-right">
+      {% form 'customer', id: 'ecg-email-form' %}
+        <input type="hidden" name="contact[tags]" value="email-subscriber">
+        <input type="hidden" name="contact[accepts_marketing]" value="true">
+        <div class="ecg-form-row" id="ecg-form-row">
+          <input
+            type="email"
+            name="contact[email]"
+            class="ecg-input"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+          >
+          <button type="submit" class="ecg-btn">Subscribe</button>
+        </div>
+        <p class="ecg-success" id="ecg-success">You're in. Watch your inbox for exclusive drops.</p>
+        <p class="ecg-note">No spam. Unsubscribe anytime.</p>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var form = document.getElementById('ecg-email-form');
+    if (!form) return;
+    form.addEventListener('submit', function () {
+      setTimeout(function () {
+        var formRow = document.getElementById('ecg-form-row');
+        var success = document.getElementById('ecg-success');
+        if (formRow) formRow.style.display = 'none';
+        if (success) success.style.display = 'block';
+      }, 400);
+    });
+  })();
+</script>
