@@ -433,9 +433,9 @@ p {
 }
 
 .header-logo img {
-  height: 36px;
+  height: 26px;
   width: auto;
-  max-width: 160px;
+  max-width: 120px;
 }
 
 .header-logo__text {
