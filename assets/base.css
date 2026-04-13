@@ -380,7 +380,7 @@ p {
   transform: translateY(-100%);
 }
 
-.announcement-bar .container {
+.announcement-bar__inner {
   width: 100%;
   overflow: hidden;
   padding: 0;
@@ -419,9 +419,8 @@ p {
   align-items: center;
   justify-content: space-between;
   height: var(--header-height);
-  padding: 0 24px;
-  max-width: var(--max-width);
-  margin: 0 auto;
+  padding: 0 32px;
+  width: 100%;
 }
 
 /* Header Logo */
