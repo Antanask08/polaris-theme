@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "reviews_page": {
+      "type": "reviews-page",
+      "settings": {}
+    }
+  },
+  "order": ["reviews_page"]
+}

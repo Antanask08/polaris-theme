@@ -1,0 +1,632 @@
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@300;400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Base ── */
+  .sr-section {
+    padding: 80px 60px;
+  }
+
+  .sr-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Grid pattern helper ── */
+  .sr-grid-bg {
+    background-color: #000;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ── Hero ── */
+  .sr-hero {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 60px 60px;
+  }
+
+  .sr-hero__eyebrow {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+  }
+
+  .sr-hero__heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: #fff;
+    margin: 0;
+  }
+
+  .sr-hero__rule {
+    margin-top: 40px;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* ── Shared labels / headings ── */
+  .sr-eyebrow {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .sr-eyebrow--light {
+    color: rgba(255,255,255,0.35);
+  }
+
+  .sr-eyebrow--dark {
+    color: rgba(0,0,0,0.35);
+  }
+
+  .sr-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin: 0 0 32px;
+  }
+
+  .sr-heading--white { color: #fff; }
+  .sr-heading--black { color: #000; }
+
+  .sr-body {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .sr-body--light { color: rgba(255,255,255,0.7); }
+  .sr-body--dark  { color: rgba(0,0,0,0.65); }
+
+  /* ── Shipping Tiers Grid (dark) ── */
+  .sr-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-top: 60px;
+  }
+
+  .sr-tier {
+    background: #000;
+    padding: 40px 36px;
+    transition: background 0.2s ease;
+  }
+
+  .sr-tier:hover {
+    background: #111;
+  }
+
+  .sr-tier__icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 24px;
+    opacity: 0.6;
+  }
+
+  .sr-tier__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin: 0 0 8px;
+  }
+
+  .sr-tier__badge {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #000;
+    background: #fff;
+    padding: 3px 8px;
+    margin-bottom: 16px;
+  }
+
+  .sr-tier__desc {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── Processing two-col (light) ── */
+  .sr-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .sr-two-col__left .sr-heading {
+    margin-bottom: 0;
+  }
+
+  /* ── Returns (dark) ── */
+  .sr-steps {
+    list-style: none;
+    margin: 32px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sr-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 24px;
+    align-items: start;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .sr-step:first-child {
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .sr-step__num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: rgba(255,255,255,0.15);
+    line-height: 1;
+  }
+
+  .sr-step__text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .sr-step__text strong {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .sr-note {
+    margin-top: 32px;
+    padding: 20px 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.02em;
+  }
+
+  .sr-note strong {
+    color: rgba(255,255,255,0.8);
+    font-weight: 700;
+  }
+
+  /* ── Exchanges (light) ── */
+  .sr-exchange-box {
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 48px;
+  }
+
+  .sr-exchange-box__text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(0,0,0,0.65);
+  }
+
+  .sr-exchange-box__action {
+    text-align: right;
+  }
+
+  .sr-btn {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 32px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .sr-btn--dark {
+    background: #000;
+    color: #fff;
+  }
+
+  .sr-btn--dark:hover {
+    background: #222;
+  }
+
+  .sr-btn--outline-dark {
+    border: 1px solid #000;
+    color: #000;
+    background: transparent;
+  }
+
+  .sr-btn--outline-dark:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  .sr-btn--outline-light {
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    background: transparent;
+  }
+
+  .sr-btn--outline-light:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  /* ── FAQ Strip (dark) ── */
+  .sr-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-top: 56px;
+  }
+
+  .sr-faq-card {
+    background: #000;
+    padding: 36px 32px;
+  }
+
+  .sr-faq-card__q {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+
+  .sr-faq-card__a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+  }
+
+  /* ── CTA (dark) ── */
+  .sr-cta {
+    text-align: center;
+  }
+
+  .sr-cta .sr-heading {
+    margin-bottom: 24px;
+  }
+
+  .sr-cta__email {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    margin-top: 20px;
+    transition: color 0.2s ease;
+  }
+
+  .sr-cta__email:hover {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .sr-cta__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── Dividers ── */
+  .sr-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 0;
+  }
+
+  .sr-divider--light {
+    border-top-color: rgba(0,0,0,0.08);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .sr-hero {
+      padding: 48px 24px 48px;
+    }
+
+    .sr-section {
+      padding: 48px 24px;
+    }
+
+    .sr-tiers {
+      grid-template-columns: 1fr;
+    }
+
+    .sr-two-col {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .sr-exchange-box {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 32px 24px;
+    }
+
+    .sr-exchange-box__action {
+      text-align: left;
+    }
+
+    .sr-faq-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sr-cta__actions {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sr-hero__heading {
+      font-size: clamp(2.8rem, 15vw, 5rem);
+    }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════
+     1. HERO
+═══════════════════════════════════════════ -->
+<section class="sr-hero sr-grid-bg">
+  <div class="sr-container">
+    <span class="sr-hero__eyebrow">Policies — Doc. 002</span>
+    <h1 class="sr-hero__heading">Shipping &amp; Returns</h1>
+    <hr class="sr-hero__rule">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     2. SHIPPING TIERS
+═══════════════════════════════════════════ -->
+<section class="sr-section sr-grid-bg">
+  <div class="sr-container">
+    <span class="sr-eyebrow sr-eyebrow--light">Delivery Options</span>
+    <h2 class="sr-heading sr-heading--white">We Ship Nationwide</h2>
+
+    <div class="sr-tiers">
+
+      <!-- Free Shipping -->
+      <div class="sr-tier">
+        <svg class="sr-tier__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="14" width="26" height="18" rx="1" stroke="white" stroke-width="1.5"/>
+          <path d="M28 20h6l4 6v6h-10V20z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="10" cy="34" r="3" stroke="white" stroke-width="1.5"/>
+          <circle cx="32" cy="34" r="3" stroke="white" stroke-width="1.5"/>
+        </svg>
+        <span class="sr-tier__badge">Free</span>
+        <h3 class="sr-tier__title">Free Shipping</h3>
+        <p class="sr-tier__desc">All US orders ship free — no minimum required. Standard delivery arrives in 5–8 business days via USPS or UPS.</p>
+      </div>
+
+      <!-- Expedited -->
+      <div class="sr-tier">
+        <svg class="sr-tier__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4v8M20 28v8M4 20h8M28 20h8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="8" stroke="white" stroke-width="1.5"/>
+          <path d="M20 14v6l4 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="sr-tier__badge">Paid</span>
+        <h3 class="sr-tier__title">Expedited</h3>
+        <p class="sr-tier__desc">Need it faster? Select expedited shipping at checkout. Orders arrive in 2–3 business days.</p>
+      </div>
+
+      <!-- International -->
+      <div class="sr-tier">
+        <svg class="sr-tier__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="16" stroke="white" stroke-width="1.5"/>
+          <ellipse cx="20" cy="20" rx="7" ry="16" stroke="white" stroke-width="1.5"/>
+          <path d="M4 20h32" stroke="white" stroke-width="1.5"/>
+          <path d="M7 12h26M7 28h26" stroke="white" stroke-width="1" opacity="0.5"/>
+        </svg>
+        <span class="sr-tier__badge" style="color:#fff; background: rgba(255,255,255,0.1);">Soon</span>
+        <h3 class="sr-tier__title">International</h3>
+        <p class="sr-tier__desc">International shipping is coming soon. Currently we ship to US domestic addresses only. Check back later.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="sr-divider">
+
+<!-- ═══════════════════════════════════════════
+     3. PROCESSING & TIMING
+═══════════════════════════════════════════ -->
+<section class="sr-section" style="background: #f5f5f5;">
+  <div class="sr-container">
+    <div class="sr-two-col">
+      <div class="sr-two-col__left">
+        <span class="sr-eyebrow sr-eyebrow--dark">Fulfillment</span>
+        <h2 class="sr-heading sr-heading--black">Order<br>Processing</h2>
+      </div>
+      <div class="sr-two-col__right">
+        <p class="sr-body sr-body--dark">All orders are processed within <strong style="color:#000; font-family:'DM Sans',sans-serif; font-weight:700;">1–2 business days</strong> of placement. During high-volume periods or new product launches, processing may extend to 3 business days — we'll always keep you in the loop.</p>
+        <p class="sr-body sr-body--dark" style="margin-top: 20px;">Orders placed after <strong style="color:#000; font-family:'DM Sans',sans-serif; font-weight:700;">3:00 PM CT</strong> will begin processing the following business day. We do not process orders on weekends or federal holidays.</p>
+        <p class="sr-body sr-body--dark" style="margin-top: 20px;">Once your order ships, you'll receive a tracking number via email. Allow up to 24 hours for carrier tracking to become active after you receive the notification.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     4. RETURNS
+═══════════════════════════════════════════ -->
+<section class="sr-section sr-grid-bg">
+  <div class="sr-container">
+    <span class="sr-eyebrow sr-eyebrow--light">Policy</span>
+    <h2 class="sr-heading sr-heading--white">30-Day Returns</h2>
+    <p class="sr-body sr-body--light" style="max-width: 640px;">We stand behind every product we make. If something isn't right, we'll make it right. Items must be unused, unwashed, and returned in their original packaging within <strong style="color:#fff;">30 days</strong> of delivery.</p>
+
+    <ul class="sr-steps">
+      <li class="sr-step">
+        <span class="sr-step__num">01</span>
+        <div class="sr-step__text">
+          <strong>Email Us</strong>
+          Send a message to <a href="mailto:{{ section.settings.contact_email }}" style="color: rgba(255,255,255,0.65); text-decoration: underline;">{{ section.settings.contact_email }}</a> with your order number and reason for return. We'll respond within one business day with a return authorization and instructions.
+        </div>
+      </li>
+      <li class="sr-step">
+        <span class="sr-step__num">02</span>
+        <div class="sr-step__text">
+          <strong>Ship It Back</strong>
+          Pack the item securely and ship it to the address we provide. We recommend using a tracked service. Return shipping costs are the responsibility of the customer unless the item was defective or incorrect.
+        </div>
+      </li>
+      <li class="sr-step">
+        <span class="sr-step__num">03</span>
+        <div class="sr-step__text">
+          <strong>Refund Issued</strong>
+          Once we receive and inspect your return, your refund will be processed to the original payment method within <strong style="color:#fff;">5 business days</strong>. You'll receive a confirmation email when it's done.
+        </div>
+      </li>
+    </ul>
+
+    <div class="sr-note">
+      <strong>Please note:</strong> Sale items, limited releases, and items marked "Final Sale" at time of purchase are not eligible for return or exchange. All sales on these items are final.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     5. EXCHANGES
+═══════════════════════════════════════════ -->
+<section class="sr-section" style="background: #f5f5f5;">
+  <div class="sr-container">
+    <span class="sr-eyebrow sr-eyebrow--dark">We Make It Right</span>
+    <h2 class="sr-heading sr-heading--black">Exchanges</h2>
+
+    <div class="sr-exchange-box">
+      <div>
+        <p class="sr-exchange-box__text">Received a defective product? Wrong item in the box? We'll fix it immediately — no questions asked, no hoops to jump through. Just reach out and we'll get the right product to you as fast as possible.</p>
+        <p class="sr-exchange-box__text" style="margin-top: 16px;">In cases of our error, we cover all return and re-shipment costs. This is a promise.</p>
+      </div>
+      <div class="sr-exchange-box__action">
+        <a href="mailto:{{ section.settings.contact_email }}" class="sr-btn sr-btn--dark">Email Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     6. FAQ STRIP
+═══════════════════════════════════════════ -->
+<section class="sr-section sr-grid-bg">
+  <div class="sr-container">
+    <span class="sr-eyebrow sr-eyebrow--light">Quick Answers</span>
+    <h2 class="sr-heading sr-heading--white">Common Questions</h2>
+
+    <div class="sr-faq-grid">
+
+      <div class="sr-faq-card">
+        <p class="sr-faq-card__q">When will I get tracking?</p>
+        <p class="sr-faq-card__a">You'll receive a tracking number via email as soon as your order ships — typically within 1–2 business days of placing your order. Check your spam folder if you don't see it.</p>
+      </div>
+
+      <div class="sr-faq-card">
+        <p class="sr-faq-card__q">Can I cancel my order?</p>
+        <p class="sr-faq-card__a">We can cancel orders within 12 hours of placement, before they move to fulfillment. Email us immediately at <a href="mailto:{{ section.settings.contact_email }}" style="color: rgba(255,255,255,0.6); text-decoration: underline;">{{ section.settings.contact_email }}</a> and we'll do our best.</p>
+      </div>
+
+      <div class="sr-faq-card">
+        <p class="sr-faq-card__q">What if my package is lost?</p>
+        <p class="sr-faq-card__a">If your tracking shows delivered but nothing arrived, give it 24 hours and check with neighbors. If it's still missing, contact us — we'll work with the carrier to resolve it and make sure you're taken care of.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     7. CTA
+═══════════════════════════════════════════ -->
+<section class="sr-section sr-cta sr-grid-bg">
+  <div class="sr-container">
+    <span class="sr-eyebrow sr-eyebrow--light">Get In Touch</span>
+    <h2 class="sr-heading sr-heading--white">Still Have Questions?</h2>
+    <p class="sr-body sr-body--light" style="max-width: 480px; margin: 0 auto 40px;">Our team is based in Chicago and ready to help. Reach out via our contact page or drop us a direct email — we typically respond within one business day.</p>
+
+    <div class="sr-cta__actions">
+      <a href="{{ section.settings.contact_url }}" class="sr-btn sr-btn--outline-light">Visit Contact Page</a>
+      <a href="mailto:{{ section.settings.contact_email }}" class="sr-cta__email">{{ section.settings.contact_email }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shipping & Returns",
+  "settings": [
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact Email Address",
+      "default": "hello@polariscarcare.com"
+    },
+    {
+      "type": "url",
+      "id": "contact_url",
+      "label": "Contact Page URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping & Returns"
+    }
+  ]
+}
+{% endschema %}
