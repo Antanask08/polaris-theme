@@ -1,0 +1,241 @@
+<style>
+  .pp-hero {
+    min-height: 40vh;
+    background-color: #0a0a0a;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 60px 60px;
+    box-sizing: border-box;
+  }
+
+  .pp-hero__eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 16px;
+  }
+
+  .pp-hero__heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0 0 20px;
+    line-height: 1;
+  }
+
+  .pp-hero__date {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+    margin: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .pp-body {
+    background: #f5f5f5;
+    padding: 80px 40px;
+  }
+
+  .pp-container {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .pp-intro {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(0,0,0,0.6);
+    margin-bottom: 56px;
+    border-left: 2px solid #000;
+    padding-left: 20px;
+  }
+
+  .pp-section {
+    margin-bottom: 48px;
+  }
+
+  .pp-section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #000;
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .pp-section p,
+  .pp-section li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(0,0,0,0.75);
+    margin-bottom: 12px;
+  }
+
+  .pp-section ul {
+    padding-left: 20px;
+    list-style: disc;
+    margin-bottom: 12px;
+  }
+
+  .pp-section li {
+    margin-bottom: 6px;
+  }
+
+  .pp-section a {
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .pp-section a:hover {
+    color: rgba(0,0,0,0.6);
+  }
+
+  @media (max-width: 768px) {
+    .pp-body {
+      padding: 48px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pp-hero {
+      padding: 48px 24px 40px;
+    }
+
+    .pp-hero__heading {
+      font-size: 2.4rem;
+    }
+  }
+</style>
+
+<section class="pp-hero">
+  <p class="pp-hero__eyebrow">Legal &mdash; Doc. 003</p>
+  <h1 class="pp-hero__heading">Privacy Policy</h1>
+  <p class="pp-hero__date">Last Updated: April 2025</p>
+</section>
+
+<section class="pp-body">
+  <div class="pp-container">
+
+    <p class="pp-intro">
+      At Polaris Car Care, your privacy matters. This Privacy Policy explains what information we collect, how we use it, and the choices you have. By using our website at polariscarcare.com, you agree to the practices described below.
+    </p>
+
+    <div class="pp-section">
+      <h2>Information We Collect</h2>
+      <p>When you visit or make a purchase from our store, we may collect the following types of information:</p>
+      <ul>
+        <li><strong>Personal identifiers:</strong> your name, email address, phone number, and shipping/billing address when you place an order or create an account.</li>
+        <li><strong>Payment information:</strong> credit card and payment details are processed securely by Shopify Payments and our payment processors. We do not store your full payment card information on our servers.</li>
+        <li><strong>Order information:</strong> products purchased, order history, and transaction details.</li>
+        <li><strong>Browsing behavior:</strong> pages visited, products viewed, time spent on site, referring URLs, and other interaction data collected automatically.</li>
+        <li><strong>Device and technical information:</strong> IP address, browser type, operating system, device identifiers, and cookie data.</li>
+        <li><strong>Communications:</strong> any messages you send us via email, contact forms, or customer support channels.</li>
+      </ul>
+    </div>
+
+    <div class="pp-section">
+      <h2>How We Use Your Information</h2>
+      <p>We use the information we collect to:</p>
+      <ul>
+        <li>Process and fulfill your orders, including sending order confirmations and shipping notifications.</li>
+        <li>Communicate with you about your purchases, returns, or customer service inquiries.</li>
+        <li>Send marketing emails, promotions, and product updates — only with your consent, and only when you have opted in.</li>
+        <li>Improve our website experience, product offerings, and marketing effectiveness.</li>
+        <li>Detect, investigate, and prevent fraudulent transactions and other illegal activities.</li>
+        <li>Comply with applicable legal obligations and enforce our terms.</li>
+      </ul>
+    </div>
+
+    <div class="pp-section">
+      <h2>Sharing Your Information</h2>
+      <p>We do not sell your personal information. Ever. We may share your data only with trusted third parties necessary to operate our business:</p>
+      <ul>
+        <li><strong>Shopify:</strong> our ecommerce platform powers our store and processes payments. Shopify's privacy policy governs how they handle your data.</li>
+        <li><strong>Shipping carriers:</strong> we share your name and shipping address with carriers such as USPS and UPS to fulfill and deliver your orders.</li>
+        <li><strong>Email marketing platforms:</strong> we use Klaviyo to manage and send marketing communications. Your email and basic purchase data may be shared with Klaviyo solely for this purpose.</li>
+        <li><strong>Analytics providers:</strong> tools such as Google Analytics may receive anonymized or aggregated data to help us understand site performance.</li>
+        <li><strong>Legal compliance:</strong> we may disclose information when required by law, court order, or to protect the rights and safety of our business and customers.</li>
+      </ul>
+    </div>
+
+    <div class="pp-section">
+      <h2>Cookies</h2>
+      <p>Our website uses cookies — small text files stored on your device — for the following purposes:</p>
+      <ul>
+        <li><strong>Functionality:</strong> to maintain your shopping cart, remember your preferences, and keep you logged in.</li>
+        <li><strong>Analytics:</strong> to understand how visitors interact with our site and identify areas for improvement.</li>
+        <li><strong>Marketing:</strong> to serve relevant ads and measure the effectiveness of our advertising campaigns.</li>
+      </ul>
+      <p>You can disable cookies through your browser settings at any time. Note that disabling certain cookies may affect the functionality of our store, including the checkout process.</p>
+    </div>
+
+    <div class="pp-section">
+      <h2>Email Marketing</h2>
+      <p>We only send marketing emails to customers and subscribers who have explicitly opted in. Every marketing email we send includes an unsubscribe link — you can opt out at any time, and we will honor that request promptly.</p>
+      <p>Our email marketing is managed through Klaviyo. If you have questions about your subscription status or wish to be removed from our list, email us at <a href="mailto:hello@polariscarcare.com">hello@polariscarcare.com</a>.</p>
+    </div>
+
+    <div class="pp-section">
+      <h2>Your Rights</h2>
+      <p>You have the right to access, correct, or request deletion of the personal data we hold about you. To exercise any of these rights, contact us at <a href="mailto:hello@polariscarcare.com">hello@polariscarcare.com</a> and we will respond within a reasonable timeframe.</p>
+      <p><strong>California Residents (CCPA):</strong> If you are a California resident, you have additional rights under the California Consumer Privacy Act, including the right to know what personal information is collected about you, the right to request deletion, and the right to opt out of the sale of personal information. We do not sell personal information. To submit a CCPA request, contact us at the email above.</p>
+    </div>
+
+    <div class="pp-section">
+      <h2>Data Retention</h2>
+      <p>We retain order data, including your name, address, and purchase history, for a minimum of five (5) years to comply with applicable tax, accounting, and legal requirements.</p>
+      <p>Marketing data — including your email address and subscription preferences — is retained until you unsubscribe or request deletion. After unsubscribing, your email will be suppressed from future marketing sends.</p>
+    </div>
+
+    <div class="pp-section">
+      <h2>Children's Privacy</h2>
+      <p>Our website and products are not directed at children under the age of 13. We do not knowingly collect personal information from minors. If you believe a child under 13 has provided us with personal information, please contact us at <a href="mailto:hello@polariscarcare.com">hello@polariscarcare.com</a> and we will delete it promptly.</p>
+    </div>
+
+    <div class="pp-section">
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or the services we offer. When we do, we will update the "Last Updated" date at the top of this page.</p>
+      <p>Your continued use of polariscarcare.com after any changes are posted constitutes your acceptance of the revised policy. We encourage you to review this page periodically.</p>
+    </div>
+
+    <div class="pp-section">
+      <h2>Contact Us</h2>
+      <p>If you have any questions, concerns, or requests regarding this Privacy Policy or the way we handle your data, please reach out to us:</p>
+      <p>
+        <strong>Polaris Car Care</strong><br>
+        Chicago, IL<br>
+        <a href="mailto:hello@polariscarcare.com">hello@polariscarcare.com</a><br>
+        <a href="https://polariscarcare.com">polariscarcare.com</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Privacy Policy",
+  "presets": [
+    {
+      "name": "Privacy Policy"
+    }
+  ]
+}
+{% endschema %}

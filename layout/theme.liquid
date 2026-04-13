@@ -187,17 +187,13 @@
           <!-- Brand Column -->
           <div class="footer-col footer-col--brand">
             <a href="/" class="footer-logo" aria-label="{{ shop.name }}">
-              {%- if settings.logo != blank -%}
-                <img
-                  src="{{ settings.logo | image_url: width: 160 }}"
-                  alt="{{ shop.name }}"
-                  width="160"
-                  height="auto"
-                  loading="lazy"
-                >
-              {%- else -%}
-                <span class="footer-logo__text">POLARIS CAR CARE</span>
-              {%- endif -%}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/PNG_2.png?v=1775814683"
+                alt="{{ shop.name }}"
+                width="110"
+                height="auto"
+                loading="lazy"
+              >
             </a>
             <p class="footer-tagline">Built for the ones who care.</p>
           </div>
@@ -266,7 +262,11 @@
         <!-- Footer Bottom -->
         <div class="footer-bottom">
           <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
-          <span>Free shipping on every order.</span>
+          <span class="footer-bottom__links">
+            <a href="/pages/privacy-policy">Privacy Policy</a>
+            <a href="/pages/terms-of-service">Terms of Service</a>
+            <a href="/pages/shipping-returns">Shipping &amp; Returns</a>
+          </span>
         </div>
       </div>
     </footer>

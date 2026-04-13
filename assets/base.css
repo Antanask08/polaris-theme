@@ -747,6 +747,25 @@ p {
   font-family: var(--font-body);
   font-size: 12px;
   opacity: 0.6;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-bottom__links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom__links a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.8;
+}
+
+.footer-bottom__links a:hover {
+  opacity: 1;
 }
 
 /* ============================================================
