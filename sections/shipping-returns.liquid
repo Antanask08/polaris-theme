@@ -98,6 +98,11 @@
   .sr-body--dark  { color: rgba(0,0,0,0.65); }
 
   /* ── Shipping Tiers Grid (dark) ── */
+  .sr-tiers--single {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+
   .sr-tiers {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -506,7 +511,7 @@
     <span class="sr-eyebrow sr-eyebrow--light">Delivery Options</span>
     <h2 class="sr-heading sr-heading--white">We Ship Nationwide</h2>
 
-    <div class="sr-tiers">
+    <div class="sr-tiers sr-tiers--single">
 
       <!-- Free Shipping -->
       <div class="sr-tier">
@@ -516,34 +521,9 @@
           <circle cx="10" cy="34" r="3" stroke="white" stroke-width="1.5"/>
           <circle cx="32" cy="34" r="3" stroke="white" stroke-width="1.5"/>
         </svg>
-        <span class="sr-tier__badge">Free</span>
-        <h3 class="sr-tier__title">Free Shipping</h3>
-        <p class="sr-tier__desc">All US orders ship free — no minimum required. Standard delivery arrives in 5–8 business days via USPS or UPS.</p>
-      </div>
-
-      <!-- Expedited -->
-      <div class="sr-tier">
-        <svg class="sr-tier__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 4v8M20 28v8M4 20h8M28 20h8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="20" cy="20" r="8" stroke="white" stroke-width="1.5"/>
-          <path d="M20 14v6l4 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="sr-tier__badge">Paid</span>
-        <h3 class="sr-tier__title">Expedited</h3>
-        <p class="sr-tier__desc">Need it faster? Select expedited shipping at checkout. Orders arrive in 2–3 business days.</p>
-      </div>
-
-      <!-- International -->
-      <div class="sr-tier">
-        <svg class="sr-tier__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="20" cy="20" r="16" stroke="white" stroke-width="1.5"/>
-          <ellipse cx="20" cy="20" rx="7" ry="16" stroke="white" stroke-width="1.5"/>
-          <path d="M4 20h32" stroke="white" stroke-width="1.5"/>
-          <path d="M7 12h26M7 28h26" stroke="white" stroke-width="1" opacity="0.5"/>
-        </svg>
-        <span class="sr-tier__badge" style="color:#fff; background: rgba(255,255,255,0.1);">Soon</span>
-        <h3 class="sr-tier__title">International</h3>
-        <p class="sr-tier__desc">International shipping is coming soon. Currently we ship to US domestic addresses only. Check back later.</p>
+        <span class="sr-tier__badge">Free — Always</span>
+        <h3 class="sr-tier__title">Free Shipping on Every Order</h3>
+        <p class="sr-tier__desc">All US orders ship free with no minimum purchase required. Standard delivery arrives in 5–8 business days via USPS or UPS. We currently ship to US domestic addresses only.</p>
       </div>
 
     </div>
