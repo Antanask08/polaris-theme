@@ -351,6 +351,27 @@
     flex-shrink: 0;
   }
 
+  .pp-care-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+    text-decoration: none;
+  }
+  .pp-care-link:hover { color: #000; }
+  .pp-care-link svg {
+    width: 14px; height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
+
   /* ─── Feature Strip ────────────────────────────────────────────────────────── */
   .pp-feature-strip {
     background: #000;
@@ -1063,6 +1084,11 @@
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
             <span>30-day satisfaction guarantee. Not happy? We'll make it right.</span>
           </div>
+
+          <a href="/pages/towel-care" class="pp-care-link">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            How to care for your towel — Care Guide
+          </a>
 
         </div>
       </div>
