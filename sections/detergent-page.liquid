@@ -18,7 +18,7 @@
     position: sticky;
     top: calc(var(--announcement-height, 40px) + var(--header-height, 60px));
     align-self: start;
-    background: #0a0a0a;
+    background: #fff;
   }
   @media (max-width: 900px) {
     .dp-gallery-stick { position: relative; top: auto; }
@@ -31,7 +31,7 @@
     width: 100%;
     height: clamp(280px, 36vw, 520px);
     overflow: hidden;
-    background: #0a0a0a;
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,8 +75,8 @@
     display: flex;
     gap: 0;
     padding: 0;
-    background: #111;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    background: #f2f2f2;
+    border-top: 1px solid rgba(0,0,0,0.06);
     overflow-x: auto;
     scrollbar-width: none;
   }
@@ -88,12 +88,12 @@
     overflow: hidden;
     cursor: pointer;
     border-bottom: 2px solid transparent;
-    background: #111;
+    background: #f2f2f2;
     transition: border-color 120ms, opacity 120ms;
-    opacity: 0.4;
+    opacity: 0.45;
     padding: 10px;
   }
-  .dp-thumb.is-active { border-bottom-color: #fff; opacity: 1; }
+  .dp-thumb.is-active { border-bottom-color: #000; opacity: 1; }
   .dp-thumb:hover { opacity: 0.75; }
   .dp-thumb img {
     width: 100%;
@@ -497,17 +497,19 @@
   .dp-section-heading {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
-    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-size: clamp(2.4rem, 4.5vw, 4rem);
     text-transform: uppercase;
-    line-height: 0.95;
+    line-height: 0.92;
     letter-spacing: 0.01em;
     color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    flex: 1;
   }
   .dp-section-body {
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
     font-size: 0.95rem;
+    margin-top: 28px;
     line-height: 1.8;
     color: rgba(255,255,255,0.55);
     max-width: 420px;
