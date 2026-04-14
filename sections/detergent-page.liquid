@@ -97,9 +97,9 @@
   .dp-arrow[hidden] { display: none; }
   /* Thumbnail strip */
   .dp-thumbs {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
     margin-top: 10px;
   }
   .dp-thumb {
@@ -109,7 +109,9 @@
     cursor: pointer;
     overflow: hidden;
     transition: border-color 200ms;
-    aspect-ratio: 1/1;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
   }
   .dp-thumb.is-active,
   .dp-thumb:hover { border-color: #000; }
