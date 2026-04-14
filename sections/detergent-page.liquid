@@ -946,6 +946,7 @@
         <button type="button" class="dp-cta-btn" id="dp-cta-btn">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           <span id="dp-cta-label">Pre-Order — Limited First Run</span>
+          <span id="dp-cta-price" style="opacity:0.7;font-weight:400;margin-left:8px;">${{ section.settings.one_time_price | default: '16.99' }}</span>
         </button>
       {% endform %}
 
@@ -1103,6 +1104,7 @@
   var btnSubscribe  = document.getElementById('dp-btn-subscribe');
   var ctaBtn        = document.getElementById('dp-cta-btn');
   var ctaLabel      = document.getElementById('dp-cta-label');
+  var ctaPrice      = document.getElementById('dp-cta-price');
   var isSubscribe   = false;
   var selectedPlan  = '{{ section.settings.selling_plan_30 }}';
   var qty           = 1;
@@ -1116,6 +1118,7 @@
     freqEl.style.display   = 'none';
     perkEl.style.display   = 'none';
     sellingPlanEl.value    = '';
+    if (ctaPrice) ctaPrice.textContent = ONE_TIME_PRICE;
   }
 
   function setSubscribe() {
@@ -1124,6 +1127,7 @@
     btnOnetime.classList.remove('is-selected');
     priceEl.textContent     = SUBSCRIBE_PRICE;
     priceNoteEl.textContent = 'Subscribe & Save — cancel anytime';
+    if (ctaPrice) ctaPrice.textContent = SUBSCRIBE_PRICE;
     freqEl.style.display    = '';
     perkEl.style.display    = '';
     sellingPlanEl.value     = selectedPlan;
