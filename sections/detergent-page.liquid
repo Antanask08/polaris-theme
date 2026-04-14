@@ -580,6 +580,74 @@
     line-height: 1.5;
   }
 
+  /* ── Reviews ─────────────────────────────────────────── */
+  .dp-reviews-section {
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 56px 60px;
+  }
+  @media (max-width: 900px) { .dp-reviews-section { padding: 40px 24px; } }
+  .dp-reviews-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .dp-reviews-stars-summary {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.02em;
+  }
+  .dp-reviews-stars-summary span { color: rgba(255,255,255,0.4); font-size: 12px; }
+  .dp-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+  @media (max-width: 768px) { .dp-reviews-grid { grid-template-columns: 1fr; } }
+  .dp-review {
+    background: #000;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .dp-review-stars {
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+  .dp-review-text {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.65);
+    flex: 1;
+  }
+  .dp-review-author { margin-top: auto; }
+  .dp-review-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+  .dp-review-date {
+    font-size: 10px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+  }
+
   /* ── Statement + stat row (section 02) ───────────────── */
   .dp-statement-section {
     background: #000;
@@ -938,73 +1006,39 @@
       </div>
     </div>
 
-    {%- comment -%} Section 02 — Formula {%- endcomment -%}
-    <div class="dp-desc-grid">
-      <div class="dp-desc-left">
-        <div class="dp-section-num">02 — The Formula</div>
-        <h2 class="dp-section-heading">Built for<br>Microfiber.<br><span style="color:rgba(255,255,255,0.35);">Not Everything Else.</span></h2>
-        <p class="dp-section-body">Standard detergents coat microfiber fibers, filling the microscopic splits that make them grab water and lift dirt. Over time, that buildup turns a high-performance towel into a smear rag. Polaris Microfiber Detergent strips contamination without stripping performance.</p>
+    {%- comment -%} Reviews {%- endcomment -%}
+    <div class="dp-reviews-section">
+      <div class="dp-reviews-header">
+        <div class="dp-section-num" style="margin-bottom:0;">What They're Saying</div>
+        <div class="dp-reviews-stars-summary">★★★★★ <span>4.9 / 5</span></div>
       </div>
-      <div class="dp-desc-right">
-        <div class="dp-checklist">
-          <div class="dp-check-item">
-            <div class="dp-check-mark">✓</div>
-            <div>
-              <div class="dp-check-name">Neutral pH (6.5–8)</div>
-              <div class="dp-check-desc">Safe on all microfiber constructions — twisted loop, waffle weave, glass towels</div>
-            </div>
+      <div class="dp-reviews-grid">
+        <div class="dp-review">
+          <div class="dp-review-stars">★★★★★</div>
+          <p class="dp-review-text">"Finally a detergent that actually works. My Nova came out of the wash softer than when I bought it. No residue, no weird smell — just clean microfiber. Won't use anything else."</p>
+          <div class="dp-review-author">
+            <div class="dp-review-name">Marcus T.</div>
+            <div class="dp-review-date">Verified Purchase · March 2025</div>
           </div>
-          <div class="dp-check-item">
-            <div class="dp-check-mark">✓</div>
-            <div>
-              <div class="dp-check-name">Nonionic Surfactants</div>
-              <div class="dp-check-desc">No residue, no coating, no buildup — just clean fiber</div>
-            </div>
+        </div>
+        <div class="dp-review">
+          <div class="dp-review-stars">★★★★★</div>
+          <p class="dp-review-text">"I was skeptical about a $17 detergent but after two washes my towels felt brand new. Absorbency is noticeably better. The neutral pH thing is real — no more streaks on my ceramic coated car."</p>
+          <div class="dp-review-author">
+            <div class="dp-review-name">Jordan K.</div>
+            <div class="dp-review-date">Verified Purchase · February 2025</div>
           </div>
-          <div class="dp-check-item">
-            <div class="dp-check-mark">✓</div>
-            <div>
-              <div class="dp-check-name">No Optical Brighteners</div>
-              <div class="dp-check-desc">Won't mask contamination or leave chemical streaks on paint</div>
-            </div>
-          </div>
-          <div class="dp-check-item">
-            <div class="dp-check-mark">✓</div>
-            <div>
-              <div class="dp-check-name">No Fabric Softeners</div>
-              <div class="dp-check-desc">Softeners destroy absorbency. We leave them out entirely</div>
-            </div>
-          </div>
-          <div class="dp-check-item">
-            <div class="dp-check-mark">✓</div>
-            <div>
-              <div class="dp-check-name">HE Washing Machine Compatible</div>
-              <div class="dp-check-desc">Low-sudsing formula works in all standard and HE machines</div>
-            </div>
+        </div>
+        <div class="dp-review">
+          <div class="dp-review-stars">★★★★★</div>
+          <p class="dp-review-text">"Game changer. I was using regular Tide on my microfibers for years — didn't realize how much damage I was doing. These guys actually know what they're talking about."</p>
+          <div class="dp-review-author">
+            <div class="dp-review-name">Tyler M.</div>
+            <div class="dp-review-date">Verified Purchase · January 2025</div>
           </div>
         </div>
       </div>
     </div>
-
-    {%- comment -%} Usage Specs — schema-driven ── {%- endcomment -%}
-    {%- if section.blocks.size > 0 -%}
-      <div class="dp-usage-section">
-        <div class="dp-usage-header">
-          <div class="dp-section-num" style="margin-bottom:0;">03 — How to Use</div>
-          <span class="dp-usage-heading">Usage Specs</span>
-        </div>
-        <div class="dp-usage-grid">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'spec' -%}
-              <div class="dp-usage-tile" {{ block.shopify_attributes }}>
-                <div class="dp-usage-label">{{ block.settings.label }}</div>
-                <div class="dp-usage-value">{{ block.settings.value }}</div>
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
-      </div>
-    {%- endif -%}
 
     {%- comment -%} Warning callout {%- endcomment -%}
     <div class="dp-warning">
