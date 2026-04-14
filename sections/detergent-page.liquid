@@ -398,6 +398,28 @@
     color: #fff;
   }
 
+  .dp-sub-pack-btn {
+    flex: 1;
+    padding: 9px 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(0,0,0,0.18);
+    background: #fff;
+    color: rgba(0,0,0,0.5);
+    cursor: pointer;
+    transition: border-color 160ms, background 160ms, color 160ms;
+    white-space: nowrap;
+  }
+  .dp-sub-pack-btn.is-selected {
+    border-color: #000;
+    border-width: 2px;
+    background: #000;
+    color: #fff;
+  }
+
   /* ── CTA ──────────────────────────────────────────────── */
   .dp-cta-btn {
     display: flex;
@@ -1040,19 +1062,25 @@
         </div>
       </div>
 
-      {%- comment -%} Quantity selector — One Time only {%- endcomment -%}
+      {%- comment -%} Pack selector — One Time only {%- endcomment -%}
       <div class="dp-quantity-wrap" id="dp-quantity-wrap">
         <span class="dp-freq-label">Quantity</span>
         <div class="dp-qty-opts">
-          <button class="dp-qty-btn is-selected" data-qty="1" data-price="16.99" data-save="" data-free-ship="false">1 Bottle</button>
-          <button class="dp-qty-btn" data-qty="2" data-price="29.99" data-save="Save $4" data-free-ship="true">2 Bottles</button>
-          <button class="dp-qty-btn" data-qty="3" data-price="41.99" data-save="Save $9 — Best Value" data-free-ship="true">3 Bottles</button>
+          <button class="dp-qty-btn is-selected" data-pack="1" data-variant="46963596230787" data-price="16.99" data-save="" data-free-ship="false">1 Pack</button>
+          <button class="dp-qty-btn" data-pack="2" data-variant="46963596263555" data-price="29.99" data-save="Save $4" data-free-ship="true">2 Pack</button>
+          <button class="dp-qty-btn" data-pack="3" data-variant="46963596296323" data-price="41.99" data-save="Save $9 — Best Value" data-free-ship="true">3 Pack</button>
         </div>
       </div>
 
-      {%- comment -%} Frequency selector — Subscribe only {%- endcomment -%}
+      {%- comment -%} Subscribe selectors — Subscribe only {%- endcomment -%}
       <div class="dp-frequency" id="dp-frequency" style="display:none;">
-        <span class="dp-freq-label">Delivery Frequency</span>
+        <span class="dp-freq-label">Pack Size</span>
+        <div class="dp-freq-opts">
+          <button class="dp-sub-pack-btn is-selected" data-pack="1" data-variant="46963596230787" data-price="15.29">1 Pack</button>
+          <button class="dp-sub-pack-btn" data-pack="2" data-variant="46963596263555" data-price="26.99">2 Pack</button>
+          <button class="dp-sub-pack-btn" data-pack="3" data-variant="46963596296323" data-price="37.79">3 Pack</button>
+        </div>
+        <span class="dp-freq-label" style="margin-top:12px;">Delivery Frequency</span>
         <div class="dp-freq-opts">
           <button class="dp-freq-btn is-selected" data-days="30" data-plan="{{ section.settings.selling_plan_30 }}">Every 30 Days</button>
           <button class="dp-freq-btn" data-days="60" data-plan="{{ section.settings.selling_plan_60 }}">Every 60 Days</button>
@@ -1287,7 +1315,12 @@
     showSlide(0);
   }
 
-  var SUBSCRIBE_PRICE = '${{ subscribe_price }}';
+  /* ── Purchase section v2 ── */
+  var VARIANT_MAP   = { 1: 46963596230787, 2: 46963596263555, 3: 46963596296323 };
+  var OT_PRICES     = { 1: '16.99', 2: '29.99', 3: '41.99' };
+  var SUB_PRICES    = { 1: '15.29', 2: '26.99', 3: '37.79' };
+  var OT_FREE_SHIP  = { 1: false,   2: true,    3: true    };
+  var OT_SAVE       = { 1: '',      2: 'Save $4', 3: 'Save $9 — Best Value' };
 
   var priceEl       = document.getElementById('dp-price-display');
   var priceMeta     = document.getElementById('dp-price-meta');
@@ -1295,6 +1328,7 @@
   var perkEl        = document.getElementById('dp-sub-perk');
   var qtyWrap       = document.getElementById('dp-quantity-wrap');
   var qtyInput      = document.getElementById('dp-qty-input');
+  var variantInput  = document.querySelector('#dp-form input[name="id"]');
   var sellingPlanEl = document.getElementById('dp-selling-plan-input');
   var btnOnetime    = document.getElementById('dp-btn-onetime');
   var btnSubscribe  = document.getElementById('dp-btn-subscribe');
@@ -1303,10 +1337,10 @@
   var ctaPrice      = document.getElementById('dp-cta-price');
   var isSubscribe   = false;
   var selectedPlan  = '{{ section.settings.selling_plan_30 }}';
-  var currentQty    = 1;
-  var currentPrice  = '16.99';
+  var currentPack   = 1;
+  var currentVariantId = VARIANT_MAP[1];
 
-  function renderPriceMeta(freeShip, saveText) {
+  function renderPriceMeta(freeShip, saveText, extraBadge) {
     if (!priceMeta) return;
     priceMeta.innerHTML = '';
     if (freeShip) {
@@ -1326,23 +1360,47 @@
       sv.textContent = saveText;
       priceMeta.appendChild(sv);
     }
+    if (extraBadge) {
+      var eb = document.createElement('span');
+      eb.className = 'dp-badge dp-badge--save';
+      eb.textContent = extraBadge;
+      priceMeta.appendChild(eb);
+    }
   }
 
-  function selectQty(btn) {
-    document.querySelectorAll('.dp-qty-btn').forEach(function (b) { b.classList.remove('is-selected'); });
-    btn.classList.add('is-selected');
-    currentQty   = parseInt(btn.dataset.qty, 10);
-    currentPrice = btn.dataset.price;
-    var freeShip = btn.dataset.freeShip === 'true';
-    var saveText = btn.dataset.save || '';
-    if (priceEl) priceEl.textContent = '$' + currentPrice;
-    if (ctaPrice) ctaPrice.textContent = '$' + currentPrice;
-    if (qtyInput) qtyInput.value = currentQty;
-    renderPriceMeta(freeShip, saveText);
+  function applyVariant(packSize) {
+    currentPack      = packSize;
+    currentVariantId = VARIANT_MAP[packSize];
+    if (variantInput) variantInput.value = currentVariantId;
+    if (qtyInput) qtyInput.value = 1;
   }
 
+  /* One-time pack buttons */
   document.querySelectorAll('.dp-qty-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () { selectQty(btn); });
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.dp-qty-btn').forEach(function (b) { b.classList.remove('is-selected'); });
+      btn.classList.add('is-selected');
+      var pack = parseInt(btn.dataset.pack, 10);
+      applyVariant(pack);
+      var price = OT_PRICES[pack];
+      if (priceEl) priceEl.textContent = '$' + price;
+      if (ctaPrice) ctaPrice.textContent = '$' + price;
+      renderPriceMeta(OT_FREE_SHIP[pack], OT_SAVE[pack]);
+    });
+  });
+
+  /* Subscribe pack buttons */
+  document.querySelectorAll('.dp-sub-pack-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.dp-sub-pack-btn').forEach(function (b) { b.classList.remove('is-selected'); });
+      btn.classList.add('is-selected');
+      var pack = parseInt(btn.dataset.pack, 10);
+      applyVariant(pack);
+      var price = SUB_PRICES[pack];
+      if (priceEl) priceEl.textContent = '$' + price;
+      if (ctaPrice) ctaPrice.textContent = '$' + price;
+      renderPriceMeta(true, 'Save 10%');
+    });
   });
 
   function setOneTime() {
@@ -1352,9 +1410,17 @@
     if (qtyWrap) qtyWrap.style.display = '';
     freqEl.style.display = 'none';
     perkEl.style.display = 'none';
-    sellingPlanEl.value  = '';
-    var activeQty = document.querySelector('.dp-qty-btn.is-selected');
-    if (activeQty) selectQty(activeQty);
+    sellingPlanEl.value = '';
+    /* Restore one-time state from selected pack btn */
+    var activeOT = document.querySelector('.dp-qty-btn.is-selected');
+    if (activeOT) {
+      var pack = parseInt(activeOT.dataset.pack, 10);
+      applyVariant(pack);
+      var price = OT_PRICES[pack];
+      if (priceEl) priceEl.textContent = '$' + price;
+      if (ctaPrice) ctaPrice.textContent = '$' + price;
+      renderPriceMeta(OT_FREE_SHIP[pack], OT_SAVE[pack]);
+    }
   }
 
   function setSubscribe() {
@@ -1364,11 +1430,21 @@
     if (qtyWrap) qtyWrap.style.display = 'none';
     freqEl.style.display = '';
     perkEl.style.display = '';
-    sellingPlanEl.value  = selectedPlan;
-    if (priceEl) priceEl.textContent = SUBSCRIBE_PRICE;
-    if (ctaPrice) ctaPrice.textContent = SUBSCRIBE_PRICE;
-    if (qtyInput) qtyInput.value = 1;
-    renderPriceMeta(true, '');
+    sellingPlanEl.value = selectedPlan;
+    /* Use selected subscribe pack btn */
+    var activeSub = document.querySelector('.dp-sub-pack-btn.is-selected');
+    if (activeSub) {
+      var pack = parseInt(activeSub.dataset.pack, 10);
+      applyVariant(pack);
+      var price = SUB_PRICES[pack];
+      if (priceEl) priceEl.textContent = '$' + price;
+      if (ctaPrice) ctaPrice.textContent = '$' + price;
+    } else {
+      applyVariant(1);
+      if (priceEl) priceEl.textContent = '$' + SUB_PRICES[1];
+      if (ctaPrice) ctaPrice.textContent = '$' + SUB_PRICES[1];
+    }
+    renderPriceMeta(true, 'Save 10%');
   }
 
   btnOnetime   && btnOnetime.addEventListener('click', setOneTime);
@@ -1384,16 +1460,21 @@
     });
   });
 
-  /* Init default state */
+  /* Init default one-time state */
   (function () {
-    var firstQty = document.querySelector('.dp-qty-btn.is-selected');
-    if (firstQty) selectQty(firstQty);
+    var firstOT = document.querySelector('.dp-qty-btn.is-selected');
+    if (firstOT) {
+      var pack = parseInt(firstOT.dataset.pack, 10) || 1;
+      applyVariant(pack);
+      if (priceEl) priceEl.textContent = '$' + OT_PRICES[pack];
+      if (ctaPrice) ctaPrice.textContent = '$' + OT_PRICES[pack];
+      renderPriceMeta(OT_FREE_SHIP[pack], OT_SAVE[pack]);
+    }
   })();
 
   /* CTA — cart add */
   ctaBtn && ctaBtn.addEventListener('click', function () {
-    var variantId = {{ product.first_available_variant.id }};
-    var body = { id: variantId, quantity: currentQty };
+    var body = { id: currentVariantId, quantity: 1 };
     if (isSubscribe && sellingPlanEl.value) body.selling_plan = sellingPlanEl.value;
 
     var orig = ctaLabel.textContent;
