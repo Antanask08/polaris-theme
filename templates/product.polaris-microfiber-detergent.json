@@ -2,7 +2,24 @@
   "sections": {
     "detergent_main": {
       "type": "detergent-page",
-      "settings": {}
+      "settings": {
+        "coming_soon_badge": true,
+        "eyebrow": "Microfiber Detergent — 16 oz",
+        "short_desc": "Engineered specifically for microfiber — not your average detergent. Formulated to clean deep without destroying performance.",
+        "one_time_price": "16.99",
+        "subscribe_price": "14.99"
+      },
+      "blocks": {
+        "spec_1": { "type": "spec", "settings": { "label": "Dose Per Load", "value": "1–2 oz" } },
+        "spec_2": { "type": "spec", "settings": { "label": "Water Temp", "value": "Cold or Warm" } },
+        "spec_3": { "type": "spec", "settings": { "label": "Wash Cycle", "value": "Gentle" } },
+        "spec_4": { "type": "spec", "settings": { "label": "Dry Method", "value": "Air / Tumble Low" } },
+        "spec_5": { "type": "spec", "settings": { "label": "pH Range", "value": "6.5–8 Neutral" } },
+        "spec_6": { "type": "spec", "settings": { "label": "Scent", "value": "Unscented" } },
+        "spec_7": { "type": "spec", "settings": { "label": "Bottle Size", "value": "16 oz" } },
+        "spec_8": { "type": "spec", "settings": { "label": "Yield", "value": "15–20 Washes" } }
+      },
+      "block_order": ["spec_1", "spec_2", "spec_3", "spec_4", "spec_5", "spec_6", "spec_7", "spec_8"]
     }
   },
   "order": ["detergent_main"]
