@@ -605,20 +605,36 @@
     letter-spacing: 0.02em;
   }
   .dp-reviews-stars-summary span { color: rgba(255,255,255,0.4); font-size: 12px; }
-  .dp-reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(255,255,255,0.06);
+  .dp-rev-arrows { display: flex; gap: 6px; }
+  .dp-rev-arrow {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: border-color 150ms, background 150ms;
   }
-  @media (max-width: 768px) { .dp-reviews-grid { grid-template-columns: 1fr; } }
+  .dp-rev-arrow:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+  .dp-reviews-track-wrap {
+    overflow: hidden;
+  }
+  .dp-reviews-track {
+    display: flex;
+    transition: transform 350ms cubic-bezier(0.4,0,0.2,1);
+  }
   .dp-review {
+    min-width: calc(100% / 3);
     background: #000;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: none;
     padding: 32px 28px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    box-sizing: border-box;
   }
+  .dp-review:first-child { border-left: 1px solid rgba(255,255,255,0.06); }
+  @media (max-width: 768px) { .dp-review { min-width: 85%; } }
   .dp-review-stars {
     color: #fff;
     font-size: 13px;
@@ -1007,39 +1023,87 @@
       </div>
     </div>
 
-    {%- comment -%} Reviews {%- endcomment -%}
+    {%- comment -%} Reviews carousel {%- endcomment -%}
     <div class="dp-reviews-section">
       <div class="dp-reviews-header">
         <div class="dp-section-num" style="margin-bottom:0;">What They're Saying</div>
-        <div class="dp-reviews-stars-summary">★★★★★ <span>4.9 / 5</span></div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div class="dp-reviews-stars-summary">★★★★★ <span>4.9 / 5</span></div>
+          <div class="dp-rev-arrows">
+            <button class="dp-rev-arrow" id="dp-rev-prev" aria-label="Previous review">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="dp-rev-arrow" id="dp-rev-next" aria-label="Next review">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="dp-reviews-grid">
-        <div class="dp-review">
-          <div class="dp-review-stars">★★★★★</div>
-          <p class="dp-review-text">"Finally a detergent that actually works. My Nova came out of the wash softer than when I bought it. No residue, no weird smell — just clean microfiber. Won't use anything else."</p>
-          <div class="dp-review-author">
-            <div class="dp-review-name">Marcus T.</div>
-            <div class="dp-review-date">Verified Purchase · March 2025</div>
+      <div class="dp-reviews-track-wrap">
+        <div class="dp-reviews-track" id="dp-reviews-track">
+          <div class="dp-review">
+            <div class="dp-review-stars">★★★★★</div>
+            <p class="dp-review-text">"Finally a detergent that actually works. My Nova came out of the wash softer than when I bought it. No residue, no weird smell — just clean microfiber. Won't use anything else."</p>
+            <div class="dp-review-author">
+              <div class="dp-review-name">Marcus T.</div>
+              <div class="dp-review-date">Verified Purchase · March 2025</div>
+            </div>
           </div>
-        </div>
-        <div class="dp-review">
-          <div class="dp-review-stars">★★★★★</div>
-          <p class="dp-review-text">"I was skeptical about a $17 detergent but after two washes my towels felt brand new. Absorbency is noticeably better. The neutral pH thing is real — no more streaks on my ceramic coated car."</p>
-          <div class="dp-review-author">
-            <div class="dp-review-name">Jordan K.</div>
-            <div class="dp-review-date">Verified Purchase · February 2025</div>
+          <div class="dp-review">
+            <div class="dp-review-stars">★★★★★</div>
+            <p class="dp-review-text">"I was skeptical about a $17 detergent but after two washes my towels felt brand new. Absorbency is noticeably better. The neutral pH thing is real — no more streaks on my ceramic coated car."</p>
+            <div class="dp-review-author">
+              <div class="dp-review-name">Jordan K.</div>
+              <div class="dp-review-date">Verified Purchase · February 2025</div>
+            </div>
           </div>
-        </div>
-        <div class="dp-review">
-          <div class="dp-review-stars">★★★★★</div>
-          <p class="dp-review-text">"Game changer. I was using regular Tide on my microfibers for years — didn't realize how much damage I was doing. These guys actually know what they're talking about."</p>
-          <div class="dp-review-author">
-            <div class="dp-review-name">Tyler M.</div>
-            <div class="dp-review-date">Verified Purchase · January 2025</div>
+          <div class="dp-review">
+            <div class="dp-review-stars">★★★★★</div>
+            <p class="dp-review-text">"Game changer. I was using regular Tide on my microfibers for years — didn't realize how much damage I was doing. These guys actually know what they're talking about."</p>
+            <div class="dp-review-author">
+              <div class="dp-review-name">Tyler M.</div>
+              <div class="dp-review-date">Verified Purchase · January 2025</div>
+            </div>
+          </div>
+          <div class="dp-review">
+            <div class="dp-review-stars">★★★★★</div>
+            <p class="dp-review-text">"Bought this on a whim to go with my Nova towel. Two washes in and my microfibers are back to pulling water like day one. The scent-free formula is perfect — no artificial smell on the car."</p>
+            <div class="dp-review-author">
+              <div class="dp-review-name">Ryan S.</div>
+              <div class="dp-review-date">Verified Purchase · April 2025</div>
+            </div>
+          </div>
+          <div class="dp-review">
+            <div class="dp-review-stars">★★★★★</div>
+            <p class="dp-review-text">"Works exactly as described. Neutral pH means I can use it on my glass towels without worrying about streaks. Simple, clean product. Polaris keeps delivering."</p>
+            <div class="dp-review-author">
+              <div class="dp-review-name">Chris D.</div>
+              <div class="dp-review-date">Verified Purchase · March 2025</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    {%- comment -%} Specs ── {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="dp-usage-section">
+        <div class="dp-usage-header">
+          <div class="dp-section-num" style="margin-bottom:0;">Product Specs</div>
+          <span class="dp-usage-heading">How to Use</span>
+        </div>
+        <div class="dp-usage-grid">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'spec' -%}
+              <div class="dp-usage-tile" {{ block.shopify_attributes }}>
+                <div class="dp-usage-label">{{ block.settings.label }}</div>
+                <div class="dp-usage-value">{{ block.settings.value }}</div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
 
     {%- comment -%} Warning callout {%- endcomment -%}
     <div class="dp-warning">
@@ -1176,6 +1240,26 @@
       ctaBtn.disabled = false;
     });
   });
+  /* ── Reviews carousel ── */
+  (function () {
+    var track = document.getElementById('dp-reviews-track');
+    var prevBtn = document.getElementById('dp-rev-prev');
+    var nextBtn = document.getElementById('dp-rev-next');
+    if (!track) return;
+    var cards = track.querySelectorAll('.dp-review');
+    var perView = window.innerWidth <= 768 ? 1 : 3;
+    var current = 0;
+    var max = Math.max(0, cards.length - perView);
+    function slide() {
+      var pct = (100 / perView) * current;
+      track.style.transform = 'translateX(-' + pct + '%)';
+      if (prevBtn) prevBtn.style.opacity = current === 0 ? '0.3' : '1';
+      if (nextBtn) nextBtn.style.opacity = current >= max ? '0.3' : '1';
+    }
+    if (prevBtn) prevBtn.addEventListener('click', function () { if (current > 0) { current--; slide(); } });
+    if (nextBtn) nextBtn.addEventListener('click', function () { if (current < max) { current++; slide(); } });
+    slide();
+  })();
 })();
 </script>
 
