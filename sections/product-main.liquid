@@ -206,35 +206,75 @@
   }
   .pp-spec-pill-icon { font-size: 13px; }
 
-  /* Variant selector */
-  .pp-variants { margin-bottom: 20px; }
-  .pp-variant-group { margin-bottom: 14px; }
-  .pp-variant-label {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: rgba(0,0,0,0.5);
-  }
-  .pp-variant-opts { display: flex; gap: 8px; flex-wrap: wrap; }
-  .pp-variant-btn {
-    padding: 9px 20px;
-    border: 1px solid rgba(0,0,0,0.2);
-    background: transparent;
+  /* Pack selector */
+  .pp-variants { margin-bottom: 24px; }
+  .pp-pack-opts { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pp-pack-btn {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 100px;
+    padding: 14px 16px 12px;
+    border: 1px solid rgba(0,0,0,0.18);
+    background: #fff;
     cursor: pointer;
     font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    transition: background 180ms, border-color 180ms, color 180ms;
+    text-align: left;
+    transition: border-color 180ms, background 180ms;
     color: #000;
   }
-  .pp-variant-btn:hover,
-  .pp-variant-btn.is-selected {
+  .pp-pack-btn:hover { border-color: #000; }
+  .pp-pack-btn.is-selected {
+    border-color: #000;
+    border-width: 2px;
     background: #000;
     color: #fff;
-    border-color: #000;
+  }
+  .pp-pack-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: #fff;
+    color: #000;
+    padding: 2px 6px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .pp-pack-btn.is-selected .pp-pack-badge {
+    background: #fff;
+    color: #000;
+  }
+  .pp-pack-title {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .pp-pack-unit {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.45);
+    letter-spacing: 0.03em;
+  }
+  .pp-pack-btn.is-selected .pp-pack-unit { color: rgba(255,255,255,0.55); }
+  .pp-pack-save {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+    margin-top: 6px;
+  }
+  .pp-pack-btn.is-selected .pp-pack-save { color: rgba(255,255,255,0.6); }
+  @media (max-width: 480px) {
+    .pp-pack-opts { flex-direction: column; }
+    .pp-pack-btn { flex: 1 1 auto; }
   }
 
   /* Qty + ATC row */
@@ -989,12 +1029,11 @@
             </div>
           {% endif %}
 
+          {%- assign default_variant = product.variants | where: "title", "1-Pack" | first -%}
+          {%- unless default_variant -%}{%- assign default_variant = product.first_available_variant -%}{%- endunless -%}
           <div class="pp-price-row">
-            <span class="pp-price">{{ product.price | money }}</span>
-            {% if section.settings.compare_price != blank %}
-              <span class="pp-price-compare">{{ section.settings.compare_price }}</span>
-              <span class="pp-price-badge">BEST VALUE</span>
-            {% endif %}
+            <span class="pp-price" id="pp-price-display">{{ default_variant.price | money }}</span>
+            <span class="pp-price-compare" id="pp-price-compare"{% unless default_variant.compare_at_price > default_variant.price %} style="display:none"{% endunless %}>{{ default_variant.compare_at_price | money }}</span>
           </div>
           <p class="pp-shipping-note">Free shipping on every order · No minimum</p>
 
@@ -1020,29 +1059,44 @@
             </div>
           {% endif %}
 
-          {%- comment -%} Variants {%- endcomment -%}
+          {%- comment -%} Pack selector {%- endcomment -%}
           {% if product.variants.size > 1 %}
             <div class="pp-variants">
-              {% for option in product.options_with_values %}
-                <div class="pp-variant-group">
-                  <label class="pp-variant-label">{{ option.name }}</label>
-                  <div class="pp-variant-opts">
-                    {% for value in option.values %}
-                      <button
-                        class="pp-variant-btn {% if forloop.first %}is-selected{% endif %}"
-                        data-option="{{ option.position }}"
-                        data-value="{{ value }}"
-                      >{{ value }}</button>
-                    {% endfor %}
-                  </div>
-                </div>
-              {% endfor %}
+              <div class="pp-pack-opts">
+                {%- assign pack_order = "1-Pack,2-Pack,3-Pack" | split: "," -%}
+                {%- for pack_name in pack_order -%}
+                  {%- assign variant = product.variants | where: "title", pack_name | first -%}
+                  {%- if variant -%}
+                    {%- assign towel_count = forloop.index -%}
+                    {%- assign unit_price = variant.price | divided_by: towel_count -%}
+                    {%- assign savings_amount = variant.compare_at_price | minus: variant.price -%}
+                    <button
+                      class="pp-pack-btn {% if pack_name == '1-Pack' %}is-selected{% endif %}"
+                      data-variant-id="{{ variant.id }}"
+                      data-price="{{ variant.price | money }}"
+                      data-compare-at="{{ variant.compare_at_price | money }}"
+                      data-has-compare="{% if variant.compare_at_price > variant.price %}true{% else %}false{% endif %}"
+                    >
+                      {%- if pack_name == '2-Pack' -%}
+                        <span class="pp-pack-badge">Most Popular</span>
+                      {%- elsif pack_name == '3-Pack' -%}
+                        <span class="pp-pack-badge">Best Value</span>
+                      {%- endif -%}
+                      <span class="pp-pack-title">{{ pack_name }}</span>
+                      <span class="pp-pack-unit">{{ unit_price | money }}/towel</span>
+                      {%- if savings_amount > 0 -%}
+                        <span class="pp-pack-save">Save {{ savings_amount | money }}</span>
+                      {%- endif -%}
+                    </button>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
             </div>
           {% endif %}
 
           {%- comment -%} Qty + ATC {%- endcomment -%}
           {% form 'product', product, id: 'pp-product-form' %}
-            <input type="hidden" name="id" id="pp-selected-variant" value="{{ product.first_available_variant.id }}">
+            <input type="hidden" name="id" id="pp-selected-variant" value="{{ default_variant.id }}">
             <div class="pp-atc-row">
               <div class="pp-qty">
                 <button type="button" class="pp-qty-btn" id="pp-qty-minus" aria-label="Decrease quantity">−</button>
@@ -1053,10 +1107,10 @@
                 type="button"
                 id="pp-atc-btn"
                 class="pp-atc-btn"
-                data-variant-id="{{ product.first_available_variant.id }}"
+                data-variant-id="{{ default_variant.id }}"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                Add to Cart — {{ product.price | money }}
+                <span class="pp-atc-label">Add to Cart — {{ default_variant.price | money }}</span>
               </button>
             </div>
           {% endform %}
@@ -1357,14 +1411,33 @@
     qtyDisplay.textContent = qty;
   });
 
-  /* ── Variant selection ────────────────────────────── */
-  document.querySelectorAll('.pp-variant-btn').forEach(function (btn) {
+  /* ── Pack variant selection ───────────────────────── */
+  var ppPriceEl      = document.getElementById('pp-price-display');
+  var ppCompareEl    = document.getElementById('pp-price-compare');
+  var ppHiddenInput  = document.getElementById('pp-selected-variant');
+  var ppAtcBtn       = document.getElementById('pp-atc-btn');
+  var ppAtcLabel     = ppAtcBtn ? ppAtcBtn.querySelector('.pp-atc-label') : null;
+  var ppStickyPrice  = document.querySelector('.pp-sticky-price');
+
+  document.querySelectorAll('.pp-pack-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var optPos = btn.dataset.option;
-      document.querySelectorAll('.pp-variant-btn[data-option="' + optPos + '"]').forEach(function (b) {
-        b.classList.remove('is-selected');
-      });
+      document.querySelectorAll('.pp-pack-btn').forEach(function (b) { b.classList.remove('is-selected'); });
       btn.classList.add('is-selected');
+
+      var variantId  = btn.dataset.variantId;
+      var price      = btn.dataset.price;
+      var compareAt  = btn.dataset.compareAt;
+      var hasCompare = btn.dataset.hasCompare === 'true';
+
+      if (ppHiddenInput)  ppHiddenInput.value          = variantId;
+      if (ppAtcBtn)       ppAtcBtn.dataset.variantId   = variantId;
+      if (ppAtcLabel)     ppAtcLabel.textContent        = 'Add to Cart \u2014 ' + price;
+      if (ppPriceEl)      ppPriceEl.textContent         = price;
+      if (ppStickyPrice)  ppStickyPrice.textContent     = price;
+      if (ppCompareEl) {
+        ppCompareEl.textContent  = compareAt;
+        ppCompareEl.style.display = hasCompare ? '' : 'none';
+      }
     });
   });
 
