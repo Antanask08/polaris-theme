@@ -1085,25 +1085,57 @@
       </div>
     </div>
 
-    {%- comment -%} Specs ── {%- endcomment -%}
-    {%- if section.blocks.size > 0 -%}
-      <div class="dp-usage-section">
-        <div class="dp-usage-header">
-          <div class="dp-section-num" style="margin-bottom:0;">Product Specs</div>
-          <span class="dp-usage-heading">How to Use</span>
+    {%- comment -%} Product Specs ── {%- endcomment -%}
+    <div class="dp-usage-section">
+      <div class="dp-usage-header">
+        <div class="dp-section-num" style="margin-bottom:0;">Formula</div>
+        <span class="dp-usage-heading">Product Specs</span>
+      </div>
+      <div class="dp-usage-grid">
+        <div class="dp-usage-tile">
+          <div class="dp-usage-label">pH Range</div>
+          <div class="dp-usage-value">6.5–8 Neutral</div>
         </div>
-        <div class="dp-usage-grid">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'spec' -%}
-              <div class="dp-usage-tile" {{ block.shopify_attributes }}>
-                <div class="dp-usage-label">{{ block.settings.label }}</div>
-                <div class="dp-usage-value">{{ block.settings.value }}</div>
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
+        <div class="dp-usage-tile">
+          <div class="dp-usage-label">Scent</div>
+          <div class="dp-usage-value">Unscented</div>
+        </div>
+        <div class="dp-usage-tile">
+          <div class="dp-usage-label">Bottle Size</div>
+          <div class="dp-usage-value">16 oz</div>
+        </div>
+        <div class="dp-usage-tile">
+          <div class="dp-usage-label">Yield</div>
+          <div class="dp-usage-value">15–20 Washes</div>
         </div>
       </div>
-    {%- endif -%}
+    </div>
+
+    {%- comment -%} How to Use ── {%- endcomment -%}
+    <div class="dp-usage-section" style="border-top: 1px solid rgba(255,255,255,0.06);">
+      <div class="dp-usage-header">
+        <div class="dp-section-num" style="margin-bottom:0;">Instructions</div>
+        <span class="dp-usage-heading">How to Use</span>
+      </div>
+      <div class="dp-usage-grid">
+        <div class="dp-usage-tile">
+          <div class="dp-usage-label">Dose Per Load</div>
+          <div class="dp-usage-value">1–2 oz</div>
+        </div>
+        <div class="dp-usage-tile">
+          <div class="dp-usage-label">Water Temp</div>
+          <div class="dp-usage-value">Cold or Warm</div>
+        </div>
+        <div class="dp-usage-tile">
+          <div class="dp-usage-label">Wash Cycle</div>
+          <div class="dp-usage-value">Gentle</div>
+        </div>
+        <div class="dp-usage-tile">
+          <div class="dp-usage-label">Dry Method</div>
+          <div class="dp-usage-value">Air / Tumble Low</div>
+        </div>
+      </div>
+    </div>
 
     {%- comment -%} Warning callout {%- endcomment -%}
     <div class="dp-warning">
