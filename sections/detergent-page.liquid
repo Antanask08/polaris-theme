@@ -46,6 +46,7 @@
     object-fit: contain;
     display: block;
   }
+  .dp-slide-hidden { display: none; }
   .dp-img-placeholder {
     width: 100%;
     height: 100%;
@@ -678,30 +679,30 @@
     {%- comment -%} Image {%- endcomment -%}
     <div class="dp-gallery-stick">
       <div class="dp-gallery">
-        <div class="dp-main-img-wrap">
-          {% if product.featured_image %}
-            <img
-              id="dp-main-image"
-              src="{{ product.featured_image | image_url: width: 1200 }}"
-              alt="{{ product.title }}"
-              class="dp-main-img"
-              loading="eager"
-              width="{{ product.featured_image.width }}"
-              height="{{ product.featured_image.height }}"
-            >
-          {% else %}
+        <div class="dp-main-img-wrap" id="dp-slides">
+          {%- if product.images.size > 0 -%}
+            {%- for image in product.images -%}
+              <img
+                src="{{ image | image_url: width: 1200 }}"
+                alt="{{ product.title }} — image {{ forloop.index }}"
+                class="dp-main-img{% unless forloop.first %} dp-slide-hidden{% endunless %}"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+              >
+            {%- endfor -%}
+          {%- else -%}
             <div class="dp-img-placeholder">
               <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="0"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
               <span>Product Image</span>
             </div>
-          {% endif %}
+          {%- endif -%}
         </div>
-        {%- if product.images.size > 0 -%}
+        {%- if product.images.size > 1 -%}
           <div class="dp-thumbs">
             {%- for image in product.images -%}
               <div class="dp-thumb{% if forloop.first %} is-active{% endif %}"
-                   data-src="{{ image | image_url: width: 1200 }}"
-                   data-thumb-index="{{ forloop.index0 }}">
+                   data-index="{{ forloop.index0 }}">
                 <img src="{{ image | image_url: width: 160 }}" alt="{{ product.title }} — image {{ forloop.index }}" loading="lazy" width="160" height="160">
               </div>
             {%- endfor -%}
@@ -942,14 +943,17 @@
 <script>
 (function () {
   /* ── Thumbnail gallery ── */
-  var mainImg = document.getElementById('dp-main-image');
+  var slidesWrap = document.getElementById('dp-slides');
   var thumbsWrap = document.querySelector('.dp-thumbs');
-  if (thumbsWrap) {
+  if (slidesWrap && thumbsWrap) {
+    var slides = slidesWrap.querySelectorAll('.dp-main-img');
     thumbsWrap.addEventListener('click', function (e) {
       var thumb = e.target.closest('.dp-thumb');
-      if (!thumb || !mainImg) return;
-      mainImg.setAttribute('src', thumb.dataset.src);
-      document.querySelectorAll('.dp-thumb').forEach(function (t) { t.classList.remove('is-active'); });
+      if (!thumb) return;
+      var idx = parseInt(thumb.getAttribute('data-index'), 10);
+      slides.forEach(function (s) { s.classList.add('dp-slide-hidden'); });
+      if (slides[idx]) slides[idx].classList.remove('dp-slide-hidden');
+      thumbsWrap.querySelectorAll('.dp-thumb').forEach(function (t) { t.classList.remove('is-active'); });
       thumb.classList.add('is-active');
     });
   }
