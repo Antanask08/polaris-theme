@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "detergent_main": {
+      "type": "detergent-page",
+      "settings": {}
+    }
+  },
+  "order": ["detergent_main"]
+}

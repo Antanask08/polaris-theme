@@ -1,0 +1,953 @@
+<style>
+  /* ── Reset & base ─────────────────────────────────────── */
+  .dp-wrap * { box-sizing: border-box; }
+
+  /* ── Top section: 2-col grid ──────────────────────────── */
+  .dp-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+    background: #fff;
+  }
+  @media (max-width: 900px) {
+    .dp-top { grid-template-columns: 1fr; }
+  }
+
+  /* ── Image column ─────────────────────────────────────── */
+  .dp-gallery {
+    position: sticky;
+    top: calc(var(--announcement-height, 40px) + var(--header-height, 60px));
+    height: calc(100vh - var(--announcement-height, 40px) - var(--header-height, 60px));
+    overflow: hidden;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 900px) {
+    .dp-gallery {
+      position: relative;
+      top: auto;
+      height: 60vw;
+      min-height: 320px;
+    }
+  }
+  .dp-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .dp-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: rgba(0,0,0,0.15);
+    background: #f0f0f0;
+  }
+  .dp-img-placeholder svg {
+    width: 48px;
+    height: 48px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1;
+  }
+  .dp-img-placeholder span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* ── Info column ──────────────────────────────────────── */
+  .dp-info {
+    padding: 56px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media (max-width: 1100px) { .dp-info { padding: 48px 40px; } }
+  @media (max-width: 900px)  { .dp-info { padding: 40px 24px; } }
+  @media (max-width: 480px)  { .dp-info { padding: 32px 20px; } }
+
+  /* Coming Soon badge */
+  .dp-coming-soon {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: #000;
+    color: #fff;
+    padding: 4px 10px;
+    margin-bottom: 18px;
+  }
+
+  .dp-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 10px;
+  }
+
+  .dp-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: #000;
+    margin-bottom: 20px;
+  }
+
+  /* Price row */
+  .dp-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .dp-price {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: #000;
+    line-height: 1;
+  }
+  .dp-price-note {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: rgba(0,0,0,0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .dp-shipping-note {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: rgba(0,0,0,0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .dp-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+  }
+
+  .dp-short-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(0,0,0,0.65);
+    margin-bottom: 20px;
+  }
+
+  /* Spec pills */
+  .dp-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .dp-spec-pill {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid rgba(0,0,0,0.15);
+    color: #000;
+    background: #fff;
+  }
+
+  /* ── Subscription toggle ──────────────────────────────── */
+  .dp-purchase-type {
+    margin-bottom: 16px;
+  }
+  .dp-purchase-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.45);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .dp-toggle {
+    display: flex;
+    border: 1px solid rgba(0,0,0,0.18);
+    width: 100%;
+  }
+  .dp-toggle-btn {
+    flex: 1;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    background: #fff;
+    color: rgba(0,0,0,0.45);
+    cursor: pointer;
+    transition: background 160ms, color 160ms;
+  }
+  .dp-toggle-btn.is-selected {
+    background: #000;
+    color: #fff;
+  }
+  .dp-toggle-btn:first-child {
+    border-right: 1px solid rgba(0,0,0,0.18);
+  }
+
+  /* ── Frequency selector ───────────────────────────────── */
+  .dp-frequency {
+    margin-bottom: 14px;
+    animation: dp-fade-in 180ms ease;
+  }
+  @keyframes dp-fade-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .dp-freq-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.45);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .dp-freq-opts {
+    display: flex;
+    gap: 8px;
+  }
+  .dp-freq-btn {
+    flex: 1;
+    padding: 9px 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(0,0,0,0.18);
+    background: #fff;
+    color: rgba(0,0,0,0.5);
+    cursor: pointer;
+    transition: border-color 160ms, background 160ms, color 160ms;
+    white-space: nowrap;
+  }
+  .dp-freq-btn.is-selected {
+    border-color: #000;
+    border-width: 2px;
+    background: #000;
+    color: #fff;
+  }
+
+  /* ── Subscribe free shipping callout ─────────────────── */
+  .dp-sub-perk {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #000;
+    background: rgba(0,0,0,0.04);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    border-left: 3px solid #000;
+    animation: dp-fade-in 180ms ease;
+  }
+  .dp-sub-perk svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #000;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
+
+  /* ── CTA ──────────────────────────────────────────────── */
+  .dp-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 17px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition: background 180ms, color 180ms;
+    margin-bottom: 14px;
+  }
+  .dp-cta-btn:hover { background: #222; }
+  .dp-cta-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .dp-preorder-note {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.35);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  /* ── Trust row ────────────────────────────────────────── */
+  .dp-trust-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .dp-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.55);
+  }
+  .dp-trust-item svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
+
+  /* Guarantee */
+  .dp-guarantee {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(0,0,0,0.5);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .dp-guarantee svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #000;
+    stroke-width: 1.5;
+    flex-shrink: 0;
+    margin-top: 1px;
+    opacity: 0.5;
+  }
+
+  /* ── Below fold: description sections ────────────────── */
+  .dp-desc-section {
+    background: #000;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .dp-desc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  @media (max-width: 768px) {
+    .dp-desc-grid { grid-template-columns: 1fr; }
+  }
+  .dp-desc-left {
+    padding: 72px 60px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .dp-desc-right {
+    padding: 72px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media (max-width: 900px) {
+    .dp-desc-left, .dp-desc-right { padding: 48px 28px; }
+    .dp-desc-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  }
+  .dp-section-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    margin-bottom: 16px;
+  }
+  .dp-section-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .dp-section-body {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.55);
+    max-width: 420px;
+  }
+
+  /* Formula checklist */
+  .dp-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .dp-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .dp-check-item:last-child { border-bottom: none; }
+  .dp-check-mark {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 10px;
+    color: #fff;
+    font-weight: 700;
+  }
+  .dp-check-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .dp-check-desc {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+
+  /* Warning section */
+  .dp-warning {
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 48px 60px;
+    border-left: 4px solid #fff;
+    margin: 0 0 0 0;
+  }
+  @media (max-width: 900px) { .dp-warning { padding: 36px 28px; } }
+  .dp-warning-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 12px;
+  }
+  .dp-warning-text {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.6);
+    max-width: 700px;
+  }
+  .dp-warning-text strong {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* ── Pair with Nova CTA ───────────────────────────────── */
+  .dp-pair-section {
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding: 72px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 768px) {
+    .dp-pair-section {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 48px 24px;
+    }
+  }
+  .dp-pair-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.3);
+    margin-bottom: 12px;
+  }
+  .dp-pair-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    line-height: 0.95;
+    color: #000;
+  }
+  .dp-pair-body {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(0,0,0,0.5);
+    max-width: 400px;
+    margin-top: 16px;
+  }
+  .dp-pair-cta {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: #000;
+    color: #fff;
+    padding: 16px 36px;
+    text-decoration: none;
+    border: 2px solid #000;
+    transition: background 180ms, color 180ms;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .dp-pair-cta:hover { background: #fff; color: #000; }
+</style>
+
+<div class="dp-wrap">
+
+  {%- assign one_time_price = section.settings.one_time_price | default: '16.99' -%}
+  {%- assign subscribe_price = section.settings.subscribe_price | default: '14.99' -%}
+
+  {%- comment -%} ── ABOVE FOLD ── {%- endcomment -%}
+  <div class="dp-top">
+
+    {%- comment -%} Image {%- endcomment -%}
+    <div class="dp-gallery">
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | image_url: width: 1200 }}"
+          alt="{{ product.title }}"
+          class="dp-main-img"
+          loading="eager"
+          width="{{ product.featured_image.width }}"
+          height="{{ product.featured_image.height }}"
+        >
+      {% else %}
+        <div class="dp-img-placeholder">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="0"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Product Image</span>
+        </div>
+      {% endif %}
+    </div>
+
+    {%- comment -%} Info {%- endcomment -%}
+    <div class="dp-info">
+
+      {%- if section.settings.coming_soon_badge -%}
+        <span class="dp-coming-soon">Coming Soon</span>
+      {%- endif -%}
+
+      <p class="dp-eyebrow">{{ section.settings.eyebrow | default: 'Microfiber Detergent — 16 oz' }}</p>
+      <h1 class="dp-title">{{ product.title }}</h1>
+
+      <div class="dp-price-row">
+        <span class="dp-price" id="dp-price-display">${{ one_time_price }}</span>
+        <span class="dp-price-note" id="dp-price-note">One-time purchase</span>
+      </div>
+      <p class="dp-shipping-note">Free shipping on every order</p>
+
+      <div class="dp-divider"></div>
+
+      <div class="dp-short-desc">{{ section.settings.short_desc | default: 'Engineered specifically for microfiber — not your average detergent. Formulated to clean deep without destroying performance.' }}</div>
+
+      {%- comment -%} Spec pills {%- endcomment -%}
+      <div class="dp-specs">
+        <span class="dp-spec-pill">pH 6.5–8 Neutral</span>
+        <span class="dp-spec-pill">Nonionic Formula</span>
+        <span class="dp-spec-pill">HE Compatible</span>
+        <span class="dp-spec-pill">No Softeners</span>
+        <span class="dp-spec-pill">16 oz</span>
+      </div>
+
+      {%- comment -%} Purchase type toggle {%- endcomment -%}
+      <div class="dp-purchase-type">
+        <span class="dp-purchase-label">Purchase Type</span>
+        <div class="dp-toggle">
+          <button class="dp-toggle-btn is-selected" id="dp-btn-onetime">One Time</button>
+          <button class="dp-toggle-btn" id="dp-btn-subscribe">Subscribe &amp; Save</button>
+        </div>
+      </div>
+
+      {%- comment -%} Frequency selector — hidden until subscribe selected {%- endcomment -%}
+      <div class="dp-frequency" id="dp-frequency" style="display:none;">
+        <span class="dp-freq-label">Delivery Frequency</span>
+        <div class="dp-freq-opts">
+          <button class="dp-freq-btn is-selected" data-days="30" data-plan="{{ section.settings.selling_plan_30 }}">Every 30 Days</button>
+          <button class="dp-freq-btn" data-days="60" data-plan="{{ section.settings.selling_plan_60 }}">Every 60 Days</button>
+          <button class="dp-freq-btn" data-days="90" data-plan="{{ section.settings.selling_plan_90 }}">Every 90 Days</button>
+        </div>
+      </div>
+
+      {%- comment -%} Subscribe perk callout — hidden until subscribe selected {%- endcomment -%}
+      <div class="dp-sub-perk" id="dp-sub-perk" style="display:none;">
+        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="m16 8 5 0 3 5v3h-8z"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg>
+        Free shipping included with every delivery
+      </div>
+
+      {%- comment -%} Form + CTA {%- endcomment -%}
+      {% form 'product', product, id: 'dp-form' %}
+        <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+        <input type="hidden" name="selling_plan" id="dp-selling-plan-input" value="">
+        <button type="button" class="dp-cta-btn" id="dp-cta-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="dp-cta-label">Pre-Order — Limited First Run</span>
+        </button>
+      {% endform %}
+
+      <p class="dp-preorder-note">First run — ships when ready. No charge until fulfilled.</p>
+
+      {%- comment -%} Trust row {%- endcomment -%}
+      <div class="dp-trust-row">
+        <div class="dp-trust-item">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="m16 8 5 0 3 5v3h-8z"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg>
+          Free Shipping
+        </div>
+        <div class="dp-trust-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Secure Checkout
+        </div>
+        <div class="dp-trust-item">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Ships in 1–3 Days
+        </div>
+      </div>
+
+      <div class="dp-guarantee">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        <span>30-day satisfaction guarantee. Not happy with it? We'll make it right.</span>
+      </div>
+
+    </div>
+  </div>
+
+  {%- comment -%} ── BELOW FOLD: DESCRIPTION ── {%- endcomment -%}
+  <div class="dp-desc-section">
+
+    {%- comment -%} Section 01 — Formula {%- endcomment -%}
+    <div class="dp-desc-grid">
+      <div class="dp-desc-left">
+        <div class="dp-section-num">01 — The Formula</div>
+        <h2 class="dp-section-heading">Built for<br>Microfiber.<br><span style="color:rgba(255,255,255,0.35);">Not Everything Else.</span></h2>
+        <p class="dp-section-body">Standard detergents coat microfiber fibers, filling the microscopic splits that make them grab water and lift dirt. Over time, that buildup turns a high-performance towel into a smear rag. Polaris Microfiber Detergent strips contamination without stripping performance.</p>
+      </div>
+      <div class="dp-desc-right">
+        <div class="dp-checklist">
+          <div class="dp-check-item">
+            <div class="dp-check-mark">✓</div>
+            <div>
+              <div class="dp-check-name">Neutral pH (6.5–8)</div>
+              <div class="dp-check-desc">Safe on all microfiber constructions — twisted loop, waffle weave, glass towels</div>
+            </div>
+          </div>
+          <div class="dp-check-item">
+            <div class="dp-check-mark">✓</div>
+            <div>
+              <div class="dp-check-name">Nonionic Surfactants</div>
+              <div class="dp-check-desc">No residue, no coating, no buildup — just clean fiber</div>
+            </div>
+          </div>
+          <div class="dp-check-item">
+            <div class="dp-check-mark">✓</div>
+            <div>
+              <div class="dp-check-name">No Optical Brighteners</div>
+              <div class="dp-check-desc">Won't mask contamination or leave chemical streaks on paint</div>
+            </div>
+          </div>
+          <div class="dp-check-item">
+            <div class="dp-check-mark">✓</div>
+            <div>
+              <div class="dp-check-name">No Fabric Softeners</div>
+              <div class="dp-check-desc">Softeners destroy absorbency. We leave them out entirely</div>
+            </div>
+          </div>
+          <div class="dp-check-item">
+            <div class="dp-check-mark">✓</div>
+            <div>
+              <div class="dp-check-name">HE Washing Machine Compatible</div>
+              <div class="dp-check-desc">Low-sudsing formula works in all standard and HE machines</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Section 02 — Why it matters {%- endcomment -%}
+    <div class="dp-desc-grid">
+      <div class="dp-desc-left">
+        <div class="dp-section-num">02 — Why It Matters</div>
+        <h2 class="dp-section-heading">Restores<br>What Others<br><span style="color:rgba(255,255,255,0.35);">Destroy.</span></h2>
+        <p class="dp-section-body">Polaris Microfiber Detergent strips contamination without stripping performance. Restores absorbency and softness wash after wash — because a towel is only as good as how you maintain it.</p>
+      </div>
+      <div class="dp-desc-right">
+        <div class="dp-section-num" style="margin-bottom:24px;">Product specs</div>
+        <div class="dp-checklist">
+          <div class="dp-check-item">
+            <div class="dp-check-mark">◈</div>
+            <div>
+              <div class="dp-check-name">Size</div>
+              <div class="dp-check-desc">16 oz — designed for 15–20 wash cycles per bottle</div>
+            </div>
+          </div>
+          <div class="dp-check-item">
+            <div class="dp-check-mark">◈</div>
+            <div>
+              <div class="dp-check-name">Usage</div>
+              <div class="dp-check-desc">1–2 oz per standard load. Use cold or warm water, gentle cycle</div>
+            </div>
+          </div>
+          <div class="dp-check-item">
+            <div class="dp-check-mark">◈</div>
+            <div>
+              <div class="dp-check-name">Compatible With</div>
+              <div class="dp-check-desc">All microfiber towels, wraps, and applicator pads</div>
+            </div>
+          </div>
+          <div class="dp-check-item">
+            <div class="dp-check-mark">◈</div>
+            <div>
+              <div class="dp-check-name">Pairs With</div>
+              <div class="dp-check-desc">The Nova Drying Towel and every microfiber in your detailing kit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Warning callout {%- endcomment -%}
+    <div class="dp-warning">
+      <div class="dp-warning-label">Important — Washing Instructions</div>
+      <p class="dp-warning-text">
+        <strong>Never use fabric softener</strong> on microfiber — including dryer sheets. One softener wash can permanently coat the fibers and kill absorbency. Wash cold or warm, gentle cycle, air dry or tumble dry low. <strong>Never wash with cotton towels</strong> — lint transfer degrades microfiber performance over time.
+      </p>
+    </div>
+
+  </div>
+
+  {%- comment -%} ── PAIR WITH NOVA CTA ── {%- endcomment -%}
+  <div class="dp-pair-section">
+    <div>
+      <p class="dp-pair-eyebrow">Complete the Setup</p>
+      <h2 class="dp-pair-heading">Designed to<br>Pair with<br>The Nova.</h2>
+      <p class="dp-pair-body">One detergent, one towel — built together from the same philosophy. Clean it right, protect your paint, and make both last longer.</p>
+    </div>
+    <a href="/products/the-nova" class="dp-pair-cta">Shop The Nova →</a>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var ONE_TIME_PRICE  = '${{ one_time_price }}';
+  var SUBSCRIBE_PRICE = '${{ subscribe_price }}';
+
+  var priceEl       = document.getElementById('dp-price-display');
+  var priceNoteEl   = document.getElementById('dp-price-note');
+  var freqEl        = document.getElementById('dp-frequency');
+  var perkEl        = document.getElementById('dp-sub-perk');
+  var sellingPlanEl = document.getElementById('dp-selling-plan-input');
+  var btnOnetime    = document.getElementById('dp-btn-onetime');
+  var btnSubscribe  = document.getElementById('dp-btn-subscribe');
+  var ctaBtn        = document.getElementById('dp-cta-btn');
+  var ctaLabel      = document.getElementById('dp-cta-label');
+  var isSubscribe   = false;
+  var selectedPlan  = '{{ section.settings.selling_plan_30 }}';
+  var qty           = 1;
+
+  function setOneTime() {
+    isSubscribe = false;
+    btnOnetime.classList.add('is-selected');
+    btnSubscribe.classList.remove('is-selected');
+    priceEl.textContent    = ONE_TIME_PRICE;
+    priceNoteEl.textContent = 'One-time purchase';
+    freqEl.style.display   = 'none';
+    perkEl.style.display   = 'none';
+    sellingPlanEl.value    = '';
+  }
+
+  function setSubscribe() {
+    isSubscribe = true;
+    btnSubscribe.classList.add('is-selected');
+    btnOnetime.classList.remove('is-selected');
+    priceEl.textContent     = SUBSCRIBE_PRICE;
+    priceNoteEl.textContent = 'Subscribe & Save — cancel anytime';
+    freqEl.style.display    = '';
+    perkEl.style.display    = '';
+    sellingPlanEl.value     = selectedPlan;
+  }
+
+  btnOnetime  && btnOnetime.addEventListener('click', setOneTime);
+  btnSubscribe && btnSubscribe.addEventListener('click', setSubscribe);
+
+  /* Frequency buttons */
+  document.querySelectorAll('.dp-freq-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.dp-freq-btn').forEach(function (b) { b.classList.remove('is-selected'); });
+      btn.classList.add('is-selected');
+      selectedPlan = btn.dataset.plan || '';
+      if (isSubscribe) sellingPlanEl.value = selectedPlan;
+    });
+  });
+
+  /* CTA — cart add */
+  ctaBtn && ctaBtn.addEventListener('click', function () {
+    var variantId = {{ product.first_available_variant.id }};
+    var body = { id: variantId, quantity: qty };
+    if (isSubscribe && sellingPlanEl.value) body.selling_plan = sellingPlanEl.value;
+
+    var orig = ctaLabel.textContent;
+    ctaLabel.textContent = 'Adding…';
+    ctaBtn.disabled = true;
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function () {
+      ctaLabel.textContent = 'Added ✓';
+      document.dispatchEvent(new CustomEvent('cart:open'));
+      document.dispatchEvent(new CustomEvent('cart:refresh'));
+      setTimeout(function () {
+        ctaLabel.textContent = orig;
+        ctaBtn.disabled = false;
+      }, 2200);
+    })
+    .catch(function () {
+      ctaLabel.textContent = orig;
+      ctaBtn.disabled = false;
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Detergent Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Info"
+    },
+    {
+      "type": "checkbox",
+      "id": "coming_soon_badge",
+      "label": "Show Coming Soon badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Microfiber Detergent — 16 oz"
+    },
+    {
+      "type": "textarea",
+      "id": "short_desc",
+      "label": "Short description",
+      "default": "Engineered specifically for microfiber — not your average detergent. Formulated to clean deep without destroying performance."
+    },
+    {
+      "type": "header",
+      "content": "Pricing"
+    },
+    {
+      "type": "text",
+      "id": "one_time_price",
+      "label": "One-time price",
+      "default": "16.99"
+    },
+    {
+      "type": "text",
+      "id": "subscribe_price",
+      "label": "Subscribe & Save price",
+      "default": "14.99"
+    },
+    {
+      "type": "header",
+      "content": "Selling Plans (Subscription IDs)"
+    },
+    {
+      "type": "text",
+      "id": "selling_plan_30",
+      "label": "Selling Plan ID — 30 days",
+      "info": "Enter the numeric selling plan ID from your Shopify subscription app"
+    },
+    {
+      "type": "text",
+      "id": "selling_plan_60",
+      "label": "Selling Plan ID — 60 days"
+    },
+    {
+      "type": "text",
+      "id": "selling_plan_90",
+      "label": "Selling Plan ID — 90 days"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Detergent Page"
+    }
+  ]
+}
+{% endschema %}
