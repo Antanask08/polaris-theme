@@ -453,59 +453,109 @@
     .dp-desc-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
   }
 
-  /* ── Usage specs section ──────────────────────────────── */
-  .dp-usage-section {
+  /* ── Spec block (table style) ────────────────────────── */
+  .dp-spec-block {
     background: #000;
     border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 56px 60px;
-  }
-  @media (max-width: 900px) { .dp-usage-section { padding: 40px 24px; } }
-  .dp-usage-header {
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-    margin-bottom: 36px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .dp-usage-heading {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #fff;
-  }
-  .dp-usage-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: rgba(255,255,255,0.07);
+    grid-template-columns: 280px 1fr;
+    gap: 0;
   }
-  @media (max-width: 900px) { .dp-usage-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 480px) { .dp-usage-grid { grid-template-columns: 1fr 1fr; } }
-  .dp-usage-tile {
-    background: #000;
-    padding: 28px 24px;
+  .dp-spec-block--alt { background: #050505; }
+  @media (max-width: 900px) {
+    .dp-spec-block { grid-template-columns: 1fr; }
+  }
+  .dp-spec-block-header {
+    padding: 48px 40px 48px 60px;
+    border-right: 1px solid rgba(255,255,255,0.06);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
-  .dp-usage-label {
+  @media (max-width: 900px) {
+    .dp-spec-block-header {
+      padding: 32px 24px 20px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+  }
+  .dp-spec-block-eyebrow {
     font-size: 9px;
     font-weight: 700;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.25);
   }
-  .dp-usage-value {
+  .dp-spec-block-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1.35rem;
+    font-weight: 900;
+    font-size: 1.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     color: #fff;
-    line-height: 1.1;
+    line-height: 1;
+  }
+  /* Table rows */
+  .dp-spec-table { padding: 0 60px 0 48px; }
+  @media (max-width: 900px) { .dp-spec-table { padding: 0 24px 32px; } }
+  .dp-spec-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .dp-spec-row:last-child { border-bottom: none; }
+  .dp-spec-key {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.45);
+  }
+  .dp-spec-val {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    text-align: right;
+  }
+  /* Steps */
+  .dp-steps { padding: 8px 60px 8px 48px; }
+  @media (max-width: 900px) { .dp-steps { padding: 0 24px 32px; } }
+  .dp-step {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .dp-step:last-child { border-bottom: none; }
+  .dp-step-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    width: 28px;
+    padding-top: 2px;
+  }
+  .dp-step-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .dp-step-desc {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.45);
   }
   .dp-section-num {
     font-size: 10px;
@@ -1086,67 +1136,82 @@
     </div>
 
     {%- comment -%} Product Specs ── {%- endcomment -%}
-    <div class="dp-usage-section">
-      <div class="dp-usage-header">
-        <div class="dp-section-num" style="margin-bottom:0;">Formula</div>
-        <span class="dp-usage-heading">Product Specs</span>
+    <div class="dp-spec-block">
+      <div class="dp-spec-block-header">
+        <span class="dp-spec-block-eyebrow">Formula</span>
+        <h3 class="dp-spec-block-title">Product Specs</h3>
       </div>
-      <div class="dp-usage-grid">
-        <div class="dp-usage-tile">
-          <div class="dp-usage-label">pH Range</div>
-          <div class="dp-usage-value">6.5–8 Neutral</div>
+      <div class="dp-spec-table">
+        <div class="dp-spec-row">
+          <span class="dp-spec-key">pH Range</span>
+          <span class="dp-spec-val">6.5–8 Neutral</span>
         </div>
-        <div class="dp-usage-tile">
-          <div class="dp-usage-label">Scent</div>
-          <div class="dp-usage-value">Unscented</div>
+        <div class="dp-spec-row">
+          <span class="dp-spec-key">Scent</span>
+          <span class="dp-spec-val">Unscented</span>
         </div>
-        <div class="dp-usage-tile">
-          <div class="dp-usage-label">Bottle Size</div>
-          <div class="dp-usage-value">16 oz</div>
+        <div class="dp-spec-row">
+          <span class="dp-spec-key">Surfactant Type</span>
+          <span class="dp-spec-val">Nonionic</span>
         </div>
-        <div class="dp-usage-tile">
-          <div class="dp-usage-label">Yield</div>
-          <div class="dp-usage-value">15–20 Washes</div>
+        <div class="dp-spec-row">
+          <span class="dp-spec-key">Optical Brighteners</span>
+          <span class="dp-spec-val">None</span>
+        </div>
+        <div class="dp-spec-row">
+          <span class="dp-spec-key">Fabric Softeners</span>
+          <span class="dp-spec-val">None</span>
+        </div>
+        <div class="dp-spec-row">
+          <span class="dp-spec-key">HE Compatible</span>
+          <span class="dp-spec-val">Yes</span>
+        </div>
+        <div class="dp-spec-row">
+          <span class="dp-spec-key">Bottle Size</span>
+          <span class="dp-spec-val">16 oz</span>
+        </div>
+        <div class="dp-spec-row">
+          <span class="dp-spec-key">Yield</span>
+          <span class="dp-spec-val">15–20 Washes</span>
         </div>
       </div>
     </div>
 
     {%- comment -%} How to Use ── {%- endcomment -%}
-    <div class="dp-usage-section" style="border-top: 1px solid rgba(255,255,255,0.06);">
-      <div class="dp-usage-header">
-        <div class="dp-section-num" style="margin-bottom:0;">Instructions</div>
-        <span class="dp-usage-heading">How to Use</span>
+    <div class="dp-spec-block dp-spec-block--alt">
+      <div class="dp-spec-block-header">
+        <span class="dp-spec-block-eyebrow">Instructions</span>
+        <h3 class="dp-spec-block-title">How to Use</h3>
       </div>
-      <div class="dp-usage-grid">
-        <div class="dp-usage-tile">
-          <div class="dp-usage-label">Dose Per Load</div>
-          <div class="dp-usage-value">1–2 oz</div>
+      <div class="dp-steps">
+        <div class="dp-step">
+          <div class="dp-step-num">01</div>
+          <div class="dp-step-content">
+            <div class="dp-step-label">Dose</div>
+            <div class="dp-step-desc">Add 1–2 oz per standard load directly to the detergent compartment.</div>
+          </div>
         </div>
-        <div class="dp-usage-tile">
-          <div class="dp-usage-label">Water Temp</div>
-          <div class="dp-usage-value">Cold or Warm</div>
+        <div class="dp-step">
+          <div class="dp-step-num">02</div>
+          <div class="dp-step-content">
+            <div class="dp-step-label">Water & Cycle</div>
+            <div class="dp-step-desc">Set washer to cold or warm water, gentle cycle. Works in standard and HE machines.</div>
+          </div>
         </div>
-        <div class="dp-usage-tile">
-          <div class="dp-usage-label">Wash Cycle</div>
-          <div class="dp-usage-value">Gentle</div>
+        <div class="dp-step">
+          <div class="dp-step-num">03</div>
+          <div class="dp-step-content">
+            <div class="dp-step-label">Dry</div>
+            <div class="dp-step-desc">Air dry or tumble dry on low heat. Never use fabric softener or dryer sheets.</div>
+          </div>
         </div>
-        <div class="dp-usage-tile">
-          <div class="dp-usage-label">Dry Method</div>
-          <div class="dp-usage-value">Air / Tumble Low</div>
+        <div class="dp-step">
+          <div class="dp-step-num">04</div>
+          <div class="dp-step-content">
+            <div class="dp-step-label">Keep Separate</div>
+            <div class="dp-step-desc">Wash microfiber on its own — never with cotton towels. Lint transfer degrades fiber performance.</div>
+          </div>
         </div>
-      </div>
-    </div>
-
-    {%- comment -%} Warning callout {%- endcomment -%}
-    <div class="dp-warning">
-      <div class="dp-warning-icon">
-        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      </div>
-      <div>
-        <div class="dp-warning-label">Important — Washing Instructions</div>
-        <p class="dp-warning-text">
-          <strong>Never use fabric softener</strong> on microfiber — including dryer sheets. One softener wash can permanently coat the fibers and kill absorbency. Wash cold or warm, gentle cycle, air dry or tumble dry low. <strong>Never wash with cotton towels</strong> — lint transfer degrades microfiber performance over time.
-        </p>
       </div>
     </div>
 
