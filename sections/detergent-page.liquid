@@ -420,6 +420,40 @@
     color: #fff;
   }
 
+  .dp-sub-cancel-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(0,0,0,0.38);
+    margin-top: 14px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .dp-sub-trust-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .dp-sub-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.38);
+  }
+  .dp-sub-trust-item svg {
+    width: 12px;
+    height: 12px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
+
   /* ── CTA ──────────────────────────────────────────────── */
   .dp-cta-btn {
     display: flex;
@@ -1091,6 +1125,21 @@
           <button class="dp-freq-btn is-selected" data-days="30" data-plan="{{ section.settings.selling_plan_30 }}">Every 30 Days</button>
           <button class="dp-freq-btn" data-days="60" data-plan="{{ section.settings.selling_plan_60 }}">Every 60 Days</button>
           <button class="dp-freq-btn" data-days="90" data-plan="{{ section.settings.selling_plan_90 }}">Every 90 Days</button>
+        </div>
+        <p class="dp-sub-cancel-note">Cancel or pause anytime from your account. No commitment required.</p>
+        <div class="dp-sub-trust-row">
+          <div class="dp-sub-trust-item">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Hassle-free cancellation
+          </div>
+          <div class="dp-sub-trust-item">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Skip or pause anytime
+          </div>
+          <div class="dp-sub-trust-item">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            No contracts, no fees
+          </div>
         </div>
       </div>
 
