@@ -18,26 +18,27 @@
     position: sticky;
     top: calc(var(--announcement-height, 40px) + var(--header-height, 60px));
     align-self: start;
+    background: #f8f8f8;
   }
   @media (max-width: 900px) {
     .dp-gallery-stick { position: relative; top: auto; }
   }
-  /* Image box — sized independently from sticky behavior */
+  /* Image box */
   .dp-gallery {
     width: 100%;
-    background: #f5f5f5;
   }
   .dp-main-img-wrap {
     width: 100%;
-    height: clamp(280px, 38vw, 560px);
+    height: clamp(280px, 36vw, 520px);
     overflow: hidden;
-    background: #f5f5f5;
+    background: #f8f8f8;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 24px;
   }
   @media (max-width: 900px) {
-    .dp-main-img-wrap { height: clamp(240px, 70vw, 440px); }
+    .dp-main-img-wrap { height: clamp(240px, 70vw, 440px); padding: 16px; }
   }
   .dp-main-img {
     width: 100%;
@@ -72,28 +73,32 @@
   /* Thumbnail strip */
   .dp-thumbs {
     display: flex;
-    gap: 6px;
-    padding: 8px;
-    background: #f5f5f5;
+    gap: 0;
+    padding: 0;
+    background: #efefef;
+    border-top: 1px solid rgba(0,0,0,0.07);
     overflow-x: auto;
     scrollbar-width: none;
   }
   .dp-thumbs::-webkit-scrollbar { display: none; }
   .dp-thumb {
     flex-shrink: 0;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     overflow: hidden;
     cursor: pointer;
-    border: 2px solid transparent;
-    background: #e8e8e8;
-    transition: border-color 140ms;
+    border-bottom: 3px solid transparent;
+    background: #efefef;
+    transition: border-color 140ms, opacity 140ms;
+    opacity: 0.55;
+    padding: 8px;
   }
-  .dp-thumb.is-active { border-color: #000; }
+  .dp-thumb.is-active { border-bottom-color: #000; opacity: 1; }
+  .dp-thumb:hover { opacity: 0.85; }
   .dp-thumb img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
   }
 
@@ -410,21 +415,76 @@
     .dp-desc-grid { grid-template-columns: 1fr; }
   }
   .dp-desc-left {
-    padding: 72px 60px;
+    padding: 56px 56px 56px 60px;
     border-right: 1px solid rgba(255,255,255,0.06);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .dp-desc-right {
-    padding: 72px 60px;
+    padding: 56px 60px 56px 56px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
   @media (max-width: 900px) {
-    .dp-desc-left, .dp-desc-right { padding: 48px 28px; }
+    .dp-desc-left, .dp-desc-right { padding: 40px 24px; }
     .dp-desc-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  }
+
+  /* ── Usage specs section ──────────────────────────────── */
+  .dp-usage-section {
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 56px 60px;
+  }
+  @media (max-width: 900px) { .dp-usage-section { padding: 40px 24px; } }
+  .dp-usage-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .dp-usage-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #fff;
+  }
+  .dp-usage-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.07);
+  }
+  @media (max-width: 900px) { .dp-usage-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .dp-usage-grid { grid-template-columns: 1fr 1fr; } }
+  .dp-usage-tile {
+    background: #000;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dp-usage-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  .dp-usage-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #fff;
+    line-height: 1.1;
   }
   .dp-section-num {
     font-size: 10px;
@@ -499,28 +559,45 @@
 
   /* Warning section */
   .dp-warning {
-    background: #000;
+    background: #111;
     border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 48px 60px;
-    border-left: 4px solid #fff;
-    margin: 0 0 0 0;
+    padding: 40px 60px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: flex-start;
   }
-  @media (max-width: 900px) { .dp-warning { padding: 36px 28px; } }
+  @media (max-width: 900px) { .dp-warning { padding: 32px 24px; grid-template-columns: 1fr; gap: 12px; } }
+  .dp-warning-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .dp-warning-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+  }
   .dp-warning-label {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 12px;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 8px;
   }
   .dp-warning-text {
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.6);
-    max-width: 700px;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
   }
   .dp-warning-text strong {
     font-weight: 600;
@@ -531,33 +608,32 @@
   .dp-pair-section {
     background: #fff;
     border-top: 1px solid rgba(0,0,0,0.08);
-    padding: 72px 60px;
-    display: flex;
+    padding: 56px 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
+    gap: 60px;
   }
   @media (max-width: 768px) {
     .dp-pair-section {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 48px 24px;
+      grid-template-columns: 1fr;
+      padding: 40px 24px;
+      gap: 28px;
     }
   }
   .dp-pair-eyebrow {
     font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: rgba(0,0,0,0.3);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
   .dp-pair-heading {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(2rem, 3.5vw, 3rem);
     text-transform: uppercase;
     line-height: 0.95;
     color: #000;
@@ -565,27 +641,26 @@
   .dp-pair-body {
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: rgba(0,0,0,0.5);
-    max-width: 400px;
-    margin-top: 16px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.45);
+    max-width: 420px;
+    margin-top: 14px;
   }
   .dp-pair-cta {
     display: inline-block;
     font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     background: #000;
     color: #fff;
-    padding: 16px 36px;
+    padding: 16px 32px;
     text-decoration: none;
     border: 2px solid #000;
     transition: background 180ms, color 180ms;
     white-space: nowrap;
-    flex-shrink: 0;
   }
   .dp-pair-cta:hover { background: #fff; color: #000; }
 </style>
@@ -617,13 +692,13 @@
             </div>
           {% endif %}
         </div>
-        {%- if product.images.size > 1 -%}
+        {%- if product.images.size > 0 -%}
           <div class="dp-thumbs">
             {%- for image in product.images -%}
               <div class="dp-thumb{% if forloop.first %} is-active{% endif %}"
                    data-src="{{ image | image_url: width: 1200 }}"
                    data-thumb-index="{{ forloop.index0 }}">
-                <img src="{{ image | image_url: width: 120 }}" alt="{{ product.title }} — image {{ forloop.index }}" loading="lazy">
+                <img src="{{ image | image_url: width: 160 }}" alt="{{ product.title }} — image {{ forloop.index }}" loading="lazy">
               </div>
             {%- endfor -%}
           </div>
@@ -813,12 +888,37 @@
       </div>
     </div>
 
+    {%- comment -%} Usage Specs — schema-driven ── {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="dp-usage-section">
+        <div class="dp-usage-header">
+          <div class="dp-section-num" style="margin-bottom:0;">03 — How to Use</div>
+          <span class="dp-usage-heading">Usage Specs</span>
+        </div>
+        <div class="dp-usage-grid">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'spec' -%}
+              <div class="dp-usage-tile" {{ block.shopify_attributes }}>
+                <div class="dp-usage-label">{{ block.settings.label }}</div>
+                <div class="dp-usage-value">{{ block.settings.value }}</div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
     {%- comment -%} Warning callout {%- endcomment -%}
     <div class="dp-warning">
-      <div class="dp-warning-label">Important — Washing Instructions</div>
-      <p class="dp-warning-text">
-        <strong>Never use fabric softener</strong> on microfiber — including dryer sheets. One softener wash can permanently coat the fibers and kill absorbency. Wash cold or warm, gentle cycle, air dry or tumble dry low. <strong>Never wash with cotton towels</strong> — lint transfer degrades microfiber performance over time.
-      </p>
+      <div class="dp-warning-icon">
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="dp-warning-label">Important — Washing Instructions</div>
+        <p class="dp-warning-text">
+          <strong>Never use fabric softener</strong> on microfiber — including dryer sheets. One softener wash can permanently coat the fibers and kill absorbency. Wash cold or warm, gentle cycle, air dry or tumble dry low. <strong>Never wash with cotton towels</strong> — lint transfer degrades microfiber performance over time.
+        </p>
+      </div>
     </div>
 
   </div>
@@ -995,9 +1095,39 @@
       "label": "Selling Plan ID — 90 days"
     }
   ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Usage Spec",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Dose Per Load"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "1–2 oz"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Detergent Page"
+      "name": "Detergent Page",
+      "blocks": [
+        { "type": "spec", "settings": { "label": "Dose Per Load", "value": "1–2 oz" } },
+        { "type": "spec", "settings": { "label": "Water Temp", "value": "Cold or Warm" } },
+        { "type": "spec", "settings": { "label": "Wash Cycle", "value": "Gentle" } },
+        { "type": "spec", "settings": { "label": "Dry Method", "value": "Air / Tumble Low" } },
+        { "type": "spec", "settings": { "label": "pH Range", "value": "6.5–8 Neutral" } },
+        { "type": "spec", "settings": { "label": "Scent", "value": "Unscented" } },
+        { "type": "spec", "settings": { "label": "Bottle Size", "value": "16 oz" } },
+        { "type": "spec", "settings": { "label": "Yield", "value": "15–20 Washes" } }
+      ]
     }
   ]
 }
