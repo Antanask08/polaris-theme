@@ -709,9 +709,9 @@
 
   /* ── Pair with Nova CTA ───────────────────────────────── */
   .dp-pair-section {
-    background: #fff;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    padding: 56px 60px;
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 72px 60px;
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
@@ -720,8 +720,8 @@
   @media (max-width: 768px) {
     .dp-pair-section {
       grid-template-columns: 1fr;
-      padding: 40px 24px;
-      gap: 28px;
+      padding: 48px 24px;
+      gap: 32px;
     }
   }
   .dp-pair-eyebrow {
@@ -730,25 +730,25 @@
     font-weight: 700;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.3);
-    margin-bottom: 10px;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 12px;
   }
   .dp-pair-heading {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
-    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
     text-transform: uppercase;
     line-height: 0.95;
-    color: #000;
+    color: #fff;
   }
   .dp-pair-body {
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
     font-size: 0.9rem;
     line-height: 1.7;
-    color: rgba(0,0,0,0.45);
-    max-width: 420px;
-    margin-top: 14px;
+    color: rgba(255,255,255,0.4);
+    max-width: 440px;
+    margin-top: 16px;
   }
   .dp-pair-cta {
     display: inline-block;
@@ -757,15 +757,15 @@
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    background: #000;
+    background: transparent;
     color: #fff;
-    padding: 16px 32px;
+    padding: 16px 36px;
     text-decoration: none;
-    border: 2px solid #000;
-    transition: background 180ms, color 180ms;
+    border: 1px solid rgba(255,255,255,0.35);
+    transition: border-color 180ms, background 180ms;
     white-space: nowrap;
   }
-  .dp-pair-cta:hover { background: #fff; color: #000; }
+  .dp-pair-cta:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
 </style>
 
 <div class="dp-wrap">
@@ -910,10 +910,38 @@
   {%- comment -%} ── BELOW FOLD: DESCRIPTION ── {%- endcomment -%}
   <div class="dp-desc-section">
 
-    {%- comment -%} Section 01 — Formula {%- endcomment -%}
+    {%- comment -%} Section 01 — Statement + stat row {%- endcomment -%}
+    <div class="dp-statement-section">
+      <div class="dp-statement-num">01 — Why It Matters</div>
+      <h2 class="dp-statement-heading">Restores What Others<br><span class="dp-statement-muted">Destroy.</span></h2>
+      <p class="dp-statement-body">A towel is only as good as how you maintain it. Most detergents quietly coat microfiber over time, turning performance towels into smear rags. Polaris Microfiber Detergent strips that buildup and gives performance back.</p>
+      <div class="dp-stat-row">
+        <div class="dp-stat">
+          <div class="dp-stat-value">16 oz</div>
+          <div class="dp-stat-label">Bottle Size</div>
+        </div>
+        <div class="dp-stat-divider"></div>
+        <div class="dp-stat">
+          <div class="dp-stat-value">15–20</div>
+          <div class="dp-stat-label">Washes per Bottle</div>
+        </div>
+        <div class="dp-stat-divider"></div>
+        <div class="dp-stat">
+          <div class="dp-stat-value">1–2 oz</div>
+          <div class="dp-stat-label">Dose per Load</div>
+        </div>
+        <div class="dp-stat-divider"></div>
+        <div class="dp-stat">
+          <div class="dp-stat-value">Neutral pH</div>
+          <div class="dp-stat-label">6.5–8 Range</div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Section 02 — Formula {%- endcomment -%}
     <div class="dp-desc-grid">
       <div class="dp-desc-left">
-        <div class="dp-section-num">01 — The Formula</div>
+        <div class="dp-section-num">02 — The Formula</div>
         <h2 class="dp-section-heading">Built for<br>Microfiber.<br><span style="color:rgba(255,255,255,0.35);">Not Everything Else.</span></h2>
         <p class="dp-section-body">Standard detergents coat microfiber fibers, filling the microscopic splits that make them grab water and lift dirt. Over time, that buildup turns a high-performance towel into a smear rag. Polaris Microfiber Detergent strips contamination without stripping performance.</p>
       </div>
@@ -954,34 +982,6 @@
               <div class="dp-check-desc">Low-sudsing formula works in all standard and HE machines</div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    {%- comment -%} Section 02 — Statement + stat row {%- endcomment -%}
-    <div class="dp-statement-section">
-      <div class="dp-statement-num">02 — Why It Matters</div>
-      <h2 class="dp-statement-heading">Restores What Others<br><span class="dp-statement-muted">Destroy.</span></h2>
-      <p class="dp-statement-body">A towel is only as good as how you maintain it. Most detergents quietly coat microfiber over time, turning performance towels into smear rags. Polaris Microfiber Detergent strips that buildup and gives performance back.</p>
-      <div class="dp-stat-row">
-        <div class="dp-stat">
-          <div class="dp-stat-value">16 oz</div>
-          <div class="dp-stat-label">Bottle Size</div>
-        </div>
-        <div class="dp-stat-divider"></div>
-        <div class="dp-stat">
-          <div class="dp-stat-value">15–20</div>
-          <div class="dp-stat-label">Washes per Bottle</div>
-        </div>
-        <div class="dp-stat-divider"></div>
-        <div class="dp-stat">
-          <div class="dp-stat-value">1–2 oz</div>
-          <div class="dp-stat-label">Dose per Load</div>
-        </div>
-        <div class="dp-stat-divider"></div>
-        <div class="dp-stat">
-          <div class="dp-stat-value">Neutral pH</div>
-          <div class="dp-stat-label">6.5–8 Range</div>
         </div>
       </div>
     </div>
