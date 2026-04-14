@@ -95,6 +95,31 @@
   .dp-arrow-prev { left: 12px; }
   .dp-arrow-next { right: 12px; }
   .dp-arrow[hidden] { display: none; }
+  /* Thumbnail strip */
+  .dp-thumbs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .dp-thumb {
+    background: none;
+    border: 2px solid transparent;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 200ms;
+    aspect-ratio: 1/1;
+  }
+  .dp-thumb.is-active,
+  .dp-thumb:hover { border-color: #000; }
+  .dp-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #fff;
+  }
 
   /* ── Info column ──────────────────────────────────────── */
   .dp-info {
@@ -690,14 +715,23 @@
               <span>Product Image</span>
             </div>
           {%- endif -%}
+          {%- if product.images.size > 1 -%}
+            <button class="dp-arrow dp-arrow-prev" id="dp-prev" aria-label="Previous image" hidden>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="dp-arrow dp-arrow-next" id="dp-next" aria-label="Next image">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          {%- endif -%}
         </div>
         {%- if product.images.size > 1 -%}
-          <button class="dp-arrow dp-arrow-prev" id="dp-prev" aria-label="Previous image" hidden>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="dp-arrow dp-arrow-next" id="dp-next" aria-label="Next image">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          <div class="dp-thumbs">
+            {%- for image in product.images -%}
+              <button class="dp-thumb{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="View image {{ forloop.index }}">
+                <img src="{{ image | image_url: width: 200 }}" alt="{{ product.title }} — image {{ forloop.index }}" loading="lazy" width="200" height="200">
+              </button>
+            {%- endfor -%}
+          </div>
         {%- endif -%}
       </div>
     </div>
@@ -933,22 +967,25 @@
 
 <script>
 (function () {
-  /* ── Arrow gallery ── */
+  /* ── Arrow + thumbnail gallery ── */
   var slidesWrap = document.getElementById('dp-slides');
   var prevBtn = document.getElementById('dp-prev');
   var nextBtn = document.getElementById('dp-next');
-  if (slidesWrap && (prevBtn || nextBtn)) {
+  var thumbBtns = Array.prototype.slice.call(document.querySelectorAll('.dp-thumb'));
+  if (slidesWrap) {
     var slides = Array.prototype.slice.call(slidesWrap.querySelectorAll('.dp-main-img'));
     var current = 0;
     function showSlide(idx) {
       slides.forEach(function (s) { s.classList.add('dp-slide-hidden'); });
-      slides[idx].classList.remove('dp-slide-hidden');
+      if (slides[idx]) slides[idx].classList.remove('dp-slide-hidden');
       current = idx;
       if (prevBtn) prevBtn.hidden = current === 0;
       if (nextBtn) nextBtn.hidden = current === slides.length - 1;
+      thumbBtns.forEach(function (t, i) { t.classList.toggle('is-active', i === current); });
     }
     if (prevBtn) prevBtn.addEventListener('click', function () { if (current > 0) showSlide(current - 1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { if (current < slides.length - 1) showSlide(current + 1); });
+    thumbBtns.forEach(function (t, i) { t.addEventListener('click', function () { showSlide(i); }); });
     showSlide(0);
   }
 

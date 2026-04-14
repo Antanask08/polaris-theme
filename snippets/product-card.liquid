@@ -4,7 +4,7 @@
       {%- if product.featured_image -%}
         <img
           class="product-card-image"
-          src="{{ product.featured_image | img_url: 'medium' }}"
+          src="{{ product.featured_image | image_url: width: 800 }}"
           alt="{{ product.featured_image.alt | escape | default: product.title }}"
           loading="lazy"
           width="400"
@@ -55,7 +55,8 @@
   .product-card-image-placeholder {
     width: 100%;
     aspect-ratio: 1/1;
-    object-fit: cover;
+    object-fit: contain;
+    background: #fff;
     display: block;
     transition: transform 250ms ease;
   }

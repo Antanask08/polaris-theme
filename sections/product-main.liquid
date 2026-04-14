@@ -57,17 +57,41 @@
   .pp-gallery-main {
     position: relative;
     overflow: hidden;
-    background: #f5f5f5;
+    background: #fff;
     margin-bottom: 12px;
   }
 
   .pp-gallery-main img {
     width: 100%;
     aspect-ratio: 1 / 1;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     transition: opacity 180ms ease;
   }
+
+  /* Arrow navigation */
+  .pp-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.85);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 120ms;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.15);
+  }
+  .pp-arrow:hover { background: #fff; }
+  .pp-arrow svg { display: block; }
+  .pp-arrow-prev { left: 12px; }
+  .pp-arrow-next { right: 12px; }
+  .pp-arrow[hidden] { display: none; }
 
   .pp-gallery-thumbs {
     display: grid;
@@ -93,9 +117,11 @@
   .pp-thumb img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background: #fff;
   }
+  .pp-slide-hidden { display: none !important; }
 
   /* ─── Info Column ──────────────────────────────────────────────────────────── */
   .pp-info {}
@@ -987,17 +1013,28 @@
 
         {%- comment -%} Gallery {%- endcomment -%}
         <div class="pp-gallery">
-          <div class="pp-gallery-main">
+          <div class="pp-gallery-main" id="pp-slides-wrap">
             {% if product.featured_image %}
-              <img
-                id="pp-main-img"
-                src="{{ product.featured_image | image_url: width: 1000 }}"
-                alt="{{ product.featured_image.alt | escape }}"
-                loading="eager"
-                width="1000"
-              >
+              {% for image in product.images limit: 10 %}
+                <img
+                  {% if forloop.first %}id="pp-main-img"{% endif %}
+                  src="{{ image | image_url: width: 1000 }}"
+                  alt="{{ image.alt | default: product.title | escape }}"
+                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                  width="1000"
+                  class="pp-slide{% unless forloop.first %} pp-slide-hidden{% endunless %}"
+                >
+              {% endfor %}
             {% else %}
               <div style="aspect-ratio:1/1;background:#f0f0f0;"></div>
+            {% endif %}
+            {% if product.images.size > 1 %}
+              <button class="pp-arrow pp-arrow-prev" id="pp-prev" aria-label="Previous image" hidden>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="pp-arrow pp-arrow-next" id="pp-next" aria-label="Next image">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
             {% endif %}
           </div>
           {% if product.images.size > 1 %}
@@ -1005,11 +1042,10 @@
               {% for image in product.images limit: 5 %}
                 <button
                   class="pp-thumb {% if forloop.first %}is-active{% endif %}"
-                  data-src="{{ image | image_url: width: 1000 }}"
-                  data-alt="{{ image.alt | escape }}"
+                  data-index="{{ forloop.index0 }}"
                   aria-label="View image {{ forloop.index }}"
                 >
-                  <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | escape }}">
+                  <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | default: product.title | escape }}">
                 </button>
               {% endfor %}
             </div>
@@ -1382,22 +1418,27 @@
 
 <script>
 (function () {
-  /* ── Gallery ──────────────────────────────────────── */
-  var mainImg = document.getElementById('pp-main-img');
-  document.querySelectorAll('.pp-thumb').forEach(function (thumb) {
-    thumb.addEventListener('click', function () {
-      if (mainImg) {
-        mainImg.style.opacity = '0';
-        setTimeout(function () {
-          mainImg.src = thumb.dataset.src;
-          mainImg.alt = thumb.dataset.alt;
-          mainImg.style.opacity = '1';
-        }, 150);
-      }
-      document.querySelectorAll('.pp-thumb').forEach(function (t) { t.classList.remove('is-active'); });
-      thumb.classList.add('is-active');
-    });
-  });
+  /* ── Gallery (slides + arrows + thumbs) ──────────── */
+  var slidesWrap = document.getElementById('pp-slides-wrap');
+  var ppPrev = document.getElementById('pp-prev');
+  var ppNext = document.getElementById('pp-next');
+  var ppThumbs = Array.prototype.slice.call(document.querySelectorAll('.pp-thumb'));
+  if (slidesWrap) {
+    var ppSlides = Array.prototype.slice.call(slidesWrap.querySelectorAll('.pp-slide'));
+    var ppCurrent = 0;
+    function ppShow(idx) {
+      ppSlides.forEach(function (s) { s.classList.add('pp-slide-hidden'); });
+      if (ppSlides[idx]) ppSlides[idx].classList.remove('pp-slide-hidden');
+      ppCurrent = idx;
+      if (ppPrev) ppPrev.hidden = ppCurrent === 0;
+      if (ppNext) ppNext.hidden = ppCurrent === ppSlides.length - 1;
+      ppThumbs.forEach(function (t, i) { t.classList.toggle('is-active', i === ppCurrent); });
+    }
+    if (ppPrev) ppPrev.addEventListener('click', function () { if (ppCurrent > 0) ppShow(ppCurrent - 1); });
+    if (ppNext) ppNext.addEventListener('click', function () { if (ppCurrent < ppSlides.length - 1) ppShow(ppCurrent + 1); });
+    ppThumbs.forEach(function (t, i) { t.addEventListener('click', function () { ppShow(i); }); });
+    ppShow(0);
+  }
 
   /* ── Quantity ─────────────────────────────────────── */
   var qtyDisplay = document.getElementById('pp-qty-display');
