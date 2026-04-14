@@ -6,7 +6,7 @@
   .dp-top {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 80vh;
+    align-items: start;
     background: #fff;
   }
   @media (max-width: 900px) {
@@ -17,7 +17,7 @@
   .dp-gallery {
     position: sticky;
     top: calc(var(--announcement-height, 40px) + var(--header-height, 60px));
-    height: calc(100vh - var(--announcement-height, 40px) - var(--header-height, 60px));
+    aspect-ratio: 1 / 1;
     overflow: hidden;
     background: #f5f5f5;
     display: flex;
@@ -28,8 +28,8 @@
     .dp-gallery {
       position: relative;
       top: auto;
-      height: 60vw;
-      min-height: 320px;
+      aspect-ratio: 1 / 1;
+      height: auto;
     }
   }
   .dp-main-img {
@@ -65,18 +65,19 @@
 
   /* ── Info column ──────────────────────────────────────── */
   .dp-info {
-    padding: 56px 52px;
+    padding: 56px 52px 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
-  @media (max-width: 1100px) { .dp-info { padding: 48px 40px; } }
-  @media (max-width: 900px)  { .dp-info { padding: 40px 24px; } }
-  @media (max-width: 480px)  { .dp-info { padding: 32px 20px; } }
+  @media (max-width: 1100px) { .dp-info { padding: 48px 40px 36px; } }
+  @media (max-width: 900px)  { .dp-info { padding: 40px 24px 32px; } }
+  @media (max-width: 480px)  { .dp-info { padding: 32px 20px 28px; } }
 
   /* Coming Soon badge */
   .dp-coming-soon {
     display: inline-block;
+    align-self: flex-start;
     font-family: 'DM Sans', sans-serif;
     font-size: 9px;
     font-weight: 700;
@@ -85,7 +86,7 @@
     background: #000;
     color: #fff;
     padding: 4px 10px;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
   }
 
   .dp-eyebrow {
@@ -114,7 +115,7 @@
     display: flex;
     align-items: baseline;
     gap: 12px;
-    margin-bottom: 4px;
+    margin-bottom: 20px;
   }
   .dp-price {
     font-family: 'DM Sans', sans-serif;
@@ -129,14 +130,6 @@
     color: rgba(0,0,0,0.4);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-  }
-  .dp-shipping-note {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    color: rgba(0,0,0,0.4);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
   }
 
   .dp-divider {
@@ -355,7 +348,7 @@
     font-size: 12px;
     color: rgba(0,0,0,0.5);
     line-height: 1.5;
-    margin-bottom: 16px;
+    margin-bottom: 0;
   }
   .dp-guarantee svg {
     width: 16px;
@@ -604,7 +597,6 @@
         <span class="dp-price" id="dp-price-display">${{ one_time_price }}</span>
         <span class="dp-price-note" id="dp-price-note">One-time purchase</span>
       </div>
-      <p class="dp-shipping-note">Free shipping on every order</p>
 
       <div class="dp-divider"></div>
 
