@@ -453,51 +453,40 @@
     .dp-desc-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
   }
 
-  /* ── Spec block (table style) ────────────────────────── */
-  .dp-spec-block {
+  /* ── Tabbed specs ────────────────────────────────────── */
+  .dp-tabs-block {
     background: #000;
     border-top: 1px solid rgba(255,255,255,0.06);
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 0;
   }
-  .dp-spec-block--alt { background: #050505; }
-  @media (max-width: 900px) {
-    .dp-spec-block { grid-template-columns: 1fr; }
-  }
-  .dp-spec-block-header {
-    padding: 48px 40px 48px 60px;
-    border-right: 1px solid rgba(255,255,255,0.06);
+  .dp-tabs-nav {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 60px;
   }
-  @media (max-width: 900px) {
-    .dp-spec-block-header {
-      padding: 32px 24px 20px;
-      border-right: none;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-  }
-  .dp-spec-block-eyebrow {
-    font-size: 9px;
+  @media (max-width: 900px) { .dp-tabs-nav { padding: 0 24px; } }
+  .dp-tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 18px 0;
+    margin-right: 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: color 150ms, border-color 150ms;
+    margin-bottom: -1px;
   }
-  .dp-spec-block-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    color: #fff;
-    line-height: 1;
-  }
+  .dp-tab-btn.is-active { color: #fff; border-bottom-color: #fff; }
+  .dp-tab-panel { display: none; padding: 0 60px; }
+  .dp-tab-panel.is-active { display: block; }
+  @media (max-width: 900px) { .dp-tab-panel { padding: 0 24px; } }
   /* Table rows */
-  .dp-spec-table { padding: 0 60px 0 48px; }
-  @media (max-width: 900px) { .dp-spec-table { padding: 0 24px 32px; } }
+  .dp-spec-table { padding: 0; }
+  @media (max-width: 900px) { .dp-spec-table { padding: 0; } }
   .dp-spec-row {
     display: flex;
     align-items: center;
@@ -1135,81 +1124,53 @@
       </div>
     </div>
 
-    {%- comment -%} Product Specs ── {%- endcomment -%}
-    <div class="dp-spec-block">
-      <div class="dp-spec-block-header">
-        <span class="dp-spec-block-eyebrow">Formula</span>
-        <h3 class="dp-spec-block-title">Product Specs</h3>
+    {%- comment -%} Tabbed Specs + How to Use ── {%- endcomment -%}
+    <div class="dp-tabs-block">
+      <div class="dp-tabs-nav">
+        <button class="dp-tab-btn is-active" data-tab="specs">Product Specs</button>
+        <button class="dp-tab-btn" data-tab="howto">How to Use</button>
       </div>
-      <div class="dp-spec-table">
-        <div class="dp-spec-row">
-          <span class="dp-spec-key">pH Range</span>
-          <span class="dp-spec-val">6.5–8 Neutral</span>
-        </div>
-        <div class="dp-spec-row">
-          <span class="dp-spec-key">Scent</span>
-          <span class="dp-spec-val">Unscented</span>
-        </div>
-        <div class="dp-spec-row">
-          <span class="dp-spec-key">Surfactant Type</span>
-          <span class="dp-spec-val">Nonionic</span>
-        </div>
-        <div class="dp-spec-row">
-          <span class="dp-spec-key">Optical Brighteners</span>
-          <span class="dp-spec-val">None</span>
-        </div>
-        <div class="dp-spec-row">
-          <span class="dp-spec-key">Fabric Softeners</span>
-          <span class="dp-spec-val">None</span>
-        </div>
-        <div class="dp-spec-row">
-          <span class="dp-spec-key">HE Compatible</span>
-          <span class="dp-spec-val">Yes</span>
-        </div>
-        <div class="dp-spec-row">
-          <span class="dp-spec-key">Bottle Size</span>
-          <span class="dp-spec-val">16 oz</span>
-        </div>
-        <div class="dp-spec-row">
-          <span class="dp-spec-key">Yield</span>
-          <span class="dp-spec-val">15–20 Washes</span>
+      <div class="dp-tab-panel is-active" id="dp-tab-specs">
+        <div class="dp-spec-table">
+          <div class="dp-spec-row"><span class="dp-spec-key">pH Range</span><span class="dp-spec-val">6.5–8 Neutral</span></div>
+          <div class="dp-spec-row"><span class="dp-spec-key">Scent</span><span class="dp-spec-val">Unscented</span></div>
+          <div class="dp-spec-row"><span class="dp-spec-key">Surfactant Type</span><span class="dp-spec-val">Nonionic</span></div>
+          <div class="dp-spec-row"><span class="dp-spec-key">Optical Brighteners</span><span class="dp-spec-val">None</span></div>
+          <div class="dp-spec-row"><span class="dp-spec-key">Fabric Softeners</span><span class="dp-spec-val">None</span></div>
+          <div class="dp-spec-row"><span class="dp-spec-key">HE Compatible</span><span class="dp-spec-val">Yes</span></div>
+          <div class="dp-spec-row"><span class="dp-spec-key">Bottle Size</span><span class="dp-spec-val">16 oz</span></div>
+          <div class="dp-spec-row"><span class="dp-spec-key">Yield</span><span class="dp-spec-val">15–20 Washes</span></div>
         </div>
       </div>
-    </div>
-
-    {%- comment -%} How to Use ── {%- endcomment -%}
-    <div class="dp-spec-block dp-spec-block--alt">
-      <div class="dp-spec-block-header">
-        <span class="dp-spec-block-eyebrow">Instructions</span>
-        <h3 class="dp-spec-block-title">How to Use</h3>
-      </div>
-      <div class="dp-steps">
-        <div class="dp-step">
-          <div class="dp-step-num">01</div>
-          <div class="dp-step-content">
-            <div class="dp-step-label">Dose</div>
-            <div class="dp-step-desc">Add 1–2 oz per standard load directly to the detergent compartment.</div>
+      <div class="dp-tab-panel" id="dp-tab-howto">
+        <div class="dp-steps">
+          <div class="dp-step">
+            <div class="dp-step-num">01</div>
+            <div class="dp-step-content">
+              <div class="dp-step-label">Dose</div>
+              <div class="dp-step-desc">Add 1–2 oz per standard load directly to the detergent compartment.</div>
+            </div>
           </div>
-        </div>
-        <div class="dp-step">
-          <div class="dp-step-num">02</div>
-          <div class="dp-step-content">
-            <div class="dp-step-label">Water & Cycle</div>
-            <div class="dp-step-desc">Set washer to cold or warm water, gentle cycle. Works in standard and HE machines.</div>
+          <div class="dp-step">
+            <div class="dp-step-num">02</div>
+            <div class="dp-step-content">
+              <div class="dp-step-label">Water & Cycle</div>
+              <div class="dp-step-desc">Set washer to cold or warm water, gentle cycle. Works in standard and HE machines.</div>
+            </div>
           </div>
-        </div>
-        <div class="dp-step">
-          <div class="dp-step-num">03</div>
-          <div class="dp-step-content">
-            <div class="dp-step-label">Dry</div>
-            <div class="dp-step-desc">Air dry or tumble dry on low heat. Never use fabric softener or dryer sheets.</div>
+          <div class="dp-step">
+            <div class="dp-step-num">03</div>
+            <div class="dp-step-content">
+              <div class="dp-step-label">Dry</div>
+              <div class="dp-step-desc">Air dry or tumble dry on low heat. Never use fabric softener or dryer sheets.</div>
+            </div>
           </div>
-        </div>
-        <div class="dp-step">
-          <div class="dp-step-num">04</div>
-          <div class="dp-step-content">
-            <div class="dp-step-label">Keep Separate</div>
-            <div class="dp-step-desc">Wash microfiber on its own — never with cotton towels. Lint transfer degrades fiber performance.</div>
+          <div class="dp-step">
+            <div class="dp-step-num">04</div>
+            <div class="dp-step-content">
+              <div class="dp-step-label">Keep Separate</div>
+              <div class="dp-step-desc">Wash microfiber on its own — never with cotton towels. Lint transfer degrades fiber performance.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1337,7 +1298,23 @@
       ctaBtn.disabled = false;
     });
   });
-  /* ── Reviews carousel ── */
+  /* ── Tabs ── */
+  (function () {
+    var tabBtns = document.querySelectorAll('.dp-tab-btn');
+    var tabPanels = document.querySelectorAll('.dp-tab-panel');
+    tabBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = btn.getAttribute('data-tab');
+        tabBtns.forEach(function (b) { b.classList.remove('is-active'); });
+        tabPanels.forEach(function (p) { p.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        var panel = document.getElementById('dp-tab-' + target);
+        if (panel) panel.classList.add('is-active');
+      });
+    });
+  })();
+
+  /* ── Reviews carousel + auto-scroll ── */
   (function () {
     var track = document.getElementById('dp-reviews-track');
     var prevBtn = document.getElementById('dp-rev-prev');
@@ -1347,15 +1324,22 @@
     var perView = window.innerWidth <= 768 ? 1 : 3;
     var current = 0;
     var max = Math.max(0, cards.length - perView);
-    function slide() {
+    var autoTimer;
+    function slide(idx) {
+      current = (idx > max) ? 0 : (idx < 0 ? max : idx);
       var pct = (100 / perView) * current;
       track.style.transform = 'translateX(-' + pct + '%)';
       if (prevBtn) prevBtn.style.opacity = current === 0 ? '0.3' : '1';
       if (nextBtn) nextBtn.style.opacity = current >= max ? '0.3' : '1';
     }
-    if (prevBtn) prevBtn.addEventListener('click', function () { if (current > 0) { current--; slide(); } });
-    if (nextBtn) nextBtn.addEventListener('click', function () { if (current < max) { current++; slide(); } });
-    slide();
+    function startAuto() {
+      autoTimer = setInterval(function () { slide(current + 1); }, 4000);
+    }
+    function resetAuto() { clearInterval(autoTimer); startAuto(); }
+    if (prevBtn) prevBtn.addEventListener('click', function () { slide(current - 1); resetAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { slide(current + 1); resetAuto(); });
+    slide(0);
+    startAuto();
   })();
 })();
 </script>
