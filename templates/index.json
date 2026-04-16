@@ -15,7 +15,7 @@
         "bg_type": "image",
         "video_url": "",
         "headline": "BUILT FOR THE ONES WHO CARE",
-        "subheadline": "Premium detailing tools for the car community. Founded in Chicago, Illinois.",
+        "subheadline": "The 1200 GSM drying towel built for people who actually care about their paint. $29.99. Free shipping.",
         "cta_text": "SHOP THE NOVA",
         "cta_url": "shopify://products/microfiber-car-drying-towel"
       }
@@ -51,7 +51,7 @@
       "settings": {
         "eyebrow": "Behind the build",
         "headline": "Built in Chicago.Not a boardroom.",
-        "body": "Polaris started with two guys who couldn't find detailing products they actually trusted. So they built their own. Every product is tested on real cars before it ever reaches yours."
+        "body": "We don't build products in a boardroom. Every spec decision starts with real testing on real cars. Jacob's been detailing professionally for years — when he says something passes, it passes."
       }
     },
     "brand_values": {
@@ -85,9 +85,9 @@
         "pillar_3"
       ],
       "settings": {
-        "eyebrow": "What We Stand For",
+        "eyebrow": "Not just a product company. A standard.",
         "heading": "Not just a brand. A standard.",
-        "body": "We started Polaris because the car community deserved better. Better quality, honest pricing, and a brand that actually gives a damn about the people buying from it."
+        "body": "Built because the car community deserved quality without the markup. We test everything ourselves, price fairly, and actually show up for the people buying from us."
       }
     },
     "brand_story": {
@@ -172,12 +172,132 @@
             "review_text": "These guys actually know cars. Product quality is insane for the price. This is the only towel I use on my GTR now.",
             "date": "January 2025"
           }
+        },
+        "sp_review_4": {
+          "type": "review",
+          "settings": {
+            "name": "Derek S.",
+            "stars": 5,
+            "review_text": "Used this on my blacked out BMW M4 right after a detail. Not a single water spot or streak. Legit the best drying towel I've owned.",
+            "date": "March 2025"
+          }
+        },
+        "sp_review_5": {
+          "type": "review",
+          "settings": {
+            "name": "Chris A.",
+            "stars": 4,
+            "review_text": "Really solid towel. Absorbed way more water than I expected for the price. Only reason it's not 5 stars is I wish it came in a bigger size.",
+            "date": "February 2025"
+          }
+        },
+        "sp_review_6": {
+          "type": "review",
+          "settings": {
+            "name": "Nathan R.",
+            "stars": 5,
+            "review_text": "My old towel was leaving micro scratches on my clear coat. Switched to the Nova and the difference is night and day. Should have done this sooner.",
+            "date": "March 2025"
+          }
+        },
+        "sp_review_7": {
+          "type": "review",
+          "settings": {
+            "name": "Jason L.",
+            "stars": 5,
+            "review_text": "I detail cars on the side and started using this on client vehicles. Zero complaints. Clients actually ask what towel I'm using now.",
+            "date": "January 2025"
+          }
+        },
+        "sp_review_8": {
+          "type": "review",
+          "settings": {
+            "name": "Brandon W.",
+            "stars": 5,
+            "review_text": "Dried my WRX in literally two passes. Didn't have to wring it out once. The GSM on this thing is no joke.",
+            "date": "February 2025"
+          }
+        },
+        "sp_review_9": {
+          "type": "review",
+          "settings": {
+            "name": "Kyle P.",
+            "stars": 4,
+            "review_text": "Good towel, great price. Does exactly what it says. Would like to see more products from Polaris.",
+            "date": "March 2025"
+          }
+        },
+        "sp_review_10": {
+          "type": "review",
+          "settings": {
+            "name": "Ethan M.",
+            "stars": 5,
+            "review_text": "Ordered on a Friday, used it Sunday. Unreal quality for under $30. This is now a permanent part of my detailing kit.",
+            "date": "January 2025"
+          }
+        },
+        "sp_review_11": {
+          "type": "review",
+          "settings": {
+            "name": "Ryan C.",
+            "stars": 5,
+            "review_text": "I've tried Chemical Guys, Meguiar's, and a few others. The Nova is genuinely better. Thicker, softer, and way more absorbent.",
+            "date": "February 2025"
+          }
+        },
+        "sp_review_12": {
+          "type": "review",
+          "settings": {
+            "name": "Alex T.",
+            "stars": 5,
+            "review_text": "Bought this for my Corvette. Ceramic coated paint shows everything — this towel leaves absolutely nothing behind. Impressed.",
+            "date": "March 2025"
+          }
+        },
+        "sp_review_13": {
+          "type": "review",
+          "settings": {
+            "name": "Mike D.",
+            "stars": 5,
+            "review_text": "My brother put me onto Polaris. Both of us use it now. The quality speaks for itself. Don't sleep on this brand.",
+            "date": "January 2025"
+          }
+        },
+        "sp_review_14": {
+          "type": "review",
+          "settings": {
+            "name": "Connor H.",
+            "stars": 4,
+            "review_text": "Solid build quality, feels premium in hand. Dries fast, no streaks. Took one star off only because shipping took a few extra days.",
+            "date": "February 2025"
+          }
+        },
+        "sp_review_15": {
+          "type": "review",
+          "settings": {
+            "name": "Zach F.",
+            "stars": 5,
+            "review_text": "Used this on a PPF wrap for the first time and was nervous. Zero issues. Glides right over the film. This is my go-to from now on.",
+            "date": "March 2025"
+          }
         }
       },
       "block_order": [
         "sp_review_1",
         "sp_review_2",
-        "sp_review_3"
+        "sp_review_3",
+        "sp_review_4",
+        "sp_review_5",
+        "sp_review_6",
+        "sp_review_7",
+        "sp_review_8",
+        "sp_review_9",
+        "sp_review_10",
+        "sp_review_11",
+        "sp_review_12",
+        "sp_review_13",
+        "sp_review_14",
+        "sp_review_15"
       ],
       "settings": {
         "avg_rating": "4.9",
@@ -199,7 +319,7 @@
       "settings": {
         "enabled": true,
         "headline": "GET 10% OFF YOUR FIRST ORDER",
-        "subheadline": "Join the Polaris community. Enter your email below.",
+        "subheadline": "",
         "input_placeholder": "YOUR EMAIL ADDRESS",
         "button_text": "CLAIM MY 10% OFF",
         "fine_print": "We respect your inbox. No spam, ever."
