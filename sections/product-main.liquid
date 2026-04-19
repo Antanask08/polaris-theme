@@ -193,13 +193,14 @@
 .pdp-founder__sig { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
 .pdp-founder-ph-label { font-family: var(--pdp-fdisp); font-weight: 900; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; position: absolute; bottom: 12px; left: 12px; right: 12px; color: rgba(255,255,255,0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* UGC Carousel */
-.pdp-ugc { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-.pdp-ugc::-webkit-scrollbar { display: none; }
-.pdp-ugc__tile { flex: 0 0 80vw; max-width: 480px; scroll-snap-align: start; position: relative; aspect-ratio: 1/1; overflow: hidden; cursor: pointer; background: #1a1a1a; }
-@media (min-width: 700px) { .pdp-ugc__tile { flex: 0 0 min(400px,32vw); max-width: none; } }
-.pdp-ugc__tile img, .pdp-ugc__tile video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 400ms var(--pdp-ease); }
-.pdp-ugc__tile:hover img, .pdp-ugc__tile:hover video { transform: scale(1.03); }
+/* UGC Carousel — portrait infinite scroll */
+.pdp-ugc-outer { overflow: hidden; width: 100%; }
+.pdp-ugc { display: flex; gap: 8px; animation: pdp-ugc-scroll 35s linear infinite; will-change: transform; }
+.pdp-ugc:hover { animation-play-state: paused; }
+@keyframes pdp-ugc-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.pdp-ugc__tile { flex: 0 0 220px; aspect-ratio: 3/4; position: relative; overflow: hidden; cursor: pointer; background: #1a1a1a; }
+@media (min-width: 700px) { .pdp-ugc__tile { flex: 0 0 280px; } }
+.pdp-ugc__tile img, .pdp-ugc__tile video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pdp-ugc__meta { position: absolute; bottom: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: flex-end; color: #fff; mix-blend-mode: difference; }
 .pdp-ugc__handle { font-family: var(--pdp-fdisp); font-weight: 600; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
 .pdp-ugc__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center; pointer-events: none; }
@@ -476,10 +477,11 @@
         </div>
       </div>
     </div>
-    <div class="pdp-wide" style="padding-right:0">
+    <div class="pdp-ugc-outer">
       {%- assign ugc_blocks = section.blocks | where: 'type', 'ugc_item' -%}
       <div class="pdp-ugc">
         {%- if ugc_blocks.size > 0 -%}
+          {%- comment -%}First pass — real blocks with editor handles{%- endcomment -%}
           {%- for block in ugc_blocks -%}
             <div class="pdp-ugc__tile" {{ block.shopify_attributes }}>
               {%- if block.settings.video != blank -%}
@@ -499,17 +501,38 @@
               </div>
             </div>
           {%- endfor -%}
+          {%- comment -%}Second pass — duplicate for seamless loop{%- endcomment -%}
+          {%- for block in ugc_blocks -%}
+            <div class="pdp-ugc__tile" aria-hidden="true">
+              {%- if block.settings.video != blank -%}
+                <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block">
+                  {%- for source in block.settings.video.sources -%}
+                    <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                  {%- endfor -%}
+                </video>
+              {%- elsif block.settings.image -%}
+                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;display:block' }}
+              {%- else -%}
+                <div style="position:absolute;inset:0;background:radial-gradient(130% 160% at 70% 80%,#3a3a3a 0%,#1a1a1a 50%,#090909 100%)"></div>
+              {%- endif -%}
+              <div class="pdp-ugc__meta">
+                <span class="pdp-ugc__handle">{{ block.settings.caption | default: '@polariscarcare' }}</span>
+              </div>
+            </div>
+          {%- endfor -%}
         {%- else -%}
           {%- assign ugc_h = '@stance.daily,@f80_shane,@garage.oreo,@porschedaily,@slammed.civic,@993.carrera,@wheelpeople,@bagged.gti,@nardodrive' | split: ',' -%}
           {%- assign ugc_l = 'Denver CO,Austin TX,Los Angeles,Miami FL,Chicago IL,Portland OR,Seattle WA,Phoenix AZ,Brooklyn NY' | split: ',' -%}
-          {%- for handle in ugc_h -%}
-            <div class="pdp-ugc__tile">
-              <div style="position:absolute;inset:0;background:radial-gradient(130% 160% at {{ forloop.index | times: 37 | modulo: 100 }}% {{ forloop.index | times: 53 | modulo: 100 }}%,#3{{ forloop.index }}3{{ forloop.index }}3{{ forloop.index }} 0%,#111 100%)"></div>
-              <div class="pdp-ugc__meta">
-                <span class="pdp-ugc__handle">{{ handle }}</span>
-                <span class="pdp-mono" style="color:#fff;font-size:10px">{{ ugc_l[forloop.index0] }}</span>
+          {%- for pass in (1..2) -%}
+            {%- for handle in ugc_h -%}
+              <div class="pdp-ugc__tile"{% if pass == 2 %} aria-hidden="true"{% endif %}>
+                <div style="position:absolute;inset:0;background:radial-gradient(130% 160% at {{ forloop.index | times: 37 | modulo: 100 }}% {{ forloop.index | times: 53 | modulo: 100 }}%,#3{{ forloop.index }}3{{ forloop.index }}3{{ forloop.index }} 0%,#111 100%)"></div>
+                <div class="pdp-ugc__meta">
+                  <span class="pdp-ugc__handle">{{ handle }}</span>
+                  <span class="pdp-mono" style="color:#fff;font-size:10px">{{ ugc_l[forloop.index0] }}</span>
+                </div>
               </div>
-            </div>
+            {%- endfor -%}
           {%- endfor -%}
         {%- endif -%}
       </div>
@@ -724,13 +747,40 @@
     });
   });
 
-  /* ── Reviews clone for seamless loop ── */
+  /* ── Reviews clone for seamless loop (desktop only) ── */
   var revTrack = document.getElementById('pdp-rev-track');
-  if (revTrack) {
+  if (revTrack && window.innerWidth > 699) {
     var origCards = Array.from(revTrack.children);
     origCards.forEach(function(card) {
       revTrack.appendChild(card.cloneNode(true));
     });
+  }
+
+  /* ── Reviews mobile auto-scroll (3 s per card) ── */
+  if (window.innerWidth <= 699) {
+    var revWrap = document.querySelector('.pdp-rev-wrap');
+    var revCards = revWrap ? revWrap.querySelectorAll('.pdp-rev-card') : [];
+    if (revWrap && revCards.length) {
+      var revIdx = 0;
+      var revTimer;
+      function revNext() {
+        revIdx = (revIdx + 1) % revCards.length;
+        revWrap.scrollTo({ left: revCards[revIdx].offsetLeft, behavior: 'smooth' });
+      }
+      function revStart() { revTimer = setInterval(revNext, 3000); }
+      function revStop() { clearInterval(revTimer); }
+      revStart();
+      revWrap.addEventListener('touchstart', revStop, { passive: true });
+      revWrap.addEventListener('touchend', function() {
+        setTimeout(function() {
+          var mid = revWrap.scrollLeft + revWrap.offsetWidth / 2;
+          for (var i = 0; i < revCards.length; i++) {
+            if (revCards[i].offsetLeft + revCards[i].offsetWidth >= mid) { revIdx = i; break; }
+          }
+          revStart();
+        }, 600);
+      }, { passive: true });
+    }
   }
 
   /* ── Sticky ATB ── */
