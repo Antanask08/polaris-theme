@@ -195,8 +195,9 @@
 
 /* UGC Carousel — infinite scroll, square tiles */
 .pdp-ugc-outer { overflow: hidden; width: 100%; background: #000; }
-.pdp-ugc { display: flex; gap: 2px; animation: pdp-ugc-scroll 40s linear infinite; will-change: transform; }
-.pdp-ugc:hover { animation-play-state: paused; }
+.pdp-ugc { display: flex; flex-wrap: nowrap; gap: 2px; animation: pdp-ugc-scroll 40s linear infinite; -webkit-animation: pdp-ugc-scroll 40s linear infinite; will-change: transform; transform: translateZ(0); -webkit-transform: translateZ(0); }
+.pdp-ugc:hover { animation-play-state: paused; -webkit-animation-play-state: paused; }
+@-webkit-keyframes pdp-ugc-scroll { from { -webkit-transform: translateX(0); } to { -webkit-transform: translateX(-50%); } }
 @keyframes pdp-ugc-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .pdp-ugc__tile { flex: 0 0 220px; aspect-ratio: 1/1; position: relative; overflow: hidden; cursor: pointer; background: #1a1a1a; }
 @media (min-width: 700px) { .pdp-ugc__tile { flex: 0 0 280px; } }
@@ -492,7 +493,6 @@
                     <source src="{{ source.url }}" type="{{ source.mime_type }}">
                   {%- endfor -%}
                 </video>
-                <div class="pdp-ugc__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8V4z"/></svg></div>
               {%- elsif block.settings.image -%}
                 {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;display:block' }}
               {%- else -%}
