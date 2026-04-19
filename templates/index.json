@@ -15,7 +15,7 @@
         "bg_type": "image",
         "video_url": "",
         "headline": "BUILT FOR THE ONES WHO CARE",
-        "subheadline": "The 1200 GSM drying towel built for people who actually care about their paint. $29.99. Free shipping.",
+        "subheadline": "Premium detailing tools built by enthusiasts. No markup for the name. No shortcuts on the product.",
         "cta_text": "SHOP THE NOVA",
         "cta_url": "shopify://products/microfiber-car-drying-towel"
       }
@@ -51,7 +51,7 @@
       "settings": {
         "eyebrow": "Behind the build",
         "headline": "Built in Chicago.Not a boardroom.",
-        "body": "We don't build products in a boardroom. Every spec decision starts with real testing on real cars. Jacob's been detailing professionally for years — when he says something passes, it passes."
+        "body": "Every product we build starts in a real garage, on a real car. Not a focus group. Not a spreadsheet. If it doesn't earn a spot in our own kit, it doesn't ship."
       }
     },
     "brand_values": {
@@ -311,7 +311,8 @@
         "tiktok_url": "https://www.tiktok.com/@polariscarcare",
         "tiktok_label": "FOLLOW US ON TIKTOK ↗",
         "instagram_url": "https://www.instagram.com/polariscarcare/",
-        "instagram_label": "FOLLOW ON INSTAGRAM ↗"
+        "instagram_label": "FOLLOW ON INSTAGRAM ↗",
+        "subtext": "The brand. The build. The community."
       }
     },
     "email_popup": {

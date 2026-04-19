@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>
-      {%- if request.page_type == 'product' and product.handle == 'microfiber-car-drying-towel' -%}
+      {%- if request.page_type == 'index' -%}
+        Polaris Car Care | Built for the Ones Who Care
+      {%- elsif request.page_type == 'product' and product.handle == 'microfiber-car-drying-towel' -%}
         The Nova — 1200 GSM Drying Towel | Polaris Car Care
       {%- else -%}
         {{ page_title }}
