@@ -458,15 +458,33 @@
     var DISCOUNT_CODE = 'NOVA-X7K4M';
     var shown = false;
 
-    function typewriterReveal(targetEl, text, intervalMs) {
-      intervalMs = intervalMs || 80;
-      var index = 0;
-      targetEl.textContent = '';
-      var interval = setInterval(function () {
-        targetEl.textContent += text[index];
-        index++;
-        if (index >= text.length) clearInterval(interval);
-      }, intervalMs);
+    function decodeReveal(targetEl, text) {
+      var CHARS    = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      var current  = text.split('').map(function () { return '░'; });
+      var resolved = 0;
+      targetEl.textContent = current.join('');
+      text.split('').forEach(function (realChar, i) {
+        var delay    = i * 55;
+        var duration = 320;
+        var start    = null;
+        function scramble(ts) {
+          if (!start) start = ts + delay;
+          if (ts < start) { requestAnimationFrame(scramble); return; }
+          var elapsed = ts - start;
+          if (elapsed >= duration || realChar === '-') {
+            current[i] = realChar;
+            resolved++;
+            if (resolved === text.length) {
+              targetEl.classList.add('decode-done');
+            }
+          } else {
+            current[i] = CHARS[Math.floor(Math.random() * CHARS.length)];
+            requestAnimationFrame(scramble);
+          }
+          targetEl.textContent = current.join('');
+        }
+        requestAnimationFrame(scramble);
+      });
     }
 
     function showPopup() {
@@ -496,8 +514,8 @@
       var successWrap = document.getElementById('popup-success');
       var codeDisplay = document.getElementById('popup-code-display');
       if (formWrap)    formWrap.style.display = 'none';
-      if (successWrap) successWrap.style.display = 'block';
-      if (codeDisplay) typewriterReveal(codeDisplay, DISCOUNT_CODE, 80);
+      if (successWrap) { successWrap.style.display = 'block'; successWrap.classList.add('popup-reveal-in'); }
+      if (codeDisplay) decodeReveal(codeDisplay, DISCOUNT_CODE);
       if (copyBtn)     copyBtn.setAttribute('data-code', DISCOUNT_CODE);
       showPopup();
     } else {
