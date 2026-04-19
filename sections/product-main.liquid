@@ -129,6 +129,9 @@
 .pdp-pack-btn--on:hover { background: #111; }
 .pdp-pack-btn__qty { font-family: var(--pdp-fdisp); font-weight: 900; font-size: 18px; letter-spacing: -0.01em; }
 .pdp-pack-btn__price { font-family: var(--pdp-fmono); font-size: 11px; opacity: 0.7; }
+.pdp-pack-btn__per { display: block; font-family: var(--pdp-fmono); font-size: 10px; color: rgba(0,0,0,0.5); margin-top: 1px; }
+.pdp-pack-btn--on .pdp-pack-btn__per { color: rgba(0,0,0,0.65); }
+.pdp-urgency { font-family: var(--pdp-fdisp); font-weight: 600; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,0,0,0.55); }
 .pdp-pack-btn__save { position: absolute; top: -9px; left: 50%; transform: translateX(-50%); background: #000; color: #fff; font-family: var(--pdp-fdisp); font-weight: 700; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 6px; white-space: nowrap; }
 .pdp-pack-btn--on .pdp-pack-btn__save { background: #fff; color: #000; }
 
@@ -196,7 +199,7 @@
 /* UGC Carousel — portrait infinite marquee */
 .pdp-ugc-outer { overflow: hidden; width: 100%; background: #000; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%); }
 .pdp-ugc { display: flex; flex-wrap: nowrap; gap: 2px; will-change: transform; }
-.pdp-ugc__tile { flex: 0 0 220px; aspect-ratio: 9/16; position: relative; overflow: hidden; cursor: pointer; background: #1a1a1a; opacity: 0.82; transition: opacity 300ms; }
+.pdp-ugc__tile { flex: 0 0 220px; aspect-ratio: 9/16; position: relative; overflow: hidden; cursor: pointer; background: #1a1a1a; opacity: var(--ugc-opacity, 1); transition: opacity 300ms; }
 .pdp-ugc__tile:hover { opacity: 1; }
 @media (min-width: 700px) { .pdp-ugc__tile { flex: 0 0 280px; } }
 .pdp-ugc__tile img, .pdp-ugc__tile video { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -244,6 +247,7 @@
 /* Scroll reveal */
 .pdp-reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--pdp-ease), transform 600ms var(--pdp-ease); }
 .pdp-reveal--in { opacity: 1; transform: none; }
+:root { --ugc-opacity: {{ section.settings.ugc_opacity | default: 100 | divided_by: 100.0 }}; }
 </style>
 
 <div class="nova-pdp" id="nova-pdp">
@@ -255,7 +259,7 @@
       <span>/</span>
       <a href="{{ routes.all_products_collection_url }}" class="pdp-ulink">Shop</a>
       <span>/</span>
-      <span class="pdp-cur">{{ product.title }}</span>
+      <span class="pdp-cur">The Nova</span>
     </nav>
   </div>
 
@@ -342,11 +346,13 @@
               <span class="pdp-pack-btn__save">Save $7</span>
               <span class="pdp-pack-btn__qty">2</span>
               <span class="pdp-pack-btn__price">$52.99</span>
+              <span class="pdp-pack-btn__per">$26.50 / towel</span>
             </button>
             <button type="button" class="pdp-pack-btn" data-variant="46960868196483" data-price="72.99" data-per="24.33" data-label="3-Pack">
               <span class="pdp-pack-btn__save">Best value</span>
               <span class="pdp-pack-btn__qty">3</span>
               <span class="pdp-pack-btn__price">$72.99</span>
+              <span class="pdp-pack-btn__per">$24.33 / towel</span>
             </button>
           </div>
         </div>
@@ -354,6 +360,7 @@
         {%- form 'product', product, id: 'pdp-form' -%}
           <input type="hidden" name="id" id="pdp-variant-input" value="46960872521859">
           <input type="hidden" name="quantity" id="pdp-qinput" value="1">
+          <div class="pdp-urgency">✦ In stock — ships in 1–2 business days</div>
           <div class="pdp-cta-stack">
             <button type="submit" name="add" class="pdp-btn pdp-btn--lg pdp-btn--full" id="pdp-atc">
               Add to bag — $29.99
@@ -451,7 +458,7 @@
       <div class="pdp-founder__body">
         <div class="pdp-eyebrow pdp-muted-c">§ 03 — Built by</div>
         <h2 class="pdp-h2" style="margin-bottom:0">Two enthusiasts,<br>one garage.</h2>
-        <p class="pdp-lead">Jacob's been detailing modified and exotic cars for eight years. Antanas taught him most of it. They started Polaris because the towels they trusted cost $70 and the ones they could afford pilled after a month.</p>
+        <p class="pdp-lead">Jacob's been detailing modified and exotic cars for eight years. Antanas built the business around it. They started Polaris because the towels they trusted cost $70 and the ones they could afford pilled after a month.</p>
         <p class="pdp-body">So they spent a year testing weaves with a mill in Taizhou. Rejected seven samples. Picked the one that still looked new after 40 wash cycles. Priced it where their friends could actually buy it.</p>
         <p class="pdp-body">Every formula, every thread count, every package — approved on their own cars first. If it doesn't earn a spot on the shelf in their garage, it doesn't ship.</p>
         <div class="pdp-founder__sig">
@@ -547,7 +554,7 @@
             <div class="pdp-faq__item">
               <button class="pdp-faq__btn" type="button" aria-expanded="false">
                 <div style="display:flex;gap:16px;align-items:baseline">
-                  <span class="pdp-mono pdp-muted-c">0{{ forloop.index }}</span>
+                  <span class="pdp-mono pdp-muted-c">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
                   <span class="pdp-faq__q">{{ q }}</span>
                 </div>
                 <span class="pdp-faq__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"><path d="M12 5v14M5 12h14"/></svg></span>
@@ -571,7 +578,7 @@
             <div class="pdp-eyebrow pdp-muted-c" style="margin-bottom:14px">§ 06 — Community</div>
             <h2 class="pdp-h2" style="margin-bottom:0">{{ section.settings.reviews_heading | default: 'What the community says.' }}</h2>
           </div>
-          <div class="pdp-mono pdp-muted-c">{{ section.settings.review_count | default: '4.9' }} avg · {{ rev_blocks.size }} reviews</div>
+          <div class="pdp-mono pdp-muted-c">★ {{ section.settings.review_count | default: '4.9' }} · {{ rev_blocks.size }} reviews</div>
         </div>
       </div>
     </div>
@@ -838,6 +845,16 @@
       "id": "ugc_eyebrow",
       "label": "UGC section eyebrow",
       "default": "Real People. Real Cars."
+    },
+    {
+      "type": "range",
+      "id": "ugc_opacity",
+      "label": "UGC tile opacity",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
     },
     {
       "type": "text",
