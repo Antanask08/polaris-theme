@@ -12,6 +12,19 @@
     "product_main": {
       "type": "product-main",
       "blocks": {
+        "ugc_item_hUqaCV": {
+          "type": "ugc_item",
+          "settings": {
+            "caption": "@polariscarcare"
+          }
+        },
+        "ugc_item_EQAiRi": {
+          "type": "ugc_item",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3999.jpg",
+            "caption": "@polariscarcare"
+          }
+        },
         "ugc_item_TxAtnQ": {
           "type": "ugc_item",
           "settings": {
@@ -24,58 +37,6 @@
           "settings": {
             "video": "shopify://files/videos/IMG_1189 (1).MOV",
             "caption": "@polariscarcare"
-          }
-        },
-        "spec_gsm": {
-          "type": "spec",
-          "settings": {
-            "icon": "◈",
-            "label": "1200 GSM"
-          }
-        },
-        "spec_loop": {
-          "type": "spec",
-          "settings": {
-            "icon": "◈",
-            "label": "Twisted Loop"
-          }
-        },
-        "spec_blend": {
-          "type": "spec",
-          "settings": {
-            "icon": "◈",
-            "label": "70/30 Blend"
-          }
-        },
-        "spec_safe": {
-          "type": "spec",
-          "settings": {
-            "icon": "◈",
-            "label": "Paint-Safe"
-          }
-        },
-        "gsm_entry": {
-          "type": "gsm_card",
-          "settings": {
-            "gsm_value": "600 GSM",
-            "gsm_label": "Entry Level",
-            "is_featured": false
-          }
-        },
-        "gsm_mid": {
-          "type": "gsm_card",
-          "settings": {
-            "gsm_value": "800 GSM",
-            "gsm_label": "Mid Range",
-            "is_featured": false
-          }
-        },
-        "gsm_nova": {
-          "type": "gsm_card",
-          "settings": {
-            "gsm_value": "1200 GSM",
-            "gsm_label": "THE NOVA",
-            "is_featured": true
           }
         },
         "review_1": {
@@ -264,15 +225,10 @@
         }
       },
       "block_order": [
+        "ugc_item_hUqaCV",
+        "ugc_item_EQAiRi",
         "ugc_item_TxAtnQ",
         "ugc_item_FTKpUF",
-        "spec_gsm",
-        "spec_loop",
-        "spec_blend",
-        "spec_safe",
-        "gsm_entry",
-        "gsm_mid",
-        "gsm_nova",
         "review_1",
         "review_2",
         "review_3",
@@ -297,21 +253,9 @@
         "faq_7"
       ],
       "settings": {
-        "eyebrow": "Premium Microfiber",
-        "show_rating": true,
-        "avg_rating": "4.9",
-        "review_count": "23",
-        "compare_price": "",
-        "short_description": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint. Twisted loop technology absorbs water faster with zero scratching.",
-        "desc1_heading": "THE NOVA",
-        "desc1_body": "We built the Nova because we were tired of microfiber towels that leave water spots, tug at paint, and fall apart after three washes. The Nova is 1200 GSM with a twisted loop weave that traps water and lifts it away from your paint safely.",
-        "desc1_image": "shopify://shop_images/3813488-removebg-preview.png",
-        "gsm_heading": "WHY GSM MATTERS",
-        "desc3_heading": "REAL WORLD TESTED",
-        "desc3_body": "Every Polaris product goes through real-world testing before we sell it. Our co-founder Jacob has been detailing cars professionally for years. If it doesn't pass his standard, it doesn't ship.",
         "reviews_heading": "WHAT THE COMMUNITY SAYS",
+        "review_count": "23",
         "ugc_eyebrow": "Real People. Real Cars.",
-        "ugc_heading": "The Community In Action",
         "faq_heading": "FREQUENTLY ASKED QUESTIONS"
       }
     }
