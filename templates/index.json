@@ -23,7 +23,7 @@
     "brand_statement": {
       "type": "brand-statement",
       "settings": {
-        "statement": "PREMIUM DOESN'T HAVE TO MEAN OVERPRICED. TESTED IN THE REAL WORLD. BUILT BY ENTHUSIASTS.",
+        "statement": "QUALITY WITHOUT THE MARKUP. TESTED IN REAL GARAGES. BUILT BY ENTHUSIASTS.",
         "speed": 25
       }
     },
@@ -61,7 +61,7 @@
           "type": "pillar",
           "settings": {
             "title": "Community First",
-            "body": "We started in the car scene, not a boardroom. Everything we build starts with what the community actually needs."
+            "body": "We came up in the car scene. Everything we build is something we'd actually want to use."
           }
         },
         "pillar_2": {
@@ -75,7 +75,7 @@
           "type": "pillar",
           "settings": {
             "title": "Priced Honestly",
-            "body": "We price from what's fair, not what the market will tolerate. Quality shouldn't require a justification."
+            "body": "We price based on what's fair, not what we can get away with. Good products shouldn't cost extra just because they can."
           }
         }
       },
@@ -85,9 +85,9 @@
         "pillar_3"
       ],
       "settings": {
-        "eyebrow": "Not just a product company. A standard.",
+        "eyebrow": "We hold everything to the same standard.",
         "heading": "",
-        "body": "Built because the car community deserved quality without the markup. We test everything ourselves, price fairly, and actually show up for the people buying from us."
+        "body": "The car community deserved better products at a fair price. We test everything ourselves, price it fairly, and we actually respond when people reach out."
       }
     },
     "brand_story": {
@@ -95,7 +95,7 @@
       "settings": {
         "label": "Our Story",
         "heading": "BUILT BY ENTHUSIASTS.",
-        "body_text": "We started Polaris because we were tired of overpaying for detailing products that didn't perform. Built from the car community, tested on real cars, priced for real people.",
+        "body_text": "We started Polaris because we were tired of paying too much for products that underperformed. Built for the car community, tested on real cars, priced so your friends can actually buy it.",
         "cta_text": "READ OUR STORY",
         "cta_url": "/pages/our-story"
       }
@@ -250,7 +250,7 @@
           "settings": {
             "name": "Alex T.",
             "stars": 5,
-            "review_text": "Bought this for my Corvette. Ceramic coated paint shows everything — this towel leaves absolutely nothing behind. Impressed.",
+            "review_text": "Bought this for my Corvette. Ceramic coated paint shows everything. This towel leaves nothing behind. Impressed.",
             "date": "March 2025"
           }
         },
