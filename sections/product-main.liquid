@@ -104,6 +104,20 @@
 .pdp-cta-stack .shopify-payment-button { margin: 0; }
 .pdp-cta-stack .shopify-payment-button__button { border-radius: 0 !important; min-height: 60px !important; font-family: var(--pdp-fdisp) !important; font-weight: 600 !important; font-size: 13px !important; letter-spacing: 0.12em !important; text-transform: uppercase !important; }
 
+/* Pack selector */
+.pdp-packs { display: flex; flex-direction: column; gap: 10px; }
+.pdp-packs__label { display: flex; justify-content: space-between; align-items: baseline; }
+.pdp-packs__opts { display: flex; gap: 0; border: 1px solid #000; }
+.pdp-pack-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 14px 10px; cursor: pointer; background: none; border: 0; border-right: 1px solid #000; font: inherit; color: inherit; transition: background 160ms; position: relative; }
+.pdp-pack-btn:last-child { border-right: 0; }
+.pdp-pack-btn:hover { background: #f4f4f4; }
+.pdp-pack-btn--on { background: #000; color: #fff; }
+.pdp-pack-btn--on:hover { background: #111; }
+.pdp-pack-btn__qty { font-family: var(--pdp-fdisp); font-weight: 900; font-size: 18px; letter-spacing: -0.01em; }
+.pdp-pack-btn__price { font-family: var(--pdp-fmono); font-size: 11px; opacity: 0.7; }
+.pdp-pack-btn__save { position: absolute; top: -9px; left: 50%; transform: translateX(-50%); background: #000; color: #fff; font-family: var(--pdp-fdisp); font-weight: 700; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 6px; white-space: nowrap; }
+.pdp-pack-btn--on .pdp-pack-btn__save { background: #fff; color: #000; }
+
 /* Meta details grid */
 .pdp-details { display: grid; grid-template-columns: auto 1fr; gap: 10px 20px; border-top: 1px solid #e5e5e5; padding-top: 20px; }
 .pdp-details .pdp-eyebrow { padding-top: 2px; }
@@ -286,31 +300,42 @@
         <div class="pdp-subtitle">1200 GSM Twisted-loop drying towel</div>
 
         <div class="pdp-meta-row">
-          <div class="pdp-price" id="pdp-price">{{ product.selected_or_first_available_variant.price | money }}</div>
+          <div class="pdp-price" id="pdp-price">$29.99</div>
           <div class="pdp-mono pdp-muted-c">60 × 90 CM · 24 × 35 IN</div>
         </div>
 
         <p class="pdp-lead">One pass. No streaks. No swirls. Dries a full sedan before the paint goes dry on its own.</p>
         <p class="pdp-body pdp-italic">— If we wouldn't use it on our own car, we don't sell it.</p>
 
-        <div class="pdp-qty-wrap">
-          <div class="pdp-eyebrow pdp-muted-c">Quantity</div>
-          <div class="pdp-qty">
-            <button type="button" class="pdp-qty__btn" id="pdp-qdec" aria-label="Decrease">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"><path d="M5 12h14"/></svg>
+        <div class="pdp-packs">
+          <div class="pdp-packs__label">
+            <div class="pdp-eyebrow pdp-muted-c">Bundle &amp; Save</div>
+            <div class="pdp-mono pdp-muted-c" id="pdp-per-towel">$29.99 / towel</div>
+          </div>
+          <div class="pdp-packs__opts" role="group" aria-label="Select pack size">
+            <button type="button" class="pdp-pack-btn pdp-pack-btn--on" data-variant="46960872521859" data-price="29.99" data-per="29.99" data-label="1-Pack">
+              <span class="pdp-pack-btn__qty">1</span>
+              <span class="pdp-pack-btn__price">$29.99</span>
             </button>
-            <div class="pdp-qty__count" id="pdp-qval">1</div>
-            <button type="button" class="pdp-qty__btn" id="pdp-qinc" aria-label="Increase">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"><path d="M12 5v14M5 12h14"/></svg>
+            <button type="button" class="pdp-pack-btn" data-variant="46960868163715" data-price="52.99" data-per="26.50" data-label="2-Pack">
+              <span class="pdp-pack-btn__save">Save $7</span>
+              <span class="pdp-pack-btn__qty">2</span>
+              <span class="pdp-pack-btn__price">$52.99</span>
+            </button>
+            <button type="button" class="pdp-pack-btn" data-variant="46960868196483" data-price="72.99" data-per="24.33" data-label="3-Pack">
+              <span class="pdp-pack-btn__save">Best Value — Save $17</span>
+              <span class="pdp-pack-btn__qty">3</span>
+              <span class="pdp-pack-btn__price">$72.99</span>
             </button>
           </div>
         </div>
 
         {%- form 'product', product, id: 'pdp-form' -%}
+          <input type="hidden" name="id" id="pdp-variant-input" value="46960872521859">
           <input type="hidden" name="quantity" id="pdp-qinput" value="1">
           <div class="pdp-cta-stack">
             <button type="submit" name="add" class="pdp-btn pdp-btn--lg pdp-btn--full" id="pdp-atc">
-              Add to bag — {{ product.selected_or_first_available_variant.price | money }}
+              Add to bag — $29.99
             </button>
             {{ form | payment_button }}
           </div>
@@ -552,7 +577,7 @@
 <div class="pdp-satb" id="pdp-satb">
   <div class="pdp-satb__info">
     <div class="pdp-satb__name">The Nova · 1200 GSM</div>
-    <div class="pdp-satb__price">{{ product.selected_or_first_available_variant.price | money }} · Free shipping</div>
+    <div class="pdp-satb__price" id="pdp-satb-price">$29.99 · Free shipping</div>
   </div>
   <button class="pdp-btn pdp-btn--sm" onclick="document.getElementById('pdp-form').querySelector('[name=add]').click()">Add to bag →</button>
 </div>
@@ -597,6 +622,29 @@
   var next = document.getElementById('pdp-next');
   if (prev) prev.addEventListener('click', function() { goTo(idx - 1); });
   if (next) next.addEventListener('click', function() { goTo(idx + 1); });
+
+  /* ── Pack selector ── */
+  /* ── Pack selector ── */
+  var packBtns = document.querySelectorAll('.pdp-pack-btn');
+  var variantInput = document.getElementById('pdp-variant-input');
+  var priceEl = document.getElementById('pdp-price');
+  var perTowelEl = document.getElementById('pdp-per-towel');
+  var atcBtn = document.getElementById('pdp-atc');
+  var satbPrice = document.getElementById('pdp-satb-price');
+
+  packBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      packBtns.forEach(function(b) { b.classList.remove('pdp-pack-btn--on'); });
+      btn.classList.add('pdp-pack-btn--on');
+      var price = btn.dataset.price;
+      var per = btn.dataset.per;
+      if (variantInput) variantInput.value = btn.dataset.variant;
+      if (priceEl) priceEl.textContent = '$' + price;
+      if (perTowelEl) perTowelEl.textContent = '$' + per + ' / towel';
+      if (atcBtn) atcBtn.textContent = 'Add to bag — $' + price;
+      if (satbPrice) satbPrice.textContent = '$' + price + ' · Free shipping';
+    });
+  });
 
   /* ── Qty ── */
   var qval = document.getElementById('pdp-qval');
