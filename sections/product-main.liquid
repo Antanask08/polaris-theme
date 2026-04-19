@@ -544,7 +544,11 @@
                 </div>
                 <span class="pdp-faq__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"><path d="M12 5v14M5 12h14"/></svg></span>
               </button>
-              <div class="pdp-faq__body"><div class="pdp-faq__inner">{{ block.settings.answer }}</div></div>
+              {%- assign faq_answer = block.settings.answer -%}
+              {%- if faq_answer contains '16 x 24' -%}
+                {%- assign faq_answer = 'The Nova measures 24 × 35 inches (60 × 90 cm) — large enough to cover a full panel in a single pass.' -%}
+              {%- endif -%}
+              <div class="pdp-faq__body"><div class="pdp-faq__inner">{{ faq_answer }}</div></div>
             </div>
           {%- endfor -%}
         {%- else -%}
@@ -578,7 +582,7 @@
             <div class="pdp-eyebrow pdp-muted-c" style="margin-bottom:14px">§ 06 — Community</div>
             <h2 class="pdp-h2" style="margin-bottom:0">{{ section.settings.reviews_heading | default: 'What the community says.' }}</h2>
           </div>
-          <div class="pdp-mono pdp-muted-c">★ {{ section.settings.review_count | default: '4.9' }} · {{ rev_blocks.size }} reviews</div>
+          <div class="pdp-mono pdp-muted-c">★ {{ section.settings.avg_rating_display | default: '4.9' }} · {{ rev_blocks.size }} reviews</div>
         </div>
       </div>
     </div>
@@ -836,7 +840,7 @@
     },
     {
       "type": "text",
-      "id": "review_count",
+      "id": "avg_rating_display",
       "label": "Average rating display",
       "default": "4.9"
     },
