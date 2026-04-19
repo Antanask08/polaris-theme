@@ -193,14 +193,16 @@
 .pdp-founder__sig { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
 .pdp-founder-ph-label { font-family: var(--pdp-fdisp); font-weight: 900; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; position: absolute; bottom: 12px; left: 12px; right: 12px; color: rgba(255,255,255,0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* UGC */
-.pdp-ugc { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; background: #000; border: 1px solid #000; }
-@media (min-width: 700px) { .pdp-ugc { grid-template-columns: repeat(3,1fr); } }
-.pdp-ugc__tile { position: relative; aspect-ratio: 1/1; overflow: hidden; cursor: pointer; background: #1a1a1a; }
-.pdp-ugc__tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 400ms var(--pdp-ease); }
-.pdp-ugc__tile:hover img { transform: scale(1.03); }
+/* UGC Carousel */
+.pdp-ugc { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.pdp-ugc::-webkit-scrollbar { display: none; }
+.pdp-ugc__tile { flex: 0 0 80vw; max-width: 480px; scroll-snap-align: start; position: relative; aspect-ratio: 1/1; overflow: hidden; cursor: pointer; background: #1a1a1a; }
+@media (min-width: 700px) { .pdp-ugc__tile { flex: 0 0 min(400px,32vw); max-width: none; } }
+.pdp-ugc__tile img, .pdp-ugc__tile video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 400ms var(--pdp-ease); }
+.pdp-ugc__tile:hover img, .pdp-ugc__tile:hover video { transform: scale(1.03); }
 .pdp-ugc__meta { position: absolute; bottom: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: flex-end; color: #fff; mix-blend-mode: difference; }
 .pdp-ugc__handle { font-family: var(--pdp-fdisp); font-weight: 600; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+.pdp-ugc__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center; pointer-events: none; }
 
 /* FAQ */
 .pdp-faq__item { border-top: 1px solid #000; }
@@ -225,6 +227,12 @@
 .pdp-rev-card__meta { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .pdp-rev-card__name { font-family: var(--pdp-fdisp); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
 .pdp-rev-card__date { font-family: var(--pdp-fmono); font-size: 11px; color: var(--pdp-muted); }
+@media (max-width: 699px) {
+  .pdp-rev-wrap { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .pdp-rev-wrap::-webkit-scrollbar { display: none; }
+  .pdp-rev-track { animation: none !important; padding: 0 24px 0 0; }
+  .pdp-rev-card { flex: 0 0 calc(100vw - 80px); scroll-snap-align: start; }
+}
 
 /* Sticky ATB */
 .pdp-satb { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid #000; padding: 12px 16px; display: flex; gap: 12px; align-items: center; z-index: 50; transform: translateY(100%); transition: transform 400ms var(--pdp-ease); }
@@ -468,13 +476,20 @@
         </div>
       </div>
     </div>
-    <div class="pdp-wide">
+    <div class="pdp-wide" style="padding-right:0">
       {%- assign ugc_blocks = section.blocks | where: 'type', 'ugc_item' -%}
       <div class="pdp-ugc">
         {%- if ugc_blocks.size > 0 -%}
           {%- for block in ugc_blocks -%}
             <div class="pdp-ugc__tile" {{ block.shopify_attributes }}>
-              {%- if block.settings.image -%}
+              {%- if block.settings.video != blank -%}
+                <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block">
+                  {%- for source in block.settings.video.sources -%}
+                    <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                  {%- endfor -%}
+                </video>
+                <div class="pdp-ugc__play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M6 4l14 8-14 8V4z"/></svg></div>
+              {%- elsif block.settings.image -%}
                 {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;display:block' }}
               {%- else -%}
                 <div style="position:absolute;inset:0;background:radial-gradient(130% 160% at 70% 80%,#3a3a3a 0%,#1a1a1a 50%,#090909 100%)"></div>
@@ -795,7 +810,8 @@
       "name": "UGC Item",
       "limit": 12,
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "video", "id": "video", "label": "Video (optional, overrides photo)" },
+        { "type": "image_picker", "id": "image", "label": "Photo (if no video)" },
         { "type": "text", "id": "caption", "label": "Handle / caption", "default": "@polariscarcare" }
       ]
     },
