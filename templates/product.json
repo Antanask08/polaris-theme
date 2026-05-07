@@ -12,6 +12,13 @@
     "product_main": {
       "type": "product-main",
       "blocks": {
+        "ugc_item_4GeHEp": {
+          "type": "ugc_item",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4174.jpg",
+            "caption": "@polaris.carcare"
+          }
+        },
         "ugc_item_hUqaCV": {
           "type": "ugc_item",
           "settings": {
@@ -226,6 +233,7 @@
         }
       },
       "block_order": [
+        "ugc_item_4GeHEp",
         "ugc_item_hUqaCV",
         "ugc_item_EQAiRi",
         "ugc_item_TxAtnQ",
