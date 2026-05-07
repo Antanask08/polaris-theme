@@ -36,18 +36,6 @@
             "caption": "Behind the scenes"
           }
         },
-        "photo_VRfmyk": {
-          "type": "photo",
-          "settings": {
-            "caption": "Behind the scenes"
-          }
-        },
-        "photo_xtJJ94": {
-          "type": "photo",
-          "settings": {
-            "caption": "Behind the scenes"
-          }
-        },
         "photo_HLbBDw": {
           "type": "photo",
           "settings": {
@@ -58,8 +46,6 @@
       },
       "block_order": [
         "photo_DYXgWA",
-        "photo_VRfmyk",
-        "photo_xtJJ94",
         "photo_HLbBDw"
       ],
       "name": "BTS Gallery",
