@@ -33,6 +33,7 @@
         "photo_HLbBDw": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/IMG_4008.jpg",
             "caption": "Behind the scenes"
           }
         },
@@ -308,11 +309,11 @@
       "type": "social-feed",
       "settings": {
         "heading": "@POLARISCARCARE",
+        "subtext": "The brand. The build. The community.",
         "tiktok_url": "https://www.tiktok.com/@polariscarcare",
         "tiktok_label": "FOLLOW US ON TIKTOK ↗",
         "instagram_url": "https://www.instagram.com/polaris.carcare/",
-        "instagram_label": "FOLLOW ON INSTAGRAM ↗",
-        "subtext": "The brand. The build. The community."
+        "instagram_label": "FOLLOW ON INSTAGRAM ↗"
       }
     },
     "email_popup": {
