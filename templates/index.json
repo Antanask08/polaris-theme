@@ -36,18 +36,10 @@
             "image": "shopify://shop_images/IMG_4008.jpg",
             "caption": "Behind the scenes"
           }
-        },
-        "photo_pwPPDg": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_4011.jpg",
-            "caption": "Behind the scenes"
-          }
         }
       },
       "block_order": [
-        "photo_HLbBDw",
-        "photo_pwPPDg"
+        "photo_HLbBDw"
       ],
       "name": "BTS Gallery",
       "settings": {
