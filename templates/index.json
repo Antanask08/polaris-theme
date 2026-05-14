@@ -40,6 +40,7 @@
         "photo_htJihc": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/IMG_3870.jpg",
             "caption": "Behind the scenes"
           }
         },
