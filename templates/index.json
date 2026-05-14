@@ -30,6 +30,18 @@
     "bts_gallery_L34gUG": {
       "type": "bts-gallery",
       "blocks": {
+        "photo_NLQRz9": {
+          "type": "photo",
+          "settings": {
+            "caption": "Behind the scenes"
+          }
+        },
+        "photo_htJihc": {
+          "type": "photo",
+          "settings": {
+            "caption": "Behind the scenes"
+          }
+        },
         "photo_DYXgWA": {
           "type": "photo",
           "settings": {
@@ -46,6 +58,8 @@
         }
       },
       "block_order": [
+        "photo_NLQRz9",
+        "photo_htJihc",
         "photo_DYXgWA",
         "photo_HLbBDw"
       ],
