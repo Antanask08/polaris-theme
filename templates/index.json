@@ -33,6 +33,7 @@
         "photo_NLQRz9": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/IMG_4639.jpg",
             "caption": "Behind the scenes"
           }
         },
