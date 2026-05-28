@@ -117,7 +117,7 @@
         "ps_spec_1": {
           "type": "spec",
           "settings": {
-            "label": "1200 GSM"
+            "label": "1300 GSM"
           }
         },
         "ps_spec_2": {
@@ -148,7 +148,7 @@
       "settings": {
         "product_label": "The Nova",
         "product_name": "THE NOVA",
-        "product_description": "The 1200 GSM microfiber drying towel built for enthusiasts who actually care about their paint.",
+        "product_description": "The 1300 GSM microfiber drying towel built for enthusiasts who actually care about their paint.",
         "product_image": "shopify://shop_images/3813488-removebg-preview.png",
         "product_url": "shopify://products/microfiber-car-drying-towel",
         "price": "$29.99"
@@ -162,7 +162,7 @@
           "settings": {
             "name": "Marcus T.",
             "stars": 5,
-            "review_text": "Absolutely incredible towel. The 1200 GSM is a game changer on my ceramic coated car. Dried the whole car in two passes with zero water spots.",
+            "review_text": "Absolutely incredible towel. The 1300 GSM is a game changer on my ceramic coated car. Dried the whole car in two passes with zero water spots.",
             "date": "March 2025"
           }
         },
