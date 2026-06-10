@@ -30,32 +30,22 @@
     "bts_gallery_L34gUG": {
       "type": "bts-gallery",
       "blocks": {
-        "photo_NLQRz9": {
+        "photo_HLbBDw": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/IMG_4639.jpg",
             "caption": "Behind the scenes"
           }
         },
-        "photo_htJihc": {
+        "photo_pwPPDg": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/IMG_3870.jpg",
-            "caption": "Behind the scenes"
-          }
-        },
-        "photo_DYXgWA": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_1795_SnapseedCopy.jpg",
             "caption": "Behind the scenes"
           }
         }
       },
       "block_order": [
-        "photo_NLQRz9",
-        "photo_htJihc",
-        "photo_DYXgWA"
+        "photo_HLbBDw",
+        "photo_pwPPDg"
       ],
       "name": "BTS Gallery",
       "settings": {
@@ -106,7 +96,6 @@
         "label": "Our Story",
         "heading": "BUILT BY ENTHUSIASTS.",
         "body_text": "We started Polaris because we were tired of paying too much for products that underperformed. Built for the car community, tested on real cars, priced so your friends can actually buy it.",
-        "image": "shopify://shop_images/IMG_4338.jpg",
         "cta_text": "READ OUR STORY",
         "cta_url": "/pages/our-story"
       }
@@ -319,11 +308,11 @@
       "type": "social-feed",
       "settings": {
         "heading": "@POLARISCARCARE",
-        "subtext": "The brand. The build. The community.",
         "tiktok_url": "https://www.tiktok.com/@polariscarcare",
         "tiktok_label": "FOLLOW US ON TIKTOK ↗",
         "instagram_url": "https://www.instagram.com/polaris.carcare/",
-        "instagram_label": "FOLLOW ON INSTAGRAM ↗"
+        "instagram_label": "FOLLOW ON INSTAGRAM ↗",
+        "subtext": "The brand. The build. The community."
       }
     },
     "email_popup": {
@@ -341,11 +330,11 @@
   "order": [
     "hero",
     "brand_statement",
+    "product_spotlight",
+    "social_proof",
     "bts_gallery_L34gUG",
     "brand_values",
     "brand_story",
-    "product_spotlight",
-    "social_proof",
     "social_feed",
     "email_popup"
   ]
