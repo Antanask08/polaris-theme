@@ -9,7 +9,7 @@
       {%- if request.page_type == 'index' -%}
         Polaris Car Care | Built for the Ones Who Care
       {%- elsif request.page_type == 'product' and product.handle == 'microfiber-car-drying-towel' -%}
-        The Nova — 1300 GSM Drying Towel | Polaris Car Care
+        The Nova — 1200 GSM Drying Towel | Polaris Car Care
       {%- else -%}
         {{ page_title }}
         {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
@@ -19,7 +19,7 @@
     </title>
 
     {%- if request.page_type == 'product' and product.handle == 'microfiber-car-drying-towel' -%}
-      <meta name="description" content="The Nova is a 1300 GSM twisted-loop microfiber drying towel built to dry a full sedan in one pass. No streaks. No swirls. Free shipping on every order.">
+      <meta name="description" content="The Nova is a 1200 GSM twisted-loop microfiber drying towel built to dry a full sedan in one pass. No streaks. No swirls. Free shipping on every order.">
     {%- elsif page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
@@ -89,7 +89,7 @@
     <div class="announcement-bar" id="announcement-bar" aria-label="Announcement">
       <div class="announcement-bar__inner">
         <div class="marquee-track" id="marquee-track">
-          <span>FREE SHIPPING ON EVERY ORDER.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THE NOVA — 1300 GSM · $29.99 · FREE SHIPPING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>FREE SHIPPING ON EVERY ORDER.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THE NOVA — 1200 GSM · $29.99 · FREE SHIPPING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </div>
       </div>
     </div>
@@ -118,8 +118,8 @@
         {%- for link in linklists['main-menu'].links -%}
           <li><a href="{{ link.url }}" class="nav-drawer__link">{{ link.title }}</a></li>
         {%- else -%}
-          <li><a href="/" class="nav-drawer__link">Home</a></li>
-          <li><a href="/collections/all" class="nav-drawer__link">Shop</a></li>
+          <li><a href="{{ routes.root_url }}" class="nav-drawer__link">Home</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}" class="nav-drawer__link">Shop</a></li>
           <li><a href="/pages/our-story" class="nav-drawer__link">Our Story</a></li>
           <li><a href="/pages/reviews" class="nav-drawer__link">Reviews</a></li>
           <li><a href="/pages/faq" class="nav-drawer__link">FAQ</a></li>
@@ -132,7 +132,7 @@
     <header class="site-header" id="site-header" role="banner">
       <div class="header-inner">
         <!-- Logo -->
-        <a href="/" class="header-logo" aria-label="{{ shop.name }}">
+        <a href="{{ routes.root_url }}" class="header-logo" aria-label="{{ shop.name }}">
           <img
             src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/PNG_2.png?v=1775814683"
             alt="{{ shop.name }}"
@@ -153,8 +153,8 @@
                 >{{ link.title }}</a>
               </li>
             {%- else -%}
-              <li><a href="/" class="nav-link">Home</a></li>
-              <li><a href="/collections/all" class="nav-link">Shop</a></li>
+              <li><a href="{{ routes.root_url }}" class="nav-link">Home</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}" class="nav-link">Shop</a></li>
               <li><a href="/pages/our-story" class="nav-link">Our Story</a></li>
               <li><a href="/pages/reviews" class="nav-link">Reviews</a></li>
               <li><a href="/pages/faq" class="nav-link">FAQ</a></li>
@@ -217,7 +217,7 @@
         <div class="footer-grid">
           <!-- Brand Column -->
           <div class="footer-col footer-col--brand">
-            <a href="/" class="footer-logo" aria-label="{{ shop.name }}">
+            <a href="{{ routes.root_url }}" class="footer-logo" aria-label="{{ shop.name }}">
               <img
                 src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/PNG_2.png?v=1775814683"
                 alt="{{ shop.name }}"
@@ -233,7 +233,7 @@
           <div class="footer-col">
             <h4 class="footer-heading">Shop</h4>
             <ul class="footer-links">
-              <li><a href="/collections/all">All Products</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}">All Products</a></li>
               <li><a href="/pages/partners">Creator Program</a></li>
             </ul>
           </div>

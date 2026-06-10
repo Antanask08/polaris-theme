@@ -539,7 +539,7 @@ p {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 11px;
   color: var(--color-white);
   transition: opacity var(--transition-fast);
 }
@@ -837,7 +837,7 @@ p {
   background-color: var(--color-white);
   color: var(--color-black);
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1;
   transition: border-color var(--transition-fast);
   appearance: none;

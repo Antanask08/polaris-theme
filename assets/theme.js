@@ -524,7 +524,21 @@
       try { alreadySeen = sessionStorage.getItem(SESSION_KEY) === 'true'; } catch (e) {}
 
       if (!alreadySeen) {
-        setTimeout(showPopup, 4000);
+        var isMobileViewport = window.innerWidth <= 768;
+        // Mobile: wait longer and prefer scroll intent so the popup
+        // never blocks the first product view.
+        setTimeout(showPopup, isMobileViewport ? 12000 : 4000);
+        if (isMobileViewport) {
+          var onPopupScroll = function () {
+            var doc = document.documentElement;
+            var scrollable = doc.scrollHeight - window.innerHeight;
+            if (scrollable > 0 && window.scrollY / scrollable > 0.4) {
+              window.removeEventListener('scroll', onPopupScroll);
+              showPopup();
+            }
+          };
+          window.addEventListener('scroll', onPopupScroll, { passive: true });
+        }
         document.addEventListener('mouseleave', function (e) {
           if (window.innerWidth > 768 && e.clientY < 10) showPopup();
         });
@@ -554,61 +568,6 @@
         }
       });
     }
-  })();
-
-
-  /* =========================================================
-   * 9. STICKY MOBILE ATC BAR (product page)
-   * Shows #sticky-atc when #main-atc-btn scrolls out of view.
-   * Mobile only (≤ 768px).
-   * ========================================================= */
-  (function initStickyATC() {
-    var mainBtn   = document.getElementById('main-atc-btn');
-    var stickyBar = document.getElementById('sticky-atc');
-
-    if (!mainBtn || !stickyBar) return;
-
-    var observer = new IntersectionObserver(function (entries) {
-      if (window.innerWidth > 768) return;
-
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          stickyBar.classList.remove('is-visible');
-        } else {
-          stickyBar.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0 });
-
-    observer.observe(mainBtn);
-
-    // Sticky ATC button click
-    var stickyBtn = stickyBar.querySelector('.btn-atc, [data-variant-id]');
-    if (stickyBtn) {
-      stickyBtn.addEventListener('click', function () {
-        var variantId = stickyBtn.getAttribute('data-variant-id')
-          || (mainBtn && mainBtn.getAttribute('data-variant-id'));
-        if (variantId && window.PolarisCart) {
-          var orig = stickyBtn.textContent;
-          stickyBtn.disabled = true;
-          stickyBtn.textContent = 'ADDING…';
-          window.PolarisCart.addToCart(variantId, 1).then(function () {
-            stickyBtn.disabled = false;
-            stickyBtn.textContent = orig;
-          }).catch(function () {
-            stickyBtn.disabled = false;
-            stickyBtn.textContent = orig;
-          });
-        }
-      });
-    }
-
-    // Re-evaluate on resize
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 768) {
-        stickyBar.classList.remove('is-visible');
-      }
-    });
   })();
 
 

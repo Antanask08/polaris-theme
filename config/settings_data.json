@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "announcement_enabled": true,
@@ -9,6 +18,7 @@
     "announcement_text_5": "TRUSTED BY THE CAR COMMUNITY",
     "announcement_text_6": "POLARIS CAR CARE",
     "logo_width": 140,
-    "instagram_url": "https://www.instagram.com/polaris.carcare/"
+    "instagram_url": "https://www.instagram.com/polaris.carcare/",
+    "tiktok_url": "https://www.tiktok.com/@polariscarcare"
   }
 }

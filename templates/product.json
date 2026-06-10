@@ -12,39 +12,18 @@
     "product_main": {
       "type": "product-main",
       "blocks": {
-        "ugc_item_4GeHEp": {
-          "type": "ugc_item",
-          "settings": {
-            "image": "shopify://shop_images/IMG_4174.jpg",
-            "caption": "@polaris.carcare"
-          }
-        },
-        "ugc_item_hUqaCV": {
-          "type": "ugc_item",
-          "settings": {
-            "image": "shopify://shop_images/IMG_3930.jpg",
-            "caption": "@polaris.carcare"
-          }
-        },
-        "ugc_item_EQAiRi": {
-          "type": "ugc_item",
-          "settings": {
-            "image": "shopify://shop_images/IMG_3999.jpg",
-            "caption": "@polaris.carcare"
-          }
-        },
         "ugc_item_TxAtnQ": {
           "type": "ugc_item",
           "settings": {
-            "image": "shopify://shop_images/IMG_4056.jpg",
-            "caption": "@polaris.carcare"
+            "image": "shopify://shop_images/IMG_4108.jpg",
+            "caption": "@polariscarcare"
           }
         },
         "ugc_item_FTKpUF": {
           "type": "ugc_item",
           "settings": {
             "video": "shopify://files/videos/IMG_1189 (1).MOV",
-            "caption": "@polaris.carcare"
+            "caption": "@polariscarcare"
           }
         },
         "review_1": {
@@ -52,7 +31,7 @@
           "settings": {
             "name": "Marcus T.",
             "stars": 5,
-            "review_text": "Absolutely incredible towel. The 1300 GSM is a game changer on my ceramic coated car. Zero water spots, dried the whole car in two passes.",
+            "review_text": "Absolutely incredible towel. The 1200 GSM is a game changer on my ceramic coated car. Zero water spots, dried the whole car in two passes.",
             "date": "March 2025"
           }
         },
@@ -186,14 +165,14 @@
           "type": "faq",
           "settings": {
             "question": "What size is The Nova?",
-            "answer": "The Nova measures 16 x 24 inches, large enough to cover a full panel with a single pass."
+            "answer": "The Nova measures 24 × 35 inches (60 × 90 cm) — large enough to cover a full panel in a single pass."
           }
         },
         "faq_2": {
           "type": "faq",
           "settings": {
-            "question": "What makes 1300 GSM special?",
-            "answer": "GSM measures how dense the microfiber pile is. At 1300 GSM, The Nova holds significantly more water than standard towels, meaning fewer passes and less risk of marring your paint."
+            "question": "What makes 1200 GSM special?",
+            "answer": "GSM measures how dense the microfiber pile is. At 1200 GSM, The Nova holds significantly more water than standard towels, meaning fewer passes and less risk of marring your paint."
           }
         },
         "faq_3": {
@@ -233,9 +212,6 @@
         }
       },
       "block_order": [
-        "ugc_item_4GeHEp",
-        "ugc_item_hUqaCV",
-        "ugc_item_EQAiRi",
         "ugc_item_TxAtnQ",
         "ugc_item_FTKpUF",
         "review_1",
@@ -262,11 +238,9 @@
         "faq_7"
       ],
       "settings": {
-        "founder_image": "shopify://shop_images/IMG_4338.jpg",
         "reviews_heading": "WHAT THE COMMUNITY SAYS",
         "avg_rating_display": "4.9",
         "ugc_eyebrow": "Real People. Real Cars.",
-        "ugc_opacity": 100,
         "faq_heading": "FREQUENTLY ASKED QUESTIONS"
       }
     }
