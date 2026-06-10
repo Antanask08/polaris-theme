@@ -707,20 +707,34 @@
   if (qdec) qdec.addEventListener('click', function() { setQty(qty - 1); });
   if (qinc) qinc.addEventListener('click', function() { setQty(qty + 1); });
 
-  /* ── Add to cart feedback ── */
+  /* ── Add to cart: AJAX into drawer, native submit as fallback ── */
   var atc = document.getElementById('pdp-atc');
   var form = document.getElementById('pdp-form');
   if (form && atc) {
-    form.addEventListener('submit', function() {
+    form.addEventListener('submit', function(e) {
+      var variantInput = document.getElementById('pdp-variant-input');
+      var variantId = variantInput ? variantInput.value : null;
+      var qInput = document.getElementById('pdp-qinput');
+      var quantity = qInput ? parseInt(qInput.value, 10) || 1 : 1;
+      if (!window.PolarisCart || !variantId) return;
+      e.preventDefault();
       var orig = atc.textContent;
-      atc.textContent = '✓ Added to bag';
-      atc.style.background = '#fff';
-      atc.style.color = '#000';
-      setTimeout(function() {
+      atc.disabled = true;
+      window.PolarisCart.addToCart(variantId, quantity).then(function() {
+        atc.disabled = false;
+        atc.textContent = '✓ Added to bag';
+        atc.style.background = '#fff';
+        atc.style.color = '#000';
+        setTimeout(function() {
+          atc.textContent = orig;
+          atc.style.background = '';
+          atc.style.color = '';
+        }, 1800);
+      }).catch(function() {
+        atc.disabled = false;
         atc.textContent = orig;
-        atc.style.background = '';
-        atc.style.color = '';
-      }, 1800);
+        form.submit();
+      });
     });
   }
 
