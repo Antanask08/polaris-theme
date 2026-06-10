@@ -156,6 +156,7 @@
                 alt="{{ block.settings.caption | default: 'Behind the scenes' }}"
                 loading="lazy"
                 width="600"
+                height="{{ block.settings.image.height | times: 600 | divided_by: block.settings.image.width }}"
               >
               {% if block.settings.caption != blank %}
                 <div class="bts-photo-caption">{{ block.settings.caption }}</div>

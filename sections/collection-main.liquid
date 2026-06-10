@@ -25,7 +25,7 @@
       {% else %}
         <div class="collection-empty">
           <p>No products found in this collection.</p>
-          <a href="/" class="btn btn--primary">GO HOME →</a>
+          <a href="{{ routes.root_url }}" class="btn btn--primary">GO HOME →</a>
         </div>
       {% endif %}
     {% endpaginate %}

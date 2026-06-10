@@ -10,7 +10,7 @@
           <path d="M16 10a4 4 0 01-8 0"/>
         </svg>
         <p>Your cart is empty.</p>
-        <a href="/collections/all" class="btn btn--primary">SHOP THE NOVA →</a>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">SHOP THE NOVA →</a>
       </div>
 
     {% else %}
@@ -20,7 +20,7 @@
             <div class="cart-page-item" data-key="{{ item.key }}">
               <div class="cart-page-item-image">
                 {% if item.image %}
-                  <img src="{{ item.image | img_url: '160x160' }}" alt="{{ item.title | escape }}" width="80" height="80" loading="lazy">
+                  <img src="{{ item.image | image_url: width: 160, height: 160, crop: 'center' }}" alt="{{ item.title | escape }}" width="80" height="80" loading="lazy">
                 {% endif %}
               </div>
               <div class="cart-page-item-details">
@@ -31,7 +31,7 @@
                 <p class="cart-page-item-price">{{ item.final_line_price | money }}</p>
                 <div class="cart-page-item-qty">
                   <span>Qty:</span>
-                  <form action="/cart/change" method="post">
+                  <form action="{{ routes.cart_change_url }}" method="post">
                     <input type="hidden" name="id" value="{{ item.key }}">
                     <select name="quantity" onchange="this.form.submit()" aria-label="Quantity">
                       {% for i in (0..10) %}
@@ -54,7 +54,7 @@
           </div>
           <p class="cart-summary-shipping">FREE SHIPPING INCLUDED</p>
           <a href="/checkout" class="btn btn--primary btn--full cart-checkout-btn">CHECKOUT →</a>
-          <a href="/collections/all" class="btn btn--secondary btn--full" style="margin-top:12px;">CONTINUE SHOPPING</a>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn--secondary btn--full" style="margin-top:12px;">CONTINUE SHOPPING</a>
         </div>
       </div>
     {% endif %}

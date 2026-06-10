@@ -106,6 +106,8 @@
         class="hero-bg hero-parallax"
         src="{{ section.settings.image | image_url: width: 2000 }}"
         alt="Hero background"
+        width="2000"
+        height="{{ section.settings.image.height | times: 2000 | divided_by: section.settings.image.width }}"
         loading="eager"
       >
     {% else %}
