@@ -51,6 +51,13 @@
   letter-spacing: 0.15em;
   color: rgba(255, 255, 255, 0.3);
 }
+
+@media (max-width: 640px) {
+  .press-bar { padding: 48px 0; }
+  .press-label { margin-bottom: 28px; }
+  .press-logos { gap: 28px 32px; padding: 0 16px; }
+  .press-logo-img { height: 26px; }
+}
 </style>
 
 {% if section.settings.enabled %}
@@ -63,7 +70,7 @@
           <div class="press-logo-item" {{ block.shopify_attributes }}>
             {% if block.settings.link != blank %}<a href="{{ block.settings.link }}" target="_blank" rel="noopener">{% endif %}
             {% if block.settings.logo != blank %}
-              <img src="{{ block.settings.logo | img_url: 'medium' }}" alt="{{ block.settings.alt_text | default: 'Press logo' }}" loading="lazy" class="press-logo-img">
+              <img src="{{ block.settings.logo | image_url: width: 240 }}" alt="{{ block.settings.alt_text | default: 'Press logo' }}" loading="lazy" class="press-logo-img" width="240" height="{{ block.settings.logo.height | times: 240 | divided_by: block.settings.logo.width }}">
             {% else %}
               <div class="press-logo-placeholder">LOGO</div>
             {% endif %}
