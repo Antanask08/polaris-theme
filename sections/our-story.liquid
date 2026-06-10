@@ -626,10 +626,8 @@
 .os-polaroid {
   position: relative;
   background: #fff;
-  padding: 14px 14px 0;
+  padding: 12px 12px 56px;
   box-shadow: 4px 6px 24px rgba(0,0,0,0.45), 0 1px 4px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
 }
 
 /* Push pin */
@@ -671,33 +669,31 @@
 }
 
 .os-polaroid-info {
-  padding: 22px 16px 24px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px 14px;
   text-align: center;
-  background: #fff;
 }
 
 .os-polaroid-name {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 1.5rem;
+  font-weight: 700;
+  font-size: 1.3rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #0a0a0a;
+  letter-spacing: 0.05em;
+  color: #000;
   display: block;
-  margin-bottom: 8px;
-  line-height: 1;
+  margin-bottom: 4px;
 }
 
 .os-polaroid-role {
   font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(0,0,0,0.55);
-  display: inline-block;
-  padding-top: 8px;
-  border-top: 1px solid rgba(0,0,0,0.12);
+  color: rgba(0,0,0,0.62);
 }
 
 .os-polaroid--left  { transform: rotate(-3deg); }
@@ -715,18 +711,21 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   LAUNCH EVENT — Photoless, centered, stats-forward
+   LAUNCH EVENT
 ───────────────────────────────────────────────────────────── */
 .os-launch {
-  padding: 120px 60px;
+  padding: 100px 60px;
   position: relative;
 }
 
-.os-launch-inner {
-  max-width: 980px;
-  margin: 0 auto;
-  text-align: center;
+.os-launch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
 }
+
+.os-launch-text {}
 
 .os-launch-eyebrow {
   font-family: 'DM Sans', sans-serif;
@@ -734,109 +733,57 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.62);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .os-launch-heading {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
   text-transform: uppercase;
-  color: rgba(255,255,255,0.95);
-  line-height: 0.92;
-  margin-bottom: 32px;
-  letter-spacing: -0.01em;
+  color: rgba(255,255,255,0.9);
+  line-height: 0.95;
+  margin-bottom: 28px;
 }
 
 .os-launch-body {
   font-family: 'Barlow', sans-serif;
   font-weight: 300;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.85;
   color: var(--bp-text);
-  margin: 0 auto 24px;
-  max-width: 680px;
+  margin-bottom: 36px;
 }
 
-.os-launch-body:last-of-type { margin-bottom: 56px; }
-
-/* Big, bold stats — the visual centerpiece */
 .os-stat-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--bp-lineLg);
   border: 1px solid var(--bp-lineLg);
-  margin-bottom: 56px;
 }
 
 .os-stat {
-  padding: 48px 20px;
+  padding: 24px 20px;
   background: #000;
   text-align: center;
-  position: relative;
 }
 
 .os-stat-num {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
-  font-size: clamp(3rem, 6vw, 5rem);
-  color: rgba(255,255,255,0.95);
+  font-size: 2.2rem;
+  color: rgba(255,255,255,0.9);
   line-height: 1;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  margin-bottom: 6px;
 }
 
 .os-stat-lbl {
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.62);
-}
-
-/* Pull-quote from the community */
-.os-launch-quote {
-  position: relative;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 48px 32px 40px;
-  border-top: 1px solid var(--bp-lineLg);
-  border-bottom: 1px solid var(--bp-lineLg);
-}
-
-.os-launch-quote-mark {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: 5rem;
-  color: rgba(255,255,255,0.18);
-  line-height: 0.6;
-  margin-bottom: 12px;
-}
-
-.os-launch-quote-text {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: rgba(255,255,255,0.92);
-  line-height: 1.3;
-  margin-bottom: 20px;
-}
-
-.os-launch-quote-attr {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-}
-
-/* Optional photos — render only if uploaded */
-.os-launch-photos-wrap {
-  max-width: 1100px;
-  margin: 56px auto 0;
+  color: rgba(255,255,255,0.62);
 }
 
 .os-launch-notes {
@@ -990,7 +937,7 @@
   .os-polaroid--left,
   .os-polaroid--right { transform: none; }
   .os-founder-note   { grid-column: span 1; }
-  .os-launch-quote   { padding: 36px 20px 32px; }
+  .os-launch-grid    { grid-template-columns: 1fr; gap: 48px; }
   .os-launch-notes   { padding-top: 0; }
   .os-mission-inner  { grid-template-columns: 1fr; gap: 40px; }
   .os-founders-heading { font-size: 3rem; }
@@ -1056,7 +1003,7 @@
   {%- comment -%} ── HERO ── {%- endcomment -%}
   <section class="os-hero bp-bg">
     {% if section.settings.hero_image != blank %}
-      <img src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="Our Story" class="os-hero-bg-img" loading="eager">
+      <img src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="Our Story" class="os-hero-bg-img" width="1600" height="{{ section.settings.hero_image.height | times: 1600 | divided_by: section.settings.hero_image.width }}" loading="eager">
     {% endif %}
 
     {%- comment -%} Top bar {%- endcomment -%}
@@ -1196,7 +1143,7 @@
         </p>
         {% if section.settings.standard_photo != blank %}
           <div class="os-standard-photo-wrap">
-            <img src="{{ section.settings.standard_photo | image_url: width: 900 }}" alt="Product testing" loading="lazy">
+            <img src="{{ section.settings.standard_photo | image_url: width: 900 }}" alt="Product testing" width="900" height="{{ section.settings.standard_photo.height | times: 900 | divided_by: section.settings.standard_photo.width }}" loading="lazy">
           </div>
         {% endif %}
       </div>
@@ -1259,7 +1206,7 @@
           {% assign founder_count = founder_count | plus: 1 %}
           <div class="os-polaroid {% if founder_count == 1 %}os-polaroid--left{% else %}os-polaroid--right{% endif %}" {{ block.shopify_attributes }}>
             {% if block.settings.photo != blank %}
-              <img src="{{ block.settings.photo | image_url: width: 600 }}" alt="{{ block.settings.name }}" class="os-polaroid-photo" loading="lazy">
+              <img src="{{ block.settings.photo | image_url: width: 600 }}" alt="{{ block.settings.name }}" class="os-polaroid-photo" width="600" height="{{ block.settings.photo.height | times: 600 | divided_by: block.settings.photo.width }}" loading="lazy">
             {% else %}
               <div class="os-polaroid-photo-placeholder">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
@@ -1288,41 +1235,34 @@
   <section class="os-launch bp-bg os-fade">
     <div class="os-section-annotation">04 — The Launch</div>
 
-    <div class="os-launch-inner">
-      <p class="os-launch-eyebrow">Community First // Chicago, 2025</p>
-      <h2 class="os-launch-heading">
-        50 Cars Showed Up<br>
-        <span style="color:rgba(255,255,255,0.45);">For a Brand Nobody<br>Had Heard Of Yet.</span>
-      </h2>
-      <p class="os-launch-body">
-        Four months in, Polaris hosted a community ride-out in Chicago. Fifty cars showed up for a brand nobody had heard of. Attendees took home free Nova towels and created content on their own terms — no contracts, no bribes, no scripted talking points.
-      </p>
-      <p class="os-launch-body">
-        Just a product people actually wanted to talk about. That event set the template for how Polaris grows: from inside the community, not above it.
-      </p>
-
-      <div class="os-stat-row">
-        <div class="os-stat">
-          <div class="os-stat-num">50+</div>
-          <div class="os-stat-lbl">Cars at Launch</div>
-        </div>
-        <div class="os-stat">
-          <div class="os-stat-num">4</div>
-          <div class="os-stat-lbl">Months to Launch</div>
-        </div>
-        <div class="os-stat">
-          <div class="os-stat-num">0</div>
-          <div class="os-stat-lbl">Paid Ads to Start</div>
-        </div>
-      </div>
-
-      <div class="os-launch-quote">
-        <div class="os-launch-quote-mark">"</div>
-        <p class="os-launch-quote-text">
-          No contracts. No scripted talking points.<br>
-          <span style="color:rgba(255,255,255,0.55);">Just a product people actually wanted to talk about.</span>
+    <div class="os-launch-grid">
+      <div class="os-launch-text">
+        <p class="os-launch-eyebrow">Community First // Chicago, 2025</p>
+        <h2 class="os-launch-heading">
+          50 Cars Showed Up<br>
+          <span style="color:rgba(255,255,255,0.45);">For a Brand Nobody<br>Had Heard Of Yet.</span>
+        </h2>
+        <p class="os-launch-body">
+          Four months in, Polaris hosted a community ride-out in Chicago. Fifty cars showed up for a brand nobody had heard of. Attendees took home free Nova towels and created content on their own terms — no contracts, no bribes, no scripted talking points.
         </p>
-        <p class="os-launch-quote-attr">Polaris Launch — Chicago, IL · 2025</p>
+        <p class="os-launch-body">
+          Just a product people actually wanted to talk about. That event set the template for how Polaris grows: from inside the community, not above it.
+        </p>
+        <br>
+        <div class="os-stat-row">
+          <div class="os-stat">
+            <div class="os-stat-num">50+</div>
+            <div class="os-stat-lbl">Cars at Launch</div>
+          </div>
+          <div class="os-stat">
+            <div class="os-stat-num">4</div>
+            <div class="os-stat-lbl">Months to Launch</div>
+          </div>
+          <div class="os-stat">
+            <div class="os-stat-num">0</div>
+            <div class="os-stat-lbl">Paid Ads to Start</div>
+          </div>
+        </div>
       </div>
 
       {% assign launch_count = 0 %}
@@ -1331,19 +1271,18 @@
       {% if section.settings.launch_photo_3 != blank %}{% assign launch_count = launch_count | plus: 1 %}{% endif %}
 
       {% if launch_count > 0 %}
-        <div class="os-launch-photos-wrap">
-          <div class="os-launch-photos os-launch-photos--{{ launch_count }}">
-            {% if section.settings.launch_photo_1 != blank %}
-              <img src="{{ section.settings.launch_photo_1 | image_url: width: 900 }}" alt="Polaris launch event" class="os-launch-photo" loading="lazy">
-            {% endif %}
-            {% if section.settings.launch_photo_2 != blank %}
-              <img src="{{ section.settings.launch_photo_2 | image_url: width: 900 }}" alt="Polaris launch event" class="os-launch-photo" loading="lazy">
-            {% endif %}
-            {% if section.settings.launch_photo_3 != blank %}
-              <img src="{{ section.settings.launch_photo_3 | image_url: width: 900 }}" alt="Polaris launch event" class="os-launch-photo" loading="lazy">
-            {% endif %}
-          </div>
+        <div class="os-launch-photos os-launch-photos--{{ launch_count }}">
+          {% if section.settings.launch_photo_1 != blank %}
+            <img src="{{ section.settings.launch_photo_1 | image_url: width: 900 }}" alt="Polaris launch event" class="os-launch-photo" width="900" height="{{ section.settings.launch_photo_1.height | times: 900 | divided_by: section.settings.launch_photo_1.width }}" loading="lazy">
+          {% endif %}
+          {% if section.settings.launch_photo_2 != blank %}
+            <img src="{{ section.settings.launch_photo_2 | image_url: width: 900 }}" alt="Polaris launch event" class="os-launch-photo" width="900" height="{{ section.settings.launch_photo_2.height | times: 900 | divided_by: section.settings.launch_photo_2.width }}" loading="lazy">
+          {% endif %}
+          {% if section.settings.launch_photo_3 != blank %}
+            <img src="{{ section.settings.launch_photo_3 | image_url: width: 900 }}" alt="Polaris launch event" class="os-launch-photo" width="900" height="{{ section.settings.launch_photo_3.height | times: 900 | divided_by: section.settings.launch_photo_3.width }}" loading="lazy">
+          {% endif %}
         </div>
+      {% else %}
       {% endif %}
     </div>
   </section>
@@ -1459,18 +1398,6 @@
     {
       "type": "header",
       "content": "Vision CTA"
-    },
-    {
-      "type": "text",
-      "id": "vision_headline",
-      "label": "Mission heading",
-      "default": "We're Just Getting Started."
-    },
-    {
-      "type": "textarea",
-      "id": "vision_subtext",
-      "label": "Mission body / CTA subtext",
-      "default": "Polaris Car Care isn't trying to be a hype brand. It's a long-term platform built around transparency, education, and accessibility — for the next generation of enthusiasts."
     },
     {
       "type": "text",
