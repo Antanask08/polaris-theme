@@ -15,6 +15,7 @@
         "founder_LWhApb": {
           "type": "founder",
           "settings": {
+            "photo": "shopify://shop_images/IMG_4910.jpg",
             "name": "Antanas K.",
             "role": "Co-Founder"
           }
@@ -22,6 +23,7 @@
         "founder_KqAjgX": {
           "type": "founder",
           "settings": {
+            "photo": "shopify://shop_images/IMG_4961.jpg",
             "name": "Jacob K.",
             "role": "Co-Founder"
           }
