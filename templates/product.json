@@ -12,6 +12,20 @@
     "product_main": {
       "type": "product-main",
       "blocks": {
+        "ugc_item_xQJwTU": {
+          "type": "ugc_item",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4174.jpg",
+            "caption": "@polariscarcare"
+          }
+        },
+        "ugc_item_7nCFFj": {
+          "type": "ugc_item",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4056.jpg",
+            "caption": "@polariscarcare"
+          }
+        },
         "ugc_item_TxAtnQ": {
           "type": "ugc_item",
           "settings": {
@@ -212,6 +226,8 @@
         }
       },
       "block_order": [
+        "ugc_item_xQJwTU",
+        "ugc_item_7nCFFj",
         "ugc_item_TxAtnQ",
         "ugc_item_FTKpUF",
         "review_1",
