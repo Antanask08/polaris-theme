@@ -244,6 +244,7 @@
         "photo_pwPPDg": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/homepage-bts-photo-1-alt.heic",
             "caption": "Behind the scenes"
           }
         }
