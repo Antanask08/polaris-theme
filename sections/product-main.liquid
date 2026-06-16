@@ -91,7 +91,8 @@
 .pdp-gallery__main { border: 1px solid #000; aspect-ratio: 1/1; order: 1; position: relative; overflow: hidden; background: #fff; }
 @media (min-width: 900px) { .pdp-gallery__main { aspect-ratio: 1/1.1; } }
 .pdp-gallery__slide { position: absolute; inset: 0; }
-.pdp-gallery__slide img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 6%; box-sizing: border-box; }
+.pdp-gallery__slide img { width: 100%; height: 100%; object-fit: cover; display: block; box-sizing: border-box; }
+.pdp-gallery__slide--fit img { object-fit: contain; padding: 6%; }
 .pdp-gallery__slide--off { display: none; }
 .pdp-gallery__nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: 1px solid #000; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer; transition: background 120ms; }
 .pdp-gallery__nav--prev { left: 12px; }
@@ -289,7 +290,7 @@
           {%- assign slide_idx = 0 -%}
           {%- for media in product.media -%}
             {%- if media.media_type == 'image' -%}
-              <div class="pdp-gallery__slide{% unless slide_idx == 0 %} pdp-gallery__slide--off{% endunless %}" data-gidx="{{ slide_idx }}">
+              <div class="pdp-gallery__slide{% if slide_idx == 0 %} pdp-gallery__slide--fit{% else %} pdp-gallery__slide--off{% endif %}" data-gidx="{{ slide_idx }}">
                 {%- if slide_idx == 0 -%}
                   {{ media | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600,900,1200', alt: product.title }}
                 {%- else -%}
