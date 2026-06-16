@@ -27,79 +27,6 @@
         "speed": 25
       }
     },
-    "bts_gallery_L34gUG": {
-      "type": "bts-gallery",
-      "blocks": {
-        "photo_HLbBDw": {
-          "type": "photo",
-          "settings": {
-            "caption": "Behind the scenes"
-          }
-        },
-        "photo_pwPPDg": {
-          "type": "photo",
-          "settings": {
-            "caption": "Behind the scenes"
-          }
-        }
-      },
-      "block_order": [
-        "photo_HLbBDw",
-        "photo_pwPPDg"
-      ],
-      "name": "BTS Gallery",
-      "settings": {
-        "eyebrow": "Behind the build",
-        "headline": "Built in Chicago.Not a boardroom.",
-        "body": "Every product we build starts in a real garage, on a real car. Not a focus group. Not a spreadsheet. If it doesn't earn a spot in our own kit, it doesn't ship."
-      }
-    },
-    "brand_values": {
-      "type": "brand-values",
-      "blocks": {
-        "pillar_1": {
-          "type": "pillar",
-          "settings": {
-            "title": "Community First",
-            "body": "We came up in the car scene. Everything we build is something we'd actually want to use."
-          }
-        },
-        "pillar_2": {
-          "type": "pillar",
-          "settings": {
-            "title": "Tested on Ours",
-            "body": "Every product goes on our own cars before it goes on yours. If it doesn't pass that test, it doesn't ship."
-          }
-        },
-        "pillar_3": {
-          "type": "pillar",
-          "settings": {
-            "title": "Priced Honestly",
-            "body": "We price based on what's fair, not what we can get away with. Good products shouldn't cost extra just because they can."
-          }
-        }
-      },
-      "block_order": [
-        "pillar_1",
-        "pillar_2",
-        "pillar_3"
-      ],
-      "settings": {
-        "eyebrow": "We hold everything to the same standard.",
-        "heading": "",
-        "body": "The car community deserved better products at a fair price. We test everything ourselves, price it fairly, and we actually respond when people reach out."
-      }
-    },
-    "brand_story": {
-      "type": "brand-story",
-      "settings": {
-        "label": "Our Story",
-        "heading": "BUILT BY ENTHUSIASTS.",
-        "body_text": "We started Polaris because we were tired of paying too much for products that underperformed. Built for the car community, tested on real cars, priced so your friends can actually buy it.",
-        "cta_text": "READ OUR STORY",
-        "cta_url": "/pages/our-story"
-      }
-    },
     "product_spotlight": {
       "type": "product-spotlight",
       "blocks": {
@@ -304,15 +231,89 @@
         "rating_subtext": "From the Polaris community"
       }
     },
+    "bts_gallery_L34gUG": {
+      "type": "bts-gallery",
+      "blocks": {
+        "photo_HLbBDw": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4008.jpg",
+            "caption": "Behind the scenes"
+          }
+        },
+        "photo_pwPPDg": {
+          "type": "photo",
+          "settings": {
+            "caption": "Behind the scenes"
+          }
+        }
+      },
+      "block_order": [
+        "photo_HLbBDw",
+        "photo_pwPPDg"
+      ],
+      "name": "BTS Gallery",
+      "settings": {
+        "eyebrow": "Behind the build",
+        "headline": "Built in Chicago.Not a boardroom.",
+        "body": "Every product we build starts in a real garage, on a real car. Not a focus group. Not a spreadsheet. If it doesn't earn a spot in our own kit, it doesn't ship."
+      }
+    },
+    "brand_values": {
+      "type": "brand-values",
+      "blocks": {
+        "pillar_1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Community First",
+            "body": "We came up in the car scene. Everything we build is something we'd actually want to use."
+          }
+        },
+        "pillar_2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Tested on Ours",
+            "body": "Every product goes on our own cars before it goes on yours. If it doesn't pass that test, it doesn't ship."
+          }
+        },
+        "pillar_3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Priced Honestly",
+            "body": "We price based on what's fair, not what we can get away with. Good products shouldn't cost extra just because they can."
+          }
+        }
+      },
+      "block_order": [
+        "pillar_1",
+        "pillar_2",
+        "pillar_3"
+      ],
+      "settings": {
+        "eyebrow": "We hold everything to the same standard.",
+        "heading": "",
+        "body": "The car community deserved better products at a fair price. We test everything ourselves, price it fairly, and we actually respond when people reach out."
+      }
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "settings": {
+        "label": "Our Story",
+        "heading": "BUILT BY ENTHUSIASTS.",
+        "body_text": "We started Polaris because we were tired of paying too much for products that underperformed. Built for the car community, tested on real cars, priced so your friends can actually buy it.",
+        "cta_text": "READ OUR STORY",
+        "cta_url": "/pages/our-story"
+      }
+    },
     "social_feed": {
       "type": "social-feed",
       "settings": {
         "heading": "@POLARISCARCARE",
+        "subtext": "The brand. The build. The community.",
         "tiktok_url": "https://www.tiktok.com/@polariscarcare",
         "tiktok_label": "FOLLOW US ON TIKTOK ↗",
         "instagram_url": "https://www.instagram.com/polaris.carcare/",
-        "instagram_label": "FOLLOW ON INSTAGRAM ↗",
-        "subtext": "The brand. The build. The community."
+        "instagram_label": "FOLLOW ON INSTAGRAM ↗"
       }
     },
     "email_popup": {
