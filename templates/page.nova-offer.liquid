@@ -461,36 +461,25 @@ body {
 .lp-btn-final:hover { opacity: .88; }
 .lp-btn-final:disabled { opacity: .45; cursor: wait; }
 
-/* ── Hero product peek ──────────────────────────────────── */
-.lp-hero__product-peek {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 28px;
-  border: 1px solid rgba(255,255,255,.16);
-  padding: 11px 14px 11px 11px;
-  max-width: 290px;
+/* ── Product photo strip ────────────────────────────────── */
+.lp-product-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 380px;
+  background: var(--ink);
 }
-.lp-hero__product-peek img {
-  width: 58px;
-  height: 58px;
+@media(max-width:767px) { .lp-product-strip { height: 220px; } }
+.lp-product-strip__cell {
+  position: relative;
+  overflow: hidden;
+}
+.lp-product-strip__cell img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  flex-shrink: 0;
-  border: 1px solid rgba(255,255,255,.1);
-}
-.lp-peek__info { display: flex; flex-direction: column; gap: 2px; }
-.lp-peek__name {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: #fff;
-}
-.lp-peek__spec {
-  font-size: 9.5px;
-  color: rgba(255,255,255,.48);
-  letter-spacing: .04em;
-  font-family: var(--fbody);
+  object-position: center;
 }
 
 /* ── Final CTA label ────────────────────────────────────── */
@@ -554,20 +543,6 @@ body {
       Shop Now &darr;
     </button>
 
-    <div class="lp-hero__product-peek">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/Untitled_design_3.png?v=1765154247&width=160"
-        alt="Nova Drying Towel — product shot"
-        width="160"
-        height="160"
-        loading="eager"
-      >
-      <div class="lp-peek__info">
-        <span class="lp-peek__name">Nova Drying Towel</span>
-        <span class="lp-peek__spec">1300 GSM &middot; Twisted Loop</span>
-        <span class="lp-peek__spec">70/30 Microfiber Blend</span>
-      </div>
-    </div>
   </div>
 
   <div class="lp-hero__media" id="lp-hero-media">
@@ -588,6 +563,28 @@ body {
 
 </section>
 
+<!-- ═══ PRODUCT STRIP ══════════════════════════════════════════════════════ -->
+<div class="lp-product-strip">
+  <div class="lp-product-strip__cell">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/IMG_4115.jpg?v=1765154247&width=800"
+      alt="Nova Drying Towel — product detail"
+      width="800"
+      height="800"
+      loading="eager"
+    >
+  </div>
+  <div class="lp-product-strip__cell">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/IMG_4113.png?v=1765154515&width=800"
+      alt="Nova Drying Towel — folded"
+      width="800"
+      height="800"
+      loading="eager"
+    >
+  </div>
+</div>
+
 <!-- ═══ BUNDLE & BUY ══════════════════════════════════════════════════════ -->
 <section class="lp-buy" id="lp-packs">
   <div class="lp-buy__inner">
@@ -599,7 +596,7 @@ body {
 
     <div class="lp-packs" role="group" aria-label="Select pack size">
 
-      <button type="button" class="lp-pack lp-pack--on"
+      <button type="button" class="lp-pack"
         data-variant="46960872521859"
         data-price="29.99"
         data-btn="Buy Now &mdash; $29.99"
@@ -623,7 +620,7 @@ body {
         <span class="lp-pack__per">$26.50 / towel</span>
       </button>
 
-      <button type="button" class="lp-pack"
+      <button type="button" class="lp-pack lp-pack--on"
         data-variant="46960868196483"
         data-price="72.99"
         data-btn="Buy Now &mdash; $72.99"
@@ -638,11 +635,11 @@ body {
 
     </div>
 
-    <p class="lp-stock" id="lp-stock">In stock &mdash; ships in 1&ndash;2 days</p>
+    <p class="lp-stock lp-stock--low" id="lp-stock">Only 12 left in stock</p>
 
     <div class="lp-buy__row">
       <button class="lp-btn-buy" id="lp-btn-buy">
-        Buy Now &mdash; $29.99
+        Buy Now &mdash; $72.99
       </button>
       <div class="lp-buy__assurance">
         &#9733;&#9733;&#9733;&#9733;&#9733; 4.9 &middot; 100+ reviews<br>
@@ -785,8 +782,8 @@ body {
 
 <!-- ═══ FINAL CTA ══════════════════════════════════════════════════════════ -->
 <div class="lp-final">
-  <p class="lp-final__label" id="lp-final-label">1-Pack</p>
-  <p class="lp-final__price" id="lp-final-price">$29.99</p>
+  <p class="lp-final__label" id="lp-final-label">3-Pack &mdash; Best Value</p>
+  <p class="lp-final__price" id="lp-final-price">$72.99</p>
   <p class="lp-final__note">Free shipping &middot; 30-day guarantee</p>
   <button class="lp-btn-final" id="lp-btn-final">Buy Now</button>
   <div class="lp-pay-icons lp-pay-icons--c">
@@ -853,7 +850,7 @@ body {
   var btnBuy        = document.getElementById('lp-btn-buy');
   var btnFinal      = document.getElementById('lp-btn-final');
   var finalPriceEl  = document.getElementById('lp-final-price');
-  var selectedVariant = '46960872521859';
+  var selectedVariant = '46960868196483';
 
   packBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
