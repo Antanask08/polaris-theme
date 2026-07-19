@@ -1,331 +1,312 @@
 {% layout 'landing' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <title>The Nova — 1300 GSM Drying Towel | Polaris Car Care</title>
+{% assign lp_title = 'The Nova — 1300 GSM Drying Towel | Polaris Car Care' %}
 
-  <!-- Canonical fonts — preconnect for speed -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- GA4 — must be here since theme.liquid is not loaded on this layout -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BW302W5Z7F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BW302W5Z7F');
+</script>
 
-  <!-- GA4 — same measurement ID as main theme -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BW302W5Z7F"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BW302W5Z7F');
-  </script>
+<style>
+  /* ── Reset ──────────────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  img, video { display: block; max-width: 100%; }
+  button { cursor: pointer; font: inherit; }
 
-  <style>
-    /* ── Reset ──────────────────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    img, video { display: block; max-width: 100%; }
-    button { cursor: pointer; font: inherit; }
+  /* ── Design tokens ──────────────────────────────────────────────────── */
+  :root {
+    --ink:    #000000;
+    --paper:  #ffffff;
+    --muted:  rgba(255, 255, 255, 0.50);
+    --border: rgba(255, 255, 255, 0.14);
+    --fdisp:  'Barlow Condensed', sans-serif;
+    --fbody:  'DM Sans', sans-serif;
+  }
 
-    /* ── Design tokens ──────────────────────────────────────────────────── */
-    :root {
-      --ink:    #000000;
-      --paper:  #ffffff;
-      --muted:  rgba(255, 255, 255, 0.50);
-      --border: rgba(255, 255, 255, 0.14);
-      --fdisp:  'Barlow Condensed', sans-serif;
-      --fbody:  'DM Sans', sans-serif;
-    }
+  /* ── Base ───────────────────────────────────────────────────────────── */
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--fbody);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    /* ── Base ───────────────────────────────────────────────────────────── */
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--ink);
-      color: var(--paper);
-      font-family: var(--fbody);
-      font-size: 16px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
+  /* ── Typography ─────────────────────────────────────────────────────── */
+  .lp-eyebrow {
+    font-family: var(--fbody);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .lp-h1 {
+    font-family: var(--fdisp);
+    font-weight: 900;
+    font-size: clamp(42px, 9vw, 96px);
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #fff;
+    white-space: pre-line;
+    margin-bottom: 20px;
+  }
+  .lp-h2 {
+    font-family: var(--fdisp);
+    font-weight: 900;
+    font-size: clamp(32px, 5.5vw, 64px);
+    line-height: 0.96;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .lp-h2--dark { color: var(--ink); }
+  .lp-subhead {
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.80);
+    max-width: 500px;
+    margin-bottom: 36px;
+  }
+  .lp-body { font-size: 15px; line-height: 1.65; }
+  .lp-body--muted { color: rgba(255,255,255,0.75); }
+  .lp-body--dark-muted { color: rgba(0,0,0,0.60); }
 
-    /* ── Typography ─────────────────────────────────────────────────────── */
-    .lp-eyebrow {
-      font-family: var(--fbody);
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-    .lp-h1 {
-      font-family: var(--fdisp);
-      font-weight: 900;
-      font-size: clamp(42px, 9vw, 96px);
-      line-height: 0.94;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      color: #fff;
-      white-space: pre-line; /* allows \n in JS textContent to render as line break */
-      margin-bottom: 20px;
-    }
-    .lp-h2 {
-      font-family: var(--fdisp);
-      font-weight: 900;
-      font-size: clamp(32px, 5.5vw, 64px);
-      line-height: 0.96;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-    }
-    .lp-h2--dark { color: var(--ink); }
-    .lp-subhead {
-      font-size: clamp(15px, 2vw, 18px);
-      line-height: 1.55;
-      color: rgba(255, 255, 255, 0.80);
-      max-width: 500px;
-      margin-bottom: 36px;
-    }
-    .lp-body { font-size: 15px; line-height: 1.65; }
-    .lp-body--muted { color: rgba(255,255,255,0.75); }
-    .lp-body--dark-muted { color: rgba(0,0,0,0.60); }
+  /* ── CTA button ─────────────────────────────────────────────────────── */
+  .lp-cta {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    font-family: var(--fbody);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 20px 48px;
+    border: none;
+    transition: opacity 150ms;
+  }
+  .lp-cta:hover  { opacity: 0.88; }
+  .lp-cta:active { opacity: 0.72; }
+  .lp-cta:disabled { opacity: 0.5; cursor: wait; }
 
-    /* ── CTA button ─────────────────────────────────────────────────────── */
-    .lp-cta {
-      display: inline-block;
-      background: #fff;
-      color: #000;
-      font-family: var(--fbody);
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      padding: 20px 48px;
-      border: none;
-      transition: opacity 150ms;
-    }
-    .lp-cta:hover  { opacity: 0.88; }
-    .lp-cta:active { opacity: 0.72; }
-    .lp-cta:disabled { opacity: 0.5; cursor: wait; }
+  /* ── Logo bar (branding only — NOT a link) ──────────────────────────── */
+  .lp-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 3;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+  }
+  @media (min-width: 768px) { .lp-bar { padding: 28px 56px; } }
+  .lp-logo {
+    font-family: var(--fdisp);
+    font-weight: 900;
+    font-size: 17px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+  }
 
-    /* ── Logo bar (branding only — NOT a link) ──────────────────────────── */
-    .lp-bar {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      z-index: 3;
-      padding: 22px 28px;
-      display: flex;
-      align-items: center;
-    }
-    @media (min-width: 768px) { .lp-bar { padding: 28px 56px; } }
-    .lp-logo {
-      font-family: var(--fdisp);
-      font-weight: 900;
-      font-size: 17px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #fff;
-      /* Intentionally not an <a> tag — single-decision page */
-    }
+  /* ── Hero ───────────────────────────────────────────────────────────── */
+  .lp-hero {
+    position: relative;
+    min-height: 100svh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    background: #000;
+  }
+  .lp-hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .lp-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.52);
+    z-index: 1;
+  }
+  .lp-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 48px 28px 56px;
+    max-width: 720px;
+  }
+  @media (min-width: 768px) { .lp-hero__content { padding: 80px 56px 80px; } }
 
-    /* ── Hero ───────────────────────────────────────────────────────────── */
-    .lp-hero {
-      position: relative;
-      min-height: 100svh;
-      min-height: 100vh; /* fallback */
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      overflow: hidden;
-      background: #000;
-    }
-    .lp-hero__video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    /* Solid dark overlay — no gradient, matches brand system */
-    .lp-hero__overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.52);
-      z-index: 1;
-    }
-    .lp-hero__content {
-      position: relative;
-      z-index: 2;
-      padding: 48px 28px 56px;
-      max-width: 720px;
-    }
-    @media (min-width: 768px) { .lp-hero__content { padding: 80px 56px 80px; } }
+  /* ── Trust strip ────────────────────────────────────────────────────── */
+  .lp-trust {
+    background: #fff;
+    color: #000;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+  .lp-trust::-webkit-scrollbar { display: none; }
+  .lp-trust__item {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 20px;
+    font-family: var(--fbody);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #000;
+    border-right: 1px solid #000;
+  }
+  .lp-trust__item:last-child { border-right: 0; }
 
-    /* ── Trust strip ────────────────────────────────────────────────────── */
-    .lp-trust {
-      background: #fff;
-      color: #000;
-      display: flex;
-      overflow-x: auto;
-      scrollbar-width: none;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #000;
-    }
-    .lp-trust::-webkit-scrollbar { display: none; }
-    .lp-trust__item {
-      flex: 1 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 14px 20px;
-      font-family: var(--fbody);
-      font-weight: 600;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      color: #000;
-      border-right: 1px solid #000;
-    }
-    .lp-trust__item:last-child { border-right: 0; }
+  /* ── Section wrapper ────────────────────────────────────────────────── */
+  .lp-sec {
+    padding: 80px 28px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) { .lp-sec { padding: 100px 56px; } }
 
-    /* ── Section wrapper ────────────────────────────────────────────────── */
-    .lp-sec {
-      padding: 80px 28px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    @media (min-width: 768px) { .lp-sec { padding: 100px 56px; } }
+  /* ── GSM proof block ────────────────────────────────────────────────── */
+  .lp-gsm {
+    background: #fff;
+    color: #000;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+  .lp-gsm-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 28px;
+  }
+  @media (min-width: 768px) { .lp-gsm-inner { padding: 100px 56px; } }
+  .lp-gsm__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid #000;
+    margin-top: 40px;
+  }
+  @media (max-width: 599px) { .lp-gsm__grid { grid-template-columns: repeat(2, 1fr); } }
+  .lp-gsm__cell {
+    padding: 24px 20px 28px;
+    border-right: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .lp-gsm__cell:last-child { border-right: 0; }
+  @media (max-width: 599px) {
+    .lp-gsm__cell:nth-child(2n) { border-right: 0; }
+    .lp-gsm__cell:nth-child(n+3) { border-top: 1px solid #000; }
+  }
+  .lp-gsm__cell--ours { background: #000; color: #fff; }
+  .lp-gsm__tier {
+    font-family: var(--fbody);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+  .lp-gsm__val {
+    font-family: var(--fdisp);
+    font-weight: 900;
+    font-size: clamp(28px, 4vw, 48px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .lp-gsm__name {
+    font-family: var(--fbody);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 
-    /* ── GSM proof block ────────────────────────────────────────────────── */
-    .lp-gsm {
-      background: #fff;
-      color: #000;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #000;
-    }
-    .lp-gsm-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 28px;
-    }
-    @media (min-width: 768px) { .lp-gsm-inner { padding: 100px 56px; } }
-    .lp-gsm__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border: 1px solid #000;
-      margin-top: 40px;
-    }
-    @media (max-width: 599px) { .lp-gsm__grid { grid-template-columns: repeat(2, 1fr); } }
-    .lp-gsm__cell {
-      padding: 24px 20px 28px;
-      border-right: 1px solid #000;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .lp-gsm__cell:last-child { border-right: 0; }
-    @media (max-width: 599px) {
-      .lp-gsm__cell:nth-child(2n) { border-right: 0; }
-      .lp-gsm__cell:nth-child(n+3) { border-top: 1px solid #000; }
-    }
-    .lp-gsm__cell--ours { background: #000; color: #fff; }
-    .lp-gsm__tier {
-      font-family: var(--fbody);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0.45;
-    }
-    .lp-gsm__val {
-      font-family: var(--fdisp);
-      font-weight: 900;
-      font-size: clamp(28px, 4vw, 48px);
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .lp-gsm__name {
-      font-family: var(--fbody);
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* ── Objection blocks ───────────────────────────────────────────────── */
-    .lp-obj {
-      border-top: 1px solid var(--border);
-    }
+  /* ── Objection blocks ───────────────────────────────────────────────── */
+  .lp-obj {
+    border-top: 1px solid var(--border);
+  }
+  .lp-obj__item {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  @media (min-width: 700px) {
     .lp-obj__item {
-      padding: 40px 0;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
+      grid-template-columns: 5fr 7fr;
+      gap: 56px;
+      align-items: start;
     }
-    @media (min-width: 700px) {
-      .lp-obj__item {
-        grid-template-columns: 5fr 7fr;
-        gap: 56px;
-        align-items: start;
-      }
-    }
-    .lp-obj__q {
-      font-family: var(--fdisp);
-      font-weight: 700;
-      font-size: clamp(20px, 2.8vw, 28px);
-      line-height: 1.1;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.45);
-    }
-    .lp-obj__a {
-      font-size: 15px;
-      line-height: 1.65;
-      color: rgba(255, 255, 255, 0.80);
-    }
-    .lp-obj__a strong { color: #fff; font-weight: 700; }
+  }
+  .lp-obj__q {
+    font-family: var(--fdisp);
+    font-weight: 700;
+    font-size: clamp(20px, 2.8vw, 28px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+  }
+  .lp-obj__a {
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.80);
+  }
+  .lp-obj__a strong { color: #fff; font-weight: 700; }
 
-    /* ── Bottom CTA section ─────────────────────────────────────────────── */
-    .lp-bottom-cta {
-      text-align: center;
-      padding: 88px 28px 108px;
-      border-top: 1px solid var(--border);
-    }
-    .lp-price-tag {
-      font-family: var(--fdisp);
-      font-weight: 900;
-      font-size: clamp(56px, 12vw, 112px);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      color: #fff;
-    }
-    .lp-price-note {
-      font-family: var(--fbody);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 10px 0 36px;
-    }
-  </style>
-</head>
-<body>
+  /* ── Bottom CTA section ─────────────────────────────────────────────── */
+  .lp-bottom-cta {
+    text-align: center;
+    padding: 88px 28px 108px;
+    border-top: 1px solid var(--border);
+  }
+  .lp-price-tag {
+    font-family: var(--fdisp);
+    font-weight: 900;
+    font-size: clamp(56px, 12vw, 112px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: #fff;
+  }
+  .lp-price-note {
+    font-family: var(--fbody);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 10px 0 36px;
+  }
+</style>
 
 <!-- ═══════════════════════════════════════════════════════════════════════
   SECTION 1 — HERO
-  Video src + headline + subhead are injected by the hero variant JS below.
-  Everything below this section is identical for all ?ad= values.
   ═══════════════════════════════════════════════════════════════════════ -->
 <section class="lp-hero" id="lp-hero">
 
-  <!-- Branding mark — span only, NOT a link (single-decision constraint) -->
   <div class="lp-bar">
     <span class="lp-logo">Polaris Car Care</span>
   </div>
 
-  <!-- Hero video — src injected by JS; autoplay/muted/loop/playsinline required for mobile autoplay -->
   <video
     id="lp-hero-video"
     class="lp-hero__video"
@@ -336,7 +317,6 @@
     preload="none"
   ></video>
 
-  <!-- Solid dark overlay for text legibility — no gradient -->
   <div class="lp-hero__overlay"></div>
 
   <div class="lp-hero__content">
@@ -348,7 +328,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════════
-  TRUST STRIP — identical for all ad variants
+  TRUST STRIP
   ═══════════════════════════════════════════════════════════════════════ -->
 <div class="lp-trust" aria-label="Trust signals">
   <div class="lp-trust__item">&#10022; Free shipping</div>
@@ -445,63 +425,41 @@
 
 <!-- ═══════════════════════════════════════════════════════════════════════
   HERO VARIANT JS
-  Reads ?ad= query parameter (Liquid can't read URL params from cached HTML).
-  Swaps ONLY the hero video, headline, and subhead.
-  Everything below the hero is identical for all variants.
   ═══════════════════════════════════════════════════════════════════════ -->
 <script>
 (function () {
   'use strict';
 
-  // ── AD VARIANT CONFIG ────────────────────────────────────────────────────
-  // Each key = a ?ad= URL parameter value.
-  // Adding ad #3+: add ONE entry here. No other changes needed.
-  // Missing or unrecognised ?ad= value falls back to 'pro'.
-  //
-  // videoSrc: upload your video in Shopify Admin > Content > Files,
-  //           then paste the CDN URL here (e.g. https://cdn.shopify.com/s/files/...)
-  // ─────────────────────────────────────────────────────────────────────────
   var AD_VARIANTS = {
 
     pro: {
-      // Angle: real detailer's towel / credibility
       videoSrc: '',   // TODO: paste Shopify CDN URL for the "pro" hero video
       headline: 'The Towel\nDetailers Use',
       subhead: '1300 GSM twisted loop. Dries a full car in one pass. Zero streaks, zero water spots, safe on clear coat.'
     },
 
     value: {
-      // Angle: stop buying cheap towels that scratch / price objection
       videoSrc: '',   // TODO: paste Shopify CDN URL for the "value" hero video
       headline: 'Stop Scratching\nYour Paint',
       subhead: 'That $8 Amazon pack is 200 GSM. It streaks, it scratches, and it costs you a detail. The Nova is $29.99 and lasts for years.'
     }
 
   };
-  // ─────────────────────────────────────────────────────────────────────────
 
-  // Read query parameter — must be done in JS for cached Liquid pages
   var param   = new URLSearchParams(window.location.search).get('ad') || 'pro';
   var variant = AD_VARIANTS[param] || AD_VARIANTS['pro'];
 
-  // Inject hero video
   var video = document.getElementById('lp-hero-video');
   if (video && variant.videoSrc) {
     video.src = variant.videoSrc;
     video.load();
   }
 
-  // Inject headline + subhead
   var headlineEl = document.getElementById('lp-hero-headline');
   var subheadEl  = document.getElementById('lp-hero-subhead');
   if (headlineEl) headlineEl.textContent = variant.headline;
   if (subheadEl)  subheadEl.textContent  = variant.subhead;
 
-  // ── CHECKOUT ROUTING ─────────────────────────────────────────────────────
-  // Method: POST to /cart/add.js, then redirect to /checkout
-  //   → bypasses the cart page entirely (straight to checkout)
-  //   → works on all Shopify plans (no Shopify Plus required)
-  //   → Variant: Nova 1-Pack $29.99 (ID confirmed via Admin API)
   var NOVA_VARIANT_ID = 46960872521859;
 
   function goToCheckout(btn) {
@@ -533,6 +491,3 @@
 
 })();
 </script>
-
-</body>
-</html>
