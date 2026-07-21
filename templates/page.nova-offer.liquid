@@ -182,22 +182,23 @@ body {
 }
 .lp-btn-hero:hover { opacity: .88; }
 
-/* ── Bundle section ─────────────────────────────────────── */
+/* ── Bundle section (dark, merged) ──────────────────────── */
 .lp-buy {
-  background: var(--paper);
-  color: var(--ink);
-  padding: 64px 28px 72px;
+  background: var(--ink);
+  color: var(--paper);
+  border-top: 1px solid var(--rule);
+  padding: 72px 28px 96px;
+  text-align: center;
 }
-@media(min-width:768px) { .lp-buy { padding: 80px 56px 88px; } }
-.lp-buy__inner { max-width: 840px; margin: 0 auto; }
-.lp-buy__head { margin-bottom: 36px; }
-.lp-buy__head .lp-eyebrow--dark { margin-bottom: 8px; }
+@media(min-width:768px) { .lp-buy { padding: 88px 56px 112px; } }
+.lp-buy__inner { max-width: 680px; margin: 0 auto; }
+.lp-buy__head { margin-bottom: 40px; }
 
-/* Pack cards */
+/* Pack cards (inverted for dark bg) */
 .lp-packs {
   display: flex;
-  border: 1.5px solid var(--ink);
-  margin-bottom: 28px;
+  border: 1.5px solid rgba(255,255,255,.2);
+  margin-bottom: 0;
 }
 @media(max-width:499px) { .lp-packs { flex-direction: column; } }
 
@@ -206,9 +207,9 @@ body {
   flex: 1;
   padding: 28px 16px 24px;
   border: none;
-  border-left: 1.5px solid var(--ink);
-  background: var(--paper);
-  color: var(--ink);
+  border-left: 1.5px solid rgba(255,255,255,.2);
+  background: transparent;
+  color: var(--paper);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -218,22 +219,22 @@ body {
   outline: none;
 }
 .lp-pack:first-child { border-left: 0; }
-.lp-pack:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+.lp-pack:focus-visible { outline: 2px solid var(--paper); outline-offset: -2px; }
 @media(max-width:499px) {
-  .lp-pack { border-left: 0; border-top: 1.5px solid var(--ink); }
+  .lp-pack { border-left: 0; border-top: 1.5px solid rgba(255,255,255,.2); }
   .lp-pack:first-child { border-top: 0; }
 }
 
-.lp-pack:hover:not(.lp-pack--on) { background: #f5f5f5; }
-.lp-pack--on { background: var(--ink) !important; color: var(--paper) !important; }
+.lp-pack:hover:not(.lp-pack--on) { background: rgba(255,255,255,.06); }
+.lp-pack--on { background: var(--paper) !important; color: var(--ink) !important; }
 
 .lp-pack__badge {
   position: absolute;
   top: -10px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--fdisp);
   font-weight: 700;
   font-size: 8px;
@@ -242,7 +243,7 @@ body {
   padding: 3px 7px;
   white-space: nowrap;
 }
-.lp-pack--on .lp-pack__badge { background: var(--paper); color: var(--ink); }
+.lp-pack--on .lp-pack__badge { background: var(--ink); color: var(--paper); }
 
 .lp-pack__qty {
   font-family: var(--fdisp);
@@ -273,39 +274,56 @@ body {
   font-family: var(--fbody);
 }
 
-/* Buy CTA */
-.lp-buy__row {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  align-items: flex-start;
+/* Big dynamic price display */
+.lp-buy__price-wrap { margin-top: 36px; }
+.lp-buy__price-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.38);
+  margin-bottom: 4px;
 }
-@media(min-width:580px) {
-  .lp-buy__row { flex-direction: row; align-items: center; justify-content: space-between; }
+.lp-buy__big-price {
+  font-family: var(--fdisp);
+  font-weight: 900;
+  font-size: clamp(64px, 12vw, 128px);
+  line-height: 1;
+  letter-spacing: -.02em;
 }
 
+/* Buy button */
 .lp-btn-buy {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--fbody);
   font-weight: 700;
   font-size: 12px;
   letter-spacing: .15em;
   text-transform: uppercase;
-  padding: 20px 52px;
-  border: 2px solid var(--ink);
+  padding: 22px 64px;
+  border: none;
   white-space: nowrap;
   transition: opacity 130ms;
+  margin-top: 28px;
+  display: inline-block;
 }
-.lp-btn-buy:hover { opacity: .85; }
+.lp-btn-buy:hover { opacity: .88; }
 .lp-btn-buy:disabled { opacity: .45; cursor: wait; }
 
-.lp-buy__assurance {
-  font-size: 12px;
-  line-height: 1.65;
-  color: rgba(0,0,0,.5);
+.lp-buy__note {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.32);
+  margin-top: 14px;
 }
-.lp-buy__assurance strong { color: var(--ink); font-weight: 600; }
+.lp-buy__reviews {
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+  margin-top: 22px;
+}
 
 /* ── Quote strip ────────────────────────────────────────── */
 .lp-quotes {
@@ -424,72 +442,35 @@ body {
 .lp-obj__a { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,.72); }
 .lp-obj__a strong { color: #fff; font-weight: 600; }
 
-/* ── Final CTA ──────────────────────────────────────────── */
-.lp-final {
+/* ── Product photo ──────────────────────────────────────── */
+.lp-product-photo {
+  background: #080808;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 28px 52px;
+}
+.lp-product-photo img {
+  max-width: 520px;
+  width: 100%;
+  display: block;
+}
+
+/* ── Brand story ────────────────────────────────────────── */
+.lp-brand {
   background: var(--ink);
   border-top: 1px solid var(--rule);
-  padding: 72px 28px 96px;
+  padding: 64px 28px 72px;
   text-align: center;
 }
-.lp-final__price {
-  font-family: var(--fdisp);
-  font-weight: 900;
-  font-size: clamp(64px, 12vw, 128px);
-  line-height: 1;
-  letter-spacing: -.02em;
-}
-.lp-final__note {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.38);
-  margin: 10px 0 38px;
-}
-.lp-btn-final {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--fbody);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  padding: 20px 60px;
-  border: none;
-  transition: opacity 130ms;
-}
-.lp-btn-final:hover { opacity: .88; }
-.lp-btn-final:disabled { opacity: .45; cursor: wait; }
-
-/* ── Product photo strip ────────────────────────────────── */
-.lp-product-strip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 380px;
-  background: var(--ink);
-}
-@media(max-width:767px) { .lp-product-strip { height: 220px; } }
-.lp-product-strip__cell {
-  position: relative;
-  overflow: hidden;
-}
-.lp-product-strip__cell img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* ── Final CTA label ────────────────────────────────────── */
-.lp-final__label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.38);
-  margin-bottom: 6px;
+@media(min-width:768px) { .lp-brand { padding: 80px 56px 88px; } }
+.lp-brand__inner { max-width: 600px; margin: 0 auto; }
+.lp-brand__body {
+  font-size: clamp(15px, 1.8vw, 17px);
+  line-height: 1.75;
+  color: rgba(255,255,255,.6);
+  margin-top: 22px;
 }
 
 /* ── Stock urgency ──────────────────────────────────────── */
@@ -498,10 +479,10 @@ body {
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: rgba(0,0,0,.45);
-  margin-bottom: 20px;
+  color: rgba(255,255,255,.4);
+  margin: 20px 0;
 }
-.lp-stock--low { color: #c00; }
+.lp-stock--low { color: #ff5252; }
 
 /* ── Impulse CTA nudge ──────────────────────────────────── */
 .lp-cta-nudge {
@@ -595,26 +576,15 @@ body {
 
 </section>
 
-<!-- ═══ PRODUCT STRIP ══════════════════════════════════════════════════════ -->
-<div class="lp-product-strip">
-  <div class="lp-product-strip__cell">
-    <img
-      src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/IMG_4115.jpg?v=1765154247&width=800"
-      alt="Nova Drying Towel — product detail"
-      width="800"
-      height="800"
-      loading="eager"
-    >
-  </div>
-  <div class="lp-product-strip__cell">
-    <img
-      src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/IMG_4113.png?v=1765154515&width=800"
-      alt="Nova Drying Towel — folded"
-      width="800"
-      height="800"
-      loading="eager"
-    >
-  </div>
+<!-- ═══ PRODUCT PHOTO ══════════════════════════════════════════════════════ -->
+<div class="lp-product-photo">
+  <img
+    src="https://cdn.shopify.com/s/files/1/0677/1736/5891/files/IMG_4113.png?v=1765154515&width=1200"
+    alt="Nova Drying Towel — 1300 GSM"
+    width="1200"
+    height="900"
+    loading="eager"
+  >
 </div>
 
 <!-- ═══ QUOTE STRIP ════════════════════════════════════════════════════════ -->
@@ -650,6 +620,15 @@ body {
 
   </div>
 </div>
+
+<!-- ═══ BRAND STORY ══════════════════════════════════════════════════════ -->
+<section class="lp-brand">
+  <div class="lp-brand__inner">
+    <p class="lp-eyebrow">Polaris Car Care</p>
+    <h2 class="lp-h2">Built by<br>Enthusiasts.</h2>
+    <p class="lp-brand__body">We started Polaris because we were tired of overpaying for detailing products that didn&rsquo;t perform. Built from the car community, tested on real cars, priced for real people.</p>
+  </div>
+</section>
 
 <!-- ═══ CTA NUDGE ══════════════════════════════════════════════════════════ -->
 <div class="lp-cta-nudge">
@@ -743,13 +722,13 @@ body {
   <p class="lp-nudge-note">Free shipping &middot; 30-day guarantee</p>
 </div>
 
-<!-- ═══ BUNDLE & BUY ══════════════════════════════════════════════════════ -->
+<!-- ═══ PURCHASE ══════════════════════════════════════════════════════════ -->
 <section class="lp-buy" id="lp-packs">
   <div class="lp-buy__inner">
 
     <div class="lp-buy__head">
-      <p class="lp-eyebrow lp-eyebrow--dark">Nova Drying Towel &mdash; 1300 GSM</p>
-      <h2 class="lp-h2 lp-h2--dark">Bundle &amp; Save</h2>
+      <p class="lp-eyebrow">Nova Drying Towel &mdash; 1300 GSM</p>
+      <h2 class="lp-h2">Bundle &amp; Save</h2>
     </div>
 
     <div class="lp-packs" role="group" aria-label="Select pack size">
@@ -782,7 +761,7 @@ body {
         data-variant="46960868196483"
         data-price="72.99"
         data-btn="Buy Now &mdash; $72.99"
-        data-finallabel="3-Pack — Best Value"
+        data-finallabel="3-Pack &mdash; Best Value"
         data-stock="Only 12 left in stock">
         <span class="lp-pack__badge">Best Value</span>
         <span class="lp-pack__qty">3</span>
@@ -793,30 +772,29 @@ body {
 
     </div>
 
-    <p class="lp-stock lp-stock--low" id="lp-stock">Only 12 left in stock</p>
-
-    <div class="lp-buy__row">
-      <button class="lp-btn-buy" id="lp-btn-buy">
-        Buy Now &mdash; $72.99
-      </button>
-      <div class="lp-buy__assurance">
-        &#9733;&#9733;&#9733;&#9733;&#9733; 4.9 &middot; 100+ reviews<br>
-        <strong>Free shipping</strong> &middot; 30-day guarantee &middot; Ships in 1&ndash;2 days
-      </div>
+    <div class="lp-buy__price-wrap">
+      <p class="lp-buy__price-label" id="lp-final-label">3-Pack &mdash; Best Value</p>
+      <p class="lp-buy__big-price" id="lp-final-price">$72.99</p>
     </div>
 
-    <div class="lp-pay-icons">
+    <p class="lp-stock lp-stock--low" id="lp-stock">Only 12 left in stock</p>
+
+    <button class="lp-btn-buy" id="lp-btn-buy">Buy Now &mdash; $72.99</button>
+
+    <p class="lp-buy__note">Free shipping &middot; 30-day guarantee &middot; Ships in 1&ndash;2 days</p>
+
+    <div class="lp-pay-icons lp-pay-icons--c">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 28" width="46" height="28" role="img" aria-label="Visa">
         <rect width="46" height="28" fill="#1a1f71"/>
         <text x="23" y="20" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="900" font-style="italic" fill="white" text-anchor="middle">VISA</text>
       </svg>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 28" width="46" height="28" role="img" aria-label="Mastercard">
-        <rect width="46" height="28" fill="#1a1a1a"/>
+        <rect width="46" height="28" fill="#222"/>
         <circle cx="17" cy="14" r="9" fill="#EB001B"/>
         <circle cx="29" cy="14" r="9" fill="#F79E1B"/>
       </svg>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 28" width="58" height="28" role="img" aria-label="PayPal">
-        <rect width="58" height="28" fill="#fff" stroke="#ddd" stroke-width="0.5"/>
+        <rect width="58" height="28" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
         <text x="29" y="19" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="900" fill="#003087" text-anchor="middle">PayPal</text>
       </svg>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 28" width="70" height="28" role="img" aria-label="Shop Pay">
@@ -825,35 +803,10 @@ body {
       </svg>
     </div>
 
+    <p class="lp-buy__reviews">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9 &middot; 100+ reviews</p>
+
   </div>
 </section>
-
-<!-- ═══ FINAL CTA ══════════════════════════════════════════════════════════ -->
-<div class="lp-final">
-  <p class="lp-final__label" id="lp-final-label">3-Pack &mdash; Best Value</p>
-  <p class="lp-final__price" id="lp-final-price">$72.99</p>
-  <p class="lp-final__note">Free shipping &middot; 30-day guarantee</p>
-  <button class="lp-btn-final" id="lp-btn-final">Buy Now</button>
-  <div class="lp-pay-icons lp-pay-icons--c">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 28" width="46" height="28" role="img" aria-label="Visa">
-      <rect width="46" height="28" fill="#1a1f71"/>
-      <text x="23" y="20" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="900" font-style="italic" fill="white" text-anchor="middle">VISA</text>
-    </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 28" width="46" height="28" role="img" aria-label="Mastercard">
-      <rect width="46" height="28" fill="#1a1a1a"/>
-      <circle cx="17" cy="14" r="9" fill="#EB001B"/>
-      <circle cx="29" cy="14" r="9" fill="#F79E1B"/>
-    </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 28" width="58" height="28" role="img" aria-label="PayPal">
-      <rect width="58" height="28" fill="#fff" stroke="#555" stroke-width="0.5"/>
-      <text x="29" y="19" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="900" fill="#003087" text-anchor="middle">PayPal</text>
-    </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 28" width="70" height="28" role="img" aria-label="Shop Pay">
-      <rect width="70" height="28" fill="#5a31f4"/>
-      <text x="35" y="19" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">Shop Pay</text>
-    </svg>
-  </div>
-</div>
 
 <!-- ═══ JS ════════════════════════════════════════════════════════════════ -->
 <script>
