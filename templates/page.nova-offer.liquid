@@ -452,9 +452,34 @@ body {
   border-top: 1px solid var(--rule);
   overflow: hidden;
   line-height: 0;
+  position: relative;
+  padding: 20px 0;
+}
+.lp-carousel::before,
+.lp-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 180px;
+  z-index: 1;
+  pointer-events: none;
+}
+.lp-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, #050505 30%, transparent);
+}
+.lp-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, #050505 30%, transparent);
+}
+@media(max-width:767px) {
+  .lp-carousel::before,
+  .lp-carousel::after { width: 80px; }
 }
 .lp-carousel__track {
   display: flex;
+  gap: 14px;
   width: max-content;
   animation: lp-slide 34s linear infinite;
   will-change: transform;
@@ -462,11 +487,12 @@ body {
 .lp-carousel__item {
   flex-shrink: 0;
   width: 480px;
-  height: 400px;
+  height: 420px;
   overflow: hidden;
+  border-radius: 0;
 }
 @media(max-width:767px) {
-  .lp-carousel__item { width: 310px; height: 270px; }
+  .lp-carousel__item { width: 290px; height: 260px; }
 }
 .lp-carousel__item img {
   width: 100%;
