@@ -503,6 +503,38 @@ body {
 }
 .lp-stock--low { color: #c00; }
 
+/* ── Impulse CTA nudge ──────────────────────────────────── */
+.lp-cta-nudge {
+  background: var(--ink);
+  border-top: 1px solid var(--rule);
+  padding: 52px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.lp-btn-nudge {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--fbody);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: 20px 56px;
+  border: none;
+  transition: opacity 130ms;
+}
+.lp-btn-nudge:hover { opacity: .88; }
+.lp-nudge-note {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.32);
+}
+
 /* ── Payment icons ──────────────────────────────────────── */
 .lp-pay-icons {
   display: flex;
@@ -583,6 +615,132 @@ body {
       loading="eager"
     >
   </div>
+</div>
+
+<!-- ═══ QUOTE STRIP ════════════════════════════════════════════════════════ -->
+<div class="lp-quotes">
+  <div class="lp-quotes__inner">
+
+    <div class="lp-quote">
+      <div class="lp-quote__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="lp-quote__text">
+        &ldquo;I detail cars on the side and started using this on client vehicles.
+        <em>Clients actually ask what towel I&rsquo;m using.</em>&rdquo;
+      </p>
+      <p class="lp-quote__name">Jason L. &mdash; Verified</p>
+    </div>
+
+    <div class="lp-quote">
+      <div class="lp-quote__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="lp-quote__text">
+        &ldquo;Dried my WRX in literally two passes. Didn&rsquo;t have to wring it out once.
+        <em>The GSM on this thing is no joke.</em>&rdquo;
+      </p>
+      <p class="lp-quote__name">Brandon W. &mdash; Verified</p>
+    </div>
+
+    <div class="lp-quote">
+      <div class="lp-quote__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="lp-quote__text">
+        &ldquo;Used this on a PPF wrap for the first time and was nervous.
+        <em>Zero issues. Glides right over the film.</em>&rdquo;
+      </p>
+      <p class="lp-quote__name">Zach F. &mdash; Verified</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ CTA NUDGE ══════════════════════════════════════════════════════════ -->
+<div class="lp-cta-nudge">
+  <button class="lp-btn-nudge" onclick="document.getElementById('lp-packs').scrollIntoView({behavior:'smooth'})">
+    Order Now &mdash; $72.99 &darr;
+  </button>
+  <p class="lp-nudge-note">Free shipping &middot; 30-day guarantee</p>
+</div>
+
+<!-- ═══ GSM PROOF ══════════════════════════════════════════════════════════ -->
+<section class="lp-proof">
+  <div class="lp-proof__inner">
+    <p class="lp-eyebrow lp-eyebrow--dark">Why GSM matters</p>
+    <h2 class="lp-h2 lp-h2--dark">More Fiber.<br>More Protection.</h2>
+    <p class="lp-proof__lead">
+      GSM is the density of microfiber per square meter. More fiber = more water lifted
+      per pass, fewer drags across your clear coat. The stuff at the auto parts store
+      runs 200&ndash;400 GSM. It scratches. The Nova is 1300.
+    </p>
+
+    <div class="lp-gsm-grid" aria-label="GSM comparison">
+      <div class="lp-gsm-cell">
+        <span class="lp-gsm-tier">Gas station</span>
+        <span class="lp-gsm-val">200</span>
+        <span class="lp-gsm-unit">GSM</span>
+      </div>
+      <div class="lp-gsm-cell">
+        <span class="lp-gsm-tier">Standard</span>
+        <span class="lp-gsm-val">400</span>
+        <span class="lp-gsm-unit">GSM</span>
+      </div>
+      <div class="lp-gsm-cell">
+        <span class="lp-gsm-tier">Detailer twist</span>
+        <span class="lp-gsm-val">800</span>
+        <span class="lp-gsm-unit">GSM</span>
+      </div>
+      <div class="lp-gsm-cell lp-gsm-cell--nova">
+        <span class="lp-gsm-tier">The Nova</span>
+        <span class="lp-gsm-val">1300</span>
+        <span class="lp-gsm-unit">GSM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OBJECTIONS ════════════════════════════════════════════════════════ -->
+<section class="lp-obj">
+  <div class="lp-obj__inner">
+    <p class="lp-eyebrow">Common Questions</p>
+    <h2 class="lp-h2">The Honest Answers</h2>
+
+    <div class="lp-obj__list">
+
+      <div class="lp-obj__item">
+        <p class="lp-obj__q">Why pay $30 when Amazon has a 30-pack for the same price?</p>
+        <p class="lp-obj__a">
+          Those are 200&ndash;400 GSM utility towels. They push water around, leave streaks on glass, and
+          drag grit across your clear coat on every pass.
+          <strong>The Nova dries a full sedan in one pass. One towel. No second run.</strong>
+          You&rsquo;ll use the Amazon pack until it scratches your car. Then you&rsquo;ll buy a Nova anyway.
+        </p>
+      </div>
+
+      <div class="lp-obj__item">
+        <p class="lp-obj__q">Is it actually safe on ceramic, PPF, and matte paint?</p>
+        <p class="lp-obj__a">
+          Yes. The 1300 GSM twisted loop traps water and particles inside the pile —
+          they never drag across your surface. <strong>Safe on coated, wrapped, and bare paint.</strong>
+          Several customers specifically use it on PPF and ceramic daily drivers.
+        </p>
+      </div>
+
+      <div class="lp-obj__item">
+        <p class="lp-obj__q">Will it last, or am I buying this every few months?</p>
+        <p class="lp-obj__a">
+          Washed in cold water, hung to dry — a Nova will outlast ten Amazon packs.
+          <strong>The 70/30 microfiber blend holds structure after repeated washes.</strong>
+          We sell a dedicated microfiber detergent too, but any cold, no-softener wash works fine.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA NUDGE 2 ═════════════════════════════════════════════════════════ -->
+<div class="lp-cta-nudge">
+  <button class="lp-btn-nudge" onclick="document.getElementById('lp-packs').scrollIntoView({behavior:'smooth'})">
+    Order Now &mdash; $72.99 &darr;
+  </button>
+  <p class="lp-nudge-note">Free shipping &middot; 30-day guarantee</p>
 </div>
 
 <!-- ═══ BUNDLE & BUY ══════════════════════════════════════════════════════ -->
@@ -667,116 +825,6 @@ body {
       </svg>
     </div>
 
-  </div>
-</section>
-
-<!-- ═══ QUOTE STRIP ════════════════════════════════════════════════════════ -->
-<div class="lp-quotes">
-  <div class="lp-quotes__inner">
-
-    <div class="lp-quote">
-      <div class="lp-quote__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="lp-quote__text">
-        &ldquo;I detail cars on the side and started using this on client vehicles.
-        <em>Clients actually ask what towel I&rsquo;m using.</em>&rdquo;
-      </p>
-      <p class="lp-quote__name">Jason L. &mdash; Verified</p>
-    </div>
-
-    <div class="lp-quote">
-      <div class="lp-quote__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="lp-quote__text">
-        &ldquo;Dried my WRX in literally two passes. Didn&rsquo;t have to wring it out once.
-        <em>The GSM on this thing is no joke.</em>&rdquo;
-      </p>
-      <p class="lp-quote__name">Brandon W. &mdash; Verified</p>
-    </div>
-
-    <div class="lp-quote">
-      <div class="lp-quote__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="lp-quote__text">
-        &ldquo;Used this on a PPF wrap for the first time and was nervous.
-        <em>Zero issues. Glides right over the film.</em>&rdquo;
-      </p>
-      <p class="lp-quote__name">Zach F. &mdash; Verified</p>
-    </div>
-
-  </div>
-</div>
-
-<!-- ═══ GSM PROOF ══════════════════════════════════════════════════════════ -->
-<section class="lp-proof">
-  <div class="lp-proof__inner">
-    <p class="lp-eyebrow lp-eyebrow--dark">Why GSM matters</p>
-    <h2 class="lp-h2 lp-h2--dark">More Fiber.<br>More Protection.</h2>
-    <p class="lp-proof__lead">
-      GSM is the density of microfiber per square meter. More fiber = more water lifted
-      per pass, fewer drags across your clear coat. The stuff at the auto parts store
-      runs 200&ndash;400 GSM. It scratches. The Nova is 1300.
-    </p>
-
-    <div class="lp-gsm-grid" aria-label="GSM comparison">
-      <div class="lp-gsm-cell">
-        <span class="lp-gsm-tier">Gas station</span>
-        <span class="lp-gsm-val">200</span>
-        <span class="lp-gsm-unit">GSM</span>
-      </div>
-      <div class="lp-gsm-cell">
-        <span class="lp-gsm-tier">Standard</span>
-        <span class="lp-gsm-val">400</span>
-        <span class="lp-gsm-unit">GSM</span>
-      </div>
-      <div class="lp-gsm-cell">
-        <span class="lp-gsm-tier">Detailer twist</span>
-        <span class="lp-gsm-val">800</span>
-        <span class="lp-gsm-unit">GSM</span>
-      </div>
-      <div class="lp-gsm-cell lp-gsm-cell--nova">
-        <span class="lp-gsm-tier">The Nova</span>
-        <span class="lp-gsm-val">1300</span>
-        <span class="lp-gsm-unit">GSM</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ OBJECTIONS ════════════════════════════════════════════════════════ -->
-<section class="lp-obj">
-  <div class="lp-obj__inner">
-    <p class="lp-eyebrow">Common Questions</p>
-    <h2 class="lp-h2">The Honest Answers</h2>
-
-    <div class="lp-obj__list">
-
-      <div class="lp-obj__item">
-        <p class="lp-obj__q">Why pay $30 when Amazon has a 30-pack for the same price?</p>
-        <p class="lp-obj__a">
-          Those are 200&ndash;400 GSM utility towels. They push water around, leave streaks on glass, and
-          drag grit across your clear coat on every pass.
-          <strong>The Nova dries a full sedan in one pass. One towel. No second run.</strong>
-          You&rsquo;ll use the Amazon pack until it scratches your car. Then you&rsquo;ll buy a Nova anyway.
-        </p>
-      </div>
-
-      <div class="lp-obj__item">
-        <p class="lp-obj__q">Is it actually safe on ceramic, PPF, and matte paint?</p>
-        <p class="lp-obj__a">
-          Yes. The 1300 GSM twisted loop traps water and particles inside the pile —
-          they never drag across your surface. <strong>Safe on coated, wrapped, and bare paint.</strong>
-          Several customers specifically use it on PPF and ceramic daily drivers.
-        </p>
-      </div>
-
-      <div class="lp-obj__item">
-        <p class="lp-obj__q">Will it last, or am I buying this every few months?</p>
-        <p class="lp-obj__a">
-          Washed in cold water, hung to dry — a Nova will outlast ten Amazon packs.
-          <strong>The 70/30 microfiber blend holds structure after repeated washes.</strong>
-          We sell a dedicated microfiber detergent too, but any cold, no-softener wash works fine.
-        </p>
-      </div>
-
-    </div>
   </div>
 </section>
 
