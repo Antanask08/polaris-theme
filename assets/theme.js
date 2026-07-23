@@ -254,7 +254,7 @@
           variantHTML,
           '    <div class="cart-item-price">' + formatMoney(item.final_price) + '</div>',
           '    <div class="cart-item-qty">',
-          '      <button class="qty-btn qty-minus" data-key="' + item.key + '" data-qty="' + (item.quantity - 1) + '">\u2212</button>',
+          '      <button class="qty-btn qty-minus" data-key="' + item.key + '" data-qty="' + (item.quantity - 1) + '"' + (item.quantity <= 1 ? ' disabled' : '') + '>\u2212</button>',
           '      <span class="qty-display">' + item.quantity + '</span>',
           '      <button class="qty-btn qty-plus" data-key="' + item.key + '" data-qty="' + (item.quantity + 1) + '">+</button>',
           '    </div>',

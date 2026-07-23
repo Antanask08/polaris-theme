@@ -12,41 +12,6 @@
     "product_main": {
       "type": "product-main",
       "blocks": {
-        "ugc_item_UMqUne": {
-          "type": "ugc_item",
-          "settings": {
-            "image": "shopify://shop_images/IMG_4004.jpg",
-            "caption": "@polariscarcare"
-          }
-        },
-        "ugc_item_hUMGBN": {
-          "type": "ugc_item",
-          "settings": {
-            "image": "shopify://shop_images/IMG_3968.jpg",
-            "caption": "@polariscarcare"
-          }
-        },
-        "ugc_item_GyY3Uf": {
-          "type": "ugc_item",
-          "settings": {
-            "image": "shopify://shop_images/tt2.png",
-            "caption": "@polariscarcare"
-          }
-        },
-        "ugc_item_xQJwTU": {
-          "type": "ugc_item",
-          "settings": {
-            "image": "shopify://shop_images/IMG_4174.jpg",
-            "caption": "@polariscarcare"
-          }
-        },
-        "ugc_item_7nCFFj": {
-          "type": "ugc_item",
-          "settings": {
-            "image": "shopify://shop_images/IMG_4056.jpg",
-            "caption": "@polariscarcare"
-          }
-        },
         "ugc_item_TxAtnQ": {
           "type": "ugc_item",
           "settings": {
@@ -67,7 +32,7 @@
             "name": "Marcus T.",
             "stars": 5,
             "review_text": "Absolutely incredible towel. The 1300 GSM is a game changer on my ceramic coated car. Zero water spots, dried the whole car in two passes.",
-            "date": "March 2025"
+            "date": "June 2026"
           }
         },
         "review_2": {
@@ -76,7 +41,7 @@
             "name": "Jordan K.",
             "stars": 5,
             "review_text": "Finally a drying towel that doesn't leave swirls or water spots. Bought two. Polaris just earned a customer for life.",
-            "date": "February 2025"
+            "date": "May 2026"
           }
         },
         "review_3": {
@@ -85,7 +50,7 @@
             "name": "Tyler M.",
             "stars": 5,
             "review_text": "These guys actually know cars. Product quality is insane for the price. This is the only towel I use on my GTR.",
-            "date": "January 2025"
+            "date": "April 2026"
           }
         },
         "review_4": {
@@ -94,7 +59,7 @@
             "name": "Derek S.",
             "stars": 5,
             "review_text": "Used this on my blacked out BMW M4 right after a detail. Not a single water spot or streak. Legit the best drying towel I've owned.",
-            "date": "March 2025"
+            "date": "June 2026"
           }
         },
         "review_5": {
@@ -103,7 +68,7 @@
             "name": "Chris A.",
             "stars": 4,
             "review_text": "Really solid towel. Absorbed way more water than I expected for the price. Only reason it's not 5 stars is I wish it came in a bigger size.",
-            "date": "February 2025"
+            "date": "May 2026"
           }
         },
         "review_6": {
@@ -112,7 +77,7 @@
             "name": "Nathan R.",
             "stars": 5,
             "review_text": "My old towel was leaving micro scratches on my clear coat. Switched to the Nova and the difference is night and day. Should have done this sooner.",
-            "date": "March 2025"
+            "date": "June 2026"
           }
         },
         "review_7": {
@@ -121,7 +86,7 @@
             "name": "Jason L.",
             "stars": 5,
             "review_text": "I detail cars on the side and started using this on client vehicles. Zero complaints. Clients actually ask what towel I'm using now.",
-            "date": "January 2025"
+            "date": "April 2026"
           }
         },
         "review_8": {
@@ -130,7 +95,7 @@
             "name": "Brandon W.",
             "stars": 5,
             "review_text": "Dried my WRX in literally two passes. Didn't have to wring it out once. The GSM on this thing is no joke.",
-            "date": "February 2025"
+            "date": "May 2026"
           }
         },
         "review_9": {
@@ -139,7 +104,7 @@
             "name": "Kyle P.",
             "stars": 4,
             "review_text": "Good towel, great price. Does exactly what it says. Would like to see more products from Polaris.",
-            "date": "March 2025"
+            "date": "June 2026"
           }
         },
         "review_10": {
@@ -148,7 +113,7 @@
             "name": "Ethan M.",
             "stars": 5,
             "review_text": "Ordered on a Friday, used it Sunday. Unreal quality for under $30. This is now a permanent part of my detailing kit.",
-            "date": "January 2025"
+            "date": "April 2026"
           }
         },
         "review_11": {
@@ -157,7 +122,7 @@
             "name": "Ryan C.",
             "stars": 5,
             "review_text": "I've tried Chemical Guys, Meguiar's, and a few others. The Nova is genuinely better. Thicker, softer, and way more absorbent.",
-            "date": "February 2025"
+            "date": "May 2026"
           }
         },
         "review_12": {
@@ -166,7 +131,7 @@
             "name": "Alex T.",
             "stars": 5,
             "review_text": "Bought this for my Corvette. Ceramic coated paint shows everything — this towel leaves absolutely nothing behind. Impressed.",
-            "date": "March 2025"
+            "date": "June 2026"
           }
         },
         "review_13": {
@@ -175,7 +140,7 @@
             "name": "Mike D.",
             "stars": 5,
             "review_text": "My brother put me onto Polaris. Both of us use it now. The quality speaks for itself. Don't sleep on this brand.",
-            "date": "January 2025"
+            "date": "April 2026"
           }
         },
         "review_14": {
@@ -184,7 +149,7 @@
             "name": "Connor H.",
             "stars": 4,
             "review_text": "Solid build quality, feels premium in hand. Dries fast, no streaks. Took one star off only because shipping took a few extra days.",
-            "date": "February 2025"
+            "date": "May 2026"
           }
         },
         "review_15": {
@@ -193,7 +158,7 @@
             "name": "Zach F.",
             "stars": 5,
             "review_text": "Used this on a PPF wrap for the first time and was nervous. Zero issues. Glides right over the film. This is my go-to from now on.",
-            "date": "March 2025"
+            "date": "June 2026"
           }
         },
         "faq_1": {
@@ -247,11 +212,6 @@
         }
       },
       "block_order": [
-        "ugc_item_UMqUne",
-        "ugc_item_hUMGBN",
-        "ugc_item_GyY3Uf",
-        "ugc_item_xQJwTU",
-        "ugc_item_7nCFFj",
         "ugc_item_TxAtnQ",
         "ugc_item_FTKpUF",
         "review_1",
@@ -278,11 +238,9 @@
         "faq_7"
       ],
       "settings": {
-        "founder_image": "shopify://shop_images/IMG_4338.jpg",
         "reviews_heading": "WHAT THE COMMUNITY SAYS",
         "avg_rating_display": "4.9",
         "ugc_eyebrow": "Real People. Real Cars.",
-        "ugc_opacity": 100,
         "faq_heading": "FREQUENTLY ASKED QUESTIONS"
       }
     }

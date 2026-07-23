@@ -183,6 +183,12 @@
   border-color: #fff;
 }
 
+.qty-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .qty-display {
   font-size: 14px;
   min-width: 20px;

@@ -15,7 +15,7 @@
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
         </svg>
         <p class="cart-empty-text">YOUR CART IS EMPTY</p>
-        <a href="/collections/all" class="btn btn--primary" onclick="document.getElementById('cart-drawer').classList.remove('is-open');document.getElementById('cart-overlay').classList.remove('is-open');document.body.classList.remove('no-scroll');">SHOP THE NOVA →</a>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary" onclick="document.getElementById('cart-drawer').classList.remove('is-open');document.getElementById('cart-overlay').classList.remove('is-open');document.body.classList.remove('no-scroll');">SHOP THE NOVA →</a>
       </div>
     {%- else -%}
       <div class="cart-items" id="cart-items">
@@ -23,7 +23,7 @@
           <div class="cart-item" data-key="{{ item.key }}">
             <div class="cart-item-image">
               {%- if item.image -%}
-                <img src="{{ item.image | img_url: '160x160' }}" alt="{{ item.title | escape }}" width="80" height="80" loading="lazy">
+                <img src="{{ item.image | image_url: width: 160, height: 160, crop: 'center' }}" alt="{{ item.title | escape }}" width="80" height="80" loading="lazy">
               {%- endif -%}
             </div>
             <div class="cart-item-details">
@@ -33,7 +33,7 @@
               {%- endunless -%}
               <div class="cart-item-price">{{ item.final_line_price | money }}</div>
               <div class="cart-item-qty">
-                <button class="qty-btn qty-minus" data-key="{{ item.key }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="Decrease quantity">−</button>
+                <button class="qty-btn qty-minus" data-key="{{ item.key }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="Decrease quantity"{% if item.quantity <= 1 %} disabled{% endif %}>−</button>
                 <span class="qty-display">{{ item.quantity }}</span>
                 <button class="qty-btn qty-plus" data-key="{{ item.key }}" data-qty="{{ item.quantity | plus: 1 }}" aria-label="Increase quantity">+</button>
               </div>
